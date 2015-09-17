@@ -1,0 +1,119 @@
+{
+    "Research Interests": [{
+        "text": "Computational biology"
+    }, {
+        "text": "Viral pathogen evolution"
+    }, {
+        "text": "Next generation sequencing analysis"
+    }, {
+        "text": "Scientific and biomedical software"
+    }, {
+        "text": "Algorithms and methods development"
+    }, {
+        "text": "Molecular epidemiology"
+    }, {
+        "text": "Translational research"
+    }],
+
+    "Contact Information": [{
+        "text": "Division of Infectious Diseases"
+    }, {
+        "text": "Division of Biomedical Informatics"
+    }, {
+        "text": "School of Medicine"
+    }, {
+        "text": "University of California San Diego"
+    }, {
+        "text": "220 Dickinson St. Ste A"
+    }, {
+        "text": "San Diego, CA 92103"
+    }, {
+        "text": "(619) 543-8898",
+        "type": "phone"
+    }],
+
+    "Links": [{
+        "url": "mailto:#",
+        "link-text": "spond@ucsd.edu",
+        "print-text": "spond@ucsd.edu",
+        "type": "e-mail"
+    }, {
+        "url": "http://hyphy.org/sergei",
+        "link-text": "http://hyphy.org/sergei",
+        "print-text": "spond@ucsd.edu",
+        "type": "home"
+    }, {
+        "url": "https://github.com/spond",
+        "link-text": "github.com/spond",
+        "print-text": "github.com/spond",
+        "type": "GitHub"
+    }, {
+        "url": "https://scholar.google.com/citations?user=SP6nj-QAAAAJ&hl=en",
+        "link-text": "Google Scholar",
+        "print-text": "Sergei Pond @ Google Scholar",
+        "type": "papers"
+    }, {
+        "url": "http://www.researcherid.com/rid/G-9830-2012",
+        "link-text": "Researcher ID",
+        "print-text": "Researcher ID G-9830-2012",
+        "type": "papers"
+    }],
+
+    "Positions Held": {
+        "rows": [
+            ["2012-", {
+                "text": "Associate Professor in Residence (with tenure)",
+                "subtext": {
+                    "url": "http://med.ucsd.edu",
+                    "link-text": "Department of Medicine, University of California San Diego"
+                }
+            }],
+            ["2008-2012", {
+                "text": "Assistant Adjunct Professor",
+                "subtext": "Department of Medicine, University of California San Diego"
+            }],
+            ["2005-2008", {
+                "text": "Assistant Project Scientist",
+                "subtext": {
+                    "url": "http://pathology.ucsd.edu",
+                    "link-text": "Department of Pathology, University of California San Diego"
+                }
+            }],
+            ["2004-2005", {
+                "text": "Postgraduate Researcher",
+                "subtext": "Department of Pathology, University of California San Diego"
+            }],
+            ["2004-2005", {
+                "text": "Postgraduate Fellow",
+                "subtext": "Department of Pathology, University of California San Diego"
+            }]
+        ]
+    },
+
+    "Education": {
+        "rows": [
+            ["1998-2003", {
+                "text": "Ph.D., Applied Mathematics",
+                "subtext": {
+                    "url": "http://appliedmath.arizona.edu",
+                    "link-text": "University of Arizona"
+                }
+            }],
+            ["1996-1998", {
+                "text": "M.S., Applied Mathematics",
+                "subtext": {
+                    "url": "http://math.missouri.edu",
+                    "link-text": "University of Missouri, Columbia"
+                }
+            }],
+            ["1996-1998", {
+                "text": "Undergraduate Degree (with honors), Cybernetics",
+                "subtext": {
+                    "url": "http://www.cyb.univ.kiev.ua/en.html",
+                    "link-text": "Kiev State University (Kiev, Ukraine)"
+                }
+            }]
+        ]
+    }
+
+}
