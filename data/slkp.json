@@ -61,7 +61,7 @@
 
     "Positions Held": {
         "rows": [
-            ["2012-", {
+            ["2012-present", {
                 "text": "Associate Professor in Residence (with tenure)",
                 "subtext": {
                     "url": "http://med.ucsd.edu",
@@ -114,6 +114,131 @@
                 }
             }]
         ]
+    },
+    
+     "Awards and Honors": {
+        "rows": [
+            ["2015", {
+                "text": "Highly cited research (computer science)",
+                "subtext": {
+                    "url": "http://highlycited.com/#Pond",
+                    "link-text": "Thomson Reuters Highly Cited Researchers"
+                }
+            }],
+             ["2014", {
+                "text": "Highly cited research (computer science)",
+                "subtext": "Thomson Reuters Highly Cited Researchers"
+            }],
+            ["1995", "Monsanto Eastern European Scholar Award"]
+       ]
+    },
+    
+    "Professional Activities": {
+        "rows":
+        [
+            ["2011-present", {"url": "http://journals.plos.org/ploscompbiol/s/editorial-board#loc-associate-editors",
+                      "link-text": "Associate Editor, PLoS Computational Biology"}],
+            ["2014-present", {"url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
+                      "link-text": "Associate Editor, Molecular Biology and Evolution"}],
+            ["2014-present", {"url": "http://internet.csr.nih.gov/Roster_proto1/sectionI_list_detail.asp?NEWSRG=GVE&SRG=GVE&SRGDISPLAY=GVE",
+                      "link-text": "NIH GVE study section (ad hoc)"}],
+            ["2012-present", "Reviewer for the NSF"],
+            ["2014-present", {"link-text": "Organizing committee for the HIV Dynamics and Evolution meeting",
+                              "url": "https://cme.ucsd.edu/hivdynamics/committee.html"}],
+            ["2012-present", {"link-text": " Bioinformatics group leader, Forum for Collaborative HIV Research",
+                              "url": "http://www.hivforum.org"}],
+            ["2010-2012", " Member of the Editorial Board for Methods in Ecology and Evolution"]
+        ]
+    },
+    
+    "Grants and Fellowships": {
+        "rows" :
+            [
+                ["2014-2019", {"text": "Modeling Epidemic Infectious Diseases Using Sequence Analysis",
+                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8921226",
+                                           "link-text": "U01 GM110749 (NIH/NIGMS)"}},
+                                "Principal Investigator",
+                                {"text": "587438",   "format" : "dollars", "subtext": "FY2015"},
+                                {"text" : "current", "type": "label"}
+                ],
+                ["2010-2019", {"text": "HyPhy: Comprehensive, Fast, And User-Friendly Software For Evolutionary Analysis",
+                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8886417",
+                                           "link-text": "R01 GM093939 (NIH/NIGMS)"}},
+                                "Principal Investigator",
+                                {"text": "384949",   "format" : "dollars", "subtext": "FY2015"},
+                                {"text" : "current", "type": "label"}
+                ],
+                ["2015", {"text": "RAPID Ebola outbreak: A Web Tool for Tracking Pathogen Evolution Impact on Immune Responses",
+                               "subtext": {"url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=1509575",
+                                           "link-text": "1509575  (NSF/DBI)"}},
+                                "Principal Investigator",
+                                {"text": "200000",   "format" : "dollars", "subtext": "Total"},
+                                {"text" : "current", "type": "label"}
+                ],
+                ["2012-2015", {"text": "Accurate evolutionary rates for precise pathogen sourcing",
+                               "subtext": {"url": "http://ucop.edu/research-initiatives/programs/lab-fees/prior-awards.html",
+                                           "link-text": "236617 (UC Laboratory Fees Research Program)"}},
+                                "Co-Principal Investigator",
+                                {"text": "719055",   "format" : "dollars", "subtext": "Total"},
+                                {"text" : "current", "type": "label"}
+                ],                
+                ["2012-2015", {"text": "Bioinformatics And Information Technologies Core",
+                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8819504",
+                                           "link-text": "P30 AI036214  (NIH/Center for AIDS Research)"}},
+                                "Core Director",
+                                {"text": "28548",   "format" : "dollars", "subtext": "FY2015"},
+                                {"text" : "current", "type": "label"}
+                ],                
+                ["2015-2019", {"text": "Identification Of B Cell Epitopes Fundamental To Immune Defenses Against Staphylococcus Aureus",
+                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8936764",
+                                           "link-text": "272201400019C  (NIH/NIAID)"}},
+                                "Subcontract Principal Investigator",
+                                {"text": "50000",   "format" : "dollars", "subtext": "Annually"},
+                                {"text" : "current", "type": "label"}
+                ],
+                ["2010-2015", {"text": "Interplay Of B Cells And HIV Leading To Broad Neutralizing Antibody Responses",
+                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8721325",
+                                           "link-text": "U19 AI090970  (NIH/NIAID)"}},
+                                "Data Management Core Director",
+                                {"text": "563501",   "format" : "dollars", "subtext": "Total"},
+                                {"text" : "completed", "type": "label"}
+                ],              
+                ["2012-2014", {"text": "Biomathematical Analysis Of Viral Dynamics And Evolution",
+                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8466034",
+                                           "link-text": "R56 AI047745  (NIH/NIAID)"}},
+                                "Principal Investigator",
+                                {"text": "364504",   "format" : "dollars", "subtext": "Total"},
+                                {"text" : "completed", "type": "label"}
+                ],               
+                ["2009-2014", {"text": "Cyberinfrastructure for Accessible and Reproducible Research in Life Sciences",
+                               "subtext": {"url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0850103",
+                                           "link-text": "0850103  (NSF/DBI)"}},
+                                "Co-Principal Investigator",
+                                {"text": "1342193",   "format" : "dollars", "subtext": "Total"},
+                                {"text" : "completed", "type": "label"}
+                ],              
+                ["2006", "UCSD CFAR Developmental Award",
+                                "Principal Investigator",
+                                {"text": "40000",   "format" : "dollars", "subtext": "Total"},
+                                {"text" : "completed", "type": "label"}
+                ],              
+                ["2001-2003", "NSF Integrative Graduate Education and Research Traineeship Program (IGERT)",
+                                "Fellow",
+                                "",
+                                {"text" : "completed", "type": "label"}
+                ],               
+                ["2000-2001", {"text" : "Research Assistant", "subtext": "Arizona Center of Mathematical Sciences"},
+                                "Fellow",
+                                "",
+                                {"text" : "completed", "type": "label"}
+                ],                 
+                ["1999-2001", {"text" : "Summer Internship at the Bioinformatics Research Center", "subtext": "North Carolina State University"},
+                                "Intern",
+                                "",
+                                {"text" : "completed", "type": "label"}
+                ]                 
+            ]
     }
 
 }
+
