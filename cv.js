@@ -127,32 +127,62 @@ function populate_list(container, key, data) {
     });
 }
 
-function process_author_line(authors) {
-    authors = authors.split(" and ").map(function(author) {
+function process_author_line(authors, match) {
+    var index = undefined;
+
+    authors = authors.split(" and ").map(function(author, i) {
         author = author.replace("{", "").replace("}", "");
         var parts = author.split(",");
+
         if (parts.length == 2) {
-            return parts[0] + " " + parts[1].split(" ").map(function(a) {
+            author = parts[0] + " " + parts[1].split(" ").map(function(a) {
                 return a[0];
             }).join("");
         }
+
+        if (match && author.indexOf (match) == 0 && index === undefined) {
+            index = i;
+        }
+
         return author;
     });
 
+    var text,
+        tag = index;
+
     if (authors.length <= 10) {
-        return authors.join(", ");
+        text = authors.join(", ");
+    } else {
+        text = authors.filter(function(d, i) {
+            return i < 10;
+        }).join(", ") + " and " + (authors.length - 10) + " others";
     }
-    return authors.filter(function(d, i) {
-        return i < 10;
-    }).join(", ") + " and " + (authors.length - 10) + " others";
+
+    if (_.isNumber (tag)) {
+        if (tag == 0) {
+            tag = "1st";
+        } else {
+            if (tag == authors.length-1) {
+                tag = "Senior";
+            } else if (tag == 1) {
+                tag = "2nd";
+            } else {
+                tag = "";
+            }
+        }
+    }
+
+    return {"text": text, "tag" : tag};
 }
 
-function extract_bibtex_record(record) {
+function extract_bibtex_record(highlight, record) {
     var render_me = [];
     render_me.push(record["YEAR"]);
+    var authors = process_author_line(record["AUTHOR"], highlight);
+    render_me.push(authors["tag"] ? {"text": authors["tag"], "type": "label"} : "");
     render_me.push({
         "subtext": record["TITLE"],
-        "text": process_author_line(record["AUTHOR"])
+        "text": authors["text"]
     });
     render_me.push({
         "text": record["JOURNAL"],
@@ -180,8 +210,10 @@ function populate_bibtex(container, key, data) {
 
             var b = new BibtexParser();
             b.setInput(value);
-            b.bibtex()
-            data["rows"] = _.map(b.entries, extract_bibtex_record).sort(function(a, b) {
+            b.bibtex();
+
+
+            data["rows"] = _.map(b.entries, _.partial (extract_bibtex_record, data["highlight"])).sort(function(a, b) {
                 return b[0] - a[0];
             });
             data["subtext"] = data["rows"].length + " publications" + (data["subtext"] ? ", " + data["subtext"] : "");

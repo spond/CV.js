@@ -711,6 +711,7 @@
     },
     "Publications": {
         "subtext": " >8800 total citations, h-index 43 (per Google Scholar)",
+        "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
     "Software Projects": {
