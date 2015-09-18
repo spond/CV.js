@@ -115,8 +115,8 @@
             }]
         ]
     },
-    
-     "Awards and Honors": {
+
+    "Awards and Honors": {
         "rows": [
             ["2015", {
                 "text": "Highly cited research (computer science)",
@@ -125,120 +125,608 @@
                     "link-text": "Thomson Reuters Highly Cited Researchers"
                 }
             }],
-             ["2014", {
+            ["2014", {
                 "text": "Highly cited research (computer science)",
                 "subtext": "Thomson Reuters Highly Cited Researchers"
             }],
             ["1995", "Monsanto Eastern European Scholar Award"]
-       ]
+        ]
     },
-    
+
     "Professional Activities": {
-        "rows":
-        [
-            ["2011-present", {"url": "http://journals.plos.org/ploscompbiol/s/editorial-board#loc-associate-editors",
-                      "link-text": "Associate Editor, PLoS Computational Biology"}],
-            ["2014-present", {"url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
-                      "link-text": "Associate Editor, Molecular Biology and Evolution"}],
-            ["2014-present", {"url": "http://internet.csr.nih.gov/Roster_proto1/sectionI_list_detail.asp?NEWSRG=GVE&SRG=GVE&SRGDISPLAY=GVE",
-                      "link-text": "NIH GVE study section (ad hoc)"}],
-            ["2012-present", "Reviewer for the NSF"],
-            ["2014-present", {"link-text": "Organizing committee for the HIV Dynamics and Evolution meeting",
-                              "url": "https://cme.ucsd.edu/hivdynamics/committee.html"}],
-            ["2012-present", {"link-text": " Bioinformatics group leader, Forum for Collaborative HIV Research",
-                              "url": "http://www.hivforum.org"}],
+        "rows": [
+            ["2011-present", {
+                "url": "http://journals.plos.org/ploscompbiol/s/editorial-board#loc-associate-editors",
+                "link-text": "Associate Editor, PLoS Computational Biology"
+            }],
+            ["2014-present", {
+                "url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
+                "link-text": "Associate Editor, Molecular Biology and Evolution"
+            }],
+            ["2014-present", {
+                "url": "http://internet.csr.nih.gov/Roster_proto1/sectionI_list_detail.asp?NEWSRG=GVE&SRG=GVE&SRGDISPLAY=GVE",
+                "link-text": "NIH GVE study section (ad hoc)"
+            }],
+            ["2014-present", {
+                "link-text": "Organizing committee for the HIV Dynamics and Evolution meeting",
+                "url": "https://cme.ucsd.edu/hivdynamics/committee.html"
+            }],
+            ["2012-present", "Grant reviewer for the NSF"],
+            ["2011-present", "Grant reviewer for the Wellcome Trust"],
+            ["2012-present", "Grant reviewer for the Swiss National Science Foundation"],
+            ["2012-present", {
+                "link-text": " Bioinformatics group leader, Forum for Collaborative HIV Research",
+                "url": "http://www.hivforum.org"
+            }],
             ["2010-2012", " Member of the Editorial Board for Methods in Ecology and Evolution"]
         ]
     },
-    
+
     "Grants and Fellowships": {
-        "rows" :
-            [
-                ["2014-2019", {"text": "Modeling Epidemic Infectious Diseases Using Sequence Analysis",
-                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8921226",
-                                           "link-text": "U01 GM110749 (NIH/NIGMS)"}},
-                                "Principal Investigator",
-                                {"text": "587438",   "format" : "dollars", "subtext": "FY2015"},
-                                {"text" : "current", "type": "label"}
-                ],
-                ["2010-2019", {"text": "HyPhy: Comprehensive, Fast, And User-Friendly Software For Evolutionary Analysis",
-                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8886417",
-                                           "link-text": "R01 GM093939 (NIH/NIGMS)"}},
-                                "Principal Investigator",
-                                {"text": "384949",   "format" : "dollars", "subtext": "FY2015"},
-                                {"text" : "current", "type": "label"}
-                ],
-                ["2015", {"text": "RAPID Ebola outbreak: A Web Tool for Tracking Pathogen Evolution Impact on Immune Responses",
-                               "subtext": {"url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=1509575",
-                                           "link-text": "1509575  (NSF/DBI)"}},
-                                "Principal Investigator",
-                                {"text": "200000",   "format" : "dollars", "subtext": "Total"},
-                                {"text" : "current", "type": "label"}
-                ],
-                ["2012-2015", {"text": "Accurate evolutionary rates for precise pathogen sourcing",
-                               "subtext": {"url": "http://ucop.edu/research-initiatives/programs/lab-fees/prior-awards.html",
-                                           "link-text": "236617 (UC Laboratory Fees Research Program)"}},
-                                "Co-Principal Investigator",
-                                {"text": "719055",   "format" : "dollars", "subtext": "Total"},
-                                {"text" : "current", "type": "label"}
-                ],                
-                ["2012-2015", {"text": "Bioinformatics And Information Technologies Core",
-                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8819504",
-                                           "link-text": "P30 AI036214  (NIH/Center for AIDS Research)"}},
-                                "Core Director",
-                                {"text": "28548",   "format" : "dollars", "subtext": "FY2015"},
-                                {"text" : "current", "type": "label"}
-                ],                
-                ["2015-2019", {"text": "Identification Of B Cell Epitopes Fundamental To Immune Defenses Against Staphylococcus Aureus",
-                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8936764",
-                                           "link-text": "272201400019C  (NIH/NIAID)"}},
-                                "Subcontract Principal Investigator",
-                                {"text": "50000",   "format" : "dollars", "subtext": "Annually"},
-                                {"text" : "current", "type": "label"}
-                ],
-                ["2010-2015", {"text": "Interplay Of B Cells And HIV Leading To Broad Neutralizing Antibody Responses",
-                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8721325",
-                                           "link-text": "U19 AI090970  (NIH/NIAID)"}},
-                                "Data Management Core Director",
-                                {"text": "563501",   "format" : "dollars", "subtext": "Total"},
-                                {"text" : "completed", "type": "label"}
-                ],              
-                ["2012-2014", {"text": "Biomathematical Analysis Of Viral Dynamics And Evolution",
-                               "subtext": {"url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8466034",
-                                           "link-text": "R56 AI047745  (NIH/NIAID)"}},
-                                "Principal Investigator",
-                                {"text": "364504",   "format" : "dollars", "subtext": "Total"},
-                                {"text" : "completed", "type": "label"}
-                ],               
-                ["2009-2014", {"text": "Cyberinfrastructure for Accessible and Reproducible Research in Life Sciences",
-                               "subtext": {"url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0850103",
-                                           "link-text": "0850103  (NSF/DBI)"}},
-                                "Co-Principal Investigator",
-                                {"text": "1342193",   "format" : "dollars", "subtext": "Total"},
-                                {"text" : "completed", "type": "label"}
-                ],              
-                ["2006", "UCSD CFAR Developmental Award",
-                                "Principal Investigator",
-                                {"text": "40000",   "format" : "dollars", "subtext": "Total"},
-                                {"text" : "completed", "type": "label"}
-                ],              
-                ["2001-2003", "NSF Integrative Graduate Education and Research Traineeship Program (IGERT)",
-                                "Fellow",
-                                "",
-                                {"text" : "completed", "type": "label"}
-                ],               
-                ["2000-2001", {"text" : "Research Assistant", "subtext": "Arizona Center of Mathematical Sciences"},
-                                "Fellow",
-                                "",
-                                {"text" : "completed", "type": "label"}
-                ],                 
-                ["1999-2001", {"text" : "Summer Internship at the Bioinformatics Research Center", "subtext": "North Carolina State University"},
-                                "Intern",
-                                "",
-                                {"text" : "completed", "type": "label"}
-                ]                 
+        "subtext" : "Principal or co-principal investigator/recipient only",
+        "rows": [
+            ["2014-2019", {
+                    "text": "Modeling Epidemic Infectious Diseases Using Sequence Analysis",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8921226",
+                        "link-text": "U01 GM110749 (NIH/NIGMS)"
+                    }
+                },
+                "Principal Investigator", {
+                    "text": "587438",
+                    "format": "dollars",
+                    "subtext": "FY2015"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2010-2019", {
+                    "text": "HyPhy: Comprehensive, Fast, And User-Friendly Software For Evolutionary Analysis",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8886417",
+                        "link-text": "R01 GM093939 (NIH/NIGMS)"
+                    }
+                },
+                "Principal Investigator", {
+                    "text": "384949",
+                    "format": "dollars",
+                    "subtext": "FY2015"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2015", {
+                    "text": "RAPID Ebola outbreak: A Web Tool for Tracking Pathogen Evolution Impact on Immune Responses",
+                    "subtext": {
+                        "url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=1509575",
+                        "link-text": "1509575  (NSF/DBI)"
+                    }
+                },
+                "Principal Investigator", {
+                    "text": "200000",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2012-2015", {
+                    "text": "Accurate evolutionary rates for precise pathogen sourcing",
+                    "subtext": {
+                        "url": "http://ucop.edu/research-initiatives/programs/lab-fees/prior-awards.html",
+                        "link-text": "236617 (UC Laboratory Fees Research Program)"
+                    }
+                },
+                "Co-Principal Investigator", {
+                    "text": "719055",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2012-2015", {
+                    "text": "Bioinformatics And Information Technologies Core",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8819504",
+                        "link-text": "P30 AI036214  (NIH/Center for AIDS Research)"
+                    }
+                },
+                "Core Director", {
+                    "text": "28548",
+                    "format": "dollars",
+                    "subtext": "FY2015"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2015-2019", {
+                    "text": "Identification Of B Cell Epitopes Fundamental To Immune Defenses Against Staphylococcus Aureus",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8936764",
+                        "link-text": "272201400019C  (NIH/NIAID)"
+                    }
+                },
+                "Subcontract Principal Investigator", {
+                    "text": "50000",
+                    "format": "dollars",
+                    "subtext": "Annually"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2010-2015", {
+                    "text": "Interplay Of B Cells And HIV Leading To Broad Neutralizing Antibody Responses",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8721325",
+                        "link-text": "U19 AI090970  (NIH/NIAID)"
+                    }
+                },
+                "Data Management Core Director", {
+                    "text": "563501",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "completed",
+                    "type": "label"
+                }
+            ],
+            ["2012-2014", {
+                    "text": "Biomathematical Analysis Of Viral Dynamics And Evolution",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8466034",
+                        "link-text": "R56 AI047745  (NIH/NIAID)"
+                    }
+                },
+                "Principal Investigator", {
+                    "text": "364504",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "completed",
+                    "type": "label"
+                }
+            ],
+            ["2009-2014", {
+                    "text": "Cyberinfrastructure for Accessible and Reproducible Research in Life Sciences",
+                    "subtext": {
+                        "url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0850103",
+                        "link-text": "0850103  (NSF/DBI)"
+                    }
+                },
+                "Co-Principal Investigator", {
+                    "text": "1342193",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "completed",
+                    "type": "label"
+                }
+            ],
+            ["2006", "UCSD CFAR Developmental Award",
+                "Principal Investigator", {
+                    "text": "40000",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "completed",
+                    "type": "label"
+                }
+            ],
+            ["2001-2003", "NSF Integrative Graduate Education and Research Traineeship Program (IGERT)",
+                "Fellow",
+                "", {
+                    "text": "completed",
+                    "type": "label"
+                }
+            ],
+            ["2000-2001", {
+                    "text": "Research Assistant",
+                    "subtext": "Arizona Center of Mathematical Sciences"
+                },
+                "Fellow",
+                "", {
+                    "text": "completed",
+                    "type": "label"
+                }
+            ],
+            ["1999-2001", {
+                    "text": "Summer Internship at the Bioinformatics Research Center",
+                    "subtext": "North Carolina State University"
+                },
+                "Intern",
+                "", {
+                    "text": "completed",
+                    "type": "label"
+                }
             ]
+        ]
+    },
+    "Courses Taught": {
+        "rows": [
+            ["2015", {
+                    "url": "http://ucsd.edu/catalog/courses/BIOI.html",
+                    "link-text": {
+                        "text": "Statistical Learning in Bioinformatics",
+                        "subtext": "Core course for the UCSD Bioinformatics Program"
+                    }
+                },
+                "Instructor (50%)", {
+                    "text": "Graduate",
+                    "subtext": "12 students"
+                }
+            ],
+            ["2015", {
+                    "url": "http://bioinformatics.ucsd.edu/node/103",
+                    "link-text": {
+                        "text": "Bioinformatics Applications to Human Disease ",
+                        "subtext": "Elective course, UCSD Bioinformatics, Biomedical Informatics, and Medical students"
+                    }
+                },
+                "Instructor (33%)", {
+                    "text": "Graduate",
+                    "subtext": "28 students"
+                }
+            ],
+            ["2014", {
+                    "url": "http://ucsd.edu/catalog/courses/BIOI.html",
+                    "link-text": {
+                        "text": "Statistical Learning in Bioinformatics",
+                        "subtext": "Core course of the UCSD Bioinformatics students (Inaugural year)"
+                    }
+                },
+                "Course creator, Instructor (50%)", {
+                    "text": "Graduate",
+                    "subtext": "21 students"
+                }
+            ],
+            ["2014", "Bioinformatics Applications to Human Disease",
+                "Instructor (30%)", {
+                    "text": "Graduate",
+                    "subtext": "13 students"
+                }
+            ],
+            ["2013", "Bioinformatics Applications to Human Disease",
+                "Instructor (50%)", {
+                    "text": "Graduate",
+                    "subtext": "7 students"
+                }
+            ],
+            ["2012", "Bioinformatics Applications to Human Disease",
+                "Instructor (50%)", {
+                    "text": "Graduate",
+                    "subtext": "12 students"
+                }
+            ],
+            ["2011", {
+                    "text": "Bioinformatics Applications to Human Disease ",
+                    "subtext": "(Inaugural year)"
+                },
+                "Course creator, Instructor (50%)", {
+                    "text": "Graduate",
+                    "subtext": "16 students"
+                }
+            ],
+            ["2011", {
+                    "url": "http://cseweb.ucsd.edu/classes/sp11/cse181-a/",
+                    "link-text": {
+                        "text": "Molecular Sequence Analysis",
+                        "subtext": "Senior undergraduate course"
+                    }
+                },
+                "Instructor (40%)", {
+                    "text": "Undergraduate",
+                    "subtext": "21 students"
+                }
+            ],
+            ["2010", "Molecular Sequence Analysis",
+                "Instructor (50%)", {
+                    "text": "Undergraduate",
+                    "subtext": "14 students"
+                }
+            ],
+            ["2010", {
+                    "url": "https://www.aims.ac.za",
+                    "link-text": {
+                        "text": "Introduction to Bioinformatics Algorithms",
+                        "subtext": "A course for STEM students from the African continent"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate and Masters",
+                    "subtext": "30-40 students"
+                }
+            ],
+            ["2009", "Molecular Sequence Analysis",
+                "Instructor (50%)", {
+                    "text": "Undergraduate",
+                    "subtext": "9 students"
+                }
+            ],
+            ["1999", {
+                "text": "Mathematics in Modern Society (Fall Semester)",
+                "subtext": "University of Arizona"
+            }, {
+                "text": "Graduate Teaching Assistant (100%)",
+                "subtext": "Independent Lecturing, Grading, Testing"
+            }, {
+                "text": "Undergraduate",
+                "subtext": "30-40 students"
+            }],
+            ["1999", {
+                "text": "Elements of Calculus (Spring Semester)",
+                "subtext": "University of Arizona"
+            }, {
+                "text": "Graduate Teaching Assistant (100%)",
+                "subtext": "Independent Lecturing, Grading, Testing"
+            }, {
+                "text": "Undergraduate",
+                "subtext": "30-40 students"
+            }],
+            ["1998", {
+                "text": "Collegiate Algebra (Fall semester)",
+                "subtext": "University of Arizona"
+            }, {
+                "text": "Graduate Teaching Assistant (100%)",
+                "subtext": "Independent Lecturing, Grading, Testing"
+            }, {
+                "text": "Undergraduate",
+                "subtext": "30-40 students"
+            }],
+            ["1998", {
+                "text": "Business Calculus (Spring semester)",
+                "subtext": "University of Missouri, Columbia"
+            }, {
+                "text": "Graduate Teaching Assistant (100%)",
+                "subtext": "Independent Lecturing, Grading"
+            }, {
+                "text": "Undergraduate",
+                "subtext": "30-40 students"
+            }],
+            ["1997", {
+                "text": "College Algebra (Spring and Fall semesters)",
+                "subtext": "University of Missouri, Columbia"
+            }, {
+                "text": "Graduate Teaching Assistant (100%)",
+                "subtext": "Independent Lecturing, Grading"
+            }, {
+                "text": "Undergraduate",
+                "subtext": "30-40 students"
+            }],
+            ["1996", {
+                "text": "College Algebra (Fall and Spring semesters)",
+                "subtext": "University of Missouri, Columbia"
+            }, {
+                "text": "Graduate Teaching Assistant (100%)",
+                "subtext": "Independent Lecturing, Grading"
+            }, {
+                "text": "Undergraduate",
+                "subtext": "30-40 students"
+            }]
+        ]
+    },
+
+    "Workshops": {
+        "rows": [
+            ["2015", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2015",
+                "link-text": "20th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "University of the West Indies, Trinidad and Tobago"],
+            ["2014", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2014",
+                "link-text": "19th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "National Institute for Infectious Diseases, Rome, Italy"],
+            ["2013", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2013",
+                "link-text": "18th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "University of Florida, Emerging Pathogens Institute."],
+            ["2013", {
+                "text": "Epidemiology workshop",
+                "subtext": "Research and Policy for Infectious Disease Dynamics"
+            }, "University of Florida, Gainesville, FL"],
+            ["2011", {
+                "url": "http://www.molecularevolution.org/workshops",
+                "link-text": "Workshop on Molecular Evolution, North America"
+            }, "Colorado State University, Fort Collins, CO"],
+            ["2011", {
+                "url": "http://www2.ims.nus.edu.sg/Programs/011wphylogenetics/index.php",
+                "link-text": "Workshop on Phylogenetics for Infectious Diseases"
+            }, "National University of Singapore"],
+            ["2011", {
+                "url": "http://www2.ims.nus.edu.sg/Programs/011wphylogenetics/index.php",
+                "link-text": "Latin American Workshop on Molecular Evolution"
+            }, "Cuernavaca, Mexico"],
+            ["2008", {
+                    "text": "Sequence analysis and phylogenetics",
+                    "subtext": "South African Bioinformatics Insititute"
+                },
+                "Pretoria, South Africa"
+            ],
+            ["2007", {
+                    "url": "http://nescent.org/summer_course/Intro.html",
+                    "link-text": {
+                        "text": "Computational Phyloinformatics Workshop",
+                        "subtext": "National Evolutionary Synthesis Center"
+                    }
+                },
+                "Durham, NC"
+            ],
+            ["2005", {
+                    "text": "Sequence analysis using HyPhy",
+                    "subtext": "University of Texas"
+                },
+                "Austin, TX"
+            ]
+        ]
+    },
+
+    "Advising and Mentoring": {
+        "subtext": "Primary or co-mentor/advisor only",
+        "rows": [
+            ["2013-present", {
+                "url": "http://www.kemaleren.com",
+                "link-text": "Kemal Eren"
+            }, {
+                "text": "Graduate advisor",
+                "subtext": "UCSD Bioinformatics and System Biology Program"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
+            ["2013-present", {
+                "url": "https://www.linkedin.com/in/anthonyaylward",
+                "link-text": "Anthony Aylward"
+            }, {
+                "text": "Graduate advisor",
+                "subtext": "UCSD Bioinformatics and System Biology Program"
+            }, "", {
+                "text": "current",
+                "type": "label"
+            }],
+            ["2012-present", {
+                "url": "http://profiles.ucsd.edu/tommi.gaines",
+                "link-text": "Tommi Gaines"
+            }, {
+                "text": "Primary advisor",
+                "subtext": {"url" : "http://projectreporter.nih.gov/project_info_description.cfm?aid=8410456",
+                            "link-text" : "NIH training (K01) award"}
+            }, {
+                "text": "Assistant Professor of Medicine",
+                "subtext": "UCSD"
+            }, {
+                "text": "current",
+                "type": "label"
+            }],
+            ["2011-2015", {
+                "url": "https://www.linkedin.com/pub/martin-smith/17/a77/371",
+                "link-text": "Martin D Smith"
+            }, {
+                "text": "Graduate advisor",
+                "subtext": "UCSD Bioinformatics and System Biology Program"
+            }, {
+                "text": "Senior Engineer Bioinformatics Test",
+                "subtext": "Pacific Biosciences"
+            }, {
+                "text": "graduated",
+                "type": "label"
+            }],
+             ["2010-2014", {
+                "url": "https://github.com/nlhepler",
+                "link-text": "N Lance Hepler"
+            }, {
+                "text": "Graduate advisor",
+                "subtext": "UCSD Bioinformatics and System Biology Program"
+            }, {
+                "text": "Senior Bioinformatics Scientist",
+                "subtext": "Pacific Biosciences"
+            }, {
+                "text": "graduated",
+                "type": "label"
+            }],
+            ["2013-2015", {
+                "url": "http://profiles.ucsd.edu/benjamin.murrell",
+                "link-text": "Ben Murrell"
+            }, {
+                "text": "Postdoctoral advisor",
+                "subtext": "UCSD"
+            }, {
+                "text": "Assistant Professor of Medicine",
+                "subtext": "UCSD"
+            }, {
+                "text": "past",
+                "type": "label"
+            }],
+            ["2009-2014", {
+                "url": "http://profiles.ucsd.edu/joel.wertheim",
+                "link-text": "Joel O. Wertheim"
+            }, {
+                "text": "Postdoctoral advisor",
+                "subtext": "UCSD"
+            }, {
+                "text": "Assistant Professor of Medicine",
+                "subtext": "UCSD"
+            }, {
+                "text": "past",
+                "type": "label"
+            }],
+            ["2010-2011", {
+                "url": "https://www.linkedin.com/pub/wayne-delport/45/5b5/519",
+                "link-text": "Mathieu Fourment"
+            }, {
+                "text": "Postdoctoral advisor",
+                "subtext": "UCSD"
+            }, {
+                "text": "Postdoctoral Research Associate",
+                "subtext": "University of Sydney"
+            }, {
+                "text": "past",
+                "type": "label"
+            }],
+            ["2009-2012", {
+                "url": "http://profiles.ucsd.edu/jason.young",
+                "link-text": "Jason A. Young"
+            }, {
+                "text": "Faculty Supervisor",
+                "subtext": "UCSD"
+            }, {
+                "text": "Assistant Professor of Medicine",
+                "subtext": "UCSD"
+            }, {
+                "text": "past",
+                "type": "label"
+            }],
+            ["2009-2011", {
+                "url": "https://www.linkedin.com/pub/wayne-delport/45/5b5/519",
+                "link-text": "Wayne Delport"
+            }, {
+                "text": "Research Faculty Supervisor",
+                "subtext": "UCSD Department of Pathology"
+            }, {
+                "text": "Senior Bioinformatics Scientist",
+                "subtext": "Human Longevity, Inc"
+            }, {
+                "text": "past",
+                "type": "label"
+            }],
+            ["2008-2009", {
+                "url": "http://www.imperial.ac.uk/people/e.volz",
+                "link-text": "Erik M Volz"
+            }, {
+                "text": "Postdoctoral advisor",
+                "subtext": "UCSD"
+            }, {
+                "text": "Lecturer in Population Biology of Infectious Diseases",
+                "subtext": "Imperial College London"
+            }, {
+                "text": "past",
+                "type": "label"
+            }]
+       ]
+    },
+    "Publications": {
+        "subtext": " >8800 total citations, h-index 43 (per Google Scholar)",
+        "bibtex": "data/slkp.bib"
+    },
+    "Software Projects": {
+        "subtext": "For the complete list, see github.com/spond and github.com/veg",
+        "rows": [
+            [{"url": "http://hyphy.org", "link-text": "HyPhy", "print-text": "HyPhy (hyphy.org)"},
+            {"text": "Hypothesis testing using phylogenies",
+                      "subtext" : "A molecular evolution and statistical inference package with >10000 registered users and ~2000 citations"}
+
+            ],
+            [{"url": "http://www.datamonkey.org", "link-text": "Datamonkey", "print-text": "Datamonkey (www.datamonkey.org)"},
+            {"text": "Datamonkey sequence analysis server",
+                      "subtext" : "A comprehensive and efficient suite of methods aimed at finding adaptive and purifying selection acting on coding sequences as well as uncovering evidence of recombination in the evolutionary past of the sample (~500000 processed analyses and ~1000 citations)"}
+
+            ]
+        ]
+
     }
-
 }
-
