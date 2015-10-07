@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+    <title>
+        Sergei L Kosakovsky Pond, PhD
+    </title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="//veg.github.io/phylotree.js/phylotree.js"></script>
+    <script src="parse-bibtex.js"></script>
+    <script src="cv.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="//veg.github.io/phylotree.js/phylotree.css" rel="stylesheet">
+
+    <style>
+        body {
+          font-family: "Tahoma", "Arial", san-serif;
+          font-size: 12px;
+        }
+
+        .table th, .table td {
+             border-top: none !important;
+         }
+    </style>
+</head>
+
+
+    <div class="container">
+        <div class = "row">
+                <h1>
+                    <img src="SLKP.jpg" alt="Headshot" class="img-rounded hidden-print" style='max-height:60px; width:auto;'>
+                    Sergei L Kosakovsky Pond <small> Curriculum Vitae</small>
+                </h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-4" data-receiver-for = "Research Interests" data-style-type = "list" data-style-header = "on">
+            </div>
+
+            <div class="col-xs-4" data-receiver-for = "Contact Information" data-style-type = "contact" data-style-header = "on">
+
+
+            </div>
+            <div class="col-xs-4" data-receiver-for = "Links" data-style-type = "list" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-6" data-receiver-for = "Positions Held" data-style-type = "table" data-style-header = "on">
+            </div>
+            <div class = "col-xs-6" data-receiver-for = "Education" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-6" data-receiver-for = "Awards and Honors" data-style-type = "table" data-style-header = "on">
+            </div>
+            <div class = "col-xs-6" data-receiver-for = "Professional Activities" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-12" data-receiver-for = "Grants and Fellowships" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-12" data-receiver-for = "Courses Taught" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-12" data-receiver-for = "Workshops" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-12" data-receiver-for = "Advising and Mentoring" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-12" data-receiver-for = "Publications" data-style-type = "bibtex" data-style-header = "on">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class = "col-xs-12" data-receiver-for = "Software Projects" data-style-type = "table" data-style-header = "on">
+            </div>
+        </div>
+
+    </div>
+
+<script>
+
+
+    $(document).ready (function () {
+        load_cv_data ("data/slkp.json");
+
+    });
+
+</script>
+
+</body>
+
+</html>
