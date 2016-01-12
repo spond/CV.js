@@ -61,7 +61,14 @@
 
     "Positions Held": {
         "rows": [
-            ["2012-present", {
+            ["2016-", {
+                "text": "Professor of Biology",
+                "subtext": {
+                    "url": "http://igem.temple.edu",
+                    "link-text": "Institute for Genomics and Evolutionary Medicine, Temple University"
+                }
+            }],
+            ["2012-2015", {
                 "text": "Associate Professor in Residence (with tenure)",
                 "subtext": {
                     "url": "http://med.ucsd.edu",
