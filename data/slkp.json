@@ -16,31 +16,29 @@
     }],
 
     "Contact Information": [{
-        "text": "Division of Infectious Diseases"
+        "text": "Department of Biology"
     }, {
-        "text": "Division of Biomedical Informatics"
+        "text": "Institute for Genomics and Evolutionary Medicine"
     }, {
-        "text": "School of Medicine"
+        "text": "Temple University"
     }, {
-        "text": "University of California San Diego"
+        "text": "1925 N 12th Street"
     }, {
-        "text": "220 Dickinson St. Ste A"
+        "text": "Philadelphia, PA 19122-1801"
     }, {
-        "text": "San Diego, CA 92103"
-    }, {
-        "text": "(619) 543-8898",
+        "text": "(215) 204-5233",
         "type": "phone"
     }],
 
     "Links": [{
         "url": "mailto:#",
-        "link-text": "spond@ucsd.edu",
-        "print-text": "spond@ucsd.edu",
+        "link-text": "spond@temple.edu",
+        "print-text": "spond@temple.edu",
         "type": "e-mail"
     }, {
         "url": "http://hyphy.org/sergei",
         "link-text": "http://hyphy.org/sergei",
-        "print-text": "spond@ucsd.edu",
+        "print-text": "http://hyphy.org/sergei",
         "type": "home"
     }, {
         "url": "https://github.com/spond",
@@ -717,7 +715,7 @@
        ]
     },
     "Publications": {
-        "subtext": " >8800 total citations, h-index 43 (per Google Scholar)",
+        "subtext": " ~10,000 total citations, h-index 45 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
