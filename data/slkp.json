@@ -148,6 +148,10 @@
                 "url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
                 "link-text": "Associate Editor, Molecular Biology and Evolution"
             }],
+            ["2016-present", {
+                "url": "https://www.nigms.nih.gov/About/Council/Pages/CurrentAdvisoryCouncilRoster.aspx",
+                "link-text": "NIGMS Council member (ad hoc)"
+            }],
             ["2014-present", {
                 "url": "http://internet.csr.nih.gov/Roster_proto1/sectionI_list_detail.asp?NEWSRG=GVE&SRG=GVE&SRGDISPLAY=GVE",
                 "link-text": "NIH GVE study section (ad hoc)"
@@ -202,6 +206,22 @@
                     "type": "label"
                 }
             ],
+            ["2015-2019", {
+                    "text": "Identification Of B Cell Epitopes Fundamental To Immune Defenses Against Staphylococcus Aureus",
+                    "subtext": {
+                        "url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8936764",
+                        "link-text": "272201400019C  (NIH/NIAID)"
+                    }
+                },
+                "Subcontract Principal Investigator", {
+                    "text": "50000",
+                    "format": "dollars",
+                    "subtext": "Annually"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
             ["2015", {
                     "text": "RAPID Ebola outbreak: A Web Tool for Tracking Pathogen Evolution Impact on Immune Responses",
                     "subtext": {
@@ -214,7 +234,7 @@
                     "format": "dollars",
                     "subtext": "Total"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -230,7 +250,7 @@
                     "format": "dollars",
                     "subtext": "Total"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -246,23 +266,7 @@
                     "format": "dollars",
                     "subtext": "FY2015"
                 }, {
-                    "text": "current",
-                    "type": "label"
-                }
-            ],
-            ["2015-2019", {
-                    "text": "Identification Of B Cell Epitopes Fundamental To Immune Defenses Against Staphylococcus Aureus",
-                    "subtext": {
-                        "url": "http://projectreporter.nih.gov/project_info_details.cfm?aid=8936764",
-                        "link-text": "272201400019C  (NIH/NIAID)"
-                    }
-                },
-                "Subcontract Principal Investigator", {
-                    "text": "50000",
-                    "format": "dollars",
-                    "subtext": "Annually"
-                }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -578,7 +582,7 @@
                 "url": "http://www.kemaleren.com",
                 "link-text": "Kemal Eren"
             }, {
-                "text": "Graduate advisor",
+                "text": "Graduate advisor, co-mentor (following move to Temple)",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, "",  {
                 "text": "current",
@@ -591,7 +595,7 @@
                 "text": "Graduate advisor",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, "", {
-                "text": "current",
+                "text": "former",
                 "type": "label"
             }],
             ["2012-present", {
@@ -605,7 +609,7 @@
                 "text": "Assistant Professor of Medicine",
                 "subtext": "UCSD"
             }, {
-                "text": "current",
+                "text": "former",
                 "type": "label"
             }],
             ["2011-2015", {
