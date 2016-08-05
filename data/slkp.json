@@ -177,7 +177,7 @@
             ["2014-2019", {
                     "text": "Modeling Epidemic Infectious Diseases Using Sequence Analysis",
                     "subtext": {
-                        "url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8921226",
+                        "url": "https://projectreporter.nih.gov/project_info_details.cfm?aid=9102131",
                         "link-text": "U01 GM110749 (NIH/NIGMS)"
                     }
                 },
@@ -605,7 +605,7 @@
                 "text": "Graduate advisor",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, "", {
-                "text": "former",
+                "text": "past",
                 "type": "label"
             }],
             ["2012-2015", {
@@ -619,7 +619,7 @@
                 "text": "Assistant Professor of Medicine",
                 "subtext": "UCSD"
             }, {
-                "text": "former",
+                "text": "past",
                 "type": "label"
             }],
             ["2011-2015", {
