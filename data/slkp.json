@@ -124,14 +124,14 @@
     "Awards and Honors": {
         "rows": [
             ["2015", {
-                "text": "Highly cited research (computer science)",
+                "text": "Highly cited researcher (computer science)",
                 "subtext": {
                     "url": "http://highlycited.com/#Pond",
                     "link-text": "Thomson Reuters Highly Cited Researchers"
                 }
             }],
             ["2014", {
-                "text": "Highly cited research (computer science)",
+                "text": "Highly cited researcher (computer science)",
                 "subtext": "Thomson Reuters Highly Cited Researchers"
             }],
             ["1995", "Monsanto Eastern European Scholar Award"]
