@@ -359,6 +359,17 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2016", {
+                    "url": "http://spond.github.io/course-description.js/course-description.html",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "24 students"
+                }
+            ],
             ["2015", {
                     "url": "http://ucsd.edu/catalog/courses/BIOI.html",
                     "link-text": {
@@ -523,6 +534,10 @@
 
     "Workshops": {
         "rows": [
+            ["2015", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2016",
+                "link-text": "21st International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "Korea University College of Medicine, Seoul, South Korea"],
             ["2015", {
                 "url": "https://rega.kuleuven.be/cev/veme-workshop/2015",
                 "link-text": "20th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
