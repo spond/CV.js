@@ -222,6 +222,38 @@
                     "type": "label"
                 }
             ],
+            ["2016-2017", {
+                    "text": "Biological Properties Of HIV-1 V3 Evolutionary Variants",
+                    "subtext": {
+                        "url": "https://projectreporter.nih.gov/project_info_description.cfm?aid=9321715",
+                        "link-text": "R56 AI044667  (NIH/NIAID)"
+                    }
+                },
+                "Subcontract Principal Investigator", {
+                    "text": "117000",
+                    "format": "dollars",
+                    "subtext": "Annually"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2016-2019", {
+                    "text": "MRI: Acquisition of a Flexible High-Performance Computing System for Data and Compute Driven Scientific Discovery",
+                    "subtext": {
+                        "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=1625061",
+                        "link-text": "1625061  (NSF)"
+                    }
+                },
+                "Co-investigator", {
+                    "text": "500000",
+                    "format": "dollars",
+                    "subtext": "Total award"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
             ["2015", {
                     "text": "RAPID Ebola outbreak: A Web Tool for Tracking Pathogen Evolution Impact on Immune Responses",
                     "subtext": {
