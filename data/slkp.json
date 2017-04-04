@@ -154,7 +154,7 @@
             }],
             ["2014-present", {
                 "url": "http://internet.csr.nih.gov/Roster_proto1/sectionI_list_detail.asp?NEWSRG=GVE&SRG=GVE&SRGDISPLAY=GVE",
-                "link-text": "NIH GVE study section (ad hoc)"
+                "link-text": "NIH GVE, F32, several special emphasis study section (ad hoc)"
             }],
             ["2014-present", {
                 "link-text": "Organizing committee for the HIV Dynamics and Evolution meeting",
@@ -174,6 +174,22 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+             ["2016-2017", {
+                    "text": "Biological Properties Of HIV-1 V3 Evolutionary Variants",
+                    "subtext": {
+                        "url": "https://projectreporter.nih.gov/project_info_details.cfm?aid=9321715",
+                        "link-text": "R56 AI044667 (NIH/NIAID)"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "396,000",
+                    "format": "dollars",
+                    "subtext": "FY2016"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
             ["2014-2019", {
                     "text": "Modeling Epidemic Infectious Diseases Using Sequence Analysis",
                     "subtext": {
@@ -182,9 +198,9 @@
                     }
                 },
                 "Principal Investigator", {
-                    "text": "587438",
+                    "text": "555,642",
                     "format": "dollars",
-                    "subtext": "FY2015"
+                    "subtext": "FY2016"
                 }, {
                     "text": "current",
                     "type": "label"
@@ -198,9 +214,9 @@
                     }
                 },
                 "Principal Investigator", {
-                    "text": "384949",
+                    "text": "329,211",
                     "format": "dollars",
-                    "subtext": "FY2015"
+                    "subtext": "FY2016"
                 }, {
                     "text": "current",
                     "type": "label"
@@ -359,6 +375,17 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2017", {
+                    "url": "http://spond.github.io/course-description.js/genome-analytics.html",
+                    "link-text": {
+                        "text": "Genome Analyticss"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "15 students"
+                }
+            ],
             ["2016", {
                     "url": "http://spond.github.io/course-description.js/course-description.html",
                     "link-text": {
@@ -744,7 +771,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~10,400 total citations, h-index 46 (per Google Scholar)",
+        "subtext": " ~12,200 total citations, h-index 49 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
