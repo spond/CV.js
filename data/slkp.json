@@ -148,7 +148,7 @@
                 "url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
                 "link-text": "Associate Editor, Molecular Biology and Evolution"
             }],
-            ["2016-present", {
+            ["2016", {
                 "url": "https://www.nigms.nih.gov/About/Council/Pages/CurrentAdvisoryCouncilRoster.aspx",
                 "link-text": "NIGMS Council member (ad hoc)"
             }],
@@ -376,18 +376,18 @@
     "Courses Taught": {
         "rows": [
             ["2017", {
-                    "url": "http://spond.github.io/course-description.js/genome-analytics.html",
+                    "url": "http://igem.temple.edu/education/courses",
                     "link-text": {
                         "text": "Genome Analyticss"
                     }
                 },
                 "Instructor (100%)", {
                     "text": "Undergraduate/Graduate",
-                    "subtext": "15 students"
+                    "subtext": "16 students"
                 }
             ],
             ["2016", {
-                    "url": "http://spond.github.io/course-description.js/course-description.html",
+                    "url": "http://igem.temple.edu/education/courses",
                     "link-text": {
                         "text": "Genomics in Medicine"
                     }
@@ -771,7 +771,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~12,200 total citations, h-index 49 (per Google Scholar)",
+        "subtext": " ~12,700 total citations, h-index 50 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
