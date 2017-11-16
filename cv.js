@@ -48,6 +48,13 @@ function handle_entry_object(d, container) {
             containerd3.append("br");
             handle_entry_object(d["subtext"], containerd3.append("small")[0][0]);
         }
+        
+        //<div class='altmetric-embed' data-badge-type='donut' data- doi="10.1038/nature.2012.9872"></div>
+        
+        if ("altmetric" in d) {
+            containerd3.append("div").classed ("altmetric-embed", true).attr ("data-badge-type", "donut").attr ("data-doi", d["altmetric"]).attr ("data-hide-no-mentions", "true");
+        }
+        
     } else {
         containerd3.text(d || "");
     }
@@ -200,6 +207,11 @@ function extract_bibtex_record(highlight, record) {
     } else {
         render_me.push("");
     }
+    if (record["DOI"]) {
+        render_me.push ({"altmetric": record["DOI"]});
+    } else {
+        render_me.push("");    
+    }
     return render_me;
 }
 
@@ -216,7 +228,8 @@ function populate_bibtex(container, key, data) {
             data["rows"] = _.map(b.entries, _.partial (extract_bibtex_record, data["highlight"])).sort(function(a, b) {
                 return b[0] - a[0];
             });
-            data["subtext"] = data["rows"].length + " publications" + (data["subtext"] ? ", " + data["subtext"] : "");
+            
+             data["subtext"] = data["rows"].length + " publications" + (data["subtext"] ? ", " + data["subtext"] : "");
             populate_table(container, key, data);
         }
     });
