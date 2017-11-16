@@ -687,6 +687,16 @@
     "Advising and Mentoring": {
         "subtext": "Primary or co-mentor/advisor only",
         "rows": [
+            ["2017-present", {
+                "url": "https://scholar.google.com/citations?user=0FrSeQgAAAAJ&hl=en",
+                "link-text": "Brittany Rife Magalis"
+            }, {
+                "text": "Mentor",
+                "subtext": "Temple (iGEM)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
             ["2016-present", {
                 "url": "http://sjspielman.org",
                 "link-text": "Stephanie Spielman"
@@ -838,7 +848,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~13,100 total citations, h-index 51 (per Google Scholar)",
+        "subtext": " ~13,600 total citations, h-index 52 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
