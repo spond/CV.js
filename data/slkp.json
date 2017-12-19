@@ -209,7 +209,7 @@
             ["2017-2020", {
                     "text": " ABI Development: Open-source, extensible, and cross-platform MEGA",
                     "subtext": {
-                        "url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=1509575",
+                        "url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=1661218",
                         "link-text": "1661218  (NSF/DBI)"
                     }
                 },
@@ -217,22 +217,6 @@
                     "text": "998419",
                     "format": "dollars",
                     "subtext": "Total"
-                }, {
-                    "text": "current",
-                    "type": "label"
-                }
-            ],
-            ["2016-2017", {
-                    "text": "Biological Properties Of HIV-1 V3 Evolutionary Variants",
-                    "subtext": {
-                        "url": "https://projectreporter.nih.gov/project_info_details.cfm?aid=9321715",
-                        "link-text": "R56 AI044667 (NIH/NIAID)"
-                    }
-                },
-                "Site Principal Investigator", {
-                    "text": "396000",
-                    "format": "dollars",
-                    "subtext": "FY2016"
                 }, {
                     "text": "current",
                     "type": "label"
@@ -283,6 +267,22 @@
                     "subtext": "Annually"
                 }, {
                     "text": "current",
+                    "type": "label"
+                }
+            ],
+           ["2016-2017", {
+                    "text": "Biological Properties Of HIV-1 V3 Evolutionary Variants",
+                    "subtext": {
+                        "url": "https://projectreporter.nih.gov/project_info_details.cfm?aid=9321715",
+                        "link-text": "R56 AI044667 (NIH/NIAID)"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "396000",
+                    "format": "dollars",
+                    "subtext": "FY2016"
+                }, {
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -713,8 +713,11 @@
             }, {
                 "text": "Graduate advisor, co-mentor (following move to Temple)",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
-            }, "",  {
-                "text": "current",
+            }, {
+                "text": "Software Engineer and Machine Learning scientist",
+                "subtext": "Qeexo"
+            },  {
+                "text": "graduated",
                 "type": "label"
             }],
             ["2013-2015", {
@@ -762,7 +765,7 @@
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, {
                 "text": "Senior Bioinformatics Scientist",
-                "subtext": "Pacific Biosciences"
+                "subtext": "10x genomics"
             }, {
                 "text": "graduated",
                 "type": "label"
@@ -848,7 +851,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~13,600 total citations, h-index 52 (per Google Scholar)",
+        "subtext": " ~13,750 total citations, h-index 53 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
