@@ -77,6 +77,7 @@ var font_awesome_decorators = {
     "e-mail": "fa-envelope",
     "home": "fa-home",
     "GitHub": "fa-github-square",
+    "Twitter": "fa-twitter-square",
     "papers": "fa-flask"
 };
 

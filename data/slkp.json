@@ -46,6 +46,12 @@
         "print-text": "github.com/spond",
         "type": "GitHub"
     }, {
+        "url": "https://twitter.com/sergeilkp",
+        "link-text": "@sergeilkp",
+        "print-text": "@sergeilkp",
+        "type": "Twitter"
+    },
+    {
         "url": "https://scholar.google.com/citations?user=SP6nj-QAAAAJ&hl=en",
         "link-text": "Google Scholar",
         "print-text": "Sergei Pond @ Google Scholar",
