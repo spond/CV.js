@@ -52,7 +52,7 @@ function handle_entry_object(d, container) {
         //<div class='altmetric-embed' data-badge-type='donut' data- doi="10.1038/nature.2012.9872"></div>
         
         if ("altmetric" in d) {
-            containerd3.append("div").classed ("altmetric-embed", true).attr ("data-badge-type", "donut").attr ("data-doi", d["altmetric"]).attr ("data-hide-no-mentions", "true");
+            containerd3.append("div").classed ("altmetric-embed no-print", true).attr ("data-badge-type", "donut").attr ("data-doi", d["altmetric"]).attr ("data-hide-no-mentions", "true");
         }
         
     } else {

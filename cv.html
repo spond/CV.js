@@ -37,6 +37,14 @@
         .table th, .table td {
              border-top: none !important;
          }
+         
+         @media print
+            {    
+                .no-print, .no-print *
+                {
+                    display: none !important;
+                }
+            }
     </style>
 </head>
 
