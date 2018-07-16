@@ -129,16 +129,12 @@
 
     "Awards and Honors": {
         "rows": [
-            ["2015", {
+            ["2014-2016", {
                 "text": "Highly cited researcher (computer science)",
                 "subtext": {
                     "url": "http://highlycited.com/#Pond",
                     "link-text": "Thomson Reuters Highly Cited Researchers"
                 }
-            }],
-            ["2014", {
-                "text": "Highly cited researcher (computer science)",
-                "subtext": "Thomson Reuters Highly Cited Researchers"
             }],
             ["1995", "Monsanto Eastern European Scholar Award"]
         ]
@@ -180,6 +176,22 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+            ["2017-2022", {
+                    "text": "HIV Evolution Defines Virus-Host/Drug Interactions in Viremic and Aviremic People",
+                    "subtext": {
+                        "url": "https://projectreporter.nih.gov/project_info_description.cfm?aid=9623774",
+                        "link-text": "R01 AI140970 (NIH/NIAID)"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "118875",
+                    "format": "dollars",
+                    "subtext": "FY2018"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
              ["2017-2022", {
                     "text": "Tuning Big Data Analysis Infrastructure For HIV Research",
                     "subtext": {
@@ -857,7 +869,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~14,100 total citations, h-index 54 (per Google Scholar)",
+        "subtext": " ~15,000 total citations, h-index 57 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
