@@ -715,17 +715,30 @@
                 "text": "current",
                 "type": "label"
             }],
-            ["2016-present", {
-                "url": "http://sjspielman.org",
-                "link-text": "Stephanie Spielman"
+            ["2018-present", {
+                "url": "#",
+                "link-text": "Jordan Zehr"
             }, {
-                "text": "Mentor",
+                "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
             }, "",  {
                 "text": "current",
                 "type": "label"
             }],
-           ["2013-present", {
+            ["2016-2018", {
+                "url": "http://sjspielman.org",
+                "link-text": "Stephanie Spielman"
+            }, {
+                "text": "Mentor",
+                "subtext": "Temple (iGEM)"
+            }, {
+                "text": "Assistant Professor",
+                "subtext": "Rowan University"
+            },  {
+                "text": "past",
+                "type": "label"
+            }],
+           ["2013-2017", {
                 "url": "http://www.kemaleren.com",
                 "link-text": "Kemal Eren"
             }, {
@@ -869,7 +882,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~15,000 total citations, h-index 57 (per Google Scholar)",
+        "subtext": " ~15,200 total citations, h-index 57 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
