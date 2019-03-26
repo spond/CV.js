@@ -156,7 +156,7 @@
             }],
             ["2014-present", {
                 "url": "http://internet.csr.nih.gov/Roster_proto1/sectionI_list_detail.asp?NEWSRG=GVE&SRG=GVE&SRGDISPLAY=GVE",
-                "link-text": "NIH GVE, F32, several special emphasis study section (ad hoc)"
+                "link-text": "NIH GVE, BMRD, F32, several special emphasis study section (ad hoc)"
             }],
             ["2014-present", {
                 "link-text": "Organizing committee for the HIV Dynamics and Evolution meeting",
@@ -441,6 +441,28 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2018", {
+                    "url": "http://bit.ly/biol3111-fall2018",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~60 students"
+                }
+            ],
+            ["2018", {
+                    "url": "http://igem.temple.edu/education/courses",
+                    "link-text": {
+                        "text": "Genome Analyticss"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "15 students"
+                }
+            ],
             ["2017", {
                     "url": "http://igem.temple.edu/education/courses",
                     "link-text": {
@@ -638,6 +660,10 @@
 
     "Workshops": {
         "rows": [
+            ["2018", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2018",
+                "link-text": "23rd International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "Robert Koch-Institut Berlin, Germany"],            
             ["2017", {
                 "url": "https://rega.kuleuven.be/cev/veme-workshop/2017",
                 "link-text": "22nd International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
