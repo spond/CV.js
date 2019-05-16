@@ -36,9 +36,9 @@
         "print-text": "spond@temple.edu",
         "type": "e-mail"
     }, {
-        "url": "http://hyphy.org/sergei",
-        "link-text": "http://hyphy.org/sergei",
-        "print-text": "http://hyphy.org/sergei",
+        "url": "http://lab.hyphy.org",
+        "link-text": "http://lab.hyphy.org",
+        "print-text": "http://lab.hyphy.org",
         "type": "home"
     }, {
         "url": "https://github.com/spond",
@@ -129,10 +129,10 @@
 
     "Awards and Honors": {
         "rows": [
-            ["2014-2016", {
+            ["2014-2017", {
                 "text": "Highly cited researcher (computer science)",
                 "subtext": {
-                    "url": "http://highlycited.com/#Pond",
+                    "url": "https://hcr.clarivate.com/resources/archived-lists/",
                     "link-text": "Thomson Reuters Highly Cited Researchers"
                 }
             }],
@@ -142,7 +142,11 @@
 
     "Professional Activities": {
         "rows": [
-            ["2011-present", {
+           ["2019-present", {
+                  "url": "https://public.csr.nih.gov/StudySections/DABP/HDM/BMRD",
+                "link-text": "Member, BMRD study section"
+           }],
+           ["2011-present", {
                 "url": "http://journals.plos.org/ploscompbiol/s/editorial-board#loc-associate-editors",
                 "link-text": "Associate Editor, PLoS Computational Biology"
             }],
@@ -240,7 +244,7 @@
                     "type": "label"
                 }
             ],
-            ["2014-2019", {
+            ["2014-2020", {
                     "text": "Modeling Epidemic Infectious Diseases Using Sequence Analysis",
                     "subtext": {
                         "url": "https://projectreporter.nih.gov/project_info_details.cfm?aid=9300928",
@@ -256,7 +260,7 @@
                     "type": "label"
                 }
             ],
-            ["2010-2019", {
+            ["2010-2020", {
                     "text": "HyPhy: Comprehensive, Fast, And User-Friendly Software For Evolutionary Analysis",
                     "subtext": {
                         "url": "http://projectreporter.nih.gov/project_info_description.cfm?aid=8886417",
@@ -284,7 +288,7 @@
                     "format": "dollars",
                     "subtext": "Annually"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -731,6 +735,16 @@
     "Advising and Mentoring": {
         "subtext": "Primary or co-mentor/advisor only",
         "rows": [
+            ["2018-present", {
+                "url": "https://www.linkedin.com/in/sadie-wisotsky",
+                "link-text": "Sadie Wisotsky"
+            }, {
+                "text": "Mentor",
+                "subtext": "Temple (iGEM)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
             ["2017-present", {
                 "url": "https://scholar.google.com/citations?user=0FrSeQgAAAAJ&hl=en",
                 "link-text": "Brittany Rife Magalis"
@@ -742,8 +756,28 @@
                 "type": "label"
             }],
             ["2018-present", {
-                "url": "#",
+                "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Jordan Zehr"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (iGEM)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
+            ["2018-present", {
+                "url": "http://phdbioinform.cst.temple.edu/people/students",
+                "link-text": "Stella Park"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (iGEM)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
+           ["2019-present", {
+                "url": "http://phdbioinform.cst.temple.edu/people/students",
+                "link-text": "Alexander Lucaci"
             }, {
                 "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
@@ -908,7 +942,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~15,200 total citations, h-index 57 (per Google Scholar)",
+        "subtext": " ~16,800 total citations, h-index 60 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
@@ -917,14 +951,20 @@
         "rows": [
             [{"url": "http://hyphy.org", "link-text": "HyPhy", "print-text": "HyPhy (hyphy.org)"},
             {"text": "Hypothesis testing using phylogenies",
-                      "subtext" : "A molecular evolution and statistical inference package with >10000 registered users and ~2000 citations"}
+                      "subtext" : "A molecular evolution and statistical inference package with >10000 registered users and ~2500 citations"}
 
             ],
             [{"url": "http://www.datamonkey.org", "link-text": "Datamonkey", "print-text": "Datamonkey (www.datamonkey.org)"},
             {"text": "Datamonkey sequence analysis server",
                       "subtext" : "A comprehensive and efficient suite of methods aimed at finding adaptive and purifying selection acting on coding sequences as well as uncovering evidence of recombination in the evolutionary past of the sample (~500000 processed analyses and ~1000 citations)"}
 
+            ],
+            [{"url": "http://www.hivtrace.org", "link-text": "HIV-TRACE", "print-text": "HIV-TRACE (www.hivtrace.org)"},
+            {"text": "HIV Transmission Cluster Engine",
+                      "subtext" : "A web applications and software library for high throughput molecular epidemiology surveillance of HIV and other pathogens. Currently in use by the CDC and many other public health and research entities."}
+
             ]
+
         ]
 
     }

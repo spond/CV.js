@@ -58,7 +58,7 @@ function handle_entry_object(d, container) {
         // <span class="__dimensions_badge_embed__" data-doi="10.1001/jama.2016.9797"></span><script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
         
         if ("dimensions" in d) {
-             containerd3.append("span").classed ("__dimensions_badge_embed__", true).attr ("data-doi", d["dimensions"]).attr ("data-style","small_circle");
+             containerd3.append("span").classed ("__dimensions_badge_embed__ no-print", true).attr ("data-doi", d["dimensions"]).attr ("data-style","small_circle");
              containerd3.append("script").attr ("async","true").attr("src","https://badge.dimensions.ai/badge.js");       
         }
         
