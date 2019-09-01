@@ -180,6 +180,22 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+           ["2019-2023", {
+                    "text": "Secure HIV-TRACE",
+                    "subtext": {
+                        "url": "https://www.fpds.gov/ezsearch/search.do?q=secure+hiv-trace+PIID%3A%2275D30119C04031%22+PIID%3A%2275D30119C04031%22&s=FPDS.GOV&templateName=1.5.1&indexName=awardfull",
+                        "link-text": "CDC (75D30119C04031)"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "70000",
+                    "format": "dollars",
+                    "subtext": "FY2019"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],            
             ["2017-2022", {
                     "text": "HIV Evolution Defines Virus-Host/Drug Interactions in Viremic and Aviremic People",
                     "subtext": {
@@ -445,6 +461,17 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2019", {
+                    "url": "http://bit.ly/bio3111-fall2019",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~100 students"
+                }
+            ],
             ["2018", {
                     "url": "http://bit.ly/biol3111-fall2018",
                     "link-text": {
@@ -664,6 +691,10 @@
 
     "Workshops": {
         "rows": [
+           ["2019", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2019",
+                "link-text": "24th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "The University of Hong Kong, Hong Kong"],            
             ["2018", {
                 "url": "https://rega.kuleuven.be/cev/veme-workshop/2018",
                 "link-text": "23rd International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
@@ -942,7 +973,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~16,800 total citations, h-index 60 (per Google Scholar)",
+        "subtext": " ~17,300 total citations, h-index 60 (per Google Scholar)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },

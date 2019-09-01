@@ -1,12 +1,51 @@
 %% This BibTeX bibliography file was created using BibDesk.
 %% https://bibdesk.sourceforge.io/
 
-%% Created for Sergei L Kosakovsky Pond at 2019-05-16 07:10:23 -0400 
+%% Created for Sergei L Kosakovsky Pond at 2019-09-01 08:56:52 -0400 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
 
 
+
+@article{Spielman:2019aa,
+	Abstract = {Natural selection is a fundamental force shaping organismal evolution, as it both maintains function and enables adaptation and innovation. Viruses, with their typically short and largely coding genomes, experience strong and diverse selective forces, sometimes acting on timescales that can be directly measured. These selection pressures emerge from an antagonistic interplay between rapidly changing fitness requirements (immune and antiviral responses from hosts, transmission between hosts, or colonization of new host species) and functional imperatives (the ability to infect hosts or host cells and replicate within hosts). Indeed, computational methods to quantify these evolutionary forces using molecular sequence data were initially, dating back to the 1980s, applied to the study of viral pathogens. This preference largely emerged because the strong selective forces are easiest to detect in viruses, and, of course, viruses have clear biomedical relevance. Recent commoditization of affordable high-throughput sequencing has made it possible to generate truly massive genomic data sets, on which powerful and accurate methods can yield a very detailed depiction of when, where, and (sometimes) how viral pathogens respond to various selective forces.Here, we present recent statistical developments and state-of-the-art methods to identify and characterize these selection pressures from protein-coding sequence alignments and phylogenies. Methods described here can reveal critical information about various evolutionary regimes, including whole-gene selection, lineage-specific selection, and site-specific selection acting upon viral genomes, while accounting for confounding biological processes, such as recombination and variation in mutation rates.},
+	Author = {Spielman, Stephanie J and Weaver, Steven and Shank, Stephen D and Magalis, Brittany Rife and Li, Michael and Kosakovsky Pond, Sergei L},
+	Date-Added = {2019-09-01 08:56:23 -0400},
+	Date-Modified = {2019-09-01 08:56:23 -0400},
+	Doi = {10.1007/978-1-4939-9074-0_14},
+	Journal = {Methods Mol Biol},
+	Journal-Full = {Methods in molecular biology (Clifton, N.J.)},
+	Keywords = {Codon models; Molecular evolution; Phylogenetics; Positive selection; Recombination; Relaxed selection; Virus evolution},
+	Pages = {427-468},
+	Pmid = {31278673},
+	Pst = {ppublish},
+	Title = {Evolution of Viral Genomes: Interplay Between Selection, Recombination, and Other Forces},
+	Volume = {1910},
+	Year = {2019},
+	Bdsk-Url-1 = {https://doi.org/10.1007/978-1-4939-9074-0_14}}
+
+@article{Rhee:2019ab,
+	Abstract = {Background: There are few large studies of transmitted drug resistance (TDR) prevalence and the drug resistance mutations (DRMs) responsible for TDR in the United States.
+Methods: Human immunodeficiency virus type 1 (HIV-1) reverse transcriptase (RT) and protease sequences were obtained from 4253 antiretroviral therapy (ART)-naive individuals in a California clinic population from 2003 to 2016. Phylogenetic analyses were performed to study linkages between TDR strains and selection pressure on TDR-associated DRMs.
+Results: From 2003 to 2016, there was a significant increase in overall (odds ratio [OR], 1.05 per year [95% confidence interval {CI}, 1.03-1.08]; P < .001) and nonnucleoside RT inhibitor (NNRTI)-associated TDR (OR, 1.11 per year [95% CI, 1.08-1.15]; P < .001). Between 2012 and 2016, TDR rates to any drug class ranged from 15.7% to 19.2%, and class-specific rates ranged from 10.0% to 12.8% for NNRTIs, 4.1% to 8.1% for nucleoside RT inhibitors (NRTIs), and 3.6% to 5.2% for protease inhibitors. The thymidine analogue mutations, M184V/I and the tenofovir-associated DRMs K65R and K70E/Q/G/N/T accounted for 82.9%, 7.3%, and 1.4% of NRTI-associated TDR, respectively. Thirty-seven percent of TDR strains clustered with other TDR strains sharing the same DRMs.
+Conclusions: Although TDR has increased significantly in this large cohort, many TDR strains are unlikely to influence the activity of currently preferred first-line ART regimens. The high proportion of DRMs associated with infrequently used regimens combined with the clustering of TDR strains suggest that some TDR strains are being transmitted between ART-naive individuals.},
+	Author = {Rhee, Soo-Yon and Clutter, Dana and Fessel, W Jeffrey and Klein, Daniel and Slome, Sally and Pinsky, Benjamin A and Marcus, Julia L and Hurley, Leo and Silverberg, Michael J and Kosakovsky Pond, Sergei L and Shafer, Robert W},
+	Date-Added = {2019-09-01 08:56:23 -0400},
+	Date-Modified = {2019-09-01 08:56:23 -0400},
+	Doi = {10.1093/cid/ciy453},
+	Journal = {Clin Infect Dis},
+	Journal-Full = {Clinical infectious diseases : an official publication of the Infectious Diseases Society of America},
+	Month = {Jan},
+	Number = {2},
+	Pages = {213-221},
+	Pmc = {PMC6321854},
+	Pmid = {29846534},
+	Pst = {ppublish},
+	Title = {Trends in the Molecular Epidemiology and Genetic Mechanisms of Transmitted Human Immunodeficiency Virus Type 1 Drug Resistance in a Large US Clinic Population},
+	Volume = {68},
+	Year = {2019},
+	Bdsk-Url-1 = {https://doi.org/10.1093/cid/ciy453}}
 
 @article{Eren:2018aa,
 	Abstract = {Next generation sequencing of viral populations has advanced our understanding of viral population dynamics, the development of drug resistance, and escape from host immune responses. Many applications require complete gene sequences, which can be impossible to reconstruct from short reads. HIV env, the protein of interest for HIV vaccine studies, is exceptionally challenging for long-read sequencing and analysis due to its length, high substitution rate, and extensive indel variation. While long-read sequencing is attractive in this setting, the analysis of such data is not well handled by existing methods. To address this, we introduce FLEA (Full-Length Envelope Analyzer), which performs end-to-end analysis and visualization of long-read sequencing data. FLEA consists of both a pipeline (optionally run on a high-performance cluster), and a client-side web application that provides interactive results. The pipeline transforms FASTQ reads into high-quality consensus sequences (HQCSs) and uses them to build a codon-aware multiple sequence alignment. The resulting alignment is then used to infer phylogenies, selection pressure, and evolutionary dynamics. The web application provides publication-quality plots and interactive visualizations, including an annotated viral alignment browser, time series plots of evolutionary dynamics, visualizations of gene-wide selective pressures (such as dN/dS) across time and across protein structure, and a phylogenetic tree browser. We demonstrate how FLEA may be used to process Pacific Biosciences HIV env data and describe recent examples of its use. Simulations show how FLEA dramatically reduces the error rate of this sequencing platform, providing an accurate portrait of complex and variable HIV env populations. A public instance of FLEA is hosted at http://flea.datamonkey.org. The Python source code for the FLEA pipeline can be found at https://github.com/veg/flea-pipeline. The client-side application is available at https://github.com/veg/flea-web-app. A live demo of the P018 results can be found at http://flea.murrell.group/view/P018.},
