@@ -776,16 +776,6 @@
                 "text": "current",
                 "type": "label"
             }],
-            ["2017-present", {
-                "url": "https://scholar.google.com/citations?user=0FrSeQgAAAAJ&hl=en",
-                "link-text": "Brittany Rife Magalis"
-            }, {
-                "text": "Mentor",
-                "subtext": "Temple (iGEM)"
-            }, "",  {
-                "text": "current",
-                "type": "label"
-            }],
             ["2018-present", {
                 "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Jordan Zehr"
@@ -816,6 +806,20 @@
                 "text": "current",
                 "type": "label"
             }],
+            ["2017-2019", {
+                "url": "https://scholar.google.com/citations?user=0FrSeQgAAAAJ&hl=en",
+                "link-text": "Brittany Rife Magalis"
+            }, {
+                "text": "Mentor",
+                "subtext": "Temple (iGEM)"
+            }, {
+                "text": "Postdoctoral Researcher",
+                "subtext": "University of Florida"
+            },  {
+                "text": "past",
+                "type": "label"
+            }],
+
             ["2016-2018", {
                 "url": "http://sjspielman.org",
                 "link-text": "Stephanie Spielman"
