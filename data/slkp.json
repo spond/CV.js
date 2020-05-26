@@ -180,7 +180,23 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
-           ["2019-2023", {
+            ["2020", {
+                    "text": "Rapid: Collaborative Research: Agile and effective responses to emerging pathogen threats through open data and open analytics",
+                    "subtext": {
+                        "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2027196",
+                        "link-text": "2027196  (NSF/DBI,BIO)"
+                    }
+                },
+                "Principal Investigator", {
+                    "text": "100000",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2019-2023", {
                     "text": "Secure HIV-TRACE",
                     "subtext": {
                         "url": "https://www.fpds.gov/ezsearch/search.do?q=secure+hiv-trace+PIID%3A%2275D30119C04031%22+PIID%3A%2275D30119C04031%22&s=FPDS.GOV&templateName=1.5.1&indexName=awardfull",
@@ -977,7 +993,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~18,400 total citations, h-index 62 (per Google Scholar), weighted RCR of ~520 (per iCite)",
+        "subtext": " ~20,000 total citations, h-index 65 (per Google Scholar), weighted RCR of ~527 (per iCite)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
