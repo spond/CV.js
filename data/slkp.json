@@ -142,7 +142,11 @@
 
     "Professional Activities": {
         "rows": [
-           ["2019-present", {
+            ["2020-present", {
+                "url": "https://www.tandfonline.com/toc/utas20/current",
+                "link-text": "Associate Editor, The American Statistician"
+            }],
+            ["2019-present", {
                   "url": "https://public.csr.nih.gov/StudySections/DABP/HDM/BMRD",
                 "link-text": "Member, BMRD study section"
            }],
@@ -477,6 +481,17 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2020", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~160 students"
+                }
+            ],
             ["2019", {
                     "url": "http://bit.ly/bio3111-fall2019",
                     "link-text": {
@@ -783,16 +798,6 @@
         "subtext": "Primary or co-mentor/advisor only",
         "rows": [
             ["2018-present", {
-                "url": "https://www.linkedin.com/in/sadie-wisotsky",
-                "link-text": "Sadie Wisotsky"
-            }, {
-                "text": "Mentor",
-                "subtext": "Temple (iGEM)"
-            }, "",  {
-                "text": "current",
-                "type": "label"
-            }],
-            ["2018-present", {
                 "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Jordan Zehr"
             }, {
@@ -802,16 +807,7 @@
                 "text": "current",
                 "type": "label"
             }],
-            ["2018-present", {
-                "url": "http://phdbioinform.cst.temple.edu/people/students",
-                "link-text": "Stella Park"
-            }, {
-                "text": "PhD advisor",
-                "subtext": "Temple (iGEM)"
-            }, "",  {
-                "text": "current",
-                "type": "label"
-            }],
+            
            ["2019-present", {
                 "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Alexander Lucaci"
@@ -820,6 +816,39 @@
                 "subtext": "Temple (iGEM)"
             }, "",  {
                 "text": "current",
+                "type": "label"
+            }],
+            ["2019-present", {
+                "url": "http://phdbioinform.cst.temple.edu/people/students",
+                "link-text": "Hanna Kim"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (iGEM)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
+            ["2018-2020", {
+                "url": "https://www.linkedin.com/in/sadie-wisotsky",
+                "link-text": "Sadie Wisotsky"
+            }, {
+                "text": "Mentor",
+                "subtext": "Temple (iGEM)"
+            }, {
+                "text": "Bioinformatics Scientist",
+                "subtext": "INOVIO"
+            },  {
+                "text": "past",
+                "type": "label"
+            }],
+            ["2018-2020", {
+                "url": "http://phdbioinform.cst.temple.edu/people/students",
+                "link-text": "Stella Park"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (iGEM)"
+            }, "",  {
+                "text": "past",
                 "type": "label"
             }],
             ["2017-2019", {
@@ -993,7 +1022,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~20,000 total citations, h-index 65 (per Google Scholar), weighted RCR of ~527 (per iCite)",
+        "subtext": " ~20,300 total citations, h-index 66 (per Google Scholar), weighted RCR of ~531.6 (per NIH iCite)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
@@ -1015,7 +1044,6 @@
                       "subtext" : "A web applications and software library for high throughput molecular epidemiology surveillance of HIV and other pathogens. Currently in use by the CDC and many other public health and research entities."}
 
             ]
-
         ]
 
     }
