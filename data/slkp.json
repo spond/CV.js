@@ -847,7 +847,10 @@
             }, {
                 "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
-            }, "",  {
+            }, {
+                "text": "Lab Manager",
+                "subtext": "University of Pennsylvania"
+            },  {
                 "text": "past",
                 "type": "label"
             }],
