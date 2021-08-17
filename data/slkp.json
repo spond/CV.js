@@ -184,22 +184,6 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
-            ["2020", {
-                    "text": "Rapid: Collaborative Research: Agile and effective responses to emerging pathogen threats through open data and open analytics",
-                    "subtext": {
-                        "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2027196",
-                        "link-text": "2027196  (NSF/DBI,BIO)"
-                    }
-                },
-                "Principal Investigator", {
-                    "text": "100000",
-                    "format": "dollars",
-                    "subtext": "Total"
-                }, {
-                    "text": "current",
-                    "type": "label"
-                }
-            ],
             ["2019-2023", {
                     "text": "Secure HIV-TRACE",
                     "subtext": {
@@ -232,19 +216,51 @@
                     "type": "label"
                 }
             ],
-             ["2017-2022", {
+            ["2017-2022", {
                     "text": "Tuning Big Data Analysis Infrastructure For HIV Research",
                     "subtext": {
-                        "url": "https://projectreporter.nih.gov/project_info_description.cfm?aid=9411424",
+                        "url": "https://reporter.nih.gov/search/IrjdT7pAs0ui7DwbJyMALQ/project-details/10170221",
                         "link-text": "R01 AI134384 (NIH/NIAID)"
                     }
                 },
                 "Site Principal Investigator", {
-                    "text": "716247",
+                    "text": "691343",
                     "format": "dollars",
-                    "subtext": "FY2017"
+                    "subtext": "FY2021"
                 }, {
                     "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2020-2022", {
+                    "text": "Tuning Big Data Analysis Infrastructure For HIV Research (COVID supplement)",
+                    "subtext": {
+                        "url": "https://reporter.nih.gov/search/IrjdT7pAs0ui7DwbJyMALQ/project-details/10214719",
+                        "link-text": "3R01AI134384-05S1 (NIH/NIAID)"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "368281",
+                    "format": "dollars",
+                    "subtext": "FY2021"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],
+            ["2020", {
+                    "text": "Rapid: Collaborative Research: Agile and effective responses to emerging pathogen threats through open data and open analytics",
+                    "subtext": {
+                        "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2027196",
+                        "link-text": "2027196  (NSF/DBI,BIO)"
+                    }
+                },
+                "Principal Investigator", {
+                    "text": "100000",
+                    "format": "dollars",
+                    "subtext": "Total"
+                }, {
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -260,7 +276,7 @@
                     "format": "dollars",
                     "subtext": "FY2017"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
