@@ -184,6 +184,22 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+            ["2021-2023", {
+                    "text": "Development and maintenance of FDA-ARGOS 2 containing regulatory grade reference genomes for diagnostic use and regulatory science ",
+                    "subtext": {
+                        "url": "https://www.fda.gov/medical-devices/science-and-research-medical-devices/database-reference-grade-microbial-sequences-fda-argos",
+                        "link-text": "FDA"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "120000",
+                    "format": "dollars",
+                    "subtext": "FY2021"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],      
             ["2019-2023", {
                     "text": "Secure HIV-TRACE",
                     "subtext": {
@@ -1041,7 +1057,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~24,000 total citations, h-index 70 (per Google Scholar), weighted RCR of ~570 (per NIH iCite)",
+        "subtext": " ~24,000 total citations, h-index 71 (per Google Scholar), weighted RCR of ~570 (per NIH iCite)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },
