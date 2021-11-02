@@ -142,12 +142,8 @@
 
     "Professional Activities": {
         "rows": [
-            ["2020-present", {
-                "url": "https://www.tandfonline.com/toc/utas20/current",
-                "link-text": "Associate Editor, The American Statistician"
-            }],
-            ["2019-present", {
-                  "url": "https://public.csr.nih.gov/StudySections/DABP/HDM/BMRD",
+           ["2019-present", {
+                "url": "https://public.csr.nih.gov/StudySections/DABP/HDM/BMRD",
                 "link-text": "Member, BMRD study section"
            }],
            ["2011-present", {
@@ -158,6 +154,11 @@
                 "url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
                 "link-text": "Associate Editor, Molecular Biology and Evolution"
             }],
+           ["2020-2021", {
+                "url": "https://www.tandfonline.com/toc/utas20/current",
+                "link-text": "Associate Editor, The American Statistician"
+            }],
+ 
             ["2016", {
                 "url": "https://www.nigms.nih.gov/About/Council/Pages/CurrentAdvisoryCouncilRoster.aspx",
                 "link-text": "NIGMS Council member (ad hoc)"
@@ -178,6 +179,7 @@
                 "url": "http://www.hivforum.org"
             }],
             ["2010-2012", " Member of the Editorial Board for Methods in Ecology and Evolution"]
+            
         ]
     },
 
@@ -513,6 +515,17 @@
     },
     "Courses Taught": {
         "rows": [
+           ["2021", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~160 students"
+                }
+            ],
             ["2020", {
                     "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
                     "link-text": {
@@ -754,6 +767,10 @@
 
     "Workshops": {
         "rows": [
+           ["2021", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2021",
+                "link-text": "Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "Virtual"],            
            ["2019", {
                 "url": "https://rega.kuleuven.be/cev/veme-workshop/2019",
                 "link-text": "24th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
@@ -829,6 +846,16 @@
     "Advising and Mentoring": {
         "subtext": "Primary or co-mentor/advisor only",
         "rows": [
+             ["2021-present", {
+                "url": "https://bio.cst.temple.edu/people/",
+                "link-text": "Avery Selberg"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (Biology)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
             ["2018-present", {
                 "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Jordan Zehr"
