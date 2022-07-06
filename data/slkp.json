@@ -186,6 +186,23 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+            ["2022-2026", {
+                    "text": "Reinventing dN/dS and the study of natural selection.",
+                    "subtext": {
+                        "url": "https://reporter.nih.gov/search/59zhGn789UW22U-cPpR1QQ/project-details/10535021",
+                        "link-text": "NIH/NIGMS"
+                    }
+                },
+                "PI/MPI", {
+                    "text": "200000",
+                    "format": "dollars",
+                    "subtext": "FY2022"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],      
+
             ["2021-2023", {
                     "text": "Development and maintenance of FDA-ARGOS 2 containing regulatory grade reference genomes for diagnostic use and regulatory science ",
                     "subtext": {
@@ -845,9 +862,19 @@
 
     "Advising and Mentoring": {
         "subtext": "Primary or co-mentor/advisor only",
-        "rows": [
+        "rows": [[
+            "2022-present", {
+                "url": "https://www.linkedin.com/in/hannahverdonk/",
+                "link-text": "Hanna Verdonk"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (Bioinformatics)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
              ["2021-present", {
-                "url": "https://bio.cst.temple.edu/people/",
+                "url": "https://www.linkedin.com/in/avery-selberg-63804415a/",
                 "link-text": "Avery Selberg"
             }, {
                 "text": "PhD advisor",
@@ -1084,7 +1111,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~25,500 total citations, h-index 71 (per Google Scholar), weighted RCR of 964 (per NIH iCite)",
+        "subtext": " ~29,000 total citations, h-index 74 (per Google Scholar), weighted RCR of 1063 (per NIH iCite)",
         "highlight": "Pond S",
         "bibtex": "data/slkp.bib"
     },

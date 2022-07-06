@@ -55,6 +55,12 @@ function handle_entry_object(d, container) {
             containerd3.append("div").classed ("altmetric-embed no-print", true).attr ("data-badge-type", "donut").attr ("data-doi", d["altmetric"]).attr ("data-hide-no-mentions", "true");
         }
         
+        
+        if ("plumx" in d) {
+            // <a href="https://plu.mx/plum/a/?doi=10.1371%2Fjournal.ppat.1005531" data-popup="right" data-size="small" class="plumx-plum-print-popup" data-site="plum" data-hide-when-empty="true">
+            containerd3.append("a").classed ("plumx-plum-print-popup no-print", true).attr ("data-popup", "right").attr ("data-size", "small").attr ("data-site", "plum").attr ("data-hide-when-empty", "false").attr ("href", "https://plu.mx/plum/a/?doi=" + d["plumx"]);
+        }
+        
         // <span class="__dimensions_badge_embed__" data-doi="10.1001/jama.2016.9797"></span><script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
         
         if ("dimensions" in d) {
@@ -216,7 +222,7 @@ function extract_bibtex_record(highlight, record) {
         render_me.push("");
     }
     if (record["DOI"]) {
-        render_me.push ({"altmetric": record["DOI"], "dimensions" : record["DOI"]});
+        render_me.push ({"altmetric": record["DOI"], "dimensions" : record["DOI"], "plumx" : record["DOI"]});
     } else {
         render_me.push("");    
     }
