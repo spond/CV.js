@@ -129,6 +129,13 @@
 
     "Awards and Honors": {
         "rows": [
+            ["2022", {
+                "text": "Temple CST Dean’s Distinguished Excellence in Research Award",
+                "subtext": {
+                    "url": "https://cst.temple.edu/faculty-awards",
+                    "link-text": "Award Recipients"
+                }
+            }],
             ["2014-2017", {
                 "text": "Highly cited researcher (computer science)",
                 "subtext": {
@@ -143,6 +150,10 @@
     "Professional Activities": {
         "rows": [
            ["2022-present", {
+                "url": "http://journals.plos.org/plosmedicine/s/editorial-board#loc-associate-editors",
+                "link-text": "Associate Editor, PLoS Medicine"
+            }],
+           ["2022-2023", {
                 "url": "https://public.csr.nih.gov/StudySections/DABP/EPH/ASPB",
                 "link-text": "Member, ASPB study section"
            }],
@@ -150,11 +161,11 @@
                 "url": "https://public.csr.nih.gov/StudySections/DABP/HDM/BMRD",
                 "link-text": "Member, BMRD study section"
            }],
-           ["2011-present", {
+           ["2011-2023", {
                 "url": "http://journals.plos.org/ploscompbiol/s/editorial-board#loc-associate-editors",
                 "link-text": "Associate Editor, PLoS Computational Biology"
             }],
-            ["2014-present", {
+            ["2014-2021", {
                 "url": "http://www.oxfordjournals.org/our_journals/molbev/editorial_board.html",
                 "link-text": "Associate Editor, Molecular Biology and Evolution"
             }],
@@ -536,7 +547,30 @@
     },
     "Courses Taught": {
         "rows": [
+           ["2023", {
+                    "url": "https://bulletin.temple.edu/courses/biol/",
+                    "link-text": {
+                        "text": "Genome Analytics"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~20 students"
+                }
+            ],
+            ["2022", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~150 students"
+                }
+           ],
            ["2021", {
+           
                     "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
                     "link-text": {
                         "text": "Genomics in Medicine"
@@ -788,6 +822,10 @@
 
     "Workshops": {
         "rows": [
+           ["2022", {
+                "url": "https://rega.kuleuven.be/cev/veme-workshop/2022",
+                "link-text": "26th International Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
+            }, "Panama City, Panama"],         
            ["2021", {
                 "url": "https://rega.kuleuven.be/cev/veme-workshop/2021",
                 "link-text": "Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology"
@@ -887,25 +925,31 @@
                 "text": "current",
                 "type": "label"
             }],
-            ["2018-present", {
+            ["2018-2023", {
                 "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Jordan Zehr"
             }, {
                 "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
-            }, "",  {
-                "text": "current",
+            }, {
+                "text": "Postdoc",
+                "subtext": "Cornell (Stanhope Lab)"
+            }, {
+                "text": "graduated",
                 "type": "label"
             }],
             
-           ["2019-present", {
-                "url": "http://phdbioinform.cst.temple.edu/people/students",
+           ["2019-2023", {
+                "url": "https://aglucaci.github.io",
                 "link-text": "Alexander Lucaci"
             }, {
                 "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
-            }, "",  {
-                "text": "current",
+            }, {
+                "text": "Postdoc",
+                "subtext": "Weill Cornell (Mason Lab)"
+            },  {
+                "text": "graduated",
                 "type": "label"
             }],
             ["2019-present", {
@@ -951,7 +995,7 @@
                 "text": "Mentor",
                 "subtext": "Temple (iGEM)"
             }, {
-                "text": "Postdoctoral Researcher",
+                "text": "Assistant Professor",
                 "subtext": "University of Florida"
             },  {
                 "text": "past",
@@ -1115,8 +1159,8 @@
        ]
     },
     "Publications": {
-        "subtext": " ~29,500 total citations, h-index 74 (per Google Scholar), weighted RCR of 1068 (per NIH iCite)",
-        "highlight": "Pond S",
+        "subtext": " ~34,500 total citations, h-index 76 (per Google Scholar), weighted RCR of 1213 (per NIH iCite)",
+        "highlight": ["Pond S","Kosakovsky Pond S"],
         "bibtex": "data/slkp.bib"
     },
     "Software Projects": {

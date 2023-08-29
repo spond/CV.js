@@ -56,10 +56,6 @@ function handle_entry_object(d, container) {
         }
         
         
-        if ("plumx" in d) {
-            // <a href="https://plu.mx/plum/a/?doi=10.1371%2Fjournal.ppat.1005531" data-popup="right" data-size="small" class="plumx-plum-print-popup" data-site="plum" data-hide-when-empty="true">
-            containerd3.append("a").classed ("plumx-plum-print-popup no-print", true).attr ("data-popup", "right").attr ("data-size", "small").attr ("data-site", "plum").attr ("data-hide-when-empty", "false").attr ("href", "https://plu.mx/plum/a/?doi=" + d["plumx"]);
-        }
         
         // <span class="__dimensions_badge_embed__" data-doi="10.1001/jama.2016.9797"></span><script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
         
@@ -67,6 +63,13 @@ function handle_entry_object(d, container) {
              containerd3.append("span").classed ("__dimensions_badge_embed__ no-print", true).attr ("data-doi", d["dimensions"]).attr ("data-style","small_circle");
              containerd3.append("script").attr ("async","true").attr("src","https://badge.dimensions.ai/badge.js");       
         }
+        
+        if ("plumx" in d) {
+            // <a href="https://plu.mx/plum/a/?doi=10.1371%2Fjournal.ppat.1005531" data-popup="right" data-size="small" class="plumx-plum-print-popup" data-site="plum" data-hide-when-empty="true">
+           // <a href="https://plu.mx/plum/a/?doi=10.1371/journal.pone.0056506" class="plumx-plum-print-popup"></a>
+            containerd3.append("a").classed ("plumx-plum-print-popup no-print", true).attr ("href", "https://plu.mx/plum/a/?doi=" + d["plumx"]);
+        }
+
         
     } else {
         containerd3.text(d || "");
@@ -161,7 +164,7 @@ function process_author_line(authors, match) {
             }).join("");
         }
 
-        if (match && author.indexOf (match) == 0 && index === undefined) {
+        if (match && match.some((d)=>author.indexOf (d) == 0) && index === undefined) {
             index = i;
         }
 
