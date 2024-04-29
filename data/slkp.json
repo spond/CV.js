@@ -129,6 +129,14 @@
 
     "Awards and Honors": {
         "rows": [
+            ["2023", {
+                "text": "Highly cited researcher (Cross-Field)",
+                "subtext": {
+                    "url": "https://www.webofscience.com/wos/author/record/G-9830-2012",
+                    "link-text": "Clarivate Highly Cited Researchers"
+                }
+            }],
+
             ["2022", {
                 "text": "Temple CST Dean’s Distinguished Excellence in Research Award",
                 "subtext": {
@@ -201,6 +209,38 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+            ["2024-2028", {
+                    "text": "Hypothesis Testing using Phylogenies for the 21st century.",
+                    "subtext": {
+                        "url": "https://reporter.nih.gov/search/_6D_RBZ2PkS9sx6DhZdATQ/project-details/10729148",
+                        "link-text": "NIH/NIGMS"
+                    }
+                },
+                "PI/MPI", {
+                    "text": "300000",
+                    "format": "dollars",
+                    "subtext": "FY2024"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],      
+            ["2023-2028", {
+                    "text": "Functional Annotation of Genomes via Phenotypic Convergence within Large Multi-species Alignments.",
+                    "subtext": {
+                        "url": "https://reporter.nih.gov/search/72ic1WofF06gdbcG_emhFw/project-details/10668178",
+                        "link-text": "NIH/NHGRI"
+                    }
+                },
+                "Site Principal Investigator", {
+                    "text": "90000",
+                    "format": "dollars",
+                    "subtext": "FY2023"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],      
             ["2022-2026", {
                     "text": "Reinventing dN/dS and the study of natural selection.",
                     "subtext": {
@@ -234,23 +274,23 @@
                     "type": "label"
                 }
             ],      
-            ["2019-2023", {
+            ["2019-2024", {
                     "text": "Secure HIV-TRACE",
                     "subtext": {
-                        "url": "https://www.fpds.gov/ezsearch/search.do?q=secure+hiv-trace+PIID%3A%2275D30119C04031%22+PIID%3A%2275D30119C04031%22&s=FPDS.GOV&templateName=1.5.1&indexName=awardfull",
-                        "link-text": "CDC (75D30119C04031)"
+                        "url": "https://www.fpds.gov/ezsearch/fpdsportal?q=hiv-trace+PIID%3A%2275D30123C17580%22&s=FPDS.GOV&templateName=1.5.3&indexName=awardfull&x=0&y=0?q=secure+hiv-trace+PIID%3A%2275D30119C04031%22+PIID%3A%2275D30119C04031%22&s=FPDS.GOV&templateName=1.5.1&indexName=awardfull",
+                        "link-text": "CDC (75D30123C17580)"
                     }
                 },
                 "Site Principal Investigator", {
                     "text": "70000",
                     "format": "dollars",
-                    "subtext": "FY2019"
+                    "subtext": "FY2023"
                 }, {
                     "text": "current",
                     "type": "label"
                 }
             ],            
-            ["2017-2022", {
+            ["2017-2023", {
                     "text": "HIV Evolution Defines Virus-Host/Drug Interactions in Viremic and Aviremic People",
                     "subtext": {
                         "url": "https://projectreporter.nih.gov/project_info_description.cfm?aid=9623774",
@@ -262,11 +302,11 @@
                     "format": "dollars",
                     "subtext": "FY2018"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
-            ["2017-2022", {
+            ["2017-2023", {
                     "text": "Tuning Big Data Analysis Infrastructure For HIV Research",
                     "subtext": {
                         "url": "https://reporter.nih.gov/search/IrjdT7pAs0ui7DwbJyMALQ/project-details/10170221",
@@ -278,7 +318,7 @@
                     "format": "dollars",
                     "subtext": "FY2021"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -294,7 +334,7 @@
                     "format": "dollars",
                     "subtext": "FY2021"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],
@@ -547,6 +587,28 @@
     },
     "Courses Taught": {
         "rows": [
+           ["2024", {
+                    "url": "https://bulletin.temple.edu/courses/biol/",
+                    "link-text": {
+                        "text": "Genome Analytics"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~20 students"
+                }
+            ],
+            ["2023", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~150 students"
+                }
+           ],
            ["2023", {
                     "url": "https://bulletin.temple.edu/courses/biol/",
                     "link-text": {
@@ -1159,7 +1221,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~34,500 total citations, h-index 76 (per Google Scholar), weighted RCR of 1213 (per NIH iCite)",
+        "subtext": " ~37,400 total citations, h-index 78 (per Google Scholar), weighted RCR of 1122 (per NIH iCite)",
         "highlight": ["Pond S","Kosakovsky Pond S"],
         "bibtex": "data/slkp.bib"
     },
