@@ -209,6 +209,38 @@
     "Grants and Fellowships": {
         "subtext" : "Principal or co-principal investigator/recipient only",
         "rows": [
+           ["2024-2028", {
+                    "text": "Understanding biodiversity through a global platform for assembly and analysis of large genomes.",
+                    "subtext": {
+                        "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2419522",
+                        "link-text": "NSF"
+                    }
+                },
+                "PI/MPI", {
+                    "text": "150000",
+                    "format": "dollars",
+                    "subtext": "FY2024"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+           ],   
+           ["2024-2029", {
+                    "text": "An integrated platform for multiomic analyses of pathogen and host data using scalable public infrastructure.",
+                    "subtext": {
+                        "url": "https://reporter.nih.gov/search/i6D30eQo7UiXHcrETPWALQ/project-details/10914501",
+                        "link-text": "NIH/NIAID"
+                    }
+                },
+                "PI/MPI", {
+                    "text": "750000",
+                    "format": "dollars",
+                    "subtext": "FY2024"
+                }, {
+                    "text": "current",
+                    "type": "label"
+                }
+            ],   
             ["2024-2028", {
                     "text": "Hypothesis Testing using Phylogenies for the 21st century.",
                     "subtext": {
@@ -286,7 +318,7 @@
                     "format": "dollars",
                     "subtext": "FY2023"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],            
@@ -1221,7 +1253,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~37,400 total citations, h-index 78 (per Google Scholar), weighted RCR of 1122 (per NIH iCite)",
+        "subtext": " ~40,500 total citations, h-index 81 (per Google Scholar), weighted RCR of 1114 (per NIH iCite)",
         "highlight": ["Pond S","Kosakovsky Pond S"],
         "bibtex": "data/slkp.bib"
     },
