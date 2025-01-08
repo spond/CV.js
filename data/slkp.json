@@ -65,6 +65,13 @@
 
     "Positions Held": {
         "rows": [
+            ["2025-", {
+                "text": "Associate Dean for Research and Innovation",
+                "subtext": {
+                    "url": "http://cst.temple.edu",
+                    "link-text": "College of Science and Technology"
+                }
+            }],
             ["2016-", {
                 "text": "Professor of Biology",
                 "subtext": {
@@ -1253,7 +1260,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~40,500 total citations, h-index 81 (per Google Scholar), weighted RCR of 1114 (per NIH iCite)",
+        "subtext": " ~41,100 total citations, h-index 82 (per Google Scholar), weighted RCR of 1112 (per NIH iCite)",
         "highlight": ["Pond S","Kosakovsky Pond S"],
         "bibtex": "data/slkp.bib"
     },
