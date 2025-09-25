@@ -136,14 +136,13 @@
 
     "Awards and Honors": {
         "rows": [
-            ["2023", {
+            ["2023-2024", {
                 "text": "Highly cited researcher (Cross-Field)",
                 "subtext": {
                     "url": "https://www.webofscience.com/wos/author/record/G-9830-2012",
                     "link-text": "Clarivate Highly Cited Researchers"
                 }
             }],
-
             ["2022", {
                 "text": "Temple CST Dean’s Distinguished Excellence in Research Award",
                 "subtext": {
