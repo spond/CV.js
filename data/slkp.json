@@ -1027,6 +1027,28 @@
     "Advising and Mentoring": {
         "subtext": "Primary or co-mentor/advisor only",
         "rows": [[
+            "2026-present", {
+                "url": "https://igem.temple.edu/people/students",
+                "link-text": "Daria Chalkova"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (Bioinformatics)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
+            [
+            "2025-present", {
+                "url": "https://igem.temple.edu/people/students",
+                "link-text": "Gigi Brown"
+            }, {
+                "text": "PhD advisor",
+                "subtext": "Temple (Bioinformatics)"
+            }, "",  {
+                "text": "current",
+                "type": "label"
+            }],
+            [
             "2022-present", {
                 "url": "https://www.linkedin.com/in/hannahverdonk/",
                 "link-text": "Hanna Verdonk"
