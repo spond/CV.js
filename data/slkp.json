@@ -1037,14 +1037,17 @@
                 "text": "current",
                 "type": "label"
             }],
-             ["2021-present", {
+             ["2021-2025", {
                 "url": "https://www.linkedin.com/in/avery-selberg-63804415a/",
                 "link-text": "Avery Selberg"
             }, {
-                "text": "PhD candidate",
+                "text": "PhD advisor",
                 "subtext": "Temple (Biology)"
-            }, "",  {
-                "text": "current",
+            }, {
+                "text": "Postdoctoral Researcher",
+                "subtext": "University of Pennsylvania (Mathieson Lab)"
+            },  {
+                "text": "graduated",
                 "type": "label"
             }],
             ["2018-2023", {
