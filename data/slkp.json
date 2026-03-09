@@ -625,6 +625,28 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2025", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~160 students"
+                }
+           ],
+           ["2024", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~160 students"
+                }
+           ],
            ["2024", {
                     "url": "https://bulletin.temple.edu/courses/biol/",
                     "link-text": {
@@ -1009,7 +1031,7 @@
                 "url": "https://www.linkedin.com/in/hannahverdonk/",
                 "link-text": "Hanna Verdonk"
             }, {
-                "text": "PhD advisor",
+                "text": "PhD candidate",
                 "subtext": "Temple (Bioinformatics)"
             }, "",  {
                 "text": "current",
@@ -1019,7 +1041,7 @@
                 "url": "https://www.linkedin.com/in/avery-selberg-63804415a/",
                 "link-text": "Avery Selberg"
             }, {
-                "text": "PhD advisor",
+                "text": "PhD candidate",
                 "subtext": "Temple (Biology)"
             }, "",  {
                 "text": "current",
@@ -1032,8 +1054,8 @@
                 "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
             }, {
-                "text": "Postdoc",
-                "subtext": "Cornell (Stanhope Lab)"
+                "text": "Postdoctoral Associate",
+                "subtext": "Cornell (Baker Institute)"
             }, {
                 "text": "graduated",
                 "type": "label"
@@ -1046,7 +1068,7 @@
                 "text": "PhD advisor",
                 "subtext": "Temple (iGEM)"
             }, {
-                "text": "Postdoc",
+                "text": "Postdoctoral Associate",
                 "subtext": "Weill Cornell (Mason Lab)"
             },  {
                 "text": "graduated",
@@ -1056,7 +1078,7 @@
                 "url": "http://phdbioinform.cst.temple.edu/people/students",
                 "link-text": "Hanna Kim"
             }, {
-                "text": "PhD advisor",
+                "text": "PhD candidate",
                 "subtext": "Temple (iGEM)"
             }, "",  {
                 "text": "current",
@@ -1069,8 +1091,8 @@
                 "text": "Mentor",
                 "subtext": "Temple (iGEM)"
             }, {
-                "text": "Bioinformatics Scientist",
-                "subtext": "INOVIO"
+                "text": "Scientist",
+                "subtext": "INOVIO Pharmaceuticals"
             },  {
                 "text": "past",
                 "type": "label"
@@ -1083,7 +1105,7 @@
                 "subtext": "Temple (iGEM)"
             }, {
                 "text": "Lab Manager",
-                "subtext": "University of Pennsylvania"
+                "subtext": "University of Pennsylvania (Huang Lab)"
             },  {
                 "text": "past",
                 "type": "label"
@@ -1096,7 +1118,7 @@
                 "subtext": "Temple (iGEM)"
             }, {
                 "text": "Assistant Professor",
-                "subtext": "University of Florida"
+                "subtext": "University of Louisville"
             },  {
                 "text": "past",
                 "type": "label"
@@ -1109,8 +1131,8 @@
                 "text": "Mentor",
                 "subtext": "Temple (iGEM)"
             }, {
-                "text": "Assistant Professor",
-                "subtext": "Rowan University"
+                "text": "Data Scientist",
+                "subtext": "Childhood Cancer Data Lab"
             },  {
                 "text": "past",
                 "type": "label"
@@ -1122,8 +1144,8 @@
                 "text": "Graduate advisor, co-mentor (following move to Temple)",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, {
-                "text": "Software Engineer and Machine Learning scientist",
-                "subtext": "Qeexo"
+                "text": "Computer Vision Research Engineer",
+                "subtext": "Ancera"
             },  {
                 "text": "graduated",
                 "type": "label"
@@ -1146,7 +1168,7 @@
                 "subtext": {"url" : "http://projectreporter.nih.gov/project_info_description.cfm?aid=8410456",
                             "link-text" : "NIH training (K01) award"}
             }, {
-                "text": "Assistant Professor of Medicine",
+                "text": "Associate Professor of Medicine",
                 "subtext": "UCSD"
             }, {
                 "text": "past",
@@ -1159,7 +1181,7 @@
                 "text": "Graduate advisor",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, {
-                "text": "Senior Engineer Bioinformatics Test",
+                "text": "Software Developer (Bioinformatics)",
                 "subtext": "Pacific Biosciences"
             }, {
                 "text": "graduated",
@@ -1172,8 +1194,8 @@
                 "text": "Graduate advisor",
                 "subtext": "UCSD Bioinformatics and System Biology Program"
             }, {
-                "text": "Senior Bioinformatics Scientist",
-                "subtext": "10x genomics"
+                "text": "CIO and Founding Scientist",
+                "subtext": "Infinimmune"
             }, {
                 "text": "graduated",
                 "type": "label"
@@ -1185,8 +1207,8 @@
                 "text": "Postdoctoral advisor",
                 "subtext": "UCSD"
             }, {
-                "text": "Assistant Professor of Medicine",
-                "subtext": "UCSD"
+                "text": "Principal Researcher",
+                "subtext": "Karolinska Institute"
             }, {
                 "text": "past",
                 "type": "label"
@@ -1198,7 +1220,7 @@
                 "text": "Postdoctoral advisor",
                 "subtext": "UCSD"
             }, {
-                "text": "Assistant Professor of Medicine",
+                "text": "Professor (Adjunct) of Medicine",
                 "subtext": "UCSD"
             }, {
                 "text": "past",
@@ -1211,8 +1233,8 @@
                 "text": "Postdoctoral advisor",
                 "subtext": "UCSD"
             }, {
-                "text": "Postdoctoral Research Associate",
-                "subtext": "University of Sydney"
+                "text": "Lecturer and Data Scientist",
+                "subtext": "University of Technology Sydney"
             }, {
                 "text": "past",
                 "type": "label"
@@ -1237,8 +1259,8 @@
                 "text": "Research Faculty Supervisor",
                 "subtext": "UCSD Department of Pathology"
             }, {
-                "text": "Senior Bioinformatics Scientist",
-                "subtext": "Human Longevity, Inc"
+                "text": "Co-founder and CTO",
+                "subtext": "Simplify Genomics"
             }, {
                 "text": "past",
                 "type": "label"
@@ -1250,7 +1272,7 @@
                 "text": "Postdoctoral advisor",
                 "subtext": "UCSD"
             }, {
-                "text": "Lecturer in Population Biology of Infectious Diseases",
+                "text": "Professor in Population Biology of Infectious Diseases",
                 "subtext": "Imperial College London"
             }, {
                 "text": "past",
