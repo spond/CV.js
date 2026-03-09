@@ -1,220 +1,230 @@
-var money_format = d3.format("$,.0f");
+/**
+ * CV.js - A modern CV generator from JSON and BibTeX
+ */
 
-var formatters = {
-    "dollars": money_format
+const formatters = {
+    "dollars": new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format
 };
 
-function format_text(type, d) {
+function formatText(type, d) {
     if (type in formatters) {
         return formatters[type](d);
     }
     return d;
 }
 
-function grab_value(d, key, backup, default_value) {
+function grabValue(d, key, backup, defaultValue = "") {
     if (key && key in d) {
         return d[key];
     }
     if (backup && backup in d) {
-        return grab_value(d, backup, null, default_value);
+        return grabValue(d, backup, null, defaultValue);
     }
-    return default_value || "";
+    return defaultValue;
 }
 
-function handle_entry_object(d, container) {
-    var containerd3 = d3.select(container);
+function handleEntryObject(d, container) {
+    if (typeof d === 'object' && d !== null) {
+        const url = grabValue(d, "url");
+        if (url) {
+            const a = document.createElement("a");
+            a.href = url;
+            a.classList.add("d-print-none");
+            handleEntryObject(grabValue(d, "link-text"), a);
+            container.appendChild(a);
 
-    if (_.isObject(d)) {
-        var is_url = grab_value(d, "url");
-        if (is_url) {
-            var a = containerd3.append("a").attr("href", grab_value(d, "url")).classed("hidden-print", true);
-            handle_entry_object(grab_value(d, "link-text"), a[0][0]);
-            var p = containerd3.append("span").classed("visible-print-inline-block", true);
-            handle_entry_object(grab_value(d, "print-text", "link-text"), p[0][0]);
+            const p = document.createElement("span");
+            p.classList.add("d-none", "d-print-inline");
+            handleEntryObject(grabValue(d, "print-text", "link-text"), p);
+            container.appendChild(p);
+
             if ("type" in d) {
-                item_decorate(d["type"], a[0][0]);
-                item_decorate(d["type"], p[0][0]);
+                itemDecorate(d["type"], a);
+                itemDecorate(d["type"], p);
             }
-
             return;
         }
-        containerd3.text(format_text(d["format"], grab_value(d, "text")));
+
+        const text = formatText(d["format"], grabValue(d, "text"));
+        container.appendChild(document.createTextNode(text));
 
         if ("type" in d) {
-            item_decorate(d["type"], container);
+            itemDecorate(d["type"], container);
         }
 
         if ("subtext" in d) {
-            containerd3.append("br");
-            handle_entry_object(d["subtext"], containerd3.append("small")[0][0]);
+            container.appendChild(document.createElement("br"));
+            const small = document.createElement("small");
+            small.classList.add("text-muted");
+            handleEntryObject(d["subtext"], small);
+            container.appendChild(small);
         }
-        
-        //<div class='altmetric-embed' data-badge-type='donut' data- doi="10.1038/nature.2012.9872"></div>
-        
+
         if ("altmetric" in d) {
-            containerd3.append("div").classed ("altmetric-embed no-print", true).attr ("data-badge-type", "donut").attr ("data-doi", d["altmetric"]).attr ("data-hide-no-mentions", "true");
+            const div = document.createElement("div");
+            div.className = "altmetric-embed d-print-none mt-1";
+            div.setAttribute("data-badge-type", "donut");
+            div.setAttribute("data-doi", d["altmetric"]);
+            div.setAttribute("data-hide-no-mentions", "true");
+            container.appendChild(div);
         }
-        
-        
-        
-        // <span class="__dimensions_badge_embed__" data-doi="10.1001/jama.2016.9797"></span><script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
-        
+
         if ("dimensions" in d) {
-             containerd3.append("span").classed ("__dimensions_badge_embed__ no-print", true).attr ("data-doi", d["dimensions"]).attr ("data-style","small_circle");
-             containerd3.append("script").attr ("async","true").attr("src","https://badge.dimensions.ai/badge.js");       
+            const span = document.createElement("span");
+            span.className = "__dimensions_badge_embed__ d-print-none mt-1 d-block";
+            span.setAttribute("data-doi", d["dimensions"]);
+            span.setAttribute("data-style", "small_circle");
+            container.appendChild(span);
         }
-        
+
         if ("plumx" in d) {
-            // <a href="https://plu.mx/plum/a/?doi=10.1371%2Fjournal.ppat.1005531" data-popup="right" data-size="small" class="plumx-plum-print-popup" data-site="plum" data-hide-when-empty="true">
-           // <a href="https://plu.mx/plum/a/?doi=10.1371/journal.pone.0056506" class="plumx-plum-print-popup"></a>
-            containerd3.append("a").classed ("plumx-plum-print-popup no-print", true).attr ("href", "https://plu.mx/plum/a/?doi=" + d["plumx"]);
+            const a = document.createElement("a");
+            a.className = "plumx-plum-print-popup d-print-none mt-1 d-block";
+            a.href = `https://plu.mx/plum/a/?doi=${d["plumx"]}`;
+            container.appendChild(a);
         }
-
-        
     } else {
-        containerd3.text(d || "");
+        container.appendChild(document.createTextNode(d || ""));
     }
 }
 
-
-function prepend_font_awesome(container, icon) {
-    var children = d3.select(container).selectAll("*");
-    if (!children.empty()) {
-        d3.select(container).insert("i", ":first-child").classed("fa " + icon, true);
-    } else {
-        d3.select(container).html(function(d) {
-            return "<i class = 'fa " + icon + "'></i> " + d3.select(this).text();
-        });
-    }
+function prependFontAwesome(container, icon) {
+    const i = document.createElement("i");
+    i.className = `fa-solid ${icon} fa-fw me-1`;
+    container.prepend(i);
 }
 
-var font_awesome_decorators = {
+const fontAwesomeDecorators = {
     "phone": "fa-phone",
     "e-mail": "fa-envelope",
-    "home": "fa-home",
-    "GitHub": "fa-github-square",
-    "Twitter": "fa-twitter-square",
-    "papers": "fa-flask"
+    "home": "fa-house",
+    "GitHub": "fa-brands fa-github",
+    "Twitter": "fa-brands fa-x-twitter",
+    "papers": "fa-file-lines"
 };
 
-function item_decorate(type, container) {
-    if (type in font_awesome_decorators) {
-        prepend_font_awesome(container, font_awesome_decorators[type]);
-    } else if (type == "label") {
-
-        var children = d3.select(container).selectAll("*");
-        if (!children.empty()) {
-            $(container).wrap('<span class="label label-default"></span>');
-        } else {
-            var current_text = d3.select(container).text();
-            d3.select(container).text("").append("span").classed("label label-default", true).text(current_text);
+function itemDecorate(type, container) {
+    if (type in fontAwesomeDecorators) {
+        prependFontAwesome(container, fontAwesomeDecorators[type]);
+    } else if (type === "label") {
+        const span = document.createElement("span");
+        span.className = "badge bg-secondary me-1";
+        // Move children to span
+        while (container.firstChild) {
+            span.appendChild(container.firstChild);
         }
+        container.appendChild(span);
     }
-
 }
 
-function populate_contact(container, key, data) {
-
-    if (container.attr("data-style-header") == "on") {
-        container.append("h4").text(key);
+function populateContact(container, key, data, headerOn) {
+    container.innerHTML = "";
+    if (headerOn) {
+        const h4 = document.createElement("h4");
+        h4.textContent = key;
+        container.appendChild(h4);
     }
-    var address_block = container.append("address").classed("list-unstyled", true);
-    var address_items = address_block.selectAll("span").data(data);
-    address_items.enter().append("span");
-    address_items.exit().remove();
-
-    address_items.text(function(d) {
-        return d.text || "";
-    });
-    address_items.each(function(item, index) {
-        item_decorate(item["type"], this);
+    const address = document.createElement("address");
+    address.className = "mb-3";
+    
+    data.forEach((item, index) => {
+        const span = document.createElement("span");
+        span.textContent = item.text || "";
+        itemDecorate(item["type"], span);
+        address.appendChild(span);
         if (index < data.length - 1) {
-            d3.select(this).append("br");
+            address.appendChild(document.createElement("br"));
         }
     });
+    container.appendChild(address);
 }
 
-function populate_list(container, key, data) {
-
-    if (container.attr("data-style-header") == "on") {
-        var header = container.append("h4").text(key);
+function populateList(container, key, data, headerOn) {
+    container.innerHTML = "";
+    if (headerOn) {
+        const h4 = document.createElement("h4");
+        h4.textContent = key;
         if ("subtext" in data) {
-            header.append("br");
-            header.append("small").text(data["subtext"]);
+            h4.appendChild(document.createElement("br"));
+            const small = document.createElement("small");
+            small.className = "text-muted h6";
+            small.textContent = data["subtext"];
+            h4.appendChild(small);
         }
+        container.appendChild(h4);
     }
-    var the_list = container.append("ul").classed("list-unstyled", true);
-    var list_elements = the_list.selectAll("li").data(data);
-    list_elements.enter().append("li");
-    list_elements.each(function(d, i) {
-        handle_entry_object(d, this);
+    const ul = document.createElement("ul");
+    ul.className = "list-unstyled mb-3";
+    
+    const listItems = Array.isArray(data) ? data : (data.rows || []);
+    listItems.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "mb-1";
+        handleEntryObject(item, li);
+        ul.appendChild(li);
     });
+    container.appendChild(ul);
 }
 
-function process_author_line(authors, match) {
-    var index = undefined;
 
-    authors = authors.split(" and ").map(function(author, i) {
-        author = author.replace("{", "").replace("}", "");
-        var parts = author.split(",");
+function processAuthorLine(authors, match) {
+    let index = undefined;
 
-        if (parts.length == 2) {
-            author = parts[0] + " " + parts[1].split(" ").map(function(a) {
-                return a[0];
-            }).join("");
+    const authorList = authors.split(" and ").map((author, i) => {
+        author = author.replace(/{/g, "").replace(/}/g, "");
+        const parts = author.split(",");
+
+        if (parts.length === 2) {
+            author = parts[0].trim() + " " + parts[1].trim().split(" ").map(a => a[0]).join("");
         }
 
-        if (match && match.some((d)=>author.indexOf (d) == 0) && index === undefined) {
+        if (match && match.some(d => author.indexOf(d) === 0) && index === undefined) {
             index = i;
         }
 
         return author;
     });
 
-    var text,
-        tag = index;
+    let text;
+    let tag = index;
 
-    if (authors.length <= 10) {
-        text = authors.join(", ");
+    if (authorList.length <= 10) {
+        text = authorList.join(", ");
     } else {
-        text = authors.filter(function(d, i) {
-            return i < 10;
-        }).join(", ") + " and " + (authors.length - 10) + " others";
+        text = authorList.slice(0, 10).join(", ") + " and " + (authorList.length - 10) + " others";
     }
 
-    if (_.isNumber (tag)) {
-        if (tag == 0) {
+    if (typeof tag === 'number') {
+        if (tag === 0) {
             tag = "1st";
+        } else if (tag === authorList.length - 1) {
+            tag = "Senior";
+        } else if (tag === 1) {
+            tag = "2nd";
         } else {
-            if (tag == authors.length-1) {
-                tag = "Senior";
-            } else if (tag == 1) {
-                tag = "2nd";
-            } else {
-                tag = "";
-            }
+            tag = "";
         }
     }
 
-    return {"text": text, "tag" : tag};
+    return { "text": text, "tag": tag };
 }
 
-function extract_bibtex_record(highlight, record) {
-    var render_me = [];
-    render_me.push(record["YEAR"]);
-    var authors = process_author_line(record["AUTHOR"], highlight);
-    render_me.push(authors["tag"] ? {"text": authors["tag"], "type": "label"} : "");
-    render_me.push({
+function extractBibtexRecord(highlight, record) {
+    const renderMe = [];
+    renderMe.push(record["YEAR"]);
+    const authors = processAuthorLine(record["AUTHOR"], highlight);
+    renderMe.push(authors["tag"] ? { "text": authors["tag"], "type": "label" } : "");
+    renderMe.push({
         "subtext": record["TITLE"],
         "text": authors["text"]
     });
-    render_me.push({
+    renderMe.push({
         "text": record["JOURNAL"],
         "subtext": (record["VOLUME"] ? record["VOLUME"] : "") + (record["NUMBER"] ? " (" + record["NUMBER"] + ")" : "") + (record["PAGES"] ? " " + record["PAGES"] + " " : "")
     });
     if (record["PMID"]) {
-        render_me.push({
-            "url": "http://www.ncbi.nlm.nih.gov/pubmed/" + record["PMID"],
+        renderMe.push({
+            "url": "https://pubmed.ncbi.nlm.nih.gov/" + record["PMID"],
             "link-text": {
                 "text": "Pubmed",
                 "type": "label"
@@ -222,76 +232,121 @@ function extract_bibtex_record(highlight, record) {
             "print-text": ""
         });
     } else {
-        render_me.push("");
+        renderMe.push("");
     }
     if (record["DOI"]) {
-        render_me.push ({"altmetric": record["DOI"], "dimensions" : record["DOI"], "plumx" : record["DOI"]});
+        renderMe.push({ "altmetric": record["DOI"], "dimensions": record["DOI"], "plumx": record["DOI"] });
     } else {
-        render_me.push("");    
+        renderMe.push("");
     }
-    return render_me;
+    return renderMe;
 }
 
-function populate_bibtex(container, key, data) {
-    d3.text(data["bibtex"], function(error, value) {
+async function populateBibtex(container, key, data, headerOn) {
+    try {
+        const response = await fetch(data["bibtex"]);
+        const value = await response.text();
         if (value) {
-            var localDoParse = _.bind(BibtexParser, new Object);
-
-            var b = new BibtexParser();
+            const b = new BibtexParser();
             b.setInput(value);
             b.bibtex();
 
+            const rows = Object.values(b.entries)
+                .map(entry => extractBibtexRecord(data["highlight"], entry))
+                .sort((a, b) => b[0] - a[0]);
 
-            data["rows"] = _.map(b.entries, _.partial (extract_bibtex_record, data["highlight"])).sort(function(a, b) {
-                return b[0] - a[0];
-            });
-            
-             data["subtext"] = data["rows"].length + " publications" + (data["subtext"] ? ", " + data["subtext"] : "");
-            populate_table(container, key, data);
+            data["rows"] = rows;
+            data["subtext"] = rows.length + " publications" + (data["subtext"] ? ", " + data["subtext"] : "");
+            populateTable(container, key, data, headerOn);
         }
-    });
-}
-
-function populate_table(container, key, data) {
-
-    if (container.attr("data-style-header") == "on") {
-        var header = container.append("h4").text(key);
-        if ("subtext" in data) {
-            header.append("br");
-            header.append("small").text(data["subtext"]);
-        }
+    } catch (error) {
+        console.error("Error loading BibTeX:", error);
     }
-    var the_table = container.append("table").classed("table table-striped table-condensed", true);
-    var table_body = the_table.append("tbody").style("font-size", "80%");
-
-    var table_rows = table_body.selectAll("tr").data(data["rows"]);
-    table_rows.enter().append("tr");
-    var table_cells = table_rows.selectAll("td").data(function(d) {
-        return d;
-    });
-    table_cells.enter().append("td");
-    table_cells.each(function(d, i) {
-        handle_entry_object(d, this);
-    });
 }
 
-var data_populator = {
-    'list': populate_list,
-    'table': populate_table,
-    'contact': populate_contact,
-    'bibtex': populate_bibtex
+function populateTable(container, key, data, headerOn) {
+    container.innerHTML = "";
+    if (headerOn) {
+        const h4 = document.createElement("h4");
+        h4.textContent = key;
+        if ("subtext" in data) {
+            h4.appendChild(document.createElement("br"));
+            const small = document.createElement("small");
+            small.className = "text-muted h6";
+            small.textContent = data["subtext"];
+            h4.appendChild(small);
+        }
+        container.appendChild(h4);
+    }
+    
+    const tableContainer = document.createElement("div");
+    tableContainer.className = "table-responsive";
+    
+    const table = document.createElement("table");
+    table.className = "table table-striped table-sm";
+    table.style.fontSize = "90%";
+    
+    const tbody = document.createElement("tbody");
+    
+    (data["rows"] || []).forEach(rowData => {
+        const tr = document.createElement("tr");
+        rowData.forEach(cellData => {
+            const td = document.createElement("td");
+            handleEntryObject(cellData, td);
+            tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+    
+    table.appendChild(tbody);
+    tableContainer.appendChild(table);
+    container.appendChild(tableContainer);
+}
+
+const dataPopulators = {
+    'list': populateList,
+    'table': populateTable,
+    'contact': populateContact,
+    'bibtex': populateBibtex
 };
 
-var load_cv_data = function(url) {
-    d3.json(url, function(error, data) {
-        if (data) {
-            _.each(data, function(value, key) {
-                var container = d3.select('[data-receiver-for="' + key + '"]');
-                if (container.length == 1) {
-                    var pop = data_populator[container.attr("data-style-type") || "list"];
-                    if (pop) pop(container, key, value);
+async function loadCvData(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        for (const [key, value] of Object.entries(data)) {
+            const container = document.querySelector(`[data-receiver-for="${key}"]`);
+            if (container) {
+                const styleType = container.getAttribute("data-style-type") || "list";
+                const headerOn = container.getAttribute("data-style-header") === "on";
+                const populator = dataPopulators[styleType];
+                if (populator) {
+                    await populator(container, key, value, headerOn);
                 }
-            });
+            }
         }
-    });
-};
+        
+        // Load external scripts after data is populated
+        const altmetricScript = document.createElement("script");
+        altmetricScript.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
+        document.body.appendChild(altmetricScript);
+        
+        const plumxScript = document.createElement("script");
+        plumxScript.src = "https://cdn.plu.mx/widget-popup.js";
+        document.body.appendChild(plumxScript);
+
+        const dimensionsScript = document.createElement("script");
+        dimensionsScript.async = true;
+        dimensionsScript.src = "https://badge.dimensions.ai/badge.js";
+        document.body.appendChild(dimensionsScript);
+        
+    } catch (error) {
+        console.error("Error loading CV data:", error);
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadCvData("data/slkp.json");
+});
