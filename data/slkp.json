@@ -31,6 +31,11 @@
     }],
 
     "Links": [{
+        "url": "print.html",
+        "link-text": "Printable CV",
+        "print-text": "Printable CV",
+        "type": "papers"
+    }, {
         "url": "mailto:#",
         "link-text": "spond@temple.edu",
         "print-text": "spond@temple.edu",

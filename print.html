@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergei L Kosakovsky Pond - Curriculum Vitae (Printable)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: white;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            display: block;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .print-header {
+            border-bottom: 4px solid black;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .print-header h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .print-contact {
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .cv-section {
+            page-break-inside: avoid;
+            margin-bottom: 3rem;
+        }
+        .cv-section h2 {
+            border-left: 12px solid black;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .cv-item {
+            grid-template-columns: 120px 1fr;
+            border-bottom: 1px solid #eee;
+        }
+        .pub-item {
+            border: none;
+            border-left: 2px solid black;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+        }
+        .pub-summary-box {
+            display: none; /* Hide AI summaries in traditional view */
+        }
+        @media print {
+            .no-print { display: none; }
+            .container { padding: 0; max-width: 100%; }
+            body { font-size: 10pt; }
+        }
+        .back-nav {
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 0.8rem;
+        }
+        .back-nav a {
+            color: black;
+            text-decoration: none;
+            border: 2px solid black;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="back-nav no-print">
+            <a href="index.html">← Back to Dashboard</a>
+            <button onclick="window.print()" style="background: black; color: white; border: none; padding: 0.5rem 1rem; font-family: inherit; font-weight: 800; cursor: pointer; margin-left: 1rem;">PRINT / SAVE PDF</button>
+        </nav>
+
+        <header class="print-header">
+            <div>
+                <h1>Sergei L. Kosakovsky Pond</h1>
+                <p style="text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; margin-top: 0.5rem;">Professor of Biology</p>
+            </div>
+            <div class="print-contact" id="header-contact">
+                <!-- Populated by JS -->
+            </div>
+        </header>
+
+        <div id="print-content">
+            <!-- All sections will be rendered here -->
+        </div>
+    </div>
+
+    <script src="print.js"></script>
+</body>
+</html>
