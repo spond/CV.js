@@ -1,0 +1,2045 @@
+{
+  "Selberg:2026aa": {
+    "summary": "MoleRate is an explicit phylogenetic rate test introduced to detect acceleration or reduction in evolutionary rates across lineages, enabling the study of convergent phenotypic adaptation.",
+    "keywords": [
+      "phylogenetics",
+      "evolutionary rates",
+      "convergent evolution",
+      "comparative genomics"
+    ]
+  },
+  "Havens:2026aa": {
+    "summary": "The study finds no evidence that extensive pre-zoonotic adaptation is required for human-to-human transmission in several major viruses, except for SARS-CoV in an intermediate host.",
+    "keywords": [
+      "zoonosis",
+      "natural selection",
+      "viral emergence",
+      "phylogenetics"
+    ]
+  },
+  "Melendez-Vazquez:2025aa": {
+    "summary": "The evolution of endothermy in ray-finned fishes was found to coincide with ecological interactions with modern cetaceans during the Eocene-Miocene period.",
+    "keywords": [
+      "endothermy",
+      "ray-finned fish",
+      "cetaceans",
+      "comparative genomics"
+    ]
+  },
+  "Selberg:2025aa": {
+    "summary": "BUSTED-E is a new method that detects positive selection while identifying and filtering out alignment errors, improving the accuracy of evolutionary inference in genome-scale datasets.",
+    "keywords": [
+      "positive selection",
+      "alignment errors",
+      "evolutionary models",
+      "phylogenetics"
+    ]
+  },
+  "Makova:2024aa": {
+    "summary": "This research provides gapless assemblies of ape sex chromosomes, revealing that Y chromosomes evolve dynamically with high structural rearrangements while X chromosomes remain stable.",
+    "keywords": [
+      "sex chromosomes",
+      "ape evolution",
+      "genomics",
+      "comparative analysis"
+    ]
+  },
+  "Council:2025aa": {
+    "summary": "The study demonstrates that the persistent pool of HIV-1 infected cells is formed episodically during untreated infection, rather than through a continuous entry process.",
+    "keywords": [
+      "HIV-1",
+      "latent reservoir",
+      "episodic seeding",
+      "antiretroviral therapy"
+    ]
+  },
+  "Tyers:2025aa": {
+    "summary": "Research shows that HIV-1 rebound virus primarily originates from a small number of lineages that entered the reservoir shortly before the initiation of antiretroviral therapy.",
+    "keywords": [
+      "HIV-1",
+      "viral rebound",
+      "reservoir dynamics",
+      "antiretroviral therapy"
+    ]
+  },
+  "Verdonk:2025aa": {
+    "summary": "The multiclass synonymous substitution (MSS) model allows for the detection of selection on synonymous codon usage without a priori assumptions about the driving forces.",
+    "keywords": [
+      "synonymous substitution",
+      "codon usage",
+      "natural selection",
+      "molecular evolution"
+    ]
+  },
+  "France:2025aa": {
+    "summary": "The CDC and local health departments implemented nationwide molecular cluster detection, identifying 404 clusters of rapid HIV transmission between 2018 and 2023.",
+    "keywords": [
+      "HIV prevention",
+      "molecular surveillance",
+      "cluster detection",
+      "public health"
+    ]
+  },
+  "Rincon-Sandoval:2024aa": {
+    "summary": "The ecological diversification of sea catfishes, particularly transitions to freshwater, is associated with genome-wide signatures of positive selection, especially in osmoregulatory genes.",
+    "keywords": [
+      "sea catfishes",
+      "ecological diversification",
+      "positive selection",
+      "habitat transitions"
+    ]
+  },
+  "Zarate:2024aa": {
+    "summary": "The study describes the phylogenomic signatures and diversification of an epidemic lineage of vesicular stomatitis Indiana virus (VSIV) circulating in the US between 2019 and 2020.",
+    "keywords": [
+      "VSIV",
+      "phylogenomics",
+      "epidemic lineage",
+      "positive selection"
+    ]
+  },
+  "Lucaci:2024aa": {
+    "summary": "Analysis of the Rem2 protein across mammals reveals strong purifying selection and epistatic effects, highlighting its critical role in neuronal development and function.",
+    "keywords": [
+      "Rem2",
+      "purifying selection",
+      "coevolution",
+      "mammalian evolution"
+    ]
+  },
+  "Weaver:2024aa": {
+    "summary": "AUTO-TUNE is a heuristic scoring approach for adaptively selecting genetic distance thresholds to infer HIV transmission clusters, preventing the formation of giant, uninterpretable clusters.",
+    "keywords": [
+      "HIV-1",
+      "transmission clusters",
+      "genetic distance",
+      "molecular surveillance"
+    ]
+  },
+  "Zehr:2024aa": {
+    "summary": "The study identifies intra-host evolution and genetic recombination in equine coronaviruses, comparing selective pressures across the Embecovirus subgenus.",
+    "keywords": [
+      "equine coronavirus",
+      "Embecovirus",
+      "positive selection",
+      "recombination"
+    ]
+  },
+  "Inzaule:2023aa": {
+    "summary": "This report provides recommendations for standardizing the public sharing of HIV drug resistance data while ensuring the protection and privacy of people living with HIV.",
+    "keywords": [
+      "HIV-1",
+      "drug resistance",
+      "data sharing",
+      "public health"
+    ]
+  },
+  "Kosakovsky-Pond:2023aa": {
+    "summary": "The article discusses how certain anti-COVID drugs may inadvertently accelerate the evolutionary rate of the SARS-CoV-2 virus.",
+    "keywords": [
+      "SARS-CoV-2",
+      "viral evolution",
+      "antiviral drugs",
+      "mutational rate"
+    ]
+  },
+  "Elli:2023aa": {
+    "summary": "Molecular modeling and phylogenetic analysis show that position 347 in N1 neuraminidase plays a key role in influenza virus host range and adaptation between birds and humans.",
+    "keywords": [
+      "influenza virus",
+      "neuraminidase",
+      "host adaptation",
+      "molecular modeling"
+    ]
+  },
+  "Maurer-Alcala:2024aa": {
+    "summary": "The study finds that somatic genome architecture and molecular evolution are decoupled in young lineage-specific gene families in ciliates, influenced by extensive genome processing.",
+    "keywords": [
+      "ciliates",
+      "genome architecture",
+      "lineage-specific genes",
+      "molecular evolution"
+    ]
+  },
+  "Joseph:2024aa": {
+    "summary": "The timing of HIV-1 infection in cells that persist during therapy is largely driven by biological processes like immunodeficiency rather than the specific traits of the virus.",
+    "keywords": [
+      "HIV-1",
+      "persistence",
+      "antiretroviral therapy",
+      "immunodeficiency"
+    ]
+  },
+  "Wirthlin:2024aa": {
+    "summary": "Integration of genomic and neurophysiological data identifies convergent losses of motor cortex regulatory elements associated with the evolution of vocal learning in mammals.",
+    "keywords": [
+      "vocal learning",
+      "convergent evolution",
+      "regulatory elements",
+      "mammalian genomics"
+    ]
+  },
+  "Langedijk:2024aa": {
+    "summary": "Phylodynamic analysis of complete RSV genomes reveals that air travel governs the global spread of the virus, showing similar selection patterns between RSVA and RSVB.",
+    "keywords": [
+      "RSV",
+      "phylodynamics",
+      "global circulation",
+      "genomic surveillance"
+    ]
+  },
+  "Amendola:2022aa": {
+    "summary": "The study provides evidence for the undetected circulation of SARS-CoV-2 in Italy as early as late 2019, identified in patients with measles-like eruptions.",
+    "keywords": [
+      "SARS-CoV-2",
+      "early circulation",
+      "Italy",
+      "molecular surveillance"
+    ]
+  },
+  "Lucaci:2022aa": {
+    "summary": "RASCL is a scalable pipeline for near-real-time identification of fitness-altering mutations in SARS-CoV-2 lineages using phylogenetic comparative methods.",
+    "keywords": [
+      "SARS-CoV-2",
+      "genomic surveillance",
+      "natural selection",
+      "bioinformatics"
+    ]
+  },
+  "Tzou:2022aa": {
+    "summary": "Sierra SARS-CoV-2 is a program designed to assess sequence quality and report on the clinical significance of mutations regarding antiviral resistance.",
+    "keywords": [
+      "SARS-CoV-2",
+      "antiviral resistance",
+      "quality control",
+      "bioinformatics"
+    ]
+  },
+  "Zehr:2023aa": {
+    "summary": "The research identifies differences in natural selection pressure between non-pathogenic and pathogenic feline coronavirus phenotypes, particularly within the Spike protein.",
+    "keywords": [
+      "feline coronavirus",
+      "FIP",
+      "natural selection",
+      "Spike protein"
+    ]
+  },
+  "Tao:2023aa": {
+    "summary": "Analysis of HIV-1 group M capsid sequences establishes a baseline of usual mutations to aid in the quality control and interpretation of lenacapavir resistance testing.",
+    "keywords": [
+      "HIV-1",
+      "capsid",
+      "lenacapavir",
+      "drug resistance"
+    ]
+  },
+  "Escalera-Zamudio:2023aa": {
+    "summary": "A methodological pipeline identifies shared evolutionary trajectories and convergent mutations across human betacoronaviruses, highlighting pathways of host adaptation.",
+    "keywords": [
+      "betacoronavirus",
+      "convergent evolution",
+      "host adaptation",
+      "phylogenetics"
+    ]
+  },
+  "Joyce:2023aa": {
+    "summary": "Antigen pressure from two founder viruses in an HIV-infected donor induced multiple insertions in antibodies, leading to the development of broad neutralization breadth.",
+    "keywords": [
+      "HIV-1",
+      "broadly neutralizing antibodies",
+      "superinfection",
+      "antibody maturation"
+    ]
+  },
+  "Lucaci:2023aa": {
+    "summary": "The study demonstrates that multinucleotide substitutions and synonymous rate variation are ubiquitous and significantly impact the accuracy of natural selection analyses.",
+    "keywords": [
+      "multinucleotide substitutions",
+      "natural selection",
+      "codon models",
+      "molecular evolution"
+    ]
+  },
+  "Lucaci:2022wo": {
+    "summary": "The RASCL pipeline provides rapid assessment of selective pressures in SARS-CoV-2 clades, enabling continuous monitoring of variants through automated phylogenetic analysis.",
+    "keywords": [
+      "SARS-CoV-2",
+      "phylogenetics",
+      "natural selection",
+      "variant monitoring"
+    ]
+  },
+  "Wertheim:2022tz": {
+    "summary": "The study detects intra-host recombination of SARS-CoV-2 in an individual superinfected with both Alpha and Epsilon variants, showing the potential for recombination to reshape viral diversity.",
+    "keywords": [
+      "SARS-CoV-2",
+      "recombination",
+      "superinfection",
+      "viral diversity"
+    ]
+  },
+  "Tegally:2022wf": {
+    "summary": "The emergence of SARS-CoV-2 Omicron lineages BA.4 and BA.5 in South Africa was driven by a growth advantage and potential immune escape mutations in the spike protein.",
+    "keywords": [
+      "SARS-CoV-2",
+      "Omicron",
+      "South Africa",
+      "viral evolution"
+    ]
+  },
+  "Lucaci:2022wa": {
+    "summary": "Evolutionary analysis of BDNF reveals strict purifying selection in its functional domain and complex coevolution between the prodomain and mature region across mammals.",
+    "keywords": [
+      "BDNF",
+      "purifying selection",
+      "coevolution",
+      "mammalian evolution"
+    ]
+  },
+  "Tao:2022wu": {
+    "summary": "A systematic review and meta-analysis show that Omicron variants significantly reduce the susceptibility of SARS-CoV-2 to most authorized therapeutic monoclonal antibodies.",
+    "keywords": [
+      "SARS-CoV-2",
+      "Omicron",
+      "monoclonal antibodies",
+      "neutralization"
+    ]
+  },
+  "Benndorf:2022wd": {
+    "summary": "Comparative analysis of small heat shock proteins (sHSPs) shows varying degrees of purifying selection and helps explain the dominance of neuromuscular disease phenotypes.",
+    "keywords": [
+      "small heat shock proteins",
+      "vertebrate evolution",
+      "purifying selection",
+      "neuromuscular disorders"
+    ]
+  },
+  "Zehr:2022tj": {
+    "summary": "The recent zoonotic spillover of a canine coronavirus is associated with relaxed selection and potential loss of function in the spike protein's sialic acid binding region.",
+    "keywords": [
+      "canine coronavirus",
+      "zoonotic spillover",
+      "spike protein",
+      "relaxed selection"
+    ]
+  },
+  "Caraballo-Ortiz:2022aa": {
+    "summary": "TopHap is a rapid method for inferring phylogenetic structures from common haplotypes in massive genome collections, applied successfully to SARS-CoV-2 data.",
+    "keywords": [
+      "phylogenetics",
+      "haplotypes",
+      "SARS-CoV-2",
+      "large-scale genomics"
+    ]
+  },
+  "Martin:2022ui": {
+    "summary": "The study identifies clusters of unusual mutations in the Omicron BA.1 lineage that were likely fitness-reducing individually but cooperatively interact to alter spike function.",
+    "keywords": [
+      "SARS-CoV-2",
+      "Omicron",
+      "cooperative mutations",
+      "spike function"
+    ]
+  },
+  "Canuti:2022wv": {
+    "summary": "The authors review evidence for an earlier origin of SARS-CoV-2 than the canonically accepted December 2019 timeline and urge for larger studies to verify these findings.",
+    "keywords": [
+      "SARS-CoV-2",
+      "viral emergence",
+      "early origin",
+      "epidemiology"
+    ]
+  },
+  "Tzou:2022wj": {
+    "summary": "The CoV-RDB is a comprehensive database of published data on the susceptibility of SARS-CoV-2 variants to monoclonal antibodies and plasma from vaccinated or convalescent persons.",
+    "keywords": [
+      "SARS-CoV-2",
+      "antiviral resistance",
+      "database",
+      "neutralization"
+    ]
+  },
+  "Lytras:2022tz": {
+    "summary": "Comprehensive phylogenetic analysis confirms that horseshoe bats are the likely reservoir for SARS-CoV-2 and highlights a history of frequent recombination among related coronaviruses.",
+    "keywords": [
+      "SARS-CoV-2",
+      "recombination",
+      "bat coronaviruses",
+      "viral origins"
+    ]
+  },
+  "VIR": {
+    "summary": "The research focuses on predicting which mutational changes are likely to drive the emergence of future SARS-CoV-2 variants of concern.",
+    "keywords": [
+      "SARS-CoV-2",
+      "variants of concern",
+      "mutation prediction",
+      "viral evolution"
+    ]
+  },
+  "matrosovichH3N2": {
+    "summary": "The study characterizes the eight amino acid substitutions in hemagglutinin that accompanied the emergence of the 1968 H3N2 pandemic influenza virus and their phenotypic effects.",
+    "keywords": [
+      "influenza virus",
+      "H3N2 pandemic",
+      "hemagglutinin",
+      "host adaptation"
+    ]
+  },
+  "GalaxyCOVID": {
+    "summary": "This work describes a public infrastructure based on the Galaxy platform for global, transparent, and reproducible monitoring of SARS-CoV-2 genomic data.",
+    "keywords": [
+      "SARS-CoV-2",
+      "genomic surveillance",
+      "Galaxy platform",
+      "reproducible research"
+    ]
+  },
+  "N501Y": {
+    "summary": "The emergence of 501Y lineages of SARS-CoV-2 coincided with a global shift in selective forces, leading to convergent mutations that promote viral persistence.",
+    "keywords": [
+      "SARS-CoV-2",
+      "N501Y lineages",
+      "convergent evolution",
+      "natural selection"
+    ]
+  },
+  "Tao:2021vv": {
+    "summary": "This review discusses the emergence of SARS-CoV-2 variants of concern, explaining how spike mutations influence transmission, reinfection, and vaccine protection.",
+    "keywords": [
+      "SARS-CoV-2",
+      "variants of concern",
+      "spike mutations",
+      "genetics"
+    ]
+  },
+  "Mei:2021uw": {
+    "summary": "Comparative analysis of coronaviruses reveals exceptional conservation and phylogenetic specificity in the ORF1a/b overlap, a critical element for viral propagation.",
+    "keywords": [
+      "coronavirus",
+      "frameshift element",
+      "ORF1a/b",
+      "molecular evolution"
+    ]
+  },
+  "Maier:2021un": {
+    "summary": "A distributed data analysis platform was developed to establish global analytical capacity for the transparent monitoring of SARS-CoV-2 genomic variants.",
+    "keywords": [
+      "SARS-CoV-2",
+      "genomic data",
+      "data analysis platform",
+      "reproducible research"
+    ]
+  },
+  "Cui:2021ui": {
+    "summary": "Phylogenomic analysis suggests that the golden panchax killifish colonized the Seychelles through transoceanic dispersal, aided by an adaptation to seawater tolerance.",
+    "keywords": [
+      "killifish",
+      "transoceanic dispersal",
+      "Seychelles",
+      "phylogenomics"
+    ]
+  },
+  "Escalera-Zamudio:2021vw": {
+    "summary": "Comparative analysis across human betacoronaviruses identifies shared evolutionary trajectories and selectively relevant mutations that may facilitate host adaptation.",
+    "keywords": [
+      "betacoronavirus",
+      "host adaptation",
+      "molecular evolution",
+      "convergent mutations"
+    ]
+  },
+  "Radke:2021us": {
+    "summary": "Research identifies distinct sets of memory B cells that bind to Staphylococcal protein A (SpA), suggesting the utility of engineered SpA proteins in vaccines.",
+    "keywords": [
+      "Staphylococcus aureus",
+      "B cell repertoire",
+      "memory B cells",
+      "immunology"
+    ]
+  },
+  "Cui:2021wq": {
+    "summary": "Killifish colonization of the Seychelles archipelago is attributed to transoceanic dispersal and salt tolerance, despite a recent decline in effective population size.",
+    "keywords": [
+      "killifish",
+      "Seychelles",
+      "transoceanic dispersal",
+      "population genetics"
+    ]
+  },
+  "MacLean:2021aa": {
+    "summary": "The research suggests that the SARS-CoV-2 progenitor was a generalist virus capable of human transmission due to its evolutionary history in bats, rather than recent adaptation in humans.",
+    "keywords": [
+      "SARS-CoV-2",
+      "bat coronaviruses",
+      "natural selection",
+      "host shift"
+    ]
+  },
+  "Lucaci:2021aa": {
+    "summary": "Analysis of over 42,000 alignments provides widespread support for instantaneous multiple-nucleotide substitutions, which are often overlooked in standard codon models.",
+    "keywords": [
+      "codon models",
+      "nucleotide substitution",
+      "molecular evolution",
+      "natural selection"
+    ]
+  },
+  "Martin:2021te": {
+    "summary": "The emergence of 501Y lineages coincided with a shift in the selective landscape of SARS-CoV-2, leading to convergent evolution in immunologically important genes.",
+    "keywords": [
+      "SARS-CoV-2",
+      "501Y lineages",
+      "convergent evolution",
+      "natural selection"
+    ]
+  },
+  "Tegally:2021aa": {
+    "summary": "The study describes the 501Y.V2 variant in South Africa, which is defined by key spike mutations associated with increased transmissibility and immune escape.",
+    "keywords": [
+      "SARS-CoV-2",
+      "South Africa",
+      "501Y.V2 variant",
+      "immune escape"
+    ]
+  },
+  "Rahman:2021vk": {
+    "summary": "Weak selection on synonymous codons in bacteria is found to substantially inflate dN/dS estimates, highlighting the need for multiclass synonymous substitution models.",
+    "keywords": [
+      "synonymous codons",
+      "dN/dS",
+      "bacteria",
+      "natural selection"
+    ]
+  },
+  "Kumar:2021wx": {
+    "summary": "A reconstruction of the SARS-CoV-2 progenitor genome suggests the virus was spreading worldwide months before the first reported cases in China.",
+    "keywords": [
+      "SARS-CoV-2",
+      "progenitor genome",
+      "molecular epidemiology",
+      "phylogenetics"
+    ]
+  },
+  "Faria:2021wv": {
+    "summary": "The emergence of the P.1 lineage in Manaus, Brazil, was characterized by increased transmissibility and partial escape from immunity provided by previous infections.",
+    "keywords": [
+      "SARS-CoV-2",
+      "P.1 lineage",
+      "Brazil",
+      "transmissibility"
+    ]
+  },
+  "Li:2021up": {
+    "summary": "Analysis of the GII.2 norovirus outbreak in 2016-2017 shows an increase in genetic diversity but no evidence of elevated evolutionary rates or selection pressure.",
+    "keywords": [
+      "norovirus",
+      "GII.2",
+      "viral evolution",
+      "outbreak analysis"
+    ]
+  },
+  "Tagliamonte:2020th": {
+    "summary": "The SARS-CoV-2 spike gene is a complex mosaic of recombination, where purifying selection has preserved inter-domain structure and long-range dynamic movements.",
+    "keywords": [
+      "SARS-CoV-2",
+      "spike protein",
+      "recombination",
+      "purifying selection"
+    ]
+  },
+  "Little:2021ts": {
+    "summary": "Effective HIV molecular surveillance requires the identification of incident cases, as they are primary drivers of transmission cluster growth.",
+    "keywords": [
+      "HIV-1",
+      "molecular surveillance",
+      "transmission clusters",
+      "public health"
+    ]
+  },
+  "Council:2020aa": {
+    "summary": "Deep sequencing reveals stable and compartmentalized HIV-1 populations in the semen of men, regardless of the presence of STI-associated urethritis.",
+    "keywords": [
+      "HIV-1",
+      "semen",
+      "compartmentalization",
+      "STI"
+    ]
+  },
+  "Wisotsky:2020ab": {
+    "summary": "Ignoring synonymous site-to-site substitution rate variation in selection analyses can dramatically inflate false positive rates, leading to misleading inferences.",
+    "keywords": [
+      "substitution rates",
+      "natural selection",
+      "molecular evolution",
+      "false positives"
+    ]
+  },
+  "Pollock:2020ab": {
+    "summary": "The authors dispute claims that dogs were intermediate hosts for SARS-CoV-2, noting flaws in the analysis of CpG deficiency used to support that hypothesis.",
+    "keywords": [
+      "SARS-CoV-2",
+      "viral origins",
+      "CpG deficiency",
+      "host adaptation"
+    ]
+  },
+  "Kosakovsky-Pond:2020aa": {
+    "summary": "Contrast-FEL is a new method for identifying individual alignment sites where selective pressures differ among specific clades or sets of branches.",
+    "keywords": [
+      "natural selection",
+      "phylogenetics",
+      "maximum likelihood",
+      "molecular evolution"
+    ]
+  },
+  "Mavian:2020ab": {
+    "summary": "The study warns that sampling bias and incorrect phylogenetic rooting make tracing SARS-CoV-2 infection networks unreliable.",
+    "keywords": [
+      "SARS-CoV-2",
+      "phylogenetics",
+      "sampling bias",
+      "network tracing"
+    ]
+  },
+  "Baker:2020aa": {
+    "summary": "Community efforts in open analytics and computational infrastructure are essential for agile and transparent responses to emerging pathogen threats like SARS-CoV-2.",
+    "keywords": [
+      "SARS-CoV-2",
+      "open data",
+      "open analytics",
+      "public health"
+    ]
+  },
+  "RifeMagalis:2020aa": {
+    "summary": "Phyloanatomic analysis suggests that circulating monocytes, rather than T-cells, can be a measurable source of cell-free HIV-1 in the plasma of certain individuals.",
+    "keywords": [
+      "HIV-1",
+      "monocytes",
+      "phyloanatomy",
+      "viral reservoir"
+    ]
+  },
+  "Mannino:2020aa": {
+    "summary": "Standard practice in modeling site-specific substitution rates with few categories can underestimate rate variability, introducing biases in statistical inference.",
+    "keywords": [
+      "substitution rates",
+      "molecular evolution",
+      "statistical inference",
+      "rate variability"
+    ]
+  },
+  "Tzou:2020aa": {
+    "summary": "Lowering mutation-detection thresholds in HIV-1 NGS significantly increases artifactual detections from PCR error and APOBEC-mediated hypermutation.",
+    "keywords": [
+      "HIV-1",
+      "NGS",
+      "mutation detection",
+      "APOBEC"
+    ]
+  },
+  "Miura:2020aa": {
+    "summary": "RelTime with Dated Tips (RTDT) is a new, computationally light method for inferring pathogen timetrees from temporally sampled sequences.",
+    "keywords": [
+      "phylogenetics",
+      "timetrees",
+      "molecular clock",
+      "pathogen evolution"
+    ]
+  },
+  "Wisotsky:2020aa": {
+    "summary": "Failures to account for synonymous rate variation (SRV) in selection testing can lead to high false-positive rates, as seen in an analysis of bony vertebrate genes.",
+    "keywords": [
+      "molecular evolution",
+      "natural selection",
+      "synonymous substitution",
+      "SRV"
+    ]
+  },
+  "Yan:2019aa": {
+    "summary": "Single-cell transcriptomics in ciliates reveals a correlation between genome architecture and the evolution of lineage-specific gene families.",
+    "keywords": [
+      "ciliates",
+      "transcriptomics",
+      "genome architecture",
+      "gene family evolution"
+    ]
+  },
+  "Abrahams:2019aa": {
+    "summary": "The replication-competent HIV-1 latent reservoir is primarily established near the time of starting antiretroviral therapy, rather than continuously throughout infection.",
+    "keywords": [
+      "HIV-1",
+      "latent reservoir",
+      "antiretroviral therapy",
+      "persistence"
+    ]
+  },
+  "Avanzato:2019aa": {
+    "summary": "Structural analysis of a neutralizing antibody in complex with Nipah virus fusion glycoprotein reveals a site of vulnerability at the protein's apex.",
+    "keywords": [
+      "Nipah virus",
+      "neutralizing antibodies",
+      "glycoprotein",
+      "structural biology"
+    ]
+  },
+  "Kosakovsky-Pond:2019aa": {
+    "summary": "HyPhy 2.5 is a re-engineered platform for evolutionary hypothesis testing, offering enhanced performance and new statistical tests for characterizing natural selection.",
+    "keywords": [
+      "HyPhy",
+      "phylogenetics",
+      "natural selection",
+      "evolutionary models"
+    ]
+  },
+  "Spielman:2019aa": {
+    "summary": "This work presents statistical methods for identifying selective pressures on viral genomes while accounting for processes like recombination and mutation rate variation.",
+    "keywords": [
+      "viral genomics",
+      "natural selection",
+      "molecular evolution",
+      "recombination"
+    ]
+  },
+  "Rhee:2019ab": {
+    "summary": "Analysis of a large US cohort shows an increase in transmitted HIV drug resistance, particularly to NNRTIs, between 2003 and 2016.",
+    "keywords": [
+      "HIV-1",
+      "transmitted drug resistance",
+      "epidemiology",
+      "NNRTI"
+    ]
+  },
+  "Eren:2018aa": {
+    "summary": "FLEA is an end-to-end analysis and visualization tool for long-read sequencing data, specifically optimized for the high-variability HIV env gene.",
+    "keywords": [
+      "HIV-1",
+      "long-read sequencing",
+      "bioinformatics",
+      "data visualization"
+    ]
+  },
+  "Dalai:2018aa": {
+    "summary": "Combining phylogenetic and network approaches identifies HIV-1 transmission links and highlights the role of injection drug use in bridging different transmission networks.",
+    "keywords": [
+      "HIV-1",
+      "transmission networks",
+      "phylogenetics",
+      "drug resistance"
+    ]
+  },
+  "Rhee:2019aa": {
+    "summary": "The study characterizes national and international links in HIV-1 sequence clusters from a Northern California cohort, identifying connections to global epidemics.",
+    "keywords": [
+      "HIV-1",
+      "molecular epidemiology",
+      "transmission clusters",
+      "phylogenetics"
+    ]
+  },
+  "Wertheim:2018aa": {
+    "summary": "Molecular transmission network dynamics in New York City can be used to identify clusters and individuals most likely to contribute to future HIV transmission.",
+    "keywords": [
+      "HIV-1",
+      "transmission networks",
+      "molecular surveillance",
+      "epidemiology"
+    ]
+  },
+  "Shank:2018aa": {
+    "summary": "phylotree.js is a flexible JavaScript library for visualizing and interacting with phylogenetic trees in responsive web applications.",
+    "keywords": [
+      "phylogenetics",
+      "data visualization",
+      "JavaScript",
+      "bioinformatics"
+    ]
+  },
+  "Tzou:2018aa": {
+    "summary": "The research provides pipelines and amino acid profiles for gag and gp41 to help identify unusual mutations and selective pressures in patients receiving protease inhibitors.",
+    "keywords": [
+      "HIV-1",
+      "protease inhibitors",
+      "drug resistance",
+      "molecular evolution"
+    ]
+  },
+  "Pacheco:2018qf": {
+    "summary": "Mitochondrial genome analysis of haemosporidian parasites reveals that their radiation occurred after the K-Pg boundary, following the diversification of modern birds.",
+    "keywords": [
+      "haemosporidian",
+      "mitochondrial genome",
+      "phylogenetics",
+      "avian evolution"
+    ]
+  },
+  "Rife-Magalis:2018ys": {
+    "summary": "A new approach combining SHAPE data with phylogenetic analysis argues against a global gp120 RNA structure in HIV/SIV but identifies core sub-structures.",
+    "keywords": [
+      "HIV-1",
+      "RNA structure",
+      "SHAPE",
+      "molecular evolution"
+    ]
+  },
+  "Rhee:2018vn": {
+    "summary": "Transmitted HIV drug resistance has increased significantly in a California cohort, with a high proportion of resistance linked to older, infrequently used regimens.",
+    "keywords": [
+      "HIV-1",
+      "transmitted drug resistance",
+      "molecular epidemiology",
+      "ART"
+    ]
+  },
+  "Frost:2018kx": {
+    "summary": "The neutral theory of molecular evolution provides essential tools for understanding the population structure and spread of rapidly evolving viral pathogens.",
+    "keywords": [
+      "neutral theory",
+      "viral pathogens",
+      "molecular evolution",
+      "population genetics"
+    ]
+  },
+  "Spielman:2018uq": {
+    "summary": "Estimates of site-specific relative evolutionary rates in proteins are surprisingly robust to the choice of substitution model, even when models fit the data poorly.",
+    "keywords": [
+      "protein evolution",
+      "substitution models",
+      "evolutionary rates",
+      "phylogenetics"
+    ]
+  },
+  "Kosakovsky-Pond:2018fk": {
+    "summary": "HIV-TRACE is a scalable computational tool for identifying molecular transmission clusters in large-scale genomic surveillance databases of rapidly evolving pathogens.",
+    "keywords": [
+      "HIV-1",
+      "molecular epidemiology",
+      "transmission clusters",
+      "bioinformatics"
+    ]
+  },
+  "Spielman:2018aa": {
+    "summary": "LEISR is a tool implemented in HyPhy for inferring relative site-wise evolutionary rates from protein and nucleotide data, supporting high-throughput and MPI-enabled analysis.",
+    "keywords": [
+      "evolutionary rates",
+      "phylogenetics",
+      "HyPhy",
+      "bioinformatics"
+    ]
+  },
+  "Weaver:2018aa": {
+    "summary": "Datamonkey 2.0 is a re-engineered web application for interrogating coding-sequence alignments for signatures of natural selection, featuring interactive visualization with HyPhy Vision.",
+    "keywords": [
+      "Datamonkey",
+      "natural selection",
+      "molecular evolution",
+      "web application"
+    ]
+  },
+  "Landais:2017aa": {
+    "summary": "The development of a V2 apex broadly neutralizing antibody lineage was found to be governed by HIV envelope glycoform heterogeneity and localized diversity at key epitope residues.",
+    "keywords": [
+      "HIV-1",
+      "broadly neutralizing antibodies",
+      "antibody maturation",
+      "envelope glycoproteins"
+    ]
+  },
+  "Lorenzo-Redondo:2017aa": {
+    "summary": "The authors provide a reply to comments on their work regarding persistent HIV-1 replication in tissue reservoirs during suppressive antiretroviral therapy.",
+    "keywords": [
+      "HIV-1",
+      "viral replication",
+      "tissue reservoir",
+      "antiretroviral therapy"
+    ]
+  },
+  "Manasa:2017aa": {
+    "summary": "Analysis of gag and gp41 sequences from individuals failing protease inhibitor therapy did not find definitive evidence for specific mutations conferring PI resistance in these genes.",
+    "keywords": [
+      "HIV-1",
+      "protease inhibitors",
+      "drug resistance",
+      "molecular evolution"
+    ]
+  },
+  "Forrester:2017aa": {
+    "summary": "Comprehensive genomic analysis of Venezuelan equine encephalitis complex alphaviruses highlights purifying selection and in situ maintenance with occasional regional spread.",
+    "keywords": [
+      "VEEV",
+      "alphavirus",
+      "molecular evolution",
+      "epidemiology"
+    ]
+  },
+  "Brayne:2017aa": {
+    "summary": "Genotype-specific evolution in Hepatitis E virus (HEV) reveals that zoonotic genotypes have higher evolutionary rates and specific regions under positive selection related to host interaction.",
+    "keywords": [
+      "HEV",
+      "zoonosis",
+      "molecular evolution",
+      "positive selection"
+    ]
+  },
+  "El-Bannoudi:2017aa": {
+    "summary": "A RACE-based protocol enables large-scale, unbiased surveys of human IgA antibody repertoires to study immune responses at mucosal surfaces and in disease states.",
+    "keywords": [
+      "IgA repertoire",
+      "B-cell receptor",
+      "RACE",
+      "immunology"
+    ]
+  },
+  "Wagner:2017aa": {
+    "summary": "Individuals with a delayed neutralizing antibody response following primary HIV-1 infection were found to be significantly more susceptible to subsequent intrasubtype superinfection.",
+    "keywords": [
+      "HIV-1",
+      "superinfection",
+      "neutralizing antibodies",
+      "immune response"
+    ]
+  },
+  "Choi:2017aa": {
+    "summary": "Analysis of HIV-1 transmission pairs indicates that transmitted viruses tend to have shorter V1-V4 regions and fewer potential N-linked glycosylation sites than those in the source partner.",
+    "keywords": [
+      "HIV-1",
+      "sexual transmission",
+      "envelope glycoproteins",
+      "molecular evolution"
+    ]
+  },
+  "doi:10.1093/ve/vew018": {
+    "summary": "The study describes a method for rapid sequencing of complete HIV-1 env genes from primary samples to better characterize viral population dynamics and immune escape.",
+    "keywords": [
+      "HIV-1",
+      "env gene",
+      "rapid sequencing",
+      "viral diversity"
+    ]
+  },
+  "Green:2017aa": {
+    "summary": "Partner services for individuals with acute and early HIV infection are effective at identifying previously undiagnosed cases and genetically linked transmission partnerships.",
+    "keywords": [
+      "HIV-1",
+      "partner services",
+      "molecular epidemiology",
+      "public health"
+    ]
+  },
+  "Wertheim:2017aa": {
+    "summary": "A comparison of social and genetic networks in New York City shows that genetic linkage provides more reliable evidence for identifying potential transmission partners than partner naming alone.",
+    "keywords": [
+      "HIV-1",
+      "transmission networks",
+      "molecular epidemiology",
+      "partner tracing"
+    ]
+  },
+  "Wagner:2016kq": {
+    "summary": "Deep sequencing identifies HIV-1 dual infection in a significant portion of patients on therapy, which is found to be associated with HIV-associated neurocognitive disorder (HAND).",
+    "keywords": [
+      "HIV-1",
+      "dual infection",
+      "HAND",
+      "neurocognition"
+    ]
+  },
+  "Gianellavew020": {
+    "summary": "Phylogenetic analysis suggests that a compartmentalized source of HIV replication in the central nervous system contributes to viral rebound in the cerebrospinal fluid after therapy interruption.",
+    "keywords": [
+      "HIV-1",
+      "viral rebound",
+      "CNS reservoir",
+      "compartmentalization"
+    ]
+  },
+  "Garcia-Knight:2016aa": {
+    "summary": "The study demonstrates that stronger cytotoxic T-lymphocyte (CTL) selection in early infant HIV-1 infection is associated with more favorable clinical outcomes and better viral containment.",
+    "keywords": [
+      "HIV-1",
+      "infant infection",
+      "CTL selection",
+      "viral evolution"
+    ]
+  },
+  "Landais:2016fv": {
+    "summary": "Broadly neutralizing antibody responses in a large longitudinal cohort were associated with high viral load, low CD4 counts, and specific HIV-1 subtypes and HLA genotypes.",
+    "keywords": [
+      "HIV-1",
+      "broadly neutralizing antibodies",
+      "longitudinal cohort",
+      "immune response"
+    ]
+  },
+  "Lorenzo-Redondo:2016zl": {
+    "summary": "The study provides evidence that persistent HIV-1 replication continues in lymphoid tissue reservoirs despite potent antiretroviral therapy that suppresses the virus in the blood.",
+    "keywords": [
+      "HIV-1",
+      "antiretroviral therapy",
+      "tissue reservoir",
+      "viral replication"
+    ]
+  },
+  "Tully:2016rz": {
+    "summary": "The mode of sexual transmission (MSM vs. HSX) influences the genetic composition and selective signatures of the HIV-1 founder virus, despite similar numbers of founders.",
+    "keywords": [
+      "HIV-1",
+      "transmission bottleneck",
+      "founder virus",
+      "molecular evolution"
+    ]
+  },
+  "Mehta:2016ty": {
+    "summary": "A primary HIV screening program in San Diego was found to be associated with a decrease in incident HIV diagnoses and the termination of transmission chains in targeted regions.",
+    "keywords": [
+      "HIV screening",
+      "molecular surveillance",
+      "incident diagnosis",
+      "public health"
+    ]
+  },
+  "MacLeod:2016qv": {
+    "summary": "The development of a bnAb lineage targeting the HIV Env high-mannose patch shows that independent maturation of individual limbs can lead to broad neutralization breadth and potency.",
+    "keywords": [
+      "HIV-1",
+      "broadly neutralizing antibodies",
+      "antibody maturation",
+      "envelope glycoproteins"
+    ]
+  },
+  "Oliveira:2015aa": {
+    "summary": "Droplet digital PCR detects HIV DNA in the cerebrospinal fluid of most virally suppressed individuals, showing that ART does not lower DNA levels as effectively in the CNS as in the blood.",
+    "keywords": [
+      "HIV-1",
+      "CNS reservoir",
+      "ddPCR",
+      "antiretroviral therapy"
+    ]
+  },
+  "lapp20072006": {
+    "summary": "This report summarizes the outcomes and activities of the 2006 NESCent phyloinformatics hackathon, focused on advancing computational tools for evolutionary biology.",
+    "keywords": [
+      "phyloinformatics",
+      "bioinformatics",
+      "hackathon",
+      "software development"
+    ]
+  },
+  "landais2014development": {
+    "summary": "The research describes the development and maturation of a quaternary-specific broadly neutralizing antibody lineage targeting the HIV V1/V2 region.",
+    "keywords": [
+      "HIV-1",
+      "broadly neutralizing antibodies",
+      "antibody maturation",
+      "V1/V2 region"
+    ]
+  },
+  "Volz:2014wj": {
+    "summary": "Phylodynamic analysis of the 2014 Ebola epidemic in Sierra Leone estimates R0 and provides evidence for superspreading and episodic adaptive evolution in viral genes.",
+    "keywords": [
+      "Ebola virus",
+      "phylodynamics",
+      "epidemiology",
+      "molecular evolution"
+    ]
+  },
+  "Frost:2015wb": {
+    "summary": "IgSCUEAL is a phylogenetic approach for identifying germline genes in antibody repertoires, showing higher accuracy than similarity-based methods even for highly mutated sequences.",
+    "keywords": [
+      "antibody repertoire",
+      "germline genes",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Murrell:2015ct": {
+    "summary": "BUSTED is a new approach for identifying gene-wide evidence of episodic positive selection across a phylogeny or on pre-specified foreground lineages.",
+    "keywords": [
+      "positive selection",
+      "molecular evolution",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Smith:2015oa": {
+    "summary": "The aBSREL model uses variable parametric complexity to efficiently detect episodic diversifying selection, showing that most branches in gene phylogenies can be modeled simply.",
+    "keywords": [
+      "molecular evolution",
+      "natural selection",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Edlefsen:2015ya": {
+    "summary": "Comprehensive sieve analysis of the RV144 HIV vaccine trial identified specific amino acid signatures in breakthrough infections that may reflect vaccine-induced immune pressure.",
+    "keywords": [
+      "HIV-1",
+      "vaccine efficacy",
+      "sieve analysis",
+      "molecular evolution"
+    ]
+  },
+  "Fisher:2015xz": {
+    "summary": "Next-generation sequencing improves the detection of minor variant drug resistance mutations in infants after the failure of PMTCT regimens compared to bulk sequencing.",
+    "keywords": [
+      "HIV-1",
+      "drug resistance",
+      "NGS",
+      "infant infection"
+    ]
+  },
+  "Wertheim:2015fb": {
+    "summary": "RELAX is a general hypothesis-testing framework for detecting relaxed selection in a phylogenetic framework, distinguishing it from an increase in positive selection.",
+    "keywords": [
+      "relaxed selection",
+      "molecular evolution",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Carter:2015jb": {
+    "summary": "The study shows that contemporaneous HIV-1 envelope diversity correlates with the potency of the neutralizing antibody response, suggesting diversity is driven by antibody pressure.",
+    "keywords": [
+      "HIV-1",
+      "neutralizing antibodies",
+      "viral diversity",
+      "molecular evolution"
+    ]
+  },
+  "Minoarivelo:2014kr": {
+    "summary": "A Markov process model for detecting phylogenetic signals in mutualistic interaction networks highlights the importance of inheritance in shaping ecological interactions.",
+    "keywords": [
+      "ecological networks",
+      "phylogenetics",
+      "mutualism",
+      "molecular evolution"
+    ]
+  },
+  "Hepler:2014xi": {
+    "summary": "IDEPI is a machine learning platform for predicting HIV-1 antibody epitopes and other phenotypic features from sequence data with high accuracy.",
+    "keywords": [
+      "HIV-1",
+      "epitope prediction",
+      "machine learning",
+      "bioinformatics"
+    ]
+  },
+  "Nayak:2015ri": {
+    "summary": "A 3D model of Hepatitis C virus envelope glycoproteins E1 and E2 identifies exposed residues and antigenic sites that could serve as potential vaccine targets.",
+    "keywords": [
+      "HCV",
+      "glycoproteins",
+      "structural biology",
+      "vaccine design"
+    ]
+  },
+  "Wertheim:2014mq": {
+    "summary": "Phylogenetic analysis using selection-informed models suggests that HSV-2 arose from a cross-species transmission from chimpanzee ancestors to human precursors around 1.6 million years ago.",
+    "keywords": [
+      "herpes simplex virus",
+      "viral origins",
+      "cross-species transmission",
+      "molecular evolution"
+    ]
+  },
+  "Little:2014pz": {
+    "summary": "Reconstruction of the local HIV-1 transmission network in San Diego enabled the development of a risk score to identify and target effective prevention interventions.",
+    "keywords": [
+      "HIV-1",
+      "transmission networks",
+      "prevention interventions",
+      "public health"
+    ]
+  },
+  "Scheffler:2014wm": {
+    "summary": "The authors defend the use of evolutionary models with site-specific parameters, showing that they exhibit sensible convergence and are useful for constructing statistical hypothesis tests.",
+    "keywords": [
+      "molecular evolution",
+      "statistical models",
+      "phylogenetics",
+      "site-specific parameters"
+    ]
+  },
+  "Benndorf:2014sh": {
+    "summary": "This review analyzes the evolutionary history and characteristics of mutations in human small heat shock proteins associated with neuromuscular disorders.",
+    "keywords": [
+      "small heat shock proteins",
+      "neuromuscular disorders",
+      "molecular evolution",
+      "missense mutations"
+    ]
+  },
+  "Wagner:2014lp": {
+    "summary": "Intrasubtype B HIV-1 dual infection was found to be frequent among men who have sex with men in San Diego, occurring at a rate comparable to primary infection.",
+    "keywords": [
+      "HIV-1",
+      "dual infection",
+      "epidemiology",
+      "superinfection"
+    ]
+  },
+  "Wertheim:2014jh": {
+    "summary": "A network-based analysis of the global HIV-1 transmission network reveals extensive international linkage and the need for global surveillance even for local epidemics.",
+    "keywords": [
+      "HIV-1",
+      "global transmission",
+      "molecular epidemiology",
+      "surveillance"
+    ]
+  },
+  "Chaillon:2013ta": {
+    "summary": "The study examines the dynamics of viral evolution and the neutralizing antibody response following HIV-1 superinfection, noting that weak early responses may facilitate superinfection.",
+    "keywords": [
+      "HIV-1",
+      "superinfection",
+      "neutralizing antibodies",
+      "viral evolution"
+    ]
+  },
+  "Hightower:2013zh": {
+    "summary": "Intra-individual HIV-1 pol sequences show very low divergence over time in mono-infected individuals, while dually infected individuals exhibit significantly higher genetic variation.",
+    "keywords": [
+      "HIV-1",
+      "molecular evolution",
+      "dual infection",
+      "pol gene"
+    ]
+  },
+  "Murray:2013bu": {
+    "summary": "Viral suppressors of RNAi in plant viruses diversify faster than other genes due to episodic positive selection, likely resulting from shifts between different host genotypes.",
+    "keywords": [
+      "VSR",
+      "positive selection",
+      "RNA interference",
+      "plant viruses"
+    ]
+  },
+  "Wagner:2013xh": {
+    "summary": "Ultradeep sequencing reveals that CXCR4-tropic HIV-1 variants are frequent at baseline and that coreceptor usage can change dynamically over time in infected individuals.",
+    "keywords": [
+      "HIV-1",
+      "coreceptor usage",
+      "ultradeep sequencing",
+      "X4 tropism"
+    ]
+  },
+  "Wertheim:2013wa": {
+    "summary": "By modeling variation in selection pressure over time, this study provides evidence for an ancient origin of coronaviruses, dating back millions of years rather than only 10,000 years.",
+    "keywords": [
+      "coronavirus",
+      "viral origins",
+      "molecular clock",
+      "natural selection"
+    ]
+  },
+  "Hoffenberg:2013dl": {
+    "summary": "The research identifies an HIV-1 clade A envelope (BG505) that exhibits broad antigenicity and sensitivity to neutralizing antibodies, serving as a promising vaccine candidate.",
+    "keywords": [
+      "HIV-1",
+      "vaccine design",
+      "broadly neutralizing antibodies",
+      "envelope glycoproteins"
+    ]
+  },
+  "Murrell:2013pt": {
+    "summary": "FUBAR is a fast Bayesian method for inferring selection that is robust against model misspecification by averaging over many predefined site classes, enabling analysis of large datasets.",
+    "keywords": [
+      "natural selection",
+      "molecular evolution",
+      "Bayesian inference",
+      "bioinformatics"
+    ]
+  },
+  "Wertheim:2013oy": {
+    "summary": "The authors examine the phylogenetic relatedness between HIV-1 populations in donors and recipients to better understand the transmission process.",
+    "keywords": [
+      "HIV-1",
+      "transmission",
+      "phylogenetics",
+      "molecular epidemiology"
+    ]
+  },
+  "Lemey:2012ez": {
+    "summary": "A hybrid method combining stochastic mapping and empirical Bayes allows for the rapid and reliable detection of amino acid sites under positive selection in massive datasets.",
+    "keywords": [
+      "positive selection",
+      "molecular evolution",
+      "Bayesian inference",
+      "bioinformatics"
+    ]
+  },
+  "Gianella:2012iw": {
+    "summary": "The study describes a case of sexual transmission of predicted CXCR4-tropic HIV-1, with evidence suggesting the virus likely originated from the source partner's seminal cells.",
+    "keywords": [
+      "HIV-1",
+      "X4 tropism",
+      "sexual transmission",
+      "compartmentalization"
+    ]
+  },
+  "Hightower:2012km": {
+    "summary": "Higher intraindividual HIV-1 genetic diversity was found to be associated with both a diagnosis of AIDS and neuropsychological impairment in a large study cohort.",
+    "keywords": [
+      "HIV-1",
+      "viral diversity",
+      "AIDS",
+      "neuropsychology"
+    ]
+  },
+  "Gianella:2012gs": {
+    "summary": "Seminal cytomegalovirus replication was found to correlate with seminal HIV-1 levels but did not significantly disrupt HIV-1 evolution or compartmentalization between blood and semen.",
+    "keywords": [
+      "HIV-1",
+      "CMV",
+      "semen",
+      "compartmentalization"
+    ]
+  },
+  "Murrell:2012ov": {
+    "summary": "MEME is a mixed effects model of evolution capable of identifying both episodic and pervasive positive selection at individual sites, revealing that episodic selection is widespread.",
+    "keywords": [
+      "positive selection",
+      "molecular evolution",
+      "episodic selection",
+      "bioinformatics"
+    ]
+  },
+  "Aldous:2012qz": {
+    "summary": "Analysis of HIV-1 pol sequences in a diverse US cohort identified transmission networks and found that clustering is associated with lack of ARV use and higher viral loads.",
+    "keywords": [
+      "HIV-1",
+      "transmission networks",
+      "molecular epidemiology",
+      "public health"
+    ]
+  },
+  "Gronwall:2012gd": {
+    "summary": "Exposure to a microbial B cell superantigen (protein L) was found to induce significant global shifts and targeted reductions in the expressed B cell repertoire in vivo.",
+    "keywords": [
+      "superantigen",
+      "B cell repertoire",
+      "immunology",
+      "host-pathogen interactions"
+    ]
+  },
+  "Murrell:2012ix": {
+    "summary": "MEDS and EDEPS are new models that describe HIV-1 drug resistance as episodic directional selection, providing a better fit to resistance sites than existing models.",
+    "keywords": [
+      "HIV-1",
+      "drug resistance",
+      "directional selection",
+      "molecular evolution"
+    ]
+  },
+  "Fisher:2012rp": {
+    "summary": "Deep sequencing identified minor protease resistance mutations in patients failing protease inhibitor regimens that were undetectable by standard bulk sequencing.",
+    "keywords": [
+      "HIV-1",
+      "protease inhibitors",
+      "drug resistance",
+      "deep sequencing"
+    ]
+  },
+  "Mehta:2012dd": {
+    "summary": "Specific HIV-1 transmission clusters were found to be associated with particular HLA profiles and discordance, often showing evidence of viral escape to enriched alleles.",
+    "keywords": [
+      "HIV-1",
+      "HLA",
+      "transmission clusters",
+      "immune escape"
+    ]
+  },
+  "Pond:2012zp": {
+    "summary": "This work reviews recent advances in evolutionary models for screening viral genomes for selection, recombination, directional evolution, and coevolving sites.",
+    "keywords": [
+      "viral evolution",
+      "natural selection",
+      "recombination",
+      "molecular modeling"
+    ]
+  },
+  "Wertheim:2011lc": {
+    "summary": "The study demonstrates the utility of using inferred HIV transmission networks to investigate and detect community-level effects of prevention trials.",
+    "keywords": [
+      "HIV prevention",
+      "transmission networks",
+      "prevention trials",
+      "epidemiology"
+    ]
+  },
+  "Farrer:2011rw": {
+    "summary": "Comparative genomics reveals that a hypervirulent recombinant lineage of chytrid fungus has emerged globally, driving widespread amphibian biodiversity loss.",
+    "keywords": [
+      "chytrid fungus",
+      "amphibian decline",
+      "genomics",
+      "recombination"
+    ]
+  },
+  "Wertheim:2012nq": {
+    "summary": "Heterotachy in HIV-1 lineages is found to cause inconsistencies and overestimates in molecular dating, suggesting that current relaxed-clock methods are inadequate for some viral datasets.",
+    "keywords": [
+      "HIV-1",
+      "molecular dating",
+      "heterotachy",
+      "molecular clock"
+    ]
+  },
+  "Pacold:2012wq": {
+    "summary": "Individuals dually infected with HIV-1 subtype B showed a greater increase in viral load over time compared to monoinfected controls, with evidence of viral escape from CTL responses.",
+    "keywords": [
+      "HIV-1",
+      "dual infection",
+      "viral load",
+      "immune escape"
+    ]
+  },
+  "Kumar:2012ec": {
+    "summary": "The authors discuss the challenges of ensuring truth in phylogenomics, emphasizing the need to assess robustness to biological biases and focus on effect sizes rather than just P values.",
+    "keywords": [
+      "phylogenomics",
+      "statistical inference",
+      "bias",
+      "molecular evolution"
+    ]
+  },
+  "Goto:2011yj": {
+    "summary": "Massively parallel sequencing of Przewalski's horses reveals ancient origins and high genetic variability, showing they are not the direct progenitors of domestic horses.",
+    "keywords": [
+      "Przewalski's horse",
+      "genomics",
+      "phylogenetics",
+      "horse evolution"
+    ]
+  },
+  "Wertheim:2011yi": {
+    "summary": "Pervasive purifying selection can obscure the ancient origins of viral lineages; using codon-based models suggests much older ages for measles, Ebola, and avian influenza.",
+    "keywords": [
+      "viral origins",
+      "molecular dating",
+      "purifying selection",
+      "molecular evolution"
+    ]
+  },
+  "Kosakovsky-Pond:2011bf": {
+    "summary": "A random effects branch-site model improves the detection of episodic diversifying selection by allowing selective pressures to vary across both sites and branches without a priori assumptions.",
+    "keywords": [
+      "episodic selection",
+      "molecular evolution",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Gianella:2011jy": {
+    "summary": "Low-frequency drug resistance mutations detected in early HIV-1 infection are often artifactual rather than transmitted, as they do not correlate with clinical failure of first-line therapy.",
+    "keywords": [
+      "HIV-1",
+      "drug resistance",
+      "NGS",
+      "artifactual mutations"
+    ]
+  },
+  "Smith:2010km": {
+    "summary": "The authors respond to comments on the origins of sexually transmitted HIV, reaffirming their findings on genetic diversity and the need for further multi-compartment sampling.",
+    "keywords": [
+      "HIV-1",
+      "sexual transmission",
+      "viral diversity",
+      "compartmentalization"
+    ]
+  },
+  "Mehta:2011jf": {
+    "summary": "Phylogeographic analysis of the Romanian HIV-1 subtype F epidemic suggests multiple introductions into the pediatric population from existing local adult reservoirs around 1978.",
+    "keywords": [
+      "HIV-1",
+      "subtype F",
+      "Romania",
+      "phylogeography"
+    ]
+  },
+  "Price:2011qw": {
+    "summary": "A study of recently infected individuals in East and Southern Africa found a 5% prevalence of transmitted HIV drug resistance, with some variation by region.",
+    "keywords": [
+      "HIV-1",
+      "transmitted drug resistance",
+      "Africa",
+      "molecular surveillance"
+    ]
+  },
+  "Mehta:2010lt": {
+    "summary": "Phylogeographic analysis indicates that HIV-1 epidemics in San Diego and Tijuana are distinct and not freely mixing, despite their geographic proximity.",
+    "keywords": [
+      "HIV-1",
+      "San Diego",
+      "Tijuana",
+      "phylogeography"
+    ]
+  },
+  "Pacold:2010vz": {
+    "summary": "Ultra-deep sequencing and the synonymous mixture index are identified as rapid and cost-effective methods for systematically identifying HIV dual infection in large cohorts.",
+    "keywords": [
+      "HIV-1",
+      "dual infection",
+      "NGS",
+      "screening methods"
+    ]
+  },
+  "Delport:2010kq": {
+    "summary": "CodonTest uses a genetic algorithm to model varying amino acid substitution preferences, showing that multi-rate models provide a better fit than standard single-rate codon models.",
+    "keywords": [
+      "codon models",
+      "molecular evolution",
+      "genetic algorithm",
+      "bioinformatics"
+    ]
+  },
+  "Kosakovsky-Pond:2010tp": {
+    "summary": "The study identifies biases in popular frequency parameter estimators for codon models and proposes a corrected estimator that improves goodness of fit and parameter estimation.",
+    "keywords": [
+      "codon models",
+      "statistical inference",
+      "bias",
+      "molecular evolution"
+    ]
+  },
+  "Delport:2010vo": {
+    "summary": "The 2010 update of Datamonkey introduces new tools for recombination detection, co-evolution analysis, and HIV-1 subtyping, enhancing its suite of phylogenetic analysis methods.",
+    "keywords": [
+      "Datamonkey",
+      "phylogenetics",
+      "molecular evolution",
+      "bioinformatics"
+    ]
+  },
+  "Delport:2010lp": {
+    "summary": "Benchmarking shows that standard single-rate codon models are easily outperformed by multi-rate models, suggesting the need for more complex models to capture substitution biases.",
+    "keywords": [
+      "codon models",
+      "molecular evolution",
+      "substitution bias",
+      "statistical inference"
+    ]
+  },
+  "Deng:2010hc": {
+    "summary": "DIVEIN is a web server that automates phylogenetic analysis, sequence divergence and diversity calculations, and the reconstruction of ancestral and center-of-tree sequences.",
+    "keywords": [
+      "bioinformatics",
+      "phylogenetics",
+      "sequence diversity",
+      "web server"
+    ]
+  },
+  "Siebenga:2010kc": {
+    "summary": "Phylodynamic reconstruction reveals that the increase in norovirus GII.4 outbreaks is due to real epidemic expansions driven by the emergence of novel variants under selection.",
+    "keywords": [
+      "norovirus",
+      "phylodynamics",
+      "epidemiology",
+      "natural selection"
+    ]
+  },
+  "Butler:2010yu": {
+    "summary": "Phylogenetic evidence suggests that sexually transmitted HIV-1 in men who have sex with men likely originates from viral RNA in seminal plasma rather than seminal leukocyte DNA.",
+    "keywords": [
+      "HIV-1",
+      "sexual transmission",
+      "semen",
+      "molecular evolution"
+    ]
+  },
+  "Manosuthi:2010fd": {
+    "summary": "Polymorphisms in the HIV-1 CRF01_AE protease gene are found to represent selection by both antiretroviral therapy and host immune pressure from regional HLA haplotypes.",
+    "keywords": [
+      "HIV-1",
+      "CRF01_AE",
+      "drug resistance",
+      "HLA selection"
+    ]
+  },
+  "Kosakovsky-Pond:2009qm": {
+    "summary": "SCUEAL is a model-based phylogenetic method for accurate HIV-1 subtyping and breakpoint mapping, capable of detecting complex within- and inter-subtype recombinants.",
+    "keywords": [
+      "HIV-1",
+      "subtyping",
+      "recombination",
+      "bioinformatics"
+    ]
+  },
+  "Poon:2010lg": {
+    "summary": "Phylogenetic analysis identifies coevolving sites in the HIV-1 nef gene, showing that epistatic interactions shape within-host evolution and maintain viral function.",
+    "keywords": [
+      "HIV-1",
+      "nef gene",
+      "coevolution",
+      "epistasis"
+    ]
+  },
+  "Pond:2010li": {
+    "summary": "This work introduces a framework for 'evolutionary fingerprinting' of genes, representing site-specific dN/dS ratios as probability distributions to discover functional similarities between genes.",
+    "keywords": [
+      "molecular evolution",
+      "dN/dS",
+      "gene function",
+      "bioinformatics"
+    ]
+  },
+  "Kosakovsky-Pond:2009mk": {
+    "summary": "A comprehensive metagenomic pipeline using the Galaxy platform was tested on organic matter from windshield splatter, providing an automated workflow for phylogenetic profiling.",
+    "keywords": [
+      "metagenomics",
+      "Galaxy platform",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Volz:2009lf": {
+    "summary": "A formalism for unifying population size inference from genetic sequences with infectious disease models allows for the direct estimation of epidemiological parameters like R0.",
+    "keywords": [
+      "phylodynamics",
+      "epidemiology",
+      "infectious disease",
+      "mathematical modeling"
+    ]
+  },
+  "Poon:2009zk": {
+    "summary": "Stochastic context-free grammars are used to parse social network survey data from hidden populations, identifying latent variability and emulative behavior in the recruitment process.",
+    "keywords": [
+      "social networks",
+      "epidemiology",
+      "stochastic grammars",
+      "hidden populations"
+    ]
+  },
+  "Lycett:2009tg": {
+    "summary": "Meta-analysis using Bayesian graphical models identifies complex genetic determinants in multiple genes that influence the virulence of highly pathogenic H5N1 influenza in mammals.",
+    "keywords": [
+      "H5N1 influenza",
+      "virulence",
+      "mammalian adaptation",
+      "Bayesian models"
+    ]
+  },
+  "Lu:2009yg": {
+    "summary": "A subtyping microarray was developed and used for the rapid detection of the 2009 swine-origin influenza A (H1N1) virus.",
+    "keywords": [
+      "H1N1 influenza",
+      "microarray",
+      "virus detection",
+      "molecular diagnostics"
+    ]
+  },
+  "Poon:2009dt": {
+    "summary": "This work describes how to use Datamonkey to detect signatures of selection from DNA sequences, even in the presence of recombination, using codon-based models.",
+    "keywords": [
+      "Datamonkey",
+      "natural selection",
+      "dN/dS",
+      "molecular evolution"
+    ]
+  },
+  "Kosakovsky-Pond:2009tn": {
+    "summary": "This article evaluates whether antiretroviral therapy is equally effective against different non-subtype B HIV-1 variants compared to the dominant subtype B.",
+    "keywords": [
+      "HIV-1 subtypes",
+      "antiretroviral therapy",
+      "drug resistance",
+      "global health"
+    ]
+  },
+  "Smith:2009hc": {
+    "summary": "The study proposes a public health model using molecular epidemiology to identify highly related HIV transmission clusters and selectively target them for prevention interventions.",
+    "keywords": [
+      "HIV prevention",
+      "molecular surveillance",
+      "transmission clusters",
+      "public health"
+    ]
+  },
+  "Cachay:2007vp": {
+    "summary": "Active methamphetamine use is found to be independently associated with an increased risk of having transmitted HIV drug resistance to non-nucleoside reverse transcriptase inhibitors.",
+    "keywords": [
+      "HIV-1",
+      "methamphetamine",
+      "transmitted drug resistance",
+      "NNRTI"
+    ]
+  },
+  "Lam:2008fd": {
+    "summary": "Phylogenetic analysis provides evidence for interlineage reassortment in Indonesian H5N1 avian influenza viruses, highlighting its role in increasing viral genetic diversity.",
+    "keywords": [
+      "H5N1 influenza",
+      "reassortment",
+      "phylogenetics",
+      "viral evolution"
+    ]
+  },
+  "Poon:2008fb": {
+    "summary": "Spidermonkey is a tool in the Datamonkey suite that uses Bayesian graphical models to rapidly detect co-evolving sites from multiple sequence alignments.",
+    "keywords": [
+      "coevolution",
+      "Bayesian graphical models",
+      "Datamonkey",
+      "bioinformatics"
+    ]
+  },
+  "Duan:2008rp": {
+    "summary": "The study identifies six global populations of the Plasmodium falciparum apical membrane antigen 1 (PfAMA1) and suggests their inclusion in vaccines for broad protection.",
+    "keywords": [
+      "malaria vaccine",
+      "PfAMA1",
+      "population structure",
+      "antigenic diversity"
+    ]
+  },
+  "Kosakovsky-Pond:2008zl": {
+    "summary": "DEPS is a maximum likelihood method for detecting directional evolution in protein sequences, successfully identifying target residues and adaptive sites in influenza A virus.",
+    "keywords": [
+      "directional evolution",
+      "influenza virus",
+      "maximum likelihood",
+      "molecular evolution"
+    ]
+  },
+  "Nickle:2008kv": {
+    "summary": "The authors reply to comments on their immunogen design strategy, which optimizes peptide coverage to cope with the high genetic diversity of HIV-1.",
+    "keywords": [
+      "HIV-1",
+      "immunogen design",
+      "viral diversity",
+      "vaccine development"
+    ]
+  },
+  "Kosakovsky-Pond:2008sh": {
+    "summary": "This review discusses the use of phylogenetic likelihood models to estimate selection pressures on HIV-1, with examples in compartment-specific and site-specific evolution.",
+    "keywords": [
+      "HIV-1",
+      "natural selection",
+      "phylogenetics",
+      "maximum likelihood"
+    ]
+  },
+  "Little:2008wy": {
+    "summary": "Transmitted HIV drug resistance is found to be highly fit and persistent for years in the absence of therapy, supporting routine resistance genotyping for all newly diagnosed individuals.",
+    "keywords": [
+      "HIV-1",
+      "transmitted drug resistance",
+      "viral fitness",
+      "longitudinal study"
+    ]
+  },
+  "Gorbach:2008ws": {
+    "summary": "Methamphetamine and other substance use during sexual activity are associated with the acquisition of drug-resistant HIV among men who have sex with men.",
+    "keywords": [
+      "HIV-1",
+      "methamphetamine",
+      "drug resistance",
+      "risk behavior"
+    ]
+  },
+  "Poon:2007ht": {
+    "summary": "An evolutionary-network model using Bayesian graphical models identifies stratified interactions and distinct evolutionary clusters within the V3 loop of the HIV-1 envelope.",
+    "keywords": [
+      "HIV-1",
+      "V3 loop",
+      "coevolution",
+      "Bayesian graphical models"
+    ]
+  },
+  "Miller:2007dg": {
+    "summary": "The authors describe a 28-way vertebrate genome alignment and conservation track in the UCSC Genome Browser, illustrating its power for exploring vertebrate evolution.",
+    "keywords": [
+      "comparative genomics",
+      "vertebrate evolution",
+      "genome alignment",
+      "UCSC Genome Browser"
+    ]
+  },
+  "Poon:2007mb": {
+    "summary": "Bayesian network analysis of HIV-1 sequence polymorphisms identifies residue-residue interactions and site-specific markers of protease inhibitor resistance within patients.",
+    "keywords": [
+      "HIV-1",
+      "protease inhibitors",
+      "drug resistance",
+      "Bayesian networks"
+    ]
+  },
+  "Szklarczyk:2007qb": {
+    "summary": "The dual-coding INK4a/ARF tumor suppressor locus evolves rapidly and asymmetrically, suggesting that its unique architecture may contribute to its high mutation rate in cancer.",
+    "keywords": [
+      "tumor suppressor",
+      "dual-coding genes",
+      "molecular evolution",
+      "cancer genetics"
+    ]
+  },
+  "Nickle:2007kk": {
+    "summary": "HIV-specific probabilistic models of protein evolution are found to outperform general mammalian models, revealing unique amino acid substitution biases in HIV-1.",
+    "keywords": [
+      "HIV-1",
+      "protein evolution",
+      "substitution models",
+      "phylogenetics"
+    ]
+  },
+  "Woelk:2007xc": {
+    "summary": "Analysis of the interferon alpha (IFNA) gene family in mammals reveals that both gene conversion and duplication have shaped its evolution and species-specific clustering.",
+    "keywords": [
+      "interferon alpha",
+      "gene conversion",
+      "gene duplication",
+      "molecular evolution"
+    ]
+  },
+  "Chung:2007vg": {
+    "summary": "The study identifies forty candidate genes in the human genome with evolutionarily conserved overlapping coding regions, challenging the view that dual coding is rare in eukaryotes.",
+    "keywords": [
+      "dual-coding genes",
+      "human genome",
+      "molecular evolution",
+      "bioinformatics"
+    ]
+  },
+  "Mazumder:2007um": {
+    "summary": "Computational analysis identifies conserved residues and antigenic sites in dengue virus E proteins, suggesting targets for diagnostics and vaccines that are difficult to circumvent.",
+    "keywords": [
+      "dengue virus",
+      "vaccine design",
+      "conserved residues",
+      "bioinformatics"
+    ]
+  },
+  "Nickle:2007on": {
+    "summary": "New HIV-1 immunogen designs minimize phylogenetic distance and represent high-frequency variable sites to maximize coverage of the diverse viral population.",
+    "keywords": [
+      "HIV-1",
+      "immunogen design",
+      "vaccine development",
+      "viral diversity"
+    ]
+  },
+  "Zarate:2007mw": {
+    "summary": "A systematic comparison of methods for detecting HIV-1 sequence compartmentalization reveals that tree-based approaches are generally more sensitive but affected by uncertainty.",
+    "keywords": [
+      "HIV-1",
+      "compartmentalization",
+      "phylogenetics",
+      "methodology"
+    ]
+  },
+  "Poon:2007vy": {
+    "summary": "Within-host polymorphisms in HIV-1 and HCV reveal that rapid transmission can preserve unfavorable variants, impacting how these viruses adapt to human populations.",
+    "keywords": [
+      "HIV-1",
+      "HCV",
+      "viral evolution",
+      "population adaptation"
+    ]
+  },
+  "Noviello:2007tb": {
+    "summary": "The study finds that HIV-1 Nef-mediated modulation of MHC-I and CD4 is robustly maintained after sexual transmission, suggesting these functions are critical for establishing infection.",
+    "keywords": [
+      "HIV-1",
+      "Nef protein",
+      "sexual transmission",
+      "immune evasion"
+    ]
+  },
+  "Lemey:2007yt": {
+    "summary": "A new relaxed-clock phylogenetic method finds that HIV-1 synonymous substitution rates predict disease progression, likely reflecting underlying viral replication dynamics.",
+    "keywords": [
+      "HIV-1",
+      "molecular dating",
+      "disease progression",
+      "replication dynamics"
+    ]
+  },
+  "Poon:2007nu": {
+    "summary": "Analysis of N-linked glycosylation sites in the HIV-1 envelope identifies functional glycan-glycan interactions that limit the configuration of the viral 'glycan shield'.",
+    "keywords": [
+      "HIV-1",
+      "glycosylation",
+      "glycan shield",
+      "coevolution"
+    ]
+  },
+  "Kosakovsky-Pond:2006qh": {
+    "summary": "GARD is a genetic algorithm for recombination detection that uses a likelihood-based model selection procedure to identify breakpoints in multiple sequence alignments.",
+    "keywords": [
+      "recombination",
+      "GARD",
+      "phylogenetics",
+      "bioinformatics"
+    ]
+  },
+  "Kosakovsky-Pond:2007mf": {
+    "summary": "A genetic algorithm approach for evolutionary model selection is presented, providing a rigorous foundation for choosing substitution models for stem RNA and other sequences.",
+    "keywords": [
+      "model selection",
+      "genetic algorithm",
+      "molecular evolution",
+      "bioinformatics"
+    ]
+  },
+  "Sorhannus:2006ja": {
+    "summary": "The study identifies positively selected sites in a sexual reproduction gene of the diatom genus Thalassiosira, associated with the divergence of major lineages.",
+    "keywords": [
+      "Thalassiosira",
+      "diatoms",
+      "positive selection",
+      "molecular evolution"
+    ]
+  },
+  "Kosakovsky-Pond:2006qt": {
+    "summary": "An automated framework using a genetic algorithm is proposed for detecting recombination breakpoints and clades involved in recombination, improving downstream selection analyses.",
+    "keywords": [
+      "recombination",
+      "phylogenetics",
+      "genetic algorithm",
+      "bioinformatics"
+    ]
+  },
+  "Pond:2006gn": {
+    "summary": "New fixed-effects likelihood methods identify HIV-1 sites selected differentially in different populations, demonstrating specific host adaptation at the population level.",
+    "keywords": [
+      "HIV-1",
+      "host adaptation",
+      "natural selection",
+      "molecular epidemiology"
+    ]
+  },
+  "Pillai:2006gc": {
+    "summary": "Genetic analysis of CSF-derived HIV-1 identifies a specific viral signature and correlations between V3 loop mutations and neurocognitive deficit in infected individuals.",
+    "keywords": [
+      "HIV-1",
+      "neurotropism",
+      "neurovirulence",
+      "compartmentalization"
+    ]
+  },
+  "Huelsenbeck:2006wk": {
+    "summary": "A Dirichlet process model is introduced to model variation in the nonsynonymous substitution rate across sites, providing a flexible Bayesian approach for detecting positive selection.",
+    "keywords": [
+      "natural selection",
+      "Bayesian inference",
+      "Dirichlet process",
+      "molecular evolution"
+    ]
+  },
+  "Frost:2005uz": {
+    "summary": "Autologous neutralizing antibody responses are shown to drive the rapid diversification and escape of the HIV-1 envelope during the early stages of infection.",
+    "keywords": [
+      "HIV-1",
+      "neutralizing antibodies",
+      "viral escape",
+      "envelope glycoproteins"
+    ]
+  },
+  "Pond:2005ya": {
+    "summary": "A new model incorporating site-to-site variation in both synonymous and nonsynonymous substitution rates shows that failing to model synonymous variation can bias selection detection.",
+    "keywords": [
+      "molecular evolution",
+      "synonymous substitution",
+      "natural selection",
+      "statistical inference"
+    ]
+  },
+  "Pillai:2005mn": {
+    "summary": "The study demonstrates that codon volatility is not a reliable indicator of selection pressure on the HIV-1 genome when compared with established comparative methods.",
+    "keywords": [
+      "HIV-1",
+      "codon volatility",
+      "natural selection",
+      "molecular evolution"
+    ]
+  },
+  "Frost:2005er": {
+    "summary": "In contrast to subtype C, transmission of HIV-1 subtype B in men who have sex with men involves relatively few changes in neutralization sensitivity or envelope genotypes.",
+    "keywords": [
+      "HIV-1",
+      "subtype B",
+      "sexual transmission",
+      "neutralization"
+    ]
+  },
+  "Pond:2005ph": {
+    "summary": "Datamonkey is a web-based suite of maximum likelihood tools for the rapid identification of sites subject to positive or negative selection in codon alignments.",
+    "keywords": [
+      "Datamonkey",
+      "natural selection",
+      "molecular evolution",
+      "bioinformatics"
+    ]
+  },
+  "Kosakovsky-Pond:2005fm": {
+    "summary": "A comparison of three major methods for detecting amino acid sites under selection shows broad agreement but highlights differences in power and false positive rates.",
+    "keywords": [
+      "natural selection",
+      "molecular evolution",
+      "phylogenetics",
+      "methodology"
+    ]
+  },
+  "Pillai:2005we": {
+    "summary": "Machine learning identifies a strong genetic signature for HIV-1 in the male genital tract, suggesting it represents a distinct selective environment with constrained viral diversity.",
+    "keywords": [
+      "HIV-1",
+      "semen",
+      "compartmentalization",
+      "machine learning"
+    ]
+  },
+  "Kosakovsky-Pond:2004vh": {
+    "summary": "A column sorting algorithm using graph theory is developed to significantly speed up the calculation of the phylogenetic likelihood function by exploiting repetitive data structures.",
+    "keywords": [
+      "phylogenetics",
+      "maximum likelihood",
+      "algorithms",
+      "bioinformatics"
+    ]
+  },
+  "Pond:2005wl": {
+    "summary": "A genetic algorithm approach allows for the detection of lineage-specific variation in selection pressure without requiring a priori specification of foreground branches.",
+    "keywords": [
+      "natural selection",
+      "genetic algorithm",
+      "phylogenetics",
+      "molecular evolution"
+    ]
+  },
+  "Pond:2005ez": {
+    "summary": "HyPhy is a flexible and unified software package for likelihood-based analyses of multiple sequence alignments, focusing on studies of sequence evolution.",
+    "keywords": [
+      "HyPhy",
+      "phylogenetics",
+      "molecular evolution",
+      "bioinformatics"
+    ]
+  },
+  "Pond:2005oh": {
+    "summary": "A simple hierarchical approach using a discretized beta distribution is introduced to flexibly model complex distributions of substitution rates across sites.",
+    "keywords": [
+      "substitution rates",
+      "statistical modeling",
+      "molecular evolution",
+      "bioinformatics"
+    ]
+  },
+  "Israel:2002ye": {
+    "summary": "Genealogical analysis of duplicated alpha-tubulin genes in ciliates reveals differing patterns of substitution and evolutionary rates following duplication events.",
+    "keywords": [
+      "ciliates",
+      "alpha-tubulin",
+      "gene duplication",
+      "molecular evolution"
+    ]
+  },
+  "Zhang:2001eh": {
+    "summary": "A survey of twenty-five multigene families in four grass species identifies prevalent selective constraint, variation in codon usage, and rare gene conversion events.",
+    "keywords": [
+      "plant evolution",
+      "multigene families",
+      "natural selection",
+      "codon usage"
+    ]
+  }
+}

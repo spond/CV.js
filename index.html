@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergei L Kosakovsky Pond, PhD - Curriculum Vitae</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <img src="slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="contact-info">
+                <h3>Contact</h3>
+                <div class="contact-list"></div>
+            </section>
+
+            <section id="links">
+                <h3>Links</h3>
+                <div class="links-list"></div>
+            </section>
+
+            <section id="research-interests">
+                <h3>Research Interests</h3>
+                <ul class="interests-list"></ul>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div id="home-dashboard" class="dashboard-grid">
+                <!-- Cards will be injected here -->
+            </div>
+
+            <div id="sections-container" class="hidden">
+                <button class="back-to-home-btn" onclick="location.hash='#/'">← Back to Overview</button>
+                
+                <section id="positions-held" class="cv-section hidden">
+                    <h2>Professional Positions</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="education" class="cv-section hidden">
+                    <h2>Education</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="awards-and-honors" class="cv-section hidden">
+                    <h2>Awards and Honors</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="professional-activities" class="cv-section hidden">
+                    <h2>Professional Activities</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="grants-and-fellowships" class="cv-section hidden">
+                    <h2>Grants and Fellowships</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="courses-taught" class="cv-section hidden">
+                    <h2>Courses Taught</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="workshops" class="cv-section hidden">
+                    <h2>Workshops</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="advising-and-mentoring" class="cv-section hidden">
+                    <h2>Advising and Mentoring</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="software-projects" class="cv-section hidden">
+                    <h2>Software Projects</h2>
+                    <div class="section-content"></div>
+                </section>
+
+                <section id="publications" class="cv-section hidden">
+                    <div class="section-header">
+                        <h2>Publications</h2>
+                        <div class="pub-stats"></div>
+                    </div>
+                    <div class="pub-filters">
+                        <input type="text" id="pub-search" placeholder="Search publications...">
+                        <select id="pub-sort">
+                            <option value="year-desc">Newest First</option>
+                            <option value="year-asc">Oldest First</option>
+                        </select>
+                    </div>
+                    <div class="section-content" id="publications-list"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
