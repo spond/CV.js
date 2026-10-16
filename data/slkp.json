@@ -313,7 +313,7 @@
                     "format": "dollars",
                     "subtext": "FY2021"
                 }, {
-                    "text": "current",
+                    "text": "completed",
                     "type": "label"
                 }
             ],      
@@ -1335,5 +1335,22 @@
             ]
         ]
 
+    },
+    "Blog": {
+        "subtext": "Plain-English explainers on molecular evolution methods and software",
+        "rows": [
+            [
+                "2026-10-16",
+                {
+                    "url": "blog/2026-10-16-dfel.html",
+                    "link-text": "Teaching codon models which way the compositional wind is blowing",
+                    "subtext": "How GC-biased gene conversion and strand skew affect site-level dN/dS scans—and how Directional FEL (dFEL) in HyPhy 3 fixes boundary-codon bias and roots coding trees without an outgroup using just 3 matrix diagonalizations per site."
+                },
+                {
+                    "url": "https://doi.org/10.64898/2026.10.14.759254",
+                    "link-text": "bioRxiv: 2026.10.14.759254"
+                }
+            ]
+        ]
     }
 }

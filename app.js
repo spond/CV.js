@@ -19,7 +19,8 @@ const ROUTES = {
     'courses-taught': { title: 'Courses Taught', desc: 'University teaching and lecturing', dataKey: 'Courses Taught' },
     'workshops': { title: 'Workshops', desc: 'International bioinformatics training', dataKey: 'Workshops' },
     'advising-and-mentoring': { title: 'Advising and Mentoring', desc: 'Student and researcher supervision', dataKey: 'Advising and Mentoring' },
-    'software-projects': { title: 'Software Projects', desc: 'Open-source scientific tools', dataKey: 'Software Projects' }
+    'software-projects': { title: 'Software Projects', desc: 'Open-source scientific tools', dataKey: 'Software Projects' },
+    'blog': { title: 'Blog', desc: 'Plain-English notes on methods and papers', dataKey: 'Blog' }
 };
 
 class CVApp {
@@ -175,8 +176,10 @@ class CVApp {
         }
 
         const subtext = linkObj.subtext ? `<br><small class="subtext">${this.formatValue(linkObj.subtext)}</small>` : '';
+        const isExternal = /^https?:\/\//i.test(url);
+        const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
         
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${textContent}</a>${subtext}`;
+        return `<a href="${url}"${targetAttr}>${textContent}</a>${subtext}`;
     }
 
     formatValue(val) {

@@ -1,4 +1,14 @@
 {
+  "KosakovskyPond:2026dfel": {
+    "summary": "Directional Fixed Effects Likelihood (dFEL) models lineage-specific AT and GC compositional drift as a fast three-regime transition probability mixture, recalibrating boundary-codon selection calls, cutting apparent synonymous rate variance by up to 63%, and rooting coding trees without an outgroup.",
+    "keywords": [
+      "codon models",
+      "non-stationary evolution",
+      "natural selection",
+      "GC-biased gene conversion",
+      "tree rooting"
+    ]
+  },
   "Selberg:2026aa": {
     "summary": "MoleRate is an explicit phylogenetic rate test introduced to detect acceleration or reduction in evolutionary rates across lineages, enabling the study of convergent phenotypic adaptation.",
     "keywords": [
