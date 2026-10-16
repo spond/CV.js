@@ -194,6 +194,66 @@
             border-top: 1px solid #e5e7eb;
         }
 
+        /* Industrial 2x2 Key Takeaways Grid */
+        .takeaways-section {
+            margin: 0 0 2.75rem 0;
+        }
+
+        .takeaways-header {
+            display: inline-block;
+            background: var(--text-main);
+            color: #ffffff;
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0;
+        }
+
+        .takeaways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        .takeaway-card {
+            border-right: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1.35rem 1.5rem;
+        }
+
+        .takeaway-stat {
+            font-family: var(--font-family);
+            font-size: 1.45rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-main);
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.02em;
+        }
+
+        .takeaway-label {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #374151;
+            margin: 0 !important;
+        }
+
         .callout-box {
             font-family: var(--font-family);
             border: 2px solid var(--border-color);
@@ -218,6 +278,12 @@
             }
             .post-header h1 {
                 font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .takeaways-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -266,152 +332,111 @@
                     <div class="post-meta">
                         <span><i>16 Oct 2026, by Sergei</i></span>
                         <span>·</span>
+                        <span>3 min read</span>
+                        <span>·</span>
                         <span>Preprint: <a href="https://doi.org/10.64898/2026.10.14.759254" target="_blank" rel="noopener noreferrer">bioRxiv 2026.10.14.759254</a></span>
                     </div>
                 </header>
 
                 <div class="post-content">
-                    <p>Codon substitution models should have a huge blind spot.
-                    Every time we run a standard $dN/dS$ scan to find sites under purifying or diversifying selection, we make a quiet pact with <a href="https://www.jstor.org/stable/2412304" target="_blank" rel="noopener noreferrer">Felsenstein’s pulley principle</a>: we assume that nucleotide composition is at stationary equilibrium across the entire phylogenetic tree.
-                    Under that assumption, $\text{AT} \to \text{GC}$ and $\text{GC} \to \text{AT}$ fluxes balance out on every branch, evolution is time-reversible, and the root of the tree doesn't matter.</p>
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">Key Takeaways</span>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">96–99% Resilient</div>
+                                <div class="takeaway-label">The 1–4% Boundary Trap</div>
+                                <p class="takeaway-desc">Muse–Gaut rates and site-level $\alpha_s$ absorb most compositional drift, but fail at 1–4% of codons—creating false purifying calls or masking adaptation.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">3 Diagonalizations</div>
+                                <div class="takeaway-label">Constant-Cost Mixture</div>
+                                <p class="takeaway-desc">Instead of re-diagonalizing on every branch, <code>dFEL</code> mixes three reversible transition matrices (AT, Neutral, GC) smoothly via branch $\text{GC}_3$ weights.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">−62.6% Phantom SRV</div>
+                                <div class="takeaway-label">Empirical Recalibration</div>
+                                <p class="takeaway-desc">Across 87 empirical alignments, <code>dFEL</code> cuts across-site synonymous rate variance by 12.5–62.6%, tempers gBGC false positives, and unmasks adaptation.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">Outgroup-Free Rooting</div>
+                                <div class="takeaway-label">Broken Pulley Principle</div>
+                                <p class="takeaway-desc">Because branch mixtures break time-reversibility, <code>dFEL</code> recovers the root directly from coding sequences (up to 100% accuracy in simulations).</p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <p>Biology, of course, breaks this pact constantly.
-                    In birds and mammals, GC-biased gene conversion (gBGC) acts like a thumb on the scale during meiotic recombination repair, steadily pumping GC content up on microchromosomes and in recombination hotspots.
-                    In bacteria and mitochondria, asymmetric replication between leading and lagging DNA strands creates sharp nucleotide skews.
-                    In insects, translational selection reshapes third codon positions; in viruses, host deaminases like APOBEC3 and ADAR pepper specific clades with directional mutations.</p>
+                    <p>Every time we run a standard $dN/dS$ scan to find sites under purifying or diversifying selection, we make a quiet pact with <a href="https://www.jstor.org/stable/2412304" target="_blank" rel="noopener noreferrer">Felsenstein’s pulley principle</a>: we assume that nucleotide composition is at stationary equilibrium across the entire phylogenetic tree.
+                    Biology breaks this pact constantly—through GC-biased gene conversion (gBGC) on avian microchromosomes and mammalian recombination hotspots, asymmetric strand replication in mitochondria and bacteria, and host APOBEC/ADAR deaminases in viruses.</p>
 
-                    <p>I have wondered for a long time how badly these compositional tides distort site-level selection tests like Fixed Effects Likelihood (<code>FEL</code>), and how we might fix the problem without making inference grind to a halt on large trees.</p>
-
-                    <p>In this post I will describe a new method, <strong>Directional Fixed Effects Likelihood (<code>dFEL</code>)</strong>, that gives site-level codon models a sense of direction.
-                    The paper, <a href="https://doi.org/10.64898/2026.10.14.759254" target="_blank" rel="noopener noreferrer">A Sense of Direction: Detecting Natural Selection Across Non-Stationary Genomes</a>, is now out on <em>bioRxiv</em>, and the method is implemented in C++20 as part of <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener noreferrer"><code>hyphy-3</code></a>.</p>
+                    <p>I have wondered for a long time how badly these compositional tides distort site-level selection tests like Fixed Effects Likelihood (<code>FEL</code>), and how to fix them without grinding inference to a halt on large trees.
+                    Our new method, <strong>Directional Fixed Effects Likelihood (<code>dFEL</code>)</strong> (<a href="https://doi.org/10.64898/2026.10.14.759254" target="_blank" rel="noopener noreferrer">preprint on <em>bioRxiv</em></a>, implemented in C++20 in <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener noreferrer"><code>hyphy-3</code></a>), gives site-level codon models a sense of direction.</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p><span class="dropcap">T</span>wo questions motivated this work.
-                    First, how much does directional compositional drift actually break standard <code>FEL</code>?
-                    Second, can we model branch-specific compositional drift across hundreds of species without paying the steep computational price of branch-nonstationary phylogenetics?</p>
+                    <p><span class="dropcap">L</span>et’s start with a surprise: if you compare standard <code>FEL</code> against a directional model across empirical alignments—from <em>Drosophila Adh</em> and avian microchromosomes to 869-species vertebrate alignments—the two methods agree on <strong>96% to 99% of all codon sites</strong>.</p>
 
-                    <p>Let’s start with the first question, because the answer surprised me.</p>
+                    <p>Why is standard <code>FEL</code> so resilient when stationarity is violated?
+                    First, its <a href="https://doi.org/10.1093/oxfordjournals.molbev.a040152" target="_blank" rel="noopener noreferrer">Muse–Gaut rate matrix</a> scales substitutions only by the single target nucleotide frequency ($\text{F3}\times 4$), so a clade-wide push toward GC scales synonymous and non-synonymous rates toward G or C equally.
+                    Second, <a href="https://doi.org/10.1093/molbev/msi105" target="_blank" rel="noopener noreferrer"><code>FEL</code> estimates a free synonymous rate $\alpha_s$</a> at every site, which acts as a shock absorber for tree-wide average drift.</p>
 
-                    <p>If you test standard <code>FEL</code> against a directional model across empirical alignments—from <em>Drosophila Adh</em> and avian microchromosomes to 869-species vertebrate alignments from the Vertebrate Genomes Project (VGP) and TOGA2—the two methods agree on the selective classification of <strong>96% to 99% of all codon sites</strong>.</p>
-
-                    <p>Why is standard <code>FEL</code> so resilient when its core stationarity assumption is violated?</p>
-
-                    <p>The reason comes down to two design choices from twenty years ago.
-                    First, unlike Goldman–Yang codon models (where substitution rates are proportional to the target <em>codon</em> frequency), <code>FEL</code> uses a <a href="https://doi.org/10.1093/oxfordjournals.molbev.a040152" target="_blank" rel="noopener noreferrer">Muse–Gaut rate matrix</a>, where rates scale only with the single target <em>nucleotide</em> frequency ($\text{F3}\times 4$).
-                    When a lineage experiences a directional push toward GC, that push scales synonymous and non-synonymous changes toward G or C by the exact same factor.
-                    Second, <a href="https://doi.org/10.1093/molbev/msi105" target="_blank" rel="noopener noreferrer"><code>FEL</code> estimates a free, site-specific synonymous rate $\alpha_s$</a> at every site.
-                    That $\alpha_s$ parameter acts like a shock absorber: if a site has more or fewer silent substitution opportunities across the tree because of its amino acid identity, $\alpha_s$ soaks up the tree-wide average drift.</p>
-
-                    <p>So for 96–99% of codons, standard <code>FEL</code> is completely fine.
-                    <strong>However, at the remaining 1–4% of "boundary" codons, the shock absorber bottoms out—and it fails in two opposite, fascinating ways.</strong></p>
-
-                    <p>Imagine a clade shifting strongly toward high GC content (say, an avian microchromosome under heavy gBGC):</p>
+                    <p>At the remaining <strong>1–4% of "boundary" codons</strong>, however, that shock absorber bottoms out in two opposite ways (say, inside a GC-enriching clade):</p>
 
                     <ul>
-                        <li><strong>The false purifying trap (riding the tide):</strong> Suppose a functionally constrained amino acid site enters the GC-enriching clade carrying an A or T at the third codon position. Because the protein tolerates silent changes and the mutational/gBGC tide favors G and C, that third position rapidly flips to G or C. A stationary model sees a flurry of silent substitutions and infers a huge synonymous rate ($\hat{\alpha}_s \gg 1$). Because $\hat{\alpha}_s$ is the denominator of $\hat{\beta}_s / \hat{\alpha}_s$, inflating $\hat{\alpha}_s$ makes the site look like it is under statistically significant purifying selection—even when the amino acid wasn't under strong constraint.</li>
-                        <li><strong>The masked adaptation trap (swimming against the tide):</strong> Conversely, suppose a site enters the clade already carrying G or C at the third position. Now silent $\text{GC} \to \text{AT}$ turnover is suppressed by the compositional tide ($\hat{\alpha}_s \ll 1$). Meanwhile, if positive selection drives adaptive amino acid replacements that happen to require $\text{GC} \to \text{AT}$ changes (swimming <em>against</em> the compositional tide), a stationary model underestimates how hard it was to make those changes and misses the diversifying selection signal.</li>
+                        <li><strong>The false purifying trap (riding the tide):</strong> A conserved site enters the clade carrying an A or T at the third position. As the compositional tide rapidly flips that silent site to G or C, stationary <code>FEL</code> sees a flurry of silent changes, inflates $\hat{\alpha}_s \gg 1$, and calls spurious purifying selection ($\hat{\beta}_s / \hat{\alpha}_s \ll 1$).</li>
+                        <li><strong>The masked adaptation trap (swimming against the tide):</strong> A site enters already carrying G or C at the third position, suppressing silent turnover ($\hat{\alpha}_s \ll 1$). When positive selection drives adaptive amino acid replacements that require $\text{GC} \to \text{AT}$ changes against the tide, a stationary model underestimates how hard those changes were and misses the adaptation signal.</li>
                     </ul>
 
-                    <p>Even worse, splitting conserved sites into "rapid silent turnover" (ancestrally AT-ending) and "silent stasis" (ancestrally GC-ending) artificially blows up the apparent variance in synonymous rates across the gene—what we call <a href="https://doi.org/10.1093/molbev/msaa120" target="_blank" rel="noopener noreferrer">Synonymous Rate Variation (SRV)</a>.</p>
+                    <p>Worse, splitting conserved sites into "rapid silent turnover" and "silent stasis" artificially blows up gene-wide <a href="https://doi.org/10.1093/molbev/msaa120" target="_blank" rel="noopener noreferrer">Synonymous Rate Variation (SRV)</a>.</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p>How do we fix this?</p>
+                    <p>How do we fix this without diagonalizing a non-reversible $61 \times 61$ codon matrix on all 1,600 branches of an 800-species tree?</p>
 
-                    <p>In principle, we know how to write down a non-stationary codon model: give every branch its own target nucleotide frequencies.
-                    In practice, that is a computational nightmare for site-level scans.
-                    Standard <code>FEL</code> is fast because a time-reversible $61 \times 61$ codon rate matrix $\boldsymbol{Q}_s$ can be diagonalized once per site using symmetric eigendecomposition, and then exponentiated ($\boldsymbol{P}_s(t_b) = \exp(\boldsymbol{Q}_s t_b)$) cheaply across every branch $b$.
-                    If every branch has its own non-reversible rate matrix on an 800-species vertebrate tree (~1,600 branches) across 1,000 codons, you have to diagonalize a non-symmetric $61 \times 61$ matrix 1.6 million times per likelihood evaluation.
-                    Nobody wants to wait for that.</p>
-
-                    <p>Other people have tried to sidestep the likelihood problem altogether using heuristic parsimony counting—for instance, the CpG-adjusted method of <a href="https://doi.org/10.1093/molbev/msp149" target="_blank" rel="noopener noreferrer">Suzuki et al. (2009)</a>, which weights synonymous and non-synonymous opportunities by fixed mammalian CpG mutation ratios and runs a Binomial test on parsimony counts.
-                    But discrete Binomial tests lack statistical power on short or moderate alignments (requiring, for example, 13 non-synonymous changes and 0 synonymous changes at a single arginine codon just to reach $p \le 0.10$), and fixed mammalian CpG weights misfire badly when the bias is avian gBGC or bacterial strand skew rather than mammalian CpG hypermutation.</p>
-
-                    <p>So: <em>could we build a likelihood model that captures branch-specific directional drift, roots the tree, and still needs only a tiny, constant number of matrix diagonalizations per site?</em></p>
-
-                    <hr class="fine-line-divider" />
-
-                    <p>Our answer is <strong><code>dFEL</code> (Directional Fixed Effects Likelihood)</strong>, built around a simple mixture trick at the level of transition probabilities.</p>
-
-                    <p>First, we follow a strict rule: <em>first, do no harm</em>.
-                    Before doing anything fancy, <code>dFEL</code> runs a fast Pearson $\chi^2$ homogeneity test on the $N \times 4$ nucleotide counts across taxa (both gene-wide and at third codon positions).
-                    If base composition doesn't vary significantly across lineages ($p \ge 0.05$), <code>dFEL</code> sets the number of regimes to $K=1$ and reduces <em>identically</em> to standard <code>FEL</code>.
-                    Zero extra parameters, zero discordant calls.</p>
-
-                    <p>When the alignment <em>is</em> compositionally heterogeneous ($p < 0.05$), <code>dFEL</code> activates three regimes ($K=3$):</p>
-
-                    <ol>
-                        <li><strong>AT-enriching ($k=0$):</strong> baseline positional nucleotide frequencies tilted toward A and T by a log-odds shift $\psi^{(0)} < 0$.</li>
-                        <li><strong>Neutral ($k=1$):</strong> the alignment-wide baseline frequencies ($\psi^{(1)} = 0$).</li>
-                        <li><strong>GC-enriching ($k=2$):</strong> baseline positional nucleotide frequencies tilted toward G and C by $\psi^{(2)} > 0$.</li>
-                    </ol>
-
-                    <p>Crucially, within each of these three regimes, the instantaneous rate matrix $\boldsymbol{Q}_s^{(k)}$ is still a clean, time-reversible Muse–Gaut matrix.
-                    That means at any codon site $s$, we only need <strong>three symmetric matrix diagonalizations</strong>—one for AT-drift, one for Neutral, and one for GC-drift—regardless of whether the tree has 15 species or 869 species.</p>
-
-                    <p>How do we get smooth, branch-specific evolution out of just three matrices?
-                    Instead of mixing the <em>rate matrices</em> (which would force us to re-diagonalize on every branch), we mix the <strong>transition probability matrices</strong> $\boldsymbol{P}_s^{(k)}(t_b) = \exp(\boldsymbol{Q}_s^{(k)} t_b)$ on each branch $b$:</p>
+                    <p>First, <code>dFEL</code> runs a fast Pearson $\chi^2$ nucleotide homogeneity test across taxa.
+                    If composition is stationary ($p \ge 0.05$), <code>dFEL</code> sets $K=1$ and reduces <em>identically</em> to standard <code>FEL</code>.
+                    When composition varies ($p < 0.05$), <code>dFEL</code> activates three reversible Muse–Gaut regimes—<strong>AT-enriching ($k=0$)</strong>, <strong>Neutral ($k=1$)</strong>, and <strong>GC-enriching ($k=2$)</strong>—requiring just <strong>three symmetric matrix diagonalizations per site</strong> regardless of tree size.
+                    Instead of mixing rate matrices, we mix the <strong>transition probability matrices</strong> $\boldsymbol{P}_s^{(k)}(t_b) = \exp(\boldsymbol{Q}_s^{(k)} t_b)$ on each branch $b$ using smooth Softmax weights driven by that branch's $\text{GC}_3$ shift:</p>
 
                     $$\boldsymbol{P}_{s, b}(t_b) = w_{b, 0} \boldsymbol{P}_s^{(0)}(t_b) + w_{b, 1} \boldsymbol{P}_s^{(1)}(t_b) + w_{b, 2} \boldsymbol{P}_s^{(2)}(t_b)$$
 
-                    <p>The weights $(w_{b,0}, w_{b,1}, w_{b,2})$ are assigned smoothly via a Softmax function based on how far that branch's third-position GC content ($\text{GC}_3$) deviates from the background.
-                    Branches near the average ride the Neutral matrix; GC-accumulating clades shift smoothly toward the GC-enriching matrix; AT-accumulating clades shift toward the AT-enriching matrix.</p>
+                    <p>Because different branches use different mixtures while the root sits at baseline frequencies, the pulley principle no longer holds: <strong>tree likelihood now depends on root placement</strong>, allowing <code>dFEL</code> (<code>--root auto</code>) to infer the maximum-likelihood root directly from coding sequences without an outgroup.</p>
 
                     <figure class="blog-figure">
                         <img src="images/fig1_method_validation.png" alt="dFEL branch mixture weights, simulation validation, root recovery, and SRV reduction">
                         <figcaption>
                             <strong>Figure 1. Model weights, simulation validation, and coupling between directional drift and synonymous rate variation (SRV).</strong>
-                            (A) Smooth branch mixture weights $w_{b,k}(\delta_b)$ across the 43 branches of <em>Drosophila Adh</em>.
-                            (B1–B2) Neutral false-positive rate and positive selection sensitivity across 1,800 simulated alignments.
-                            (C) Outgroup-free maximum-likelihood root recovery accuracy across tree divergence scales.
-                            (D1–D2) Reduction in site-level $\hat{\alpha}_s$ inflation and whole-gene $\text{Var}(\hat{\alpha}_s)$ across empirical genes.
+                            (A) Smooth branch mixture weights $w_{b,k}(\delta_b)$ across <em>Drosophila Adh</em>.
+                            (B1–B2) False-positive control and +4.3 to +8.1 percentage point gain in positive selection power across 1,800 simulated alignments.
+                            (C) Outgroup-free root recovery (up to 100% on deep trees).
+                            (D1–D2) Reduction in site-level $\hat{\alpha}_s$ inflation and whole-gene $\text{Var}(\hat{\alpha}_s)$.
                         </figcaption>
                     </figure>
 
-                    <p>Because different branches now use different mixtures of transition matrices while the root sits at the baseline frequencies, Felsenstein's pulley principle no longer applies: <strong>the likelihood of the tree now depends on where you place the root.</strong>
-                    That turns a mathematical nuisance into a biological feature.
-                    When given an unrooted tree (<code>--root auto</code>), <code>dFEL</code> scans all $2N-3$ branches during Phase 1 and finds the maximum-likelihood root directly from the directional flow of coding sequence evolution—no outgroup required.</p>
-
                     <hr class="fine-line-divider" />
 
-                    <p>Does it work? It does, across both simulations and a large empirical benchmark suite.</p>
-
-                    <p>On 1,800 simulated alignments, <code>dFEL</code> keeps false-positive rates nailed to the nominal $5\%$ level under strong directional drift, boosts power to detect positive selection by <strong>4.3 to 8.1 percentage points</strong> when adaptive changes swim against the compositional tide (Fig. 1B), and recovers the exact root branch up to <strong>100% of the time</strong> on deep trees without an outgroup (Fig. 1C).</p>
-
-                    <p>When we turned <code>dFEL</code> loose on 87 unique empirical alignments (93 benchmark analyses)—spanning <em>Drosophila Adh</em>, 20 avian macro- and microchromosomal genes, 33 mitochondrial, bacterial, and viral strand-asymmetry loci, and 24 deep vertebrate alignments (464–869 species)—several clear patterns emerged:</p>
+                    <p>Across 1,800 simulated alignments and 87 empirical datasets (avian macro/microchromosomes, mitochondrial/bacterial strand-skew loci, and 464–869 species vertebrate alignments; Fig. 2), three results stand out:</p>
 
                     <ul>
-                        <li><strong>Massive reduction in phantom Synonymous Rate Variation:</strong> Across the sites where <code>FEL</code> and <code>dFEL</code> disagreed in our avian and asymmetry suites, stationary <code>FEL</code> estimated a higher synonymous rate at <strong>95.7% (111/116)</strong> of the sites it alone called purifying (Fig. 1D1). For example, at codon 249 of mammalian mitochondrial <em>ND4</em>, rapid silent turnover gave standard <code>FEL</code> an extreme $\hat{\alpha}_s = 13.89$ ($p = 0.013$, purifying); once <code>dFEL</code> accounted for the lineage's compositional drift, $\hat{\alpha}_s$ dropped to $0.78$ ($p = 0.110$, neutral). Across whole genes with strong $\text{GC}_3$ divergence, <code>dFEL</code> cut across-site $\text{Var}(\hat{\alpha}_s)$ by <strong>12.5% to 62.6%</strong>—including a <strong>62.6% drop</strong> in vertebrate <em>RBP3</em> and a <strong>41.8% drop</strong> in avian <em>AAR2</em> (Fig. 1D2).</li>
-                        <li><strong>Recalibrating avian microchromosomes and deep vertebrate scans:</strong> On heterogeneous avian microchromosomes (where gBGC is intense), <code>dFEL</code> tempered 67 inflated purifying calls while unmasking 4 additional positively selected sites (<em>ABCA7</em>, <em>ACKR1</em>, <em>ACOT11</em>; Fig. 2A–B, D). On deep vertebrate trees, <code>dFEL</code> flagged neutral GC-driven parallelisms that fooled standard <code>FEL</code> (such as 15 recurrent $\text{ATT/ATC} \to \text{GTT/GTC}$ isoleucine-to-valine shifts in high-GC mammals at <em>VAMP3</em> codon 94) while unmasking true positive selection corroborated by <code>MEME</code> (<em>MYOC</em> codon 15).</li>
-                        <li><strong>Outgroup-free rooting from coding sequences alone:</strong> Without being told anything about species phylogeny, <code>dFEL</code> rooted <em>Drosophila Adh</em> on <em>D. picticornis</em> (capturing the shift into the GC-rich <em>Sophophora</em> clade), rooted mammalian mtDNA on the platypus (<em>Ornithorhynchus anatinus</em>), rooted bacterial <em>rpoB</em> on <em>Candidatus Borrelia tachyglossi</em>, and rooted deep placental/marsupial vertebrate alignments on Afrotheria (<em>Elephantulus edwardii</em>).</li>
+                        <li><strong>Collapsing phantom SRV:</strong> Stationary <code>FEL</code> estimated a higher synonymous rate at <strong>95.7% (111/116)</strong> of the avian and asymmetry sites it alone called purifying (e.g., mammalian <em>ND4</em> codon 249 dropped from $\hat{\alpha}_s = 13.89, p = 0.013$ under <code>FEL</code> to $\hat{\alpha}_s = 0.78, p = 0.110$ under <code>dFEL</code>). Across strongly shifting genes, <code>dFEL</code> cut whole-gene $\text{Var}(\hat{\alpha}_s)$ by <strong>12.5% to 62.6%</strong> (Fig. 1D2).</li>
+                        <li><strong>Recalibrating avian gBGC and deep vertebrate scans:</strong> On avian microchromosomes, <code>dFEL</code> tempered 67 inflated purifying calls while unmasking 4 positively selected sites (<em>ABCA7</em>, <em>ACKR1</em>, <em>ACOT11</em>). On deep vertebrate trees, it filtered neutral GC-driven parallelisms (such as 15 recurrent $\text{ATT/ATC} \to \text{GTT/GTC}$ shifts at <em>VAMP3</em> codon 94) while unmasking <code>MEME</code>-corroborated adaptation (<em>MYOC</em> codon 15).</li>
+                        <li><strong>Outgroup-free rooting:</strong> From coding sequences alone, <code>dFEL</code> rooted <em>Drosophila Adh</em> on <em>D. picticornis</em>, mammalian mtDNA on the platypus, bacterial <em>rpoB</em> on <em>Candidatus Borrelia tachyglossi</em>, and deep placental/marsupial alignments on Afrotheria.</li>
                     </ul>
 
                     <figure class="blog-figure">
                         <img src="images/fig2_empirical_applications.png" alt="Empirical applications of dFEL across avian, asymmetry, and deep vertebrate benchmarks">
                         <figcaption>
-                            <strong>Figure 2. Site-level selection calls under FEL and dFEL across 87 unique empirical alignments.</strong>
-                            (A) Purifying selection calls across 10 microchromosomal and 10 macrochromosomal avian genes.
-                            (B) Breakdown of 176 discordant codon sites across the avian and strand-asymmetry suites.
+                            <strong>Figure 2. Site-level selection calls under FEL and dFEL across 87 empirical alignments.</strong>
+                            (A–B) Purifying selection calls and 176 discordant sites across avian and strand-asymmetry suites.
                             (C) Discordant site counts across 24 deep vertebrate alignments (464–869 species).
                             (D) Selection evidence ($-\log_{10} p$) at six representative boundary codons.
                         </figcaption>
                     </figure>
 
-                    <hr class="fine-line-divider" />
-
-                    <p>This is both a practical tool you can use today and a stepping stone for how we handle non-stationarity across the rest of the <code>HyPhy</code> suite.</p>
-
-                    <p>Right now, <code>dFEL</code> tilts frequencies along a single $\text{AT} \leftrightarrow \text{GC}$ axis ($\psi^{(k)}$), which captures the dominant compositional tide in gBGC and most coding datasets. Our next steps are to:</p>
-
-                    <ul>
-                        <li>Add a second tilt axis ($\psi_{\text{GT}}$) to explicitly separate within-class purine/pyrimidine strand skews in mitochondrial and bacterial replicons.</li>
-                        <li>Bring this fast three-eigendecomposition transition-matrix mixture into episodic branch-site models like <code>MEME</code> and <code>BUSTED</code>. Unlike site-wide <code>FEL</code>, where a single site-level $\alpha_s$ absorbs most tree-wide drift, branch-site models look for bursts of selection on individual branches—making them much more vulnerable to branch-specific bursts of gBGC or APOBEC deamination.</li>
-                    </ul>
+                    <p>Next up for <code>HyPhy</code>: adding a second tilt axis ($\psi_{\text{GT}}$) for within-class purine/pyrimidine strand skews, and bringing this fast three-eigendecomposition mixture into episodic branch-site tests like <code>MEME</code> and <code>BUSTED</code>, where branch-specific bursts of gBGC or APOBEC deamination hit hardest.</p>
 
                     <div class="callout-box">
                         <strong>Try dFEL in HyPhy 3</strong>
-                        <code>dFEL</code> is implemented in C++20 in <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener noreferrer"><code>hyphy-3</code></a>. Run it from the command line (<code>hyphy3 dfel</code> or <code>hyphy3-dfel</code>) or Python (<code>import hyphy3 as hp</code>). Because the $\chi^2$ homogeneity gate returns standard <code>FEL</code> whenever an alignment is stationary, you can use <code>dFEL</code> as a drop-in replacement without losing power on homogeneous genes.
+                        <code>dFEL</code> is available in C++20 in <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener noreferrer"><code>hyphy-3</code></a> via CLI (<code>hyphy3 dfel</code>) or Python (<code>import hyphy3 as hp</code>). Because the $\chi^2$ homogeneity gate returns standard <code>FEL</code> on stationary alignments, <code>dFEL</code> works as a drop-in replacement.
                     </div>
                 </div>
             </article>
