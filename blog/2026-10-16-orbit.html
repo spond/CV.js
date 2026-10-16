@@ -212,6 +212,14 @@
             letter-spacing: 0.05em;
         }
 
+        .callout-box ul {
+            margin: 0.5rem 0 0 1.25rem;
+        }
+
+        .callout-box li {
+            margin-bottom: 0.45rem;
+        }
+
         @media (max-width: 1024px) {
             .blog-article-container {
                 padding: 2rem;
@@ -266,178 +274,114 @@
                     <div class="post-meta">
                         <span><i>16 Oct 2026, by Sergei</i></span>
                         <span>·</span>
+                        <span>3 min read</span>
+                        <span>·</span>
                         <span>Preprint: <i>Forthcoming</i></span>
                     </div>
                 </header>
 
                 <div class="post-content">
-                    <p>Over the past year, something remarkable has happened across computational biology labs, including my own and Anton Nekrutenko’s: graduate students, postdocs, and PIs—including hardened AI skeptics—started opening command-line coding agents, got hooked, and stopped analyzing data any other way.</p>
+                    <div class="callout-box" style="margin-top: 0;">
+                        <strong>Top-Line Takeaways</strong>
+                        <ul>
+                            <li><strong>Local agents splinter and leave no trail:</strong> Handed the same bacterial RNA-seq study, 30 frontier coding agents (Claude, Codex, Gemini) proposed <strong>18 different pipelines</strong>, silently altered which toxin genes were detected, and generated <strong>26 unversioned local glue scripts</strong>.</li>
+                            <li><strong>Public infrastructure fixes all three bottlenecks:</strong> Connecting CLI agents or our <strong>Orbit</strong> desktop workbench to <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a> routes heavy jobs onto <strong>free national supercomputers (ACCESS-CI)</strong> while locking every tool version, parameter, and dataset into a shareable research notebook.</li>
+                            <li><strong>Provenance acts as a forensic microscope:</strong> Auditing published papers uncovered that an "agent reproducibility" benchmark (<em>Paper2Agent</em>) had silently run on a <strong>1,000-cell tutorial demo file instead of the 5,613-cell reference archive it cited</strong> (dropping 82% of cells and reducing accuracy from $r = 0.2553$ to $0.0861$), while resolving unstated 30-sample pooling in fungal RNA-seq and non-model annotation traps in mosquito vectors.</li>
+                            <li><strong>Discovery at supercomputing scale:</strong> Using containerized GPU and multi-core tools on UseGalaxy.org, Orbit unified 2,592 hypervariable <em>Plasmodium vivax</em> malaria antigens across three continents (&gt;97% shared structural folds) and dated <strong>42 pathogen epidemics in seconds per alignment</strong> instead of days of BEAST MCMC sampling.</li>
+                        </ul>
+                    </div>
+
+                    <p>Over the past year, students, postdocs, and PIs across our labs—including hardened AI skeptics—started opening command-line coding agents, got hooked, and stopped analyzing data any other way.</p>
 
                     <p>Watching an autonomous agent work in a local terminal is both thrilling and terrifying.
-                    The thrill is obvious: an analysis that used to take two weeks of wrestling with Conda environments, file format conversions, and command-line flags now runs from a single natural-language prompt.
-                    The terror sets in five minutes later, when you ask yourself a simple question: <em>what did the agent actually do?</em></p>
+                    Analyses that used to take two weeks now run from a single prompt.
+                    The terror sets in five minutes later when you ask: <em>what did the agent actually do?</em>
+                    In a local shell, an unsupervised agent improvises pipelines from whatever is installed on your laptop, writes throwaway glue scripts, hits a hardware wall the moment a job needs 64 GB of RAM or an A100 GPU, and leaves zero verifiable provenance when the terminal closes.</p>
 
-                    <p>When an unsupervised coding agent iterates in a local shell, it improvises pipelines out of whatever tools happen to be installed on your laptop, writes throwaway Python or R glue scripts to patch over errors, silently drops or filters rows when tables don't match, hits a hardware wall the moment an alignment needs 64 GB of RAM or an A100 GPU, and leaves behind zero verifiable provenance when the terminal window closes.
-                    Because the agent hands you a polished figure and a confident summary within minutes, anyone can feel like an instant bioinformatician—while having no easy way to tell whether the underlying pipeline is sound or completely broken.</p>
-
-                    <p>In a new collaboration across Johns Hopkins, Penn State, Temple, UT Austin (TACC), and the University of Freiburg (<em>Verifiable Agentic Science on Public Infrastructure</em>), we asked what happens when autonomous coding agents collide with real biological datasets—and how we can keep agent-driven science honest by grounding it in free, shared public cyberinfrastructure (<a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a> and national <a href="https://access-ci.org" target="_blank" rel="noopener noreferrer">ACCESS-CI</a> supercomputers).</p>
+                    <p>In a new collaboration across Johns Hopkins, Penn State, Temple, TACC, and the University of Freiburg (<em>Verifiable Agentic Science on Public Infrastructure</em>), we tested what happens when coding agents collide with real biological data—and how grounding them in free public cyberinfrastructure (<a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a> and national <a href="https://access-ci.org" target="_blank" rel="noopener noreferrer">ACCESS-CI</a> supercomputers) makes agentic science both verifiable and far more powerful.</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p><span class="dropcap">T</span>o see how consistently frontier models plan a routine biological study on their own, we ran a simple experiment.
-                    We took a recently published RNA-seq study of the foodborne pathogen <em>Bacillus cereus</em> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12804731/" target="_blank" rel="noopener noreferrer">Vyklická et al., 2026</a>) and asked <strong>30 independent coding agents</strong>—10 Claude Opus 5.5, 10 OpenAI Codex (GPT-6 Astra), and 10 Google Gemini 3.8 Flash via Antigravity—to design a step-by-step replication plan.</p>
+                    <p><span class="dropcap">W</span>e started with a simple test: we handed a published RNA-seq study of the foodborne pathogen <em>Bacillus cereus</em> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12804731/" target="_blank" rel="noopener noreferrer">Vyklická et al., 2026</a>)—which tested how glucose regulates diarrheal enterotoxins—to <strong>30 independent coding agents</strong> (10 Claude Opus 5.5, 10 OpenAI Codex, and 10 Google Gemini 3.8 Flash via Antigravity) and asked each for a replication plan.</p>
 
-                    <p>Biologically, the study is straightforward.
-                    <em>B. cereus</em> causes diarrheal food poisoning by secreting pore-forming enterotoxins in the small intestine.
-                    To see how dietary sugars regulate virulence in the dairy-associated reference strain ATCC 10987, the authors compared glucose-supplemented and control cultures ($n = 2$ vs. $n = 3$ replicates drawn from a 19-library sugar screen) using <code>nf-core/rnaseq</code>, <code>featureCounts</code>, and <code>DESeq2</code>.
-                    They showed that excess glucose triggers carbon catabolite repression of the pathogen’s main three-component non-hemolytic enterotoxin (<em>nhe</em>): glucose strongly represses the primary lytic subunit <em>nheB</em>, leaves the regulatory subunit <em>nheC</em> unchanged, and induces <em>entFM</em> (a cell-wall peptidase involved in motility and adhesion), while two other canonical toxins (<em>hbl</em> and <em>cytK</em>) were reported as unexpressed.</p>
-
-                    <p>Like almost every real paper in the literature, however, the methods section had two subtle ambiguities:
-                    (1) the sequenced isolate (<em>B. cereus</em> ATCC 10987) had been suppressed from RefSeq after a taxonomic reclassification as <em>Bacillus pacificus</em>, and the paper used <em>B. pacificus</em> strain anQ-h4 locus tags without naming an exact assembly accession; and
-                    (2) it did not state whether <code>DESeq2</code> dispersion was estimated across all 19 libraries in the screen or only the 5 focal libraries.</p>
-
-                    <p>Faced with those real-world ambiguities, <strong>29 of the 30 agents diverged from the published workflow, splintering into 18 distinct pipelines</strong> (Fig. 1).
-                    Even when we ignored minor cosmetic flags and looked only at the five decisions that change final read counts and $p$-values—reference genome, rRNA filtering, aligner, annotation source, and sample pooling—the 30 agents split into <strong>11 incompatible designs</strong>.
-                    No single consensus plan was chosen by more than seven agents.</p>
+                    <p>Because the published methods had two real-world ambiguities (a suppressed RefSeq assembly for <em>B. cereus</em> ATCC 10987 after reclassification as <em>B. pacificus</em>, and whether <code>DESeq2</code> pooled all 19 screen libraries or only the 5 focal samples), <strong>29 of the 30 agents diverged from the paper, splintering into 18 distinct pipelines</strong> (and 11 incompatible designs across the five steps that alter gene counts and $p$-values; Fig. 1).</p>
 
                     <figure class="blog-figure">
                         <img src="images/orbit_fig1_trajectories.png" alt="Alluvial diagram showing 30 autonomous agents proposing 18 distinct bioinformatics pipelines for the same Bacillus cereus RNA-seq study">
                         <figcaption>
                             <strong>Figure 1. Thirty autonomous agents propose 18 different pipelines for the same bacterial RNA-seq study.</strong>
-                            Alluvial diagram tracing 30 independent reanalysis plans for Vyklická et al. (2026) generated by 10 Claude Opus 5.5 agents (blue), 10 OpenAI Codex agents (orange), and 10 Google Gemini 3.8 Flash agents (teal) without access to Galaxy infrastructure. Across the eight pipeline decisions (five of which alter final gene counts and $p$-values), the 30 plans split into 18 workflows (11 distinct result-changing designs), and 29 of 30 differed from the published pipeline.
+                            Alluvial diagram tracing 30 reanalysis plans by Claude (blue), Codex (orange), and Gemini (teal) without Galaxy guardrails. Across the eight pipeline decisions, 29 of 30 plans diverged from the published workflow.
                         </figcaption>
                     </figure>
 
-                    <p>When we let one agent from each family actually execute its plan on dedicated local hardware, things got even messier.
-                    All three agents recovered the big headline signal (<em>nheB</em> down, <em>entFM</em> up), so a casual user would have declared victory.
-                    Beneath the surface, however, their reference genome choices silently changed which toxin genes existed in the bacterium: aligning to <em>B. pacificus</em> anQ-h4 missed cytotoxin K (<em>cytK2</em>) completely because that assembly lacks the locus, whereas aligning to the actual sequenced strain ATCC 10987 recovered ~800 read pairs per library actively transcribing <em>cytK2</em>.
-                    Worse, to patch together local tools, the three agents wrote <strong>26 custom glue scripts totaling over 1,200 lines of unversioned shell, Python, R, and Nextflow code</strong>—none of it portable or auditable outside the machine where it ran.</p>
+                    <p>When one agent from each family executed its plan locally, all three recovered the headline biology (glucose represses pore-forming toxin <em>nheB</em> and induces <em>entFM</em>).
+                    Beneath the surface, however, aligning to <em>B. pacificus</em> erased an actively transcribed toxin (<em>cytK2</em>, ~800 read pairs/library on ATCC 10987), and the three agents left behind <strong>26 custom glue scripts (&gt;1,200 lines of unversioned code)</strong> that couldn't be audited or run anywhere else.</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p>How do we stop coding agents from turning computational biology into a graveyard of unrepeatable shell sessions?</p>
-
-                    <p>Someone might argue that local agents are fine because the LLM can write a nice Markdown summary of what it did, or because a disciplined researcher will commit every prompt and script to Git.
-                    Let’s be honest: LLM summaries routinely gloss over failed retries and silent parameter tweaks, and almost nobody maintains strict version control when an agent is firing off dozens of shell commands a minute.
-                    <strong>In agent-driven science, complete workflow, tool, and execution provenance isn't a nice-to-have feature—it is the only thing separating a verifiable scientific result from a plausible hallucination.</strong></p>
-
-                    <p>Fortunately, we don't need to invent a closed platform from scratch.
-                    For over twenty years, the <a href="https://galaxyproject.org" target="_blank" rel="noopener noreferrer">Galaxy project</a> has provided open, reproducible cyberinfrastructure to life scientists worldwide.
-                    In our architecture (Fig. 2), any command-line coding agent—or <strong>Orbit</strong>, our lightweight desktop workbench built on Pi.dev—connects to public Galaxy servers through curated domain skills and a typed Galaxy Model Context Protocol (MCP) server.</p>
+                    <p>In agent-driven science, provenance isn't a nice-to-have convenience—without it, an agent's output is scientifically unverifiable.
+                    In our architecture (Fig. 2), any command-line agent—or <strong>Orbit</strong>, our desktop workbench built on Pi.dev—connects to <a href="https://galaxyproject.org" target="_blank" rel="noopener noreferrer">Galaxy</a> through curated domain skills and a typed Galaxy MCP server.</p>
 
                     <figure class="blog-figure">
                         <img src="images/orbit_fig2_architecture.png" alt="Architecture for verifiable agentic science on public Galaxy infrastructure">
                         <figcaption>
                             <strong>Figure 2. Architecture for verifiable agentic science on public infrastructure.</strong>
-                            (1) Researchers connect any CLI coding agent (Claude Code, Codex, Antigravity) or use Orbit, a desktop workbench supporting commercial, API, and local models.
-                            (2) Community domain skills provide validated protocols while the Galaxy MCP server translates agent actions into typed API calls instead of raw shell commands.
-                            (3) Galaxy dispatches containerized tools and workflows onto free public supercomputing allocations (ACCESS-CI) and streams every input, parameter, log, and output dataset back into an immutable history and shareable research notebook.
+                            CLI coding agents or the Orbit desktop workbench (1) use community domain skills and the Galaxy MCP server (2) to dispatch containerized workflows onto free public supercomputing allocations (3), streaming every input, parameter, and output into a shareable research notebook.
                         </figcaption>
                     </figure>
 
-                    <p>Moving the agent off the laptop and onto what we call the <strong>Galactic plane</strong> solves three problems at once:</p>
-
-                    <ol>
-                        <li><strong>Free public supercomputing without sysadmin friction:</strong> Galaxy routes heavy jobs—multi-sample aligners, single-cell pipelines, or GPU protein language models—directly onto national supercomputing allocations (ACCESS-CI) and cloud nodes for free, without giving an autonomous agent raw SSH access to a university cluster.</li>
-                        <li><strong>Provenance by construction:</strong> Every input dataset, container digest, tool version, parameter, and intermediate table is locked automatically into an immutable Galaxy history and exported as a shareable research notebook.</li>
-                        <li><strong>Turning ad-hoc scripts into community tools:</strong> When an analysis genuinely needs custom code, the agent doesn't dump a disposable script on your hard drive. Instead, it packages the script as a versioned, containerized <strong>User-Defined Tool (UDT)</strong> inside the workflow—where the community can inspect, reuse, and harden it.</li>
-                    </ol>
+                    <p>Running on this <strong>Galactic plane</strong> gives agents three things local terminals cannot:
+                    (1) <strong>free national supercomputing</strong> (CPUs and GPUs on ACCESS-CI without giving agents raw SSH access);
+                    (2) <strong>automatic provenance</strong> (every input, tool version, and parameter locked into an immutable history and notebook); and
+                    (3) <strong>versioned User-Defined Tools (UDTs)</strong> in place of disposable local scripts.</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p>When we re-ran the <em>Bacillus cereus</em> replication with a generic command-line agent connected to UseGalaxy.org (Fig. 3), the value of visible provenance showed up before a single cluster job even finished.</p>
-
-                    <p>In a local terminal, you rarely notice which aligner an agent buried on line 140 of a shell script.
-                    Inspecting the proposed Galaxy workflow immediately revealed a classic amateur mistake: the agent had picked <code>HISAT2</code>—a eukaryotic <em>spliced</em> aligner designed to jump across introns—for an intronless bacterium!
-                    Running a spliced aligner on a bacterial genome hunts for nonexistent splice junctions, risks spurious split-read mappings across repetitive toxin loci, and wastes gigabytes of disk on sorted BAM files.
-                    Because bacteria lack introns, quantifying reads against the 5,472 annotated coding sequences with <code>Kallisto</code> (once you verify your targets don't sit on overlapping operon UTRs and deduplicate ribosomal frameshift headers) is both biologically cleaner and far faster—finishing each library in 38–60 seconds on public infrastructure and matching <code>HISAT2</code> across all 5,250 expressed loci ($r = 0.9622$, Fig. 3D).</p>
-
-                    <p>Even better, Galaxy’s typed workflow engine caught pipeline wiring bugs <em>before</em> execution: when the agent tried to wire a collection of <code>Kallisto</code> outputs into a standalone <code>tximport</code> step in front of <code>DESeq2</code>, the workflow editor flagged the collection-to-table mismatch in orange up front (Fig. 3A), prompting the agent to use <code>DESeq2</code>'s native <code>tximport</code> mode (Fig. 3B) instead of writing a hacky local parser.</p>
-
-                    <figure class="blog-figure">
-                        <img src="images/orbit_fig3_bacillus.png" alt="Bacillus cereus RNA-seq replication on UseGalaxy.org showing workflow validation, history notebook, and enterotoxin differential expression">
-                        <figcaption>
-                            <strong>Figure 3. Workflow and execution provenance on free public infrastructure catches pipeline errors and reproduces bacterial RNA-seq profiles.</strong>
-                            (A–B) Pre-execution type checking on UseGalaxy.org flags an incompatible collection connection in orange and validates the repaired workflow in green before cluster jobs launch.
-                            (C) Live provenance in an interactive Galaxy History Notebook running on free ACCESS-CI allocations.
-                            (D) Biological replication across the <em>B. cereus</em> ATCC 10987 coding transcriptome confirming 5.05-fold repression of <em>nheB</em>, 2.80-fold repression of <em>nheA</em>, 2.70-fold induction of <em>entFM</em>, and agreement between Kallisto and HISAT2 across 5,250 expressed loci ($r = 0.9622$).
-                        </figcaption>
-                    </figure>
-
-                    <hr class="fine-line-divider" />
-
-                    <p>What happens when you take this architecture—combining Orbit, <a href="https://brc-analytics.org" target="_blank" rel="noopener noreferrer">BRC-Analytics</a>, Workflow Foundry, and UseGalaxy.org—and use it to audit published studies across spatial transcriptomics, fungal drug resistance, and mosquito vector genomics?</p>
-
-                    <p>You quickly discover that <strong>end-to-end provenance is the ultimate forensic microscope for the scientific literature.</strong> Here are four stories from the paper:</p>
+                    <p>Across 48 biological analyses, mandatory provenance acted like a forensic microscope on the published literature:</p>
 
                     <ul>
+                        <li><strong>Catching bad bacterial pipelines before launch (<em>Bacillus cereus</em>):</strong>
+                        In Galaxy, inspecting the agent's proposed workflow immediately exposed that it had chosen <code>HISAT2</code>—a eukaryotic <em>spliced</em> aligner—for an intronless bacterium, and Galaxy’s workflow editor flagged a <code>tximport</code> collection mismatch before any jobs launched. Switching to <code>Kallisto</code> against the 5,472 coding loci finished in 38–60 seconds per library and reproduced the published toxin profile ($r = 0.9622$).</li>
+
                         <li><strong>The "agent reproducibility" benchmark that dropped 82% of its own data:</strong>
-                        Recently, the <em>Paper2Agent</em> study (<a href="https://doi.org/10.1038/s41587-026-03050-0" target="_blank" rel="noopener noreferrer">Miao et al., 2026</a>) demonstrated how to wrap a published method—<code>TISSUE</code>, which imputes unmeasured genes and calibrated uncertainty intervals in spatial transcriptomics—into an interactive AI agent.
-                        In their Data Availability statement, they cited the full 5,613-cell mouse somatosensory cortex scRNA-seq reference atlas (Zenodo Dataset 15) to predict expression of the smooth muscle marker <em>Acta2</em> across 3,405 osmFISH spatial cells.
-                        When we audited their benchmark with full dataset and workflow provenance, we uncovered a delicious irony: <strong>a benchmark built specifically to showcase automated agentic reproducibility had silently run on a 1,000-cell tutorial demo file bundled inside the GitHub repo instead of the 5,613-cell reference archive it cited!</strong>
-                        Because the original agent run had no inspectable execution record linking the published figure to the exact input file and cell count, over 82% of the reference atlas was silently thrown away—leaving predicted <em>Acta2</em> expression almost completely uncorrelated with ground truth ($r = 0.0861$).
-                        Using Orbit to register <code>TISSUE</code> as containerized tools on UseGalaxy.org, we first reproduced their 1,000-cell figure to floating-point precision ($r = 1.0000$, $\Delta_{\max} < 10^{-15}$), and then ran the exact same workflow on the full 5,613-cell reference dataset—<strong>tripling prediction accuracy to $r = 0.2553$</strong> ($r = 0.2845$ across all 33 spatial genes). Wrapping code in an agent means nothing without data provenance.</li>
+                        The recent <em>Paper2Agent</em> study (<a href="https://doi.org/10.1038/s41587-026-03050-0" target="_blank" rel="noopener noreferrer">Miao et al., 2026</a>) wrapped the spatial transcriptomics tool <code>TISSUE</code> into an agent and cited a 5,613-cell mouse cortex scRNA-seq reference archive (Dataset 15).
+                        Our provenance audit uncovered an ironic twist: <strong>their benchmark figure had actually been generated from a 1,000-cell tutorial demo file bundled inside the GitHub repo!</strong>
+                        Dropping 82% of the reference cells left predicted <em>Acta2</em> expression nearly uncorrelated with ground truth ($r = 0.0861$).
+                        Running <code>TISSUE</code> on UseGalaxy.org reproduced their 1,000-cell tutorial output to floating-point precision ($r = 1.0000$) and scaled to all 5,613 reference cells—<strong>tripling prediction accuracy to $r = 0.2553$</strong>.</li>
 
-                        <li><strong>The mystery of the missing 39% of fungal drug-resistance genes:</strong>
-                        We used Workflow Foundry and Orbit to compile a 60-step Galaxy workflow from the methods text of <a href="https://doi.org/10.1128/AAC.01735-17" target="_blank" rel="noopener noreferrer">Hokken et al. (2018)</a>, who profiled how the lethal airborne mold <em>Aspergillus fumigatus</em> adapts to the triazole antifungal itraconazole across 30 RNA-seq libraries (3 clinical isolates $\times$ 5 timepoints).
-                        When we ran four standard 12-sample pairwise <code>DESeq2</code> comparisons (each timepoint vs. baseline), our fold changes matched the paper ($r \ge 0.999$), but we missed up to 39% of the paper’s differentially expressed genes at later timepoints.
-                        Why? Auditing the authors' supplementary Excel sheet alongside our Galaxy tables revealed the smoking gun: every single gene had the <em>exact same</em> <code>baseMean</code> value across all four timepoints.
-                        Instead of fitting pairwise contrasts, the authors had fitted one pooled 30-sample <code>DESeq2</code> model across all five timepoints at once!
-                        Statistically, that is a completely reasonable choice for a time course with only two replicates per isolate-timepoint (pooling all 30 libraries gives 25 residual degrees of freedom to stabilize dispersion and applies a uniform $\text{baseMean} \ge 30$ filter)—but because the methods text never mentioned it, anyone trying to reproduce the paper pairwise would lose 40% of the gene list. Switching our Galaxy workflow to the pooled 30-sample design matched their standard errors to four decimal places and recovered 98.7–99.7% of the published gene counts ($r = 0.9996\text{–}0.9999$), while replacing a defunct fungal GO web server (AspGD) and a manual browser tool (REVIGO) with permanent User-Defined Tools.</li>
-
-                        <li><strong>When 92% biological agreement looks like a 50% failure:</strong>
-                        In the malaria mosquito vector <em>Anopheles gambiae</em>, <a href="https://doi.org/10.1186/s13072-021-00385-9" target="_blank" rel="noopener noreferrer">Ruiz et al. (2021)</a> used ATAC-seq to map open chromatin across midguts and salivary glands during <em>Plasmodium falciparum</em> infection.
-                        Running <code>MACS2</code> with the authors' cited parameters on UseGalaxy.org immediately recovered <strong>90.7–93.2%</strong> of the authors' deposited genomic peaks without any parameter tuning.
-                        Yet our consensus peak count was roughly half the headline numbers reported in the paper (43,010 midgut and 68,576 salivary-gland regions).
-                        Provenance tracking showed why: instead of merging overlapping peaks across biological replicates into consensus intervals, the published supplementary table listed every replicate peak as a separate unmerged row and used a custom containment filter in salivary glands. Encoding those exact table rules as Galaxy UDTs reproduced the paper's headline numbers within 0.4–4.6%.</li>
-
-                        <li><strong>The non-model mitochondrial prefix trap:</strong>
-                        When reproducing the <em>Aedes aegypti</em> mosquito midgut single-cell RNA-seq atlas of <a href="https://doi.org/10.1186/s12915-024-01896-y" target="_blank" rel="noopener noreferrer">Wang et al. (2024)</a>, generic <code>Scanpy</code> quality-control pipelines reported <em>zero</em> mitochondrial reads in every single cell—because standard single-cell tutorials look for human/mouse <code>MT-</code> or <code>mt-</code> prefixes, whereas VectorBase labels mosquito mitochondrial genes with standard <code>AAEL</code> locus tags!
-                        Because the Galaxy QC plots made the zeroed distribution obvious immediately, Orbit prefixed the mitochondrial annotations, filtered the droplets to 6,707 high-quality singlets (matching the paper’s 7,147), and recovered all canonical midgut cell-type and blood-meal digestion markers de novo.</li>
+                        <li><strong>Unstated statistical pooling &amp; annotation traps:</strong>
+                        In a 30-sample antifungal time-course of <em>Aspergillus fumigatus</em> (<a href="https://doi.org/10.1128/AAC.01735-17" target="_blank" rel="noopener noreferrer">Hokken et al., 2018</a>), standard pairwise <code>DESeq2</code> missed 39% of published DEGs until our provenance audit spotted identical <code>baseMean</code> values across all timepoints—proving the authors had fitted one pooled 30-sample model (25 residual d.f. to stabilize dispersion). Switching to the pooled design matched their gene counts within 0.3–1.3% ($r \ge 0.9996$).
+                        Similarly, provenance audits resolved unmerged replicate rows in <em>Anopheles gambiae</em> ATAC-seq (90.7–93.2% raw peak recovery) and fixed a non-model <code>AAEL</code> mitochondrial gene prefix in <em>Aedes aegypti</em> scRNA-seq that caused generic <code>Scanpy</code> QC to report zero mitochondrial reads.</li>
                     </ul>
 
                     <hr class="fine-line-divider" />
 
-                    <p>Reproducing past papers is only half the story.
-                    What happens when we point Orbit and free public supercomputing at open biological discovery problems that would crush a personal laptop?</p>
+                    <p>Beyond auditing past work, Orbit and free public GPUs/CPUs power large-scale biological discovery:</p>
 
-                    <p>First, we tackled a classic puzzle in malaria evolution: the <strong><em>Plasmodium vivax</em> VIR surface antigen repertoire</strong>.
-                    Every <em>P. vivax</em> genome encodes nearly 1,000 exported VIR proteins that remodel infected red blood cells and mediate spleen cytoadherence.
-                    Because host immunity drives relentless diversifying selection, VIR proteins dive deep into the sequence twilight zone ($\le 30\%$ amino acid identity; Fig. 4A).
-                    If you cluster the 2,592 VIR proteins from reference genomes in Indonesia (PvP01), Thailand (PvW1), and Peru (PvPAM) by sequence alone, they shatter into <strong>203 clusters (146 subfamilies with $\ge 3$ members)</strong>—creating the long-held impression that <em>P. vivax</em> surface repertoires evolved largely independently on each continent.</p>
+                    <ul>
+                        <li><strong>Unifying malaria surface antigens across continents:</strong>
+                        Each <em>Plasmodium vivax</em> genome encodes ~1,000 hypervariable VIR surface proteins that fall into the sequence twilight zone ($\le 30\%$ identity), fracturing 2,592 proteins from Indonesia, Thailand, and Peru into 203 sequence clusters.
+                        By registering 10 UDTs on UseGalaxy.org to run <code>ProstT5</code>, <code>Foldseek</code>, <code>FoldMason</code>, and <code>IQ-TREE 3</code> on ACCESS-CI A100 GPUs (Fig. 3), Orbit collapsed the repertoire into 73–76 structural classes and showed that <strong>over 97% of all VIR proteins belong to 21 ancestral folds shared across all three continents</strong> ($p = 0.55$ for geographic mixing).</li>
 
-                    <p>To test whether 3D structural homology tells a different story, Orbit registered <strong>10 User-Defined Tools on UseGalaxy.org</strong> (one GPU tool and nine multi-core CPU tools) orchestrating the 4.4 GB <code>ProstT5</code> protein language model, <code>Foldseek</code> 3Di structural clustering, <code>FoldMason</code> structural alignment, synteny mapping, and <code>IQ-TREE 3</code> maximum-likelihood phylogenetics on ACCESS-CI NVIDIA A100 GPUs.</p>
+                        <li><strong>Dating 42 pathogen epidemics in seconds:</strong>
+                        Wrapping <a href="https://github.com/veg/chronaeon" target="_blank" rel="noopener noreferrer"><code>ChronAeon</code></a> as Galaxy UDTs, Orbit dated 42 published viral and bacterial BEAST benchmark alignments (Ebola, SARS-CoV-2, Zika, Dengue, Mpox, <em>Y. pestis</em>) in seconds per cohort instead of days of MCMC sampling, matching reference Bayesian emergence dates on 64.1% of scored outbreaks (median error $0.40$ years post-1980).</li>
+                    </ul>
 
                     <figure class="blog-figure">
                         <img src="images/orbit_fig4_vir.png" alt="Structure-aware reconstruction of Plasmodium vivax VIR surface antigens across Indonesia, Thailand, and Peru">
                         <figcaption>
-                            <strong>Figure 4. Structure-aware family reconstruction and ancestral lineage sharing of <em>Plasmodium vivax</em> VIR surface antigens across continental genomes.</strong>
-                            (A) While single-copy housekeeping genes between Thailand (PvW1) and Peru (PvPAM) share 99.8% median amino acid identity (amber), VIR homologs within the dominant superfamily FS_001 drop into the twilight zone (median 74.5%, IQR 25.9%, blue). Sequence clustering fractures the 2,592 VIR proteins across Indonesia, Thailand, and Peru into 203 clusters (146 subfamilies with $\ge 3$ members), whereas ProstT5 + Foldseek 3Di structural clustering collapses them into 73–76 structural classes.
-                            (B) Maximum-likelihood structural phylogeny (IQ-TREE 3 on FoldMason amino acid + 3Di alignments) of 338 FS_001 representatives shows complete geographic interleaving across Indonesia (red), Thailand (blue), and Peru (green; parsimony permutation $p = 0.55$).
+                            <strong>Figure 3. Structure-aware phylogenomics of <em>Plasmodium vivax</em> VIR antigens on public GPUs.</strong>
+                            (A) ProstT5 + Foldseek 3Di structural clustering collapses 203 sequence-fragmented VIR clusters across Indonesia, Thailand, and Peru into 73–76 structural classes.
+                            (B) IQ-TREE 3 structural phylogeny of 338 dominant-superfamily (FS_001) representatives shows complete geographic interleaving across continents ($p = 0.55$).
                         </figcaption>
                     </figure>
 
-                    <p>Structure-aware clustering cut repertoire complexity in half, collapsing the 203 sequence clusters into <strong>73 structural classes locally and 76 on UseGalaxy.org</strong> (a minor 73-vs.-76 split caused by floating-point tie-breaking in greedy clustering on borderline 3Di alignments across hardware architectures).
-                    Across every hardware branch, the biological punchline was identical: <strong>21 core structural folds are shared across Indonesia, Thailand, and Peru and account for over 97% of all VIR proteins (97.3–97.6%)</strong>, while continent-specific classes hold just 2.0% of the repertoire!
-                    Even though 64.5% of <em>vir</em> genes sit in subtelomeric regions where ectopic recombination scrambles synteny (preserving synteny in only 11 of 194 reciprocal best-hit pairs), the structural phylogeny of the dominant superfamily (FS_001) is completely interleaved across continents ($p = 0.55$; Fig. 4B).
-                    <em>P. vivax</em> did not invent new surface folds on each continent; it maintains an ancient, globally conserved structural toolkit under extreme sequence turnover.</p>
-
-                    <p>Second, to test high-throughput orchestration across dozens of cohorts at once, Orbit registered two User-Defined Tools wrapping <a href="https://github.com/veg/chronaeon" target="_blank" rel="noopener noreferrer"><code>ChronAeon</code></a> on UseGalaxy.org and dated the emergence ($t_{\mathrm{MRCA}}$) of <strong>42 published viral and bacterial epidemic benchmark alignments</strong>—spanning Ebola, SARS-CoV-2, Zika, Dengue, Chikungunya, Mpox, Influenza, <em>Mycobacterium abscessus</em>, and <em>Yersinia pestis</em>.
-                    Instead of running days of Bayesian MCMC sampling in BEAST for each dataset, all 42 cohorts finished in <strong>seconds of core manifold computation per alignment</strong> inside a single Galaxy history, matching reference Bayesian emergence dates across 64.1% of scored comparators (with a median error of just $0.40$ years across post-1980 outbreaks) while cleanly flagging the ancient saturated trees and multi-lineage mixtures where unrooted regression breaks down.</p>
-
-                    <hr class="fine-line-divider" />
-
-                    <p>Where does scientific software go from here?</p>
-
-                    <p>We are entering an era where agents connected to decompilers and binary analysis tools can reverse-engineer or rewrite almost any command-line package on demand.
-                    If every lab lets coding agents improvise bespoke tools and pipelines on isolated laptops, the literature will drown in fast, slick, and irreproducible results.</p>
-
-                    <p>When we route agentic execution through shared public infrastructure like UseGalaxy.org, the incentives flip completely.
-                    Free national supercomputing removes the hardware barrier; mandatory workflow and dataset histories make every step verifiable by default; and every User-Defined Tool an agent creates becomes visible in a shared community cloud where the best implementations can compete openly on real benchmarks and harden into permanent scientific standards.</p>
+                    <p>When coding agents run in isolated local shells, they generate disposable scripts and unverifiable claims.
+                    When we ground them in shared public infrastructure, every prompt produces a permanent, auditable scientific record—and every custom wrapper becomes a community asset.</p>
 
                     <div class="callout-box">
                         <strong>Explore the Galactic Plane</strong>
-                        Across all 48 analyses in our study, every input dataset, container version, User-Defined Tool, workflow, and interactive research notebook is permanently archived and publicly inspectable on <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a>. Preprint link and companion repositories will be added here as soon as the manuscript goes live.
+                        All 48 analyses—including input datasets, container digests, User-Defined Tools, workflows, and interactive research notebooks—are permanently archived on <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a>. Preprint link and companion repositories will be added here as soon as the manuscript goes live.
                     </div>
                 </div>
             </article>
