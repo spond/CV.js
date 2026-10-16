@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HIV-TRACE learned to stop worrying and love the molecular clock | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="How HIV-TRACE learned to stop worrying and love the molecular clock">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-16-trace50.html">
+    <meta name="twitter:description" content="Static genetic distance thresholds treat viral sequences sampled days apart identically to sequences sampled years apart. Here is how TRACE-5.0 embeds pairwise distances into an explicit coalescent molecular clock—nearly doubling patient yield and cutting false-alarm clusters by 93%.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/trace50_fig1_danno_dc.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="How HIV-TRACE learned to stop worrying and love the molecular clock">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-16-trace50.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/trace50_fig1_danno_dc.png">
+    <meta property="og:description" content="Static genetic distance thresholds treat viral sequences sampled days apart identically to sequences sampled years apart. Here is how TRACE-5.0 embeds pairwise distances into an explicit coalescent molecular clock—nearly doubling patient yield and cutting false-alarm clusters by 93%.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .blog-article-container {
+            max-width: 820px;
+            padding: 4rem;
+        }
+
+        .blog-nav-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-nav-btn {
+            background: var(--text-main);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.78rem;
+            border: 2px solid var(--border-color);
+            display: inline-block;
+        }
+
+        .blog-nav-btn.secondary {
+            background: #ffffff;
+            color: var(--text-main);
+        }
+
+        .blog-nav-btn:hover {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .post-header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background: var(--text-main);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.06em;
+        }
+
+        .post-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .post-meta a {
+            color: var(--text-main);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .post-content {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.04rem;
+            line-height: 1.8;
+            color: #111827;
+        }
+
+        .post-content p {
+            margin-bottom: 1.4rem;
+        }
+
+        .post-content a {
+            color: #000000;
+            text-decoration: underline;
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 3px;
+        }
+
+        .post-content a:hover {
+            background: #000000;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .post-content code {
+            font-family: var(--font-family);
+            font-size: 0.88em;
+            background: #f3f4f6;
+            padding: 0.15rem 0.4rem;
+            border: 1px solid #d1d5db;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.25rem 0 1.6rem 1.75rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .post-content hr.fine-line-divider {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 2.75rem 0;
+        }
+
+        .dropcap {
+            float: left;
+            font-family: var(--font-family);
+            font-size: 3.1rem;
+            line-height: 0.85;
+            padding-top: 4px;
+            padding-right: 10px;
+            padding-bottom: 2px;
+            font-weight: 800;
+        }
+
+        .blog-figure {
+            margin: 2.5rem 0;
+            border: 2px solid var(--border-color);
+            padding: 1.25rem;
+            background: #ffffff;
+        }
+
+        .blog-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .blog-figure figcaption {
+            font-family: var(--font-family);
+            font-size: 0.78rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* Industrial 2x2 Key Takeaways Grid + Thesis Zinger */
+        .takeaways-section {
+            margin: 0 0 2.75rem 0;
+        }
+
+        .takeaways-header {
+            display: inline-block;
+            background: var(--text-main);
+            color: #ffffff;
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0;
+        }
+
+        .takeaways-zinger {
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            background: #f9fafb;
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #111827;
+            margin: 0 !important;
+        }
+
+        .takeaways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        .takeaway-card {
+            border-right: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1.35rem 1.5rem;
+        }
+
+        .takeaway-stat {
+            font-family: var(--font-family);
+            font-size: 1.45rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-main);
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.02em;
+        }
+
+        .takeaway-label {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #374151;
+            margin: 0 !important;
+        }
+
+        .callout-box {
+            font-family: var(--font-family);
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: #f9fafb;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .callout-box strong {
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 1024px) {
+            .blog-article-container {
+                padding: 2rem;
+            }
+            .post-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .takeaways-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="../index.html#/blog">← All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Software &amp; Legacy Tools</h3>
+                <div class="links-list">
+                    <a href="https://github.com/veg/hivtrace" target="_blank" rel="noopener noreferrer">HIV-TRACE on GitHub</a>
+                    <a href="https://doi.org/10.1093/molbev/msy016" target="_blank" rel="noopener noreferrer">HIV-TRACE Paper (2018)</a>
+                    <a href="https://doi.org/10.3389/fbinf.2024.1400003" target="_blank" rel="noopener noreferrer">AUTO-TUNE Paper (2024)</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <article class="blog-article-container">
+                <div class="blog-nav-bar">
+                    <a href="../index.html#/blog" class="blog-nav-btn">← Back to Blog</a>
+                    <a href="https://github.com/veg/hivtrace" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">HIV-TRACE ↗</a>
+                </div>
+
+                <header class="post-header">
+                    <span class="post-tag">Molecular Epidemiology &amp; Phylodynamics</span>
+                    <h1>How HIV-TRACE learned to stop worrying and love the molecular clock</h1>
+                    <div class="post-meta">
+                        <span><i>16 Oct 2026, by Sergei</i></span>
+                        <span>·</span>
+                        <span>3 min read</span>
+                        <span>·</span>
+                        <span>Preprint: <i>Forthcoming</i></span>
+                    </div>
+                </header>
+
+                <div class="post-content">
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">Key Takeaways</span>
+                        <p class="takeaways-zinger">
+                            <strong>Standard HIV-1 molecular surveillance uses fixed genetic-distance cutoffs (0.5% or 1.5%) that ignore when sequences were sampled—severing delayed transmission links while chaining unlinked patients and lab errors into giant "megaclusters."</strong>
+                            By embedding pairwise distances into an explicit coalescent molecular clock, <code>TRACE-5.0</code> nearly doubles resource-normalized case yield, cuts false-alarm clusters by 93%, and estimates total undiagnosed epidemic size in seconds inside a local web browser.
+                        </p>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">+99% Case Yield</div>
+                                <div class="takeaway-label">2D Coalescent Odds (DANNO)</div>
+                                <p class="takeaway-desc">Jointly testing genetic distance $d$ and sampling lag $\Delta T$ doubles follow-up cases per targeted patient in Washington, DC ($0.400 \to 0.796$) while purging lab repeats.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">83.3% Cluster PPV</div>
+                                <div class="takeaway-label">Evolutionary Velocity (STEVE)</div>
+                                <p class="takeaway-desc">Spectral graph partitioning and local root-to-tip velocity separate active outbreaks ($\mu \approx 15 \times 10^{-3}\text{ sub/site/yr}$) from endemic drift, cutting false alarms by 92.9%.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">$E_{\mathrm{obs}} \propto \rho^2$ Inversion</div>
+                                <div class="takeaway-label">Reservoir Sizing (CHIN)</div>
+                                <p class="takeaway-desc">Inverting birthday-paradox edge collisions estimates surveillance coverage ($\hat{\rho} = 8.4\%$) and total transmitting pool ($\hat{N}_{\mathrm{act}} = 19{,}700$), matching public health benchmarks.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">&lt;10s in Browser</div>
+                                <div class="takeaway-label">Zero-Install Rust / WebAssembly</div>
+                                <p class="takeaway-desc">Screens 5,000+ patient nationwide registries in under 10 seconds completely offline in any browser, keeping sensitive clinical sequences inside the firewall.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>For the past decade, routine HIV-1 molecular surveillance in municipal and national health departments has relied on a remarkably simple recipe (<a href="https://doi.org/10.1093/molbev/msy016" target="_blank" rel="noopener noreferrer">Kosakovsky Pond et al., 2018</a>): take the <em>pol</em> gene sequences collected during standard drug-resistance testing, compute all pairwise Tamura–Nei (TN93) genetic distances, and connect any two patients whose sequences differ by less than a fixed threshold—typically $1.5\%$, or $0.5\%$ for US federal priority monitoring.</p>
+
+                    <p>Pairwise distance graphs became the workhorse of public health surveillance because they are fast, intuitive, and tree-free.
+                    Yet a static threshold has a glaring blind spot: <strong>it treats two viral sequences sampled on the same afternoon identically to two sequences sampled four years apart.</strong></p>
+
+                    <p>In a new study with Steven Weaver, Darren Martin, Taylor Paisie, Daria Chalkova, Brittany Rife Magalis, Simon Frost, and Joel Wertheim (<em>TRACE-5.0: Dynamic Transmission Surveillance, or How HIV-TRACE Learned to Stop Worrying and Love the Molecular Clock</em>), we show how replacing flat distance cutoffs with an explicit, tree-free molecular clock resolves the worst pathologies of molecular surveillance across 10,259 patients in four global cohorts.</p>
+
+                    <hr class="fine-line-divider" />
+
+                    <p><span class="dropcap">W</span>hat goes wrong when you draw a flat horizontal cutoff across a living epidemic?
+                    Two opposite failures happen at once (Fig. 1C):</p>
+
+                    <ul>
+                        <li><strong>Tight cutoffs ($0.5\%$) sever delayed diagnoses:</strong> Even in a direct transmission pair, HIV-1 accumulates ~4 ancestral donor polymorphisms plus forward mutations at $\mu \approx 2.0 \times 10^{-3}\text{ subs/site/year}$. Under our coalescent model, the probability that a true transmission pair stays below $0.5\%$ drops from $73.8\%$ at simultaneous sampling ($\Delta T = 0$) to $34.6\%$ at two years and $11.2\%$ at four years. In the Washington, DC cohort ($N = 1{,}658$, <a href="https://doi.org/10.1371/journal.pone.0185644" target="_blank" rel="noopener noreferrer">Pérez-Losada et al., 2017</a>), a strict $0.5\%$ ceiling severs <strong>38.8% (19/49)</strong> of clock-supported transmission dyads—and collapses prospective case recall to just 8.9%.</li>
+                        <li><strong>Lenient cutoffs ($1.5\%$) chain unlinked patients and lab errors into "megaclusters":</strong> Conversely, two sequences sampled four years apart with <em>zero</em> mutations ($d = 0\%$, $\Delta T = 4.03\text{ yr}$) cannot represent active forward replication—they are unmutated specimen duplicates, clinic re-accessions, or HXB2 lab carryover ("Wo Fat" artifacts). A static threshold clusters them with maximum confidence, chaining background lineages into sprawling hairballs: a 90-patient megacluster in DC (Fig. 1A), a 332-patient HXB2-nucleated cluster in Middle Tennessee (<a href="https://doi.org/10.1089/aid.2018.0039" target="_blank" rel="noopener noreferrer">Dennis et al., 2018</a>), a 2,896-patient component (70.4% of clustered cases!) across Japan (<a href="https://doi.org/10.3389/frph.2020.531212" target="_blank" rel="noopener noreferrer">Shiino et al., 2020</a>), and 91.2% of a founder-compressed CRF07_BC cohort in Shenzhen (<a href="https://doi.org/10.1038/srep28703" target="_blank" rel="noopener noreferrer">Zhao et al., 2016</a>).</li>
+                    </ul>
+
+                    <figure class="blog-figure">
+                        <img src="images/trace50_fig1_danno_dc.png" alt="DANNO outbreak triage, network deconstruction, and 2D phase space in Washington, DC">
+                        <figcaption>
+                            <strong>Figure 1. Replacing static distance thresholds with 2D coalescent odds (DANNO) in Washington, DC ($N = 1{,}658$).</strong>
+                            (A) Static TN93 ($d \le 1.5\%$, orange) chains 318 patients into 94 clusters, including a 90-patient megacluster. DANNO ($q \le 0.10$, blue) prunes 210 unsupported/stagnant links and collapses the 90-patient hairball by 74% into a 23-patient active core.
+                            (B–C) In a 9-patient sub-network, DANNO rejects a stagnant 1.7-year clock violation ($\mathbf{BF}=0$, purple cross) and detaches near-boundary passengers while rescuing multi-month transmission links that a strict $0.5\%$ cutoff severs.
+                        </figcaption>
+                    </figure>
+
+                    <hr class="fine-line-divider" />
+
+                    <p>How do we bring molecular-clock realism to surveillance registries of 5,000+ patients without waiting 48 hours for Bayesian MCMC trees in BEAST to converge?
+                    <code>TRACE-5.0</code> operates across three mathematical scales—all in closed form or fast spectral algebra:</p>
+
+                    <ol>
+                        <li><strong>Dyadic Scale — <code>DANNO</code> (Dynamic Ancestral Negative-binomial Network Odds):</strong>
+                        For every pair of sequences separated by $K = d \cdot L$ substitutions and $\Delta T = |t_i - t_j|$ years, <code>DANNO</code> integrates over exponentially distributed donor coalescent depth ($\bar{\tau}$) and forward Poisson evolution ($\mu$) in closed form via the regularized upper incomplete gamma function $Q(s,x) = \Gamma(s,x)/\Gamma(s)$:
+                        $$P(K \mid \Delta T, H_{\text{trans}}) = \frac{\exp\!\left(\frac{\Delta T}{2\bar{\tau}}\right)}{\bar{\tau}} \left[ \frac{(2\mu L)^K}{(2\mu L + \bar{\tau}^{-1})^{K+1}} \right] Q\!\left(K + 1, \, \frac{2\mu L + \bar{\tau}^{-1}}{2}\Delta T\right)$$
+                        We compare $H_{\text{trans}}$ against a self-calibrated Negative-Binomial/triangular background null ($H_{\text{null}}$), hard-zero any pair that fails a Poisson molecular-clock adequacy test ($p_{\text{adeq}} < 0.05 \implies \mathbf{BF}=0$), and certify edges via Bayesian False Discovery Rate control ($q \le 0.10$ or $0.05$).</li>
+
+                        <li><strong>Community Scale — <code>STEVE</code> (Spectral Temporal Evolutionary Velocity Engine):</strong>
+                        To break apart sprawling single-linkage components without building a tree, <code>STEVE</code> recursively bisects sequence affinity graphs using Fiedler eigenvectors (Cheeger cuts) and fits Bartlett-adjusted root-to-tip regressions with exact <a href="https://doi.org/10.1111/j.2517-6161.1954.tb00159.x" target="_blank" rel="noopener noreferrer">Fieller confidence bounds</a>. That separates <strong>Tier 1 Active Outbreaks</strong> (high evolutionary velocity, median $\mu = 15.2 \times 10^{-3}\text{ sub/site/yr}$ in DC, driven by rapid acute replication before purifying selection prunes transient variants) and <strong>Tier 2 Emergent Seeds</strong> from <strong>Tier 3 Chronic/Endemic Reservoirs</strong> ($\mu \le 5 \times 10^{-4}$ or unidentifiable clocks $g \ge 1$).</li>
+
+                        <li><strong>Macro-Epidemic Scale — <code>CHIN</code> (Cluster-to-Host Incidence and Network):</strong>
+                        Sampling an infected person scales linearly with surveillance coverage ($\mathbb{E}[n] = \rho N_{\mathrm{act}}$), but sampling <em>both</em> partners of a transmission link scales quadratically ($\mathbb{E}[E_{\mathrm{obs}}] \propto \rho^2$, just like the birthday paradox). By inverting $\hat{\theta} = 2E_{\mathrm{obs}}/n = \widehat{\rho R_0 (1+\phi)}$ across priors for $R_0$, superspreading overdispersion $k$, and partner-tracing enrichment $\phi$, <code>CHIN</code> estimates total active epidemic size directly from network topology.</li>
+                    </ol>
+
+                    <hr class="fine-line-divider" />
+
+                    <p>To test whether this actually helps public health teams allocate limited field resources, we ran strict retrospective temporal-holdout validations across Washington, DC, Middle Tennessee, Japan, and Shenzhen—calibrating strictly on historical cases ($t \le T_{\mathrm{censor}}$) and measuring who linked to future cases over the next 3.3 years (Fig. 2):</p>
+
+                    <ul>
+                        <li><strong>Nearly doubling patient-level case yield (<code>DANNO</code>):</strong>
+                        In Washington, DC ($T_{\mathrm{censor}} = 2012.50$), targeting acute <code>DANNO</code> clusters ($q \le 0.05, \Delta T \le 2\text{ yr}$) focused partner services on just 54 historical patients (a 61.4% reduction in workload vs. 140 under static $1.5\%$) while capturing 43 follow-up cases—<strong>boosting yield by 99.0%</strong> ($0.400 \to 0.796$ follow-up cases per targeted patient; Fig. 2D2) and retaining 76.8–100% recall across all four global cohorts without manual threshold tuning.</li>
+
+                        <li><strong>Cutting false-alarm clusters by 92.9% (<code>STEVE</code>):</strong>
+                        Static $1.5\%$ clustering flagged 41 DC clusters, producing 28 false alarms (31.7% precision). Standard size-normalized growth (<a href="https://doi.org/10.1093/infdis/jiy431" target="_blank" rel="noopener noreferrer">$\Delta N / \sqrt{N} \ge 0.70$</a>) reached 36.4% precision (21.2% at 12 months), with over half its follow-up cases absorbed passively by a single 49-person background hairball (Fig. 2C). <code>STEVE</code> prioritized 12 high-velocity clusters, <strong>10 of which expanded (83.3% precision, 58.3% within 12 months, and just 2 false alarms; Fisher $\text{OR} = 8.75, p = 0.0074$)</strong>.</li>
+
+                        <li><strong>Recovering true municipal HIV prevalence from network collisions (<code>CHIN</code>):</strong>
+                        Across all four registries, <code>CHIN</code>'s quadratic collision inversion recovered independent public health benchmarks—estimating $\hat{N}_{\mathrm{act}} = 19{,}700$ ($[13{,}100, 29{,}500]$ at $\hat{\rho} = 8.4\%$ coverage) in DC vs. 16,000–18,000 total living HIV cases (Fig. 3C); $\hat{N}_{\mathrm{act}} = 17{,}409$ in Middle Tennessee vs. 13,000–16,500; $\hat{N}_{\mathrm{act}} = 14{,}114$ in Japan vs. 16,000–22,000; and $\hat{N}_{\mathrm{act}} = 611$ in Shenzhen vs. the 600–900 diagnosed CRF07_BC catchment.</li>
+                    </ul>
+
+                    <figure class="blog-figure">
+                        <img src="images/trace50_fig2_prospective_yield.png" alt="Retrospective temporal-holdout validation of STEVE and DANNO in Washington, DC">
+                        <figcaption>
+                            <strong>Figure 2. Retrospective temporal-holdout validation across the Washington, DC censoring boundary ($T_{\mathrm{censor}} = 2012.50$).</strong>
+                            (A–B) Ten of twelve STEVE velocity-prioritized clusters expand during 3.3 years of follow-up along steep root-to-tip clock corridors ($\mu = 15.2 \times 10^{-3}\text{ sub/site/yr}$), whereas non-prioritized wedged/endemic clusters flatline.
+                            (C–D) STEVE achieves 83.3% cluster precision (58.3% at 12 months; 2.75× gain over $\Delta N/\sqrt{N}$), while DANNO nearly doubles follow-up case yield per targeted patient ($0.796$ vs. $0.400$).
+                        </figcaption>
+                    </figure>
+
+                    <figure class="blog-figure">
+                        <img src="images/trace50_fig3_continuum.png" alt="Cross-scale synthesis of DANNO, STEVE, and CHIN in Washington, DC">
+                        <figcaption>
+                            <strong>Figure 3. Cross-scale surveillance continuum in Washington, DC.</strong>
+                            (A) Micro-scale: DANNO separates active molecular-clock trajectories from stagnant repeat errors.
+                            (B) Meso-scale: STEVE isolates expanding high-velocity outbreaks from passive megacluster perimeters.
+                            (C) Macro-scale: CHIN inverts quadratic edge collisions ($\gamma = 2.200$) to bound surveillance coverage ($\hat{\rho} = 8.4\%$) and total reservoir size ($\hat{N}_{\mathrm{act}} = 19{,}700$).
+                        </figcaption>
+                    </figure>
+
+                    <p>Because clinical viral genotypes are protected health records that cannot be uploaded to external cloud servers, we wrote <code>TRACE-5.0</code> in pure Rust and compiled it to WebAssembly (<code>trace50-wasm</code>).
+                    A municipal epidemiologist can drop 5,000+ sequences into a web browser and run the entire <code>DANNO</code> + <code>STEVE</code> + <code>CHIN</code> pipeline in under 10 seconds—completely offline, with zero data ever leaving the health department firewall.</p>
+
+                    <div class="callout-box">
+                        <strong>Try TRACE-5.0</strong>
+                        <code>TRACE-5.0</code> is implemented in Rust with native CLI binaries (<code>trace50-cli</code>) and zero-install, privacy-preserving WebAssembly browser modules (<code>trace50-wasm</code>), and generalizes directly to HCV, Norovirus, and other rapidly evolving pathogens via three lifecycle parameters ($\mu, \bar{\tau}, \omega$). Preprint link and public release links will be posted here as soon as the manuscript goes live.
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>
