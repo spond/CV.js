@@ -194,6 +194,66 @@
             border-top: 1px solid #e5e7eb;
         }
 
+        /* Industrial 2x2 Takeaways Grid */
+        .takeaways-section {
+            margin: 0 0 2.75rem 0;
+        }
+
+        .takeaways-header {
+            display: inline-block;
+            background: var(--text-main);
+            color: #ffffff;
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0;
+        }
+
+        .takeaways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        .takeaway-card {
+            border-right: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1.35rem 1.5rem;
+        }
+
+        .takeaway-stat {
+            font-family: var(--font-family);
+            font-size: 1.45rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-main);
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.02em;
+        }
+
+        .takeaway-label {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #374151;
+            margin: 0 !important;
+        }
+
         .callout-box {
             font-family: var(--font-family);
             border: 2px solid var(--border-color);
@@ -212,20 +272,18 @@
             letter-spacing: 0.05em;
         }
 
-        .callout-box ul {
-            margin: 0.5rem 0 0 1.25rem;
-        }
-
-        .callout-box li {
-            margin-bottom: 0.45rem;
-        }
-
         @media (max-width: 1024px) {
             .blog-article-container {
                 padding: 2rem;
             }
             .post-header h1 {
                 font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .takeaways-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -281,14 +339,30 @@
                 </header>
 
                 <div class="post-content">
-                    <div class="callout-box" style="margin-top: 0;">
-                        <strong>Top-Line Takeaways</strong>
-                        <ul>
-                            <li><strong>Local agents splinter and leave no trail:</strong> Handed the same bacterial RNA-seq study, 30 frontier coding agents (Claude, Codex, Gemini) proposed <strong>18 different pipelines</strong>, silently altered which toxin genes were detected, and generated <strong>26 unversioned local glue scripts</strong>.</li>
-                            <li><strong>Public infrastructure fixes all three bottlenecks:</strong> Connecting CLI agents or our <strong>Orbit</strong> desktop workbench to <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a> routes heavy jobs onto <strong>free national supercomputers (ACCESS-CI)</strong> while locking every tool version, parameter, and dataset into a shareable research notebook.</li>
-                            <li><strong>Provenance acts as a forensic microscope:</strong> Auditing published papers uncovered that an "agent reproducibility" benchmark (<em>Paper2Agent</em>) had silently run on a <strong>1,000-cell tutorial demo file instead of the 5,613-cell reference archive it cited</strong> (dropping 82% of cells and reducing accuracy from $r = 0.2553$ to $0.0861$), while resolving unstated 30-sample pooling in fungal RNA-seq and non-model annotation traps in mosquito vectors.</li>
-                            <li><strong>Discovery at supercomputing scale:</strong> Using containerized GPU and multi-core tools on UseGalaxy.org, Orbit unified 2,592 hypervariable <em>Plasmodium vivax</em> malaria antigens across three continents (&gt;97% shared structural folds) and dated <strong>42 pathogen epidemics in seconds per alignment</strong> instead of days of BEAST MCMC sampling.</li>
-                        </ul>
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">Key Takeaways</span>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">30 Agents → 18 Pipelines</div>
+                                <div class="takeaway-label">Local Execution Splinters</div>
+                                <p class="takeaway-desc">Given the same bacterial RNA-seq study, 29 of 30 frontier agents diverged from the paper, altering which toxin genes were detected and leaving 26 unversioned glue scripts.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">Free Public Compute</div>
+                                <div class="takeaway-label">Orbit + UseGalaxy.org</div>
+                                <p class="takeaway-desc">Connecting CLI agents or the Orbit workbench to Galaxy routes heavy jobs onto national ACCESS-CI supercomputers while recording every step in a shareable notebook.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">82% Missing Data Caught</div>
+                                <div class="takeaway-label">Forensic Literature Audits</div>
+                                <p class="takeaway-desc">Provenance exposed that the <em>Paper2Agent</em> benchmark ran on a 1,000-cell tutorial file instead of the 5,613-cell atlas it cited (tripling accuracy once restored on Galaxy).</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">&gt;97% Shared Folds · 42 Outbreaks</div>
+                                <div class="takeaway-label">Discovery at Scale</div>
+                                <p class="takeaway-desc">Agents orchestrated GPU protein models to unify 2,592 <em>P. vivax</em> malaria antigens across continents and dated 42 pathogen epidemics in seconds per alignment.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <p>Over the past year, students, postdocs, and PIs across our labs—including hardened AI skeptics—started opening command-line coding agents, got hooked, and stopped analyzing data any other way.</p>
