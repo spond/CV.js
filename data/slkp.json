@@ -1340,6 +1340,18 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-21",
+                {
+                    "url": "blog/2026-10-16-trace50.html",
+                    "link-text": "How HIV-TRACE learned to stop worrying and love the molecular clock",
+                    "subtext": "Static genetic-distance thresholds treat viral sequences sampled days apart identically to sequences sampled years apart. Here is how TRACE-5.0 pairs genetic divergence with sampling dates to nearly double follow-up cases per prioritized patient, cut non-growing priority clusters by 93%, and bound total active epidemic size in seconds inside a local web browser."
+                },
+                {
+                    "url": "https://doi.org/10.5281/zenodo.23540895",
+                    "link-text": "Zenodo: 10.5281/zenodo.23540895"
+                }
+            ],
+            [
                 "2026-10-16",
                 {
                     "url": "blog/2026-10-16-dfel.html",
