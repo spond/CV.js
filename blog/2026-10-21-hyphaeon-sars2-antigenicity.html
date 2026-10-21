@@ -363,7 +363,7 @@
                         <span class="takeaways-header">Key Takeaways</span>
                         <p class="takeaways-zinger">
                             <strong>Standard $dN/dS$ selection scans average over an entire viral tree, mistaking completed pandemic sweeps for conserved sites and missing how escape mutations team up across the protein.</strong>
-                            Pairing Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom’s new human B-cell study with <code>HyphAeon</code>—our fast phylogenetic model of natural selection—shows that mutations hiding from brand-new human B cells drove the fastest sweeps of the pandemic before Spike evolved a molecular latch to tuck its receptor-binding domain out of sight.
+                            Pairing Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom’s new human B-cell study with <a href="https://doi.org/10.64898/2026.09.06.749597" target="_blank" rel="noopener noreferrer"><code>HyphAeon</code></a> (<a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer">GitHub</a>)—our fast phylogenetic model of natural selection—shows that mutations hiding from brand-new human B cells drove the fastest sweeps of the pandemic before Spike evolved a molecular latch to tuck its receptor-binding domain out of sight.
                         </p>
                         <div class="takeaways-grid">
                             <div class="takeaway-card">
@@ -422,7 +422,7 @@
                     If you run a classic $dN/dS$ selection test like <a href="https://doi.org/10.1371/journal.pgen.1002764" target="_blank" rel="noopener noreferrer"><code>HyPhy MEME</code></a> across a six-year SARS-CoV-2 tree, you hit a frustrating blind spot: <strong>once a beneficial mutation like <code>F486P</code> sweeps to 100% of the viral population, every subsequent virus inherits that same proline.</strong>
                     A standard tree scan sees thousands of identical descendant branches, mistakes a finished selective sweep for purifying conservation, and misses the site!</p>
 
-                    <p>We built <code>HyphAeon</code> to fix that.
+                    <p>We built <a href="https://doi.org/10.64898/2026.09.06.749597" target="_blank" rel="noopener noreferrer"><code>HyphAeon</code></a> (<a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer">GitHub</a>) to fix that.
                     Unlike massive protein language models that read entire protein sequences and memorize gene families, <code>HyphAeon</code> is a small (1.9-million-parameter) neural network trained on nearly 10 million mammalian codons scored by <code>MEME</code>.
                     It looks at just <strong>one codon column at a time</strong> along with the evolutionary distances between sequences, keeping silent ($dS$) and amino-acid ($dN$) changes on separate tracks.
                     Because it scores an alignment in milliseconds and highlights <em>which specific branches</em> are under positive selection at each site, it gives evolutionary biologists two practical tools:</p>
