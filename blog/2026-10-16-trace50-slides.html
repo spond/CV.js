@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACE-5.0 in 60 Seconds (Slide Deck) | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="TRACE-5.0 in 60 Seconds: How HIV-TRACE Learned to Love the Molecular Clock">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-16-trace50-slides.html">
+    <meta name="twitter:description" content="A 6-slide, 60-second visual explainer on why static HIV-1 distance cutoffs fail and how TRACE-5.0 doubles follow-up case yield in under 10 seconds in a browser.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/trace50_fig1_danno_dc.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="TRACE-5.0 in 60 Seconds: How HIV-TRACE Learned to Love the Molecular Clock">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-16-trace50-slides.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/trace50_fig1_danno_dc.png">
+    <meta property="og:description" content="A 6-slide, 60-second visual explainer on why static HIV-1 distance cutoffs fail and how TRACE-5.0 doubles follow-up case yield in under 10 seconds in a browser.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        .deck-wrapper {
+            max-width: 980px;
+            padding: 3rem 3.5rem;
+        }
+
+        .blog-nav-bar {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .blog-nav-btn {
+            background: var(--text-main);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.6rem 1.15rem;
+            font-size: 0.76rem;
+            border: 2px solid var(--border-color);
+            display: inline-block;
+            cursor: pointer;
+            font-family: var(--font-family);
+        }
+
+        .blog-nav-btn.secondary {
+            background: #ffffff;
+            color: var(--text-main);
+        }
+
+        .blog-nav-btn:hover {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        /* Slide Stage */
+        .slide-frame {
+            border: 3px solid #000000;
+            background: #ffffff;
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .slide-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000000;
+            background: #000000;
+            color: #ffffff;
+            padding: 0.65rem 1.5rem;
+            font-family: var(--font-family);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .slide-progress-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .slide-dot {
+            width: 24px;
+            height: 10px;
+            border: 1.5px solid #ffffff;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .slide-dot.active {
+            background: #ffffff;
+        }
+
+        .slide {
+            display: none;
+            padding: 2.5rem 2.75rem 2rem 2.75rem;
+            flex: 1;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide-kicker {
+            display: inline-block;
+            background: #f3f4f6;
+            border: 2px solid #000000;
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            letter-spacing: 0.06em;
+            margin-bottom: 1.1rem;
+            align-self: flex-start;
+        }
+
+        .slide h2 {
+            font-family: var(--font-family);
+            font-size: 1.85rem;
+            font-weight: 900;
+            line-height: 1.18;
+            letter-spacing: -0.02em;
+            margin: 0 0 1rem 0;
+            color: #000000;
+        }
+
+        .slide-lead {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.08rem;
+            line-height: 1.65;
+            color: #111827;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .slide-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .slide-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .slide-card {
+            border: 2px solid #000000;
+            padding: 1.25rem 1.35rem;
+            background: #f9fafb;
+        }
+
+        .slide-card.invert {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .slide-card.invert .card-label,
+        .slide-card.invert .card-stat,
+        .slide-card.invert .card-body {
+            color: #ffffff;
+        }
+
+        .card-stat {
+            font-family: var(--font-family);
+            font-size: 1.65rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 0.35rem;
+            color: #000000;
+        }
+
+        .card-label {
+            font-family: var(--font-family);
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: #000000;
+        }
+
+        .card-body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .slide-split {
+            display: grid;
+            grid-template-columns: 1.05fr 1.25fr;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 0.25rem;
+        }
+
+        .slide-img-box {
+            border: 2px solid #000000;
+            padding: 0.6rem;
+            background: #ffffff;
+        }
+
+        .slide-img-box img {
+            width: 100%;
+            max-height: 290px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .slide-img-caption {
+            font-family: var(--font-family);
+            font-size: 0.7rem;
+            color: #4b5563;
+            margin-top: 0.45rem;
+            padding-top: 0.4rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .slide-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .slide-bullets li {
+            border-left: 4px solid #000000;
+            padding: 0.55rem 0.9rem;
+            background: #f9fafb;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.48;
+            color: #111827;
+        }
+
+        .slide-bullets li strong {
+            font-family: var(--font-family);
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            display: block;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #000000;
+            padding: 0.85rem 1.5rem;
+            background: #f9fafb;
+            font-family: var(--font-family);
+            font-size: 0.78rem;
+        }
+
+        .deck-controls {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .ctrl-btn {
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            padding: 0.5rem 1.1rem;
+            font-family: var(--font-family);
+            font-size: 0.76rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .ctrl-btn.secondary {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .ctrl-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .ctrl-btn:not(:disabled):hover {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .kbd-hint {
+            color: #4b5563;
+            font-size: 0.74rem;
+        }
+
+        .kbd-key {
+            border: 1.5px solid #000000;
+            padding: 0.1rem 0.4rem;
+            background: #ffffff;
+            font-weight: 800;
+            font-size: 0.7rem;
+        }
+
+        /* Print / View-All Mode */
+        body.view-all .slide {
+            display: flex !important;
+            border-bottom: 3px solid #000000;
+        }
+        body.view-all .slide-footer {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .deck-wrapper {
+                padding: 1.5rem;
+            }
+            .slide {
+                padding: 1.5rem;
+            }
+            .slide h2 {
+                font-size: 1.4rem;
+            }
+            .slide-grid-2, .slide-grid-3, .slide-split {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="2026-10-16-trace50.html">← 3-Min Blog Post</a>
+                    <a href="../index.html#/blog">All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Paper &amp; Code</h3>
+                <div class="links-list">
+                    <a href="https://doi.org/10.5281/zenodo.23540895" target="_blank" rel="noopener noreferrer">Preprint on Zenodo</a>
+                    <a href="https://github.com/veg/trace-5.0" target="_blank" rel="noopener noreferrer">TRACE-5.0 on GitHub</a>
+                    <a href="https://github.com/veg/hivtrace" target="_blank" rel="noopener noreferrer">HIV-TRACE on GitHub</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div class="deck-wrapper">
+                <div class="blog-nav-bar">
+                    <a href="2026-10-16-trace50.html" class="blog-nav-btn">← Read 3-Min Blog Post</a>
+                    <a href="https://doi.org/10.5281/zenodo.23540895" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">Preprint PDF ↗</a>
+                    <a href="https://github.com/veg/trace-5.0" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">GitHub ↗</a>
+                    <button id="toggleViewAll" class="blog-nav-btn secondary" style="margin-left: auto;">Show All 6 Slides</button>
+                </div>
+
+                <div class="slide-frame">
+                    <div class="slide-topbar">
+                        <span id="slideCounter">Slide 1 of 6 · TRACE-5.0 in 60 Seconds</span>
+                        <div class="slide-progress-dots" id="progressDots">
+                            <button class="slide-dot active" data-index="0" title="Slide 1"></button>
+                            <button class="slide-dot" data-index="1" title="Slide 2"></button>
+                            <button class="slide-dot" data-index="2" title="Slide 3"></button>
+                            <button class="slide-dot" data-index="3" title="Slide 4"></button>
+                            <button class="slide-dot" data-index="4" title="Slide 5"></button>
+                            <button class="slide-dot" data-index="5" title="Slide 6"></button>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 1: TITLE & THESIS -->
+                    <section class="slide active" data-slide="0">
+                        <div>
+                            <span class="slide-kicker">01 / The 60-Second Summary</span>
+                            <h2>How HIV-TRACE Learned to Stop Worrying and Love the Molecular Clock</h2>
+                            <p class="slide-lead">
+                                Standard HIV-1 cluster detection uses flat genetic distance cutoffs (<strong>0.5%</strong> or <strong>1.5%</strong>) that ignore when samples were collected. <strong>TRACE-5.0</strong> adds the molecular clock to pairwise networks—without building phylogenetic trees.
+                            </p>
+                        </div>
+                        <div class="slide-grid-3">
+                            <div class="slide-card invert">
+                                <div class="card-stat">2× Yield</div>
+                                <div class="card-label">More Future Cases Found</div>
+                                <p class="card-body">Nearly doubles follow-up diagnoses per prioritized patient (0.40 → 0.80 in DC) while cutting patient reviews by 61%.</p>
+                            </div>
+                            <div class="slide-card">
+                                <div class="card-stat">-93% Noise</div>
+                                <div class="card-label">Fewer Non-Growing Clusters</div>
+                                <p class="card-body">83.3% of velocity-prioritized clusters grow prospectively (cutting non-growing priority clusters from 28 to 2).</p>
+                            </div>
+                            <div class="slide-card">
+                                <div class="card-stat">&lt;10 Seconds</div>
+                                <div class="card-label">Runs Offline in Browser</div>
+                                <p class="card-body">Screens 5,000+ sequences locally in WebAssembly using existing HIV-TRACE FASTA and date files.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SLIDE 2: THE PROBLEM -->
+                    <section class="slide" data-slide="1">
+                        <div>
+                            <span class="slide-kicker">02 / The Problem with Flat Cutoffs</span>
+                            <h2>HIV Mutates Every Day. Static Thresholds Pretend Time Stands Still.</h2>
+                            <p class="slide-lead">
+                                Applying the same genetic cutoff whether two patients were sampled on the same afternoon or four years apart causes two opposite failures at once:
+                            </p>
+                        </div>
+                        <div class="slide-grid-2">
+                            <div class="slide-card">
+                                <div class="card-stat">0.5% Cutoff</div>
+                                <div class="card-label">Too Strict for Delayed Diagnoses</div>
+                                <p class="card-body">
+                                    Normal viral evolution pushes linked partners above 0.5% within 1–3 years. In Washington, DC, a flat 0.5% line <strong>severs 38.8% (19/49) of true transmission dyads</strong> and misses 91% of future linked cases.
+                                </p>
+                            </div>
+                            <div class="slide-card">
+                                <div class="card-stat">1.5% Cutoff</div>
+                                <div class="card-label">Chains Unlinked Cases &amp; Lab Repeats</div>
+                                <p class="card-body">
+                                    Two identical sequences sampled 4 years apart aren't an outbreak—they're a repeat blood draw or HXB2 lab contamination. A flat 1.5% cutoff chains <strong>90 patients in DC</strong>, <strong>332 in Tennessee</strong>, and <strong>2,896 in Japan</strong> into giant clusters.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SLIDE 3: DANNO -->
+                    <section class="slide" data-slide="2">
+                        <div>
+                            <span class="slide-kicker">03 / Fix #1 · Pairwise Scale (DANNO)</span>
+                            <h2>Replace the Flat Line with a Time-Aware Transmission Corridor</h2>
+                        </div>
+                        <div class="slide-split">
+                            <ul class="slide-bullets">
+                                <li>
+                                    <strong>Expands with Sampling Lag (ΔT)</strong>
+                                    Retains genuine partners diagnosed 1–3 years apart without opening the door to unlinked chronic background pairs.
+                                </li>
+                                <li>
+                                    <strong>Purges Lab Repeats Automatically</strong>
+                                    Flags pairs with <em>too few</em> mutations for the years elapsed between them—catching duplicate patient samples and HXB2 carryover before review.
+                                </li>
+                                <li>
+                                    <strong>Collapses Giant Clusters by 74%</strong>
+                                    Breaks DC's 90-patient cluster into a 23-patient active core and cuts prioritized patient investigations by 61.4%.
+                                </li>
+                            </ul>
+                            <div class="slide-img-box">
+                                <img src="images/trace50_fig1_danno_dc.png" alt="DANNO network deconstruction in Washington, DC">
+                                <div class="slide-img-caption">Washington, DC (N = 1,658): Static 1.5% (orange) vs. DANNO (blue).</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SLIDE 4: STEVE -->
+                    <section class="slide" data-slide="3">
+                        <div>
+                            <span class="slide-kicker">04 / Fix #2 · Cluster Scale (STEVE)</span>
+                            <h2>Prioritize Clusters by Evolutionary Speed, Not Just Size</h2>
+                        </div>
+                        <div class="slide-split">
+                            <ul class="slide-bullets">
+                                <li>
+                                    <strong>Active Outbreaks Evolve Fast</strong>
+                                    Early HIV-1 infection replicates rapidly before purifying selection prunes variants, producing a steep clock slope (~15×10⁻³ sub/site/yr).
+                                </li>
+                                <li>
+                                    <strong>83.3% Prospective Precision</strong>
+                                    In temporal-holdout testing across DC, Tennessee, Japan, and Shenzhen, 75–83% of STEVE-prioritized clusters grew—cutting non-growing priority clusters by 92.9% (28 → 2 in DC).
+                                </li>
+                                <li>
+                                    <strong>Aligns Clusters with Services</strong>
+                                    Tier 1/2 high-velocity clusters → expedited partner services &amp; PrEP. Tier 3 chronic clusters → care re-engagement &amp; viral suppression.
+                                </li>
+                            </ul>
+                            <div class="slide-img-box">
+                                <img src="images/trace50_fig2_prospective_yield.png" alt="STEVE prospective validation in Washington, DC">
+                                <div class="slide-img-caption">10 of 12 STEVE priority clusters expand during follow-up (83.3% PPV).</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SLIDE 5: CHIN -->
+                    <section class="slide" data-slide="4">
+                        <div>
+                            <span class="slide-kicker">05 / Fix #3 · Population Scale (CHIN)</span>
+                            <h2>How Big Is the Undiagnosed Epidemic? Count the Network Collisions.</h2>
+                        </div>
+                        <div class="slide-split">
+                            <ul class="slide-bullets">
+                                <li>
+                                    <strong>The Birthday Paradox of Surveillance</strong>
+                                    Sampling one person scales linearly with coverage (ρ), but sampling <em>both</em> partners of a transmission link scales quadratically (ρ²).
+                                </li>
+                                <li>
+                                    <strong>No External Demographic Priors Needed</strong>
+                                    From edge collision rates alone, CHIN estimates what fraction of the transmitting population has been sequenced.
+                                </li>
+                                <li>
+                                    <strong>Matches Independent Benchmarks Across 4 Cohorts</strong>
+                                    Recovers active pool sizes matching public health estimates in DC (19,700), Middle Tennessee (17,409), Japan (14,114), and Shenzhen (611).
+                                </li>
+                            </ul>
+                            <div class="slide-img-box">
+                                <img src="images/trace50_fig3_continuum.png" alt="Three-scale surveillance synthesis in Washington, DC">
+                                <div class="slide-img-caption">Three-scale surveillance (DANNO + STEVE + CHIN) across 10,259 patients.</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SLIDE 6: DEPLOYMENT -->
+                    <section class="slide" data-slide="5">
+                        <div>
+                            <span class="slide-kicker">06 / Practical Deployment for Health Departments</span>
+                            <h2>Drop-In Compatible with Existing HIV-TRACE Workflows</h2>
+                            <p class="slide-lead">
+                                Built in Rust and compiled to both command-line binaries (<code>trace50-cli</code>) and client-side WebAssembly (<code>trace50-wasm</code>).
+                            </p>
+                        </div>
+                        <div class="slide-grid-3">
+                            <div class="slide-card">
+                                <div class="card-stat">Same Files</div>
+                                <div class="card-label">Zero Workflow Disruption</div>
+                                <p class="card-body">Accepts the exact FASTA sequence and diagnosis-date files already exported for routine 0.5% / 1.5% reporting.</p>
+                            </div>
+                            <div class="slide-card">
+                                <div class="card-stat">100% Local</div>
+                                <div class="card-label">Inside the Firewall</div>
+                                <p class="card-body">Executes entirely in browser memory with no internet connection—clinical sequences never leave the agency.</p>
+                            </div>
+                            <div class="slide-card invert">
+                                <div class="card-stat">Try It Now</div>
+                                <div class="card-label">Open Source &amp; Preprint</div>
+                                <p class="card-body">
+                                    <a href="https://doi.org/10.5281/zenodo.23540895" target="_blank" style="color: #ffffff; text-decoration: underline; font-weight: 700;">Preprint (Zenodo) ↗</a><br>
+                                    <a href="https://github.com/veg/trace-5.0" target="_blank" style="color: #ffffff; text-decoration: underline; font-weight: 700;">Code (GitHub) ↗</a><br>
+                                    <a href="2026-10-16-trace50.html" style="color: #ffffff; text-decoration: underline; font-weight: 700;">3-Min Blog Post ↗</a>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="slide-footer">
+                        <span class="kbd-hint">Use <span class="kbd-key">←</span> <span class="kbd-key">→</span> arrow keys or buttons to flip slides</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" id="prevBtn" disabled>← Prev</button>
+                            <button class="ctrl-btn" id="nextBtn">Next →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        (function() {
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const dots = Array.from(document.querySelectorAll('.slide-dot'));
+            const counter = document.getElementById('slideCounter');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const toggleViewAll = document.getElementById('toggleViewAll');
+            let current = 0;
+
+            function showSlide(idx) {
+                current = Math.max(0, Math.min(slides.length - 1, idx));
+                slides.forEach((s, i) => s.classList.toggle('active', i === current));
+                dots.forEach((d, i) => d.classList.toggle('active', i === current));
+                counter.textContent = `Slide ${current + 1} of ${slides.length} · TRACE-5.0 in 60 Seconds`;
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current === slides.length - 1;
+            }
+
+            prevBtn.addEventListener('click', () => showSlide(current - 1));
+            nextBtn.addEventListener('click', () => showSlide(current + 1));
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => showSlide(Number(dot.dataset.index)));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (document.body.classList.contains('view-all')) return;
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    if (current < slides.length - 1) {
+                        e.preventDefault();
+                        showSlide(current + 1);
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    if (current > 0) {
+                        e.preventDefault();
+                        showSlide(current - 1);
+                    }
+                }
+            });
+
+            toggleViewAll.addEventListener('click', () => {
+                const isAll = document.body.classList.toggle('view-all');
+                toggleViewAll.textContent = isAll ? 'Interactive Slide Mode' : 'Show All 6 Slides';
+            });
+        })();
+    </script>
+</body>
+</html>

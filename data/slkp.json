@@ -1347,6 +1347,10 @@
                     "subtext": "Static genetic-distance thresholds treat viral sequences sampled days apart identically to sequences sampled years apart. Here is how TRACE-5.0 pairs genetic divergence with sampling dates to nearly double follow-up cases per prioritized patient, cut non-growing priority clusters by 93%, and bound total active epidemic size in seconds inside a local web browser."
                 },
                 {
+                    "url": "blog/2026-10-16-trace50-slides.html",
+                    "link-text": "60-Sec Slide Deck"
+                },
+                {
                     "url": "https://doi.org/10.5281/zenodo.23540895",
                     "link-text": "Zenodo: 10.5281/zenodo.23540895"
                 }
