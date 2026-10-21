@@ -11,7 +11,7 @@
     <meta name="twitter:creator" content="@sergeilkp">
     <meta name="twitter:title" content="How SARS-CoV-2 learned to hide from our naïve B cells—and how HyphAeon sees it in the tree">
     <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-21-hyphaeon-sars2-antigenicity.html">
-    <meta name="twitter:description" content="A brilliant new preprint from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom shows that SARS-CoV-2 RBD evolved a 3-fold drop in recognition by human naïve B cells. Here is what happens when we point HyphAeon—our 1.9M-parameter phylogenetic foundation model—at their exact RBD mutations across 78 months of Spike evolution.">
+    <meta name="twitter:description" content="A brilliant new preprint from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom shows that the SARS-CoV-2 RBD evolved a 3-fold drop in recognition by human naïve B cells. Here is what happens when we look at their mutations across 78 months of Spike evolution using HyphAeon.">
     <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/hyphaeon_bloom_fig1_velocity.png">
 
     <!-- Open Graph metadata -->
@@ -19,7 +19,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-21-hyphaeon-sars2-antigenicity.html">
     <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/hyphaeon_bloom_fig1_velocity.png">
-    <meta property="og:description" content="A brilliant new preprint from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom shows that SARS-CoV-2 RBD evolved a 3-fold drop in recognition by human naïve B cells. Here is what happens when we point HyphAeon—our 1.9M-parameter phylogenetic foundation model—at their exact RBD mutations across 78 months of Spike evolution.">
+    <meta property="og:description" content="A brilliant new preprint from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom shows that the SARS-CoV-2 RBD evolved a 3-fold drop in recognition by human naïve B cells. Here is what happens when we look at their mutations across 78 months of Spike evolution using HyphAeon.">
     <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
 
     <link rel="stylesheet" href="../style.css">
@@ -340,7 +340,7 @@
                 </div>
 
                 <header class="post-header">
-                    <span class="post-tag">Viral Evolution &amp; Phylogenetic AI</span>
+                    <span class="post-tag">Viral Evolution &amp; Selection</span>
                     <h1>How SARS-CoV-2 learned to hide from our naïve B cells—and how HyphAeon sees it in the tree</h1>
                     <div class="post-meta">
                         <span><i>21 Oct 2026, by Sergei</i></span>
@@ -357,102 +357,104 @@
                     <div class="takeaways-section">
                         <span class="takeaways-header">Key Takeaways</span>
                         <p class="takeaways-zinger">
-                            <strong>Standard viral selection scans average over the entire family tree, mistaking pandemic sweeps that reach 100% prevalence for conserved sites and missing how escape mutations rewire the protein fold.</strong>
-                            Pairing Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom’s new naïve human B-cell measurements with <code>HyphAeon</code>—our 1.9-million-parameter phylogenetic foundation model—shows that mutations erasing human germline B-cell recognition drove the fastest selective sweeps of the pandemic before shifting evolution to a cross-domain NTD clamp.
+                            <strong>Standard $dN/dS$ selection scans average over an entire viral tree, mistaking completed pandemic sweeps for conserved sites and missing how escape mutations team up across the protein.</strong>
+                            Pairing Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom’s new human B-cell study with <code>HyphAeon</code>—our fast phylogenetic model of natural selection—shows that mutations hiding from brand-new human B cells drove the fastest sweeps of the pandemic before Spike evolved a molecular latch to tuck its receptor-binding domain out of sight.
                         </p>
                         <div class="takeaways-grid">
                             <div class="takeaway-card">
-                                <div class="takeaway-stat">4.2× Sweep Impulse</div>
-                                <div class="takeaway-label">Germline Stealth Wins</div>
-                                <p class="takeaway-desc"><code>E484K</code> and <code>E484A</code> both escape ancestral serum, but only <code>E484A</code> halves naïve human B-cell binding—generating a 4.2-fold larger selection velocity integral and sweeping to 98.8% dominance.</p>
+                                <div class="takeaway-stat">4.2× Stronger Sweep</div>
+                                <div class="takeaway-label">Site 484: E484K vs. E484A</div>
+                                <p class="takeaway-desc"><code>E484K</code> and <code>E484A</code> both escape old antibodies, but only <code>E484A</code> hides from brand-new human B cells—generating over 4 times more selective drive and sweeping to 99% of the global virus population.</p>
                             </div>
                             <div class="takeaway-card">
-                                <div class="takeaway-stat">29 / 31 Sweeps</div>
-                                <div class="takeaway-label">76% Rescued from Dilution</div>
-                                <p class="takeaway-desc">Static tree scans miss 22 of 29 adaptive RBD sweeps in XBB.1.5 and KP.2 (including <code>F486P</code> and <code>K417N</code>) after fixation; <code>HyphAeon</code> temporal velocity recovers all 29 ($\mathrm{OR} = 217.5$).</p>
+                                <div class="takeaway-stat">29 / 31 Sweeps Found</div>
+                                <div class="takeaway-label">76% Missed by Standard Scans</div>
+                                <p class="takeaway-desc">Once an adaptive mutation reaches 100% frequency, standard tree scans mistake its identical descendants for conservation—missing 22 of 29 RBD sweeps (including <code>F486P</code> and <code>K417N</code>) that <code>HyphAeon</code> recovers.</p>
                             </div>
                             <div class="takeaway-card">
-                                <div class="takeaway-stat">The KP.2 A484K Puzzle</div>
-                                <div class="takeaway-label">Epistatic &amp; Glycan Licensing</div>
-                                <p class="takeaway-desc">Why did KP.2 revert to <code>K484</code> yet drop to 3-fold lower B-cell binding? In 2024–2026, <code>K484</code> is 100% co-selected with the <code>L455S/F456L/L452W</code> ridge hub and the <code>K356T</code> (N354) glycan shield.</p>
+                                <div class="takeaway-stat">The KP.2 K484 Mystery</div>
+                                <div class="takeaway-label">Helper Mutations &amp; Sugar Shield</div>
+                                <p class="takeaway-desc">Why did KP.2 switch back to <code>K484</code> yet lose even more B-cell binding? In 2024–2026, <code>K484</code> travels in 100% of genomes with the <code>L455S/F456L</code> ridge remodel and a new <code>N354</code> sugar shield (<code>K356T</code>).</p>
                             </div>
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">186 NTD–RBD Pairs</div>
-                                <div class="takeaway-label">Stage 2 Conformational Clamp</div>
-                                <p class="takeaway-desc">Once exposed RBD germline motifs were depleted in 2022, Spike selection velocity shifted to 39 NTD sweeps that pack against the adjacent RBD to lock it in the closed "down" state.</p>
+                                <div class="takeaway-label">A Two-Stage Hiding Strategy</div>
+                                <p class="takeaway-desc">After shaving off the easy targets on the exposed RBD surface in 2022, selection shifted to 39 sweeps in the N-terminal domain that press against the neighboring RBD to hold it closed.</p>
                             </div>
                         </div>
                     </div>
 
-                    <p>Whenever a new preprint from Jesse Bloom’s lab drops on bioRxiv, I stop what I am doing and read it.
-                    Last Friday’s paper by Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom (<a href="https://doi.org/10.64898/2026.10.15.759476" target="_blank" rel="noopener noreferrer">Jacob-Dolan et al., 2026</a>) is a classic of the genre: a clean, experimentally decisive study that exposes an evolutionary mechanism hiding in plain sight.</p>
+                    <p>Whenever a new preprint from Fred Hutch and UW drops on bioRxiv, I stop what I am doing and read it.
+                    Last Friday’s paper by Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom (<a href="https://doi.org/10.64898/2026.10.15.759476" target="_blank" rel="noopener noreferrer">Jacob-Dolan et al., 2026</a>) is a gem: a clean, clever experiment that answers a question most of us hadn't even thought to ask.</p>
 
-                    <p>We know SARS-CoV-2 evolves to escape neutralizing antibodies from prior exposures.
-                    Catherine, Jim, and Jesse asked a deeper question: <strong>has the receptor-binding domain (RBD) also evolved to become inherently less visible to unmutated, naïve human B cells?</strong>
-                    Using human blood cells frozen between 2003 and 2007—long before COVID-19—they found that 3-fold fewer naïve human B cells recognize the 2024 KP.2 RBD ($0.0040\%$) than Wuhan-Hu-1 ($0.011\%$).
-                    Even better, naïve mouse B cells showed <em>zero</em> decrease ($0.013\%$ across all variants), proving that SARS-CoV-2 specifically shaved off surface motifs targeted by the human germline antibody repertoire (<a href="https://doi.org/10.1126/science.adc9498" target="_blank" rel="noopener noreferrer">Shrock et al., 2023</a>).</p>
+                    <p>When evolutionary biologists talk about antigenic drift in SARS-CoV-2 or flu, we almost always mean escaping <em>memory</em> antibodies—the antibodies our immune system already made after a previous infection or vaccine.
+                    Catherine, Jim, and Jesse asked something more fundamental: <strong>has SARS-CoV-2 also evolved to hide from our <em>naïve</em> B cells—the brand-new, unmutated immune cells we are born with?</strong></p>
 
-                    <p>Reading their paper over coffee, I realized their data was the ideal testbed for <strong>HyphAeon</strong>—a phylogenetic foundation model we built over the past year.
-                    What happens when we project their nine RBD constructs and 31 variant sites onto 78 months of SARS-CoV-2 Spike evolution?</p>
+                    <p>By testing human white blood cells frozen between 2003 and 2007—more than a decade before COVID-19 existed—they showed that 3-fold fewer naïve human B cells can grab onto the 2024 KP.2 receptor-binding domain (RBD) than the original 2019 Wuhan-Hu-1 RBD ($0.0040\%$ vs. $0.011\%$).
+                    Then they ran the exact same test on naïve B cells from mice and saw <em>no drop at all</em> ($0.013\%$ across every variant).
+                    In other words, the RBD hasn't become generically "non-stick."
+                    It specifically shaved off the amino-acid footholds that human germline antibodies are wired to grab first (<a href="https://doi.org/10.1126/science.adc9498" target="_blank" rel="noopener noreferrer">Shrock et al., 2023</a>).</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p><span class="dropcap">L</span>et's start with the sharpest contrast in their paper.
-                    In Figure 2B, the authors test five famous single mutations in the Wuhan-Hu-1 RBD: <code>E484K</code>, <code>E484A</code>, <code>K417N</code>, <code>L452R</code>, and <code>F486P</code>.
-                    All five escape mature Wuhan-Hu-1 serum antibodies.
-                    Yet only two—<strong><code>E484A</code></strong> ($2.34\times$ drop, $p_{\mathrm{adj}} = 0.007$) and <strong><code>F486P</code></strong> ($1.90\times$ drop, $p_{\mathrm{adj}} = 0.045$)—significantly reduce naïve human B-cell recognition, while <code>E484K</code> at the exact same residue leaves naïve B-cell binding intact ($0.010\%$ vs. $0.011\%$, $p_{\mathrm{adj}} = 0.58$).
-                    To see whether germline stealth shaped how these mutations spread in nature, we tracked their selective trajectories across the global SARS-CoV-2 tree (Fig. 1).</p>
+                    <p><span class="dropcap">L</span>ook at the five famous single mutations they tested in the Wuhan-Hu-1 RBD (their Figure 2B): <code>E484K</code>, <code>E484A</code>, <code>K417N</code>, <code>L452R</code>, and <code>F486P</code>.
+                    All five help the virus escape antibodies from an early Wuhan-Hu-1 infection.
+                    Yet only two of them—<strong><code>E484A</code></strong> ($2.3\times$ drop) and <strong><code>F486P</code></strong> ($1.9\times$ drop)—substantially reduce recognition by naïve human B cells.
+                    Mutating site 484 to lysine (<code>E484K</code>, seen in Beta and Gamma) barely changes naïve B-cell binding ($0.010\%$ vs. $0.011\%$), whereas mutating the <em>exact same site</em> to alanine (<code>E484A</code>, seen in Omicron) cuts naïve B-cell recognition in half.</p>
+
+                    <p>In their Discussion, the authors wonder whether hiding from naïve B cells actually helped drive SARS-CoV-2 evolution, or was just an accidental side effect of escaping older antibodies.
+                    To find out what the viral family tree says, we ran their mutations through <strong>HyphAeon</strong>—a new tool we built over the past year—across $3{,}839$ dated SARS-CoV-2 Spike sequences spanning 2019 to mid-2026 (Fig. 1).</p>
 
                     <figure class="blog-figure">
-                        <img src="images/hyphaeon_bloom_fig1_velocity.png" alt="Comparison of Jacob-Dolan et al. naive B-cell fold reduction and HyphAeon peak selection velocity across RBD mutants">
+                        <img src="images/hyphaeon_bloom_fig1_velocity.png" alt="Comparison of Jacob-Dolan et al. naive B-cell fold reduction and HyphAeon peak sweep speed across RBD mutants">
                         <figcaption>
-                            <strong>Figure 1. RBD mutations that ablate human germline B-cell recognition drive the sharpest selective velocity bursts.</strong>
-                            (A) Comparing human (dark blue) and mouse (grey) naïve B-cell fold-drops from <a href="https://doi.org/10.64898/2026.10.15.759476" target="_blank" rel="noopener noreferrer">Jacob-Dolan et al. (2026)</a> against <code>HyphAeon</code> peak selection velocity $v_{\max}$ (orange) across the five tested single mutants.
-                            (B) Global allele prevalence ($9.34\text{M}$ genomes in <a href="https://doi.org/10.1093/bioinformatics/btab856" target="_blank" rel="noopener noreferrer">CoV-Spectrum</a>, dashed) and <code>HyphAeon</code> selection velocity $v_s(t)$ (solid curves) at codons 484 and 486 from 2020 to mid-2026.
+                            <strong>Figure 1. RBD mutations that hide from human naïve B cells drive the fastest selective sweeps.</strong>
+                            (A) Comparing human (dark blue) and mouse (grey) naïve B-cell fold-drops from <a href="https://doi.org/10.64898/2026.10.15.759476" target="_blank" rel="noopener noreferrer">Jacob-Dolan et al. (2026)</a> against <code>HyphAeon</code> peak sweep speed (orange) across the five tested single mutants.
+                            (B) Global variant frequencies ($9.34\text{M}$ genomes in <a href="https://doi.org/10.1093/bioinformatics/btab856" target="_blank" rel="noopener noreferrer">CoV-Spectrum</a>, dashed) and <code>HyphAeon</code> sweep speed (solid curves) at sites 484 and 486 from 2020 to mid-2026.
                         </figcaption>
                     </figure>
 
                     <hr class="fine-line-divider" />
 
-                    <p>Before looking at the numbers, how does <code>HyphAeon</code> measure selection across a tree?
-                    Most protein language models read whole sequences across flat alignments without a tree, using hundreds of millions of parameters to memorize protein families.
-                    <code>HyphAeon</code> is a <strong>1.9-million-parameter geometric transformer</strong> trained on $17{,}186$ mammalian alignments ($742$ species, $9.77\text{M}$ codons) scored by <a href="https://doi.org/10.1371/journal.pgen.1002764" target="_blank" rel="noopener noreferrer"><code>HyPhy MEME</code></a>.
-                    It evaluates <strong>one codon column at a time</strong> alongside a 4D coordinate map of branch distances, routing silent ($dS$) and replacement ($dN$) changes through separate channels.</p>
+                    <p>Why did we need a new tool to look at this?
+                    If you run a classic $dN/dS$ selection test like <a href="https://doi.org/10.1371/journal.pgen.1002764" target="_blank" rel="noopener noreferrer"><code>HyPhy MEME</code></a> across a six-year SARS-CoV-2 tree, you hit a frustrating blind spot: <strong>once a beneficial mutation like <code>F486P</code> sweeps to 100% of the viral population, every subsequent virus inherits that same proline.</strong>
+                    A standard tree scan sees thousands of identical descendant branches, mistakes a finished selective sweep for purifying conservation, and misses the site!</p>
 
-                    <p>Because a forward pass takes milliseconds and assigns an attention weight $\hat{a}_{s,m}$ to every mutated branch, differentiating site attribution over time measures instantaneous <strong>selection velocity</strong>:</p>
+                    <p>We built <code>HyphAeon</code> to fix that.
+                    Unlike massive protein language models that read entire protein sequences and memorize gene families, <code>HyphAeon</code> is a small (1.9-million-parameter) neural network trained on nearly 10 million mammalian codons scored by <code>MEME</code>.
+                    It looks at just <strong>one codon column at a time</strong> along with the evolutionary distances between sequences, keeping silent ($dS$) and amino-acid ($dN$) changes on separate tracks.
+                    Because it scores an alignment in milliseconds and highlights <em>which specific branches</em> are under positive selection at each site, it gives evolutionary biologists two practical tools:</p>
 
-                    $$v_s(t) = \max\!\left(0,\, \frac{d}{dt}\hat{a}_s(t)\right)$$
-
-                    <p>Why differentiate over time?
-                    Standard whole-tree scans suffer from <strong>post-fixation dilution</strong>: once <code>F486P</code> sweeps to $100\%$, every descendant inherits that proline, and static models mistake those thousands of identical branches for purifying conservation.
-                    Selection velocity $v_s(t)$ peaks as a variant takes off—warning of major sweeps 2.5 to 9.8 months before $80\%$ global dominance—and drops to zero at fixation.
-                    Meanwhile, outer products of branch attributions across sites extract <strong>epistatic co-selection</strong> ($\mathrm{CESI}_{ij}$) between co-evolving residues.</p>
+                    <ol>
+                        <li><strong>A selective sweep speedometer:</strong> By tracking how fast a site’s selection signal rises over sampling dates, we capture a mutation’s burst of speed while it is actively outcompeting rival strains—without losing the signal after it hits 100% fixation.</li>
+                        <li><strong>A co-evolution map:</strong> By finding pairs of sites where positive selection lights up on the exact same tree branches, we can see which mutations need a helper mutation elsewhere in Spike to spread.</li>
+                    </ol>
 
                     <hr class="fine-line-divider" />
 
-                    <p>Running <code>HyphAeon</code> across $3{,}839$ dated Spike genomes ($1{,}863$ haplotypes, Dec 2019–mid 2026) and comparing against Jacob-Dolan, Boonyaratanakornkit, and Bloom’s 31 RBD sites (their Fig. 1B) yields three clean findings (Fig. 2):</p>
+                    <p>When we line up <code>HyphAeon</code>’s speedometer and co-evolution map with the 31 RBD sites in Jacob-Dolan, Boonyaratanakornkit, and Bloom’s paper (their Fig. 1B), three stories jump out (Fig. 2):</p>
 
                     <ul>
-                        <li><strong>Germline-stealth escape beats germline-visible escape by $4.2\times$:</strong>
-                        In 2021, Beta and Gamma introduced <code>E484K</code> on the Wuhan-Hu-1 background. Because <code>E484K</code> still binds naïve human B cells ($0.010\%$), primary infections elicited potent anti-<code>K484</code> germline antibodies; its velocity stalled ($v_{\max} = 0.68 \times 10^{-3}$, selective integral $\mathrm{AUC} = 0.167 \times 10^{-3}$), peaking at $15.7\%$ before vanishing in 2022 (Fig. 1B). When Omicron introduced <strong><code>E484A</code></strong> ($2.34\times$ naïve B-cell drop), it escaped serum <em>without</em> recruiting de novo B cells against <code>A484</code>, generating a <strong>$4.23\times$ larger velocity integral ($\mathrm{AUC} = 0.706 \times 10^{-3}$)</strong> and sweeping to $98.8\%$ fixation. Likewise, <strong><code>F486P</code></strong> ($1.90\times$ B-cell drop) reached the highest velocity of all tested mutants ($v_{\max} = 2.92 \times 10^{-3}$, $4.6\times$ above <code>L452R</code> and $7.1\times$ above <code>K417N</code>).</li>
+                        <li><strong>Hiding from naïve B cells turned a stalled escape mutation into a global sweep:</strong>
+                        When Beta and Gamma introduced <code>E484K</code> in early 2021, it escaped old Wuhan-Hu-1 antibodies, but because it was still easy for naïve human B cells to grab ($0.010\%$), newly infected people quickly made fresh antibodies against <code>K484</code>. On our speedometer, <code>E484K</code>’s selective burst was brief and weak, stalling at ~16% of sequences before dying out (Fig. 1B). When Omicron hit upon <strong><code>E484A</code></strong>—which both escapes old antibodies <em>and</em> cuts naïve B-cell binding in half—it generated <strong>$4.2\times$ more total selective drive</strong> and swept to 99% of the global virus population. And the other mutation that halves naïve B-cell binding, <strong><code>F486P</code></strong>, produced the single fastest selective surge of all five mutants tested ($4.6\times$ to $7.1\times$ faster at its peak than <code>L452R</code> or <code>K417N</code>).</li>
 
-                        <li><strong>Rescuing 76% of RBD sweeps—and solving the KP.2 <code>A484K</code> puzzle:</strong>
-                        Across the 31 RBD sites in Figure 1B, <code>HyphAeon</code> velocity confirms <strong>29 of 31 (93.5%)</strong> as episodic sweeps ($p_{\mathrm{perm}} \le 0.034$) versus 12 of 192 (6.2%) across the rest of the RBD ($\mathrm{OR} = 217.5, p = 1.5 \times 10^{-24}$), rescuing <strong>22 of 29 sweeps (75.9%)</strong>—including <code>F486P</code> and <code>K417N</code>—missed by static scans (Fig. 2A). Look closely at site 484 in Figure 1B: KP.2 reverted from <code>A484</code> back to <strong><code>K484</code></strong>, yet its naïve B-cell binding dropped 1.5-fold below XBB.1.5 ($0.0061\% \to 0.0040\%$). Why? Unlike 2021 <code>E484K</code> ($0\%$ co-occurrence), 2024–2026 <code>A484K</code> ($n = 2{,}787$ genomes) is <strong>100% co-selected</strong> with the KP.2 <strong>codon 455/456/452/450 ridge hub</strong> ($\mathrm{CESI} = 6.89\text{–}8.93, q < 10^{-300}$; <a href="https://doi.org/10.1038/s41586-024-07636-1" target="_blank" rel="noopener noreferrer">Dadonaite et al., 2024</a>) and <strong><code>K356T</code></strong> ($100\%$ prevalence, $\sum\mathrm{CESI} = 62.4$), which installs an <strong>N354 glycan shield</strong> over the RBD core.</li>
+                        <li><strong>Why did KP.2 switch <em>back</em> to <code>K484</code>—and still lose even more naïve B-cell binding?</strong>
+                        First, across the 31 RBD sites mutated in XBB.1.5 and KP.2 (their Fig. 1B), standard whole-tree scans miss <strong>22 out of 29 adaptive sweeps (76%)</strong>—including <code>F486P</code> and <code>K417N</code>—because they already fixed across Omicron descendants; <code>HyphAeon</code>’s speedometer recovers all 29 (Fig. 2A). Second, look closely at site 484 in their Figure 1B: in KP.2 (a JN.1 descendant), site 484 actually switched from <code>A484</code> <em>back</em> to <strong><code>K484</code></strong>! If <code>E484K</code> alone doesn't reduce naïve B-cell binding, why did KP.2 drop another 1.5-fold below XBB.1.5 ($0.0061\% \to 0.0040\%$)? <code>HyphAeon</code>’s co-evolution map shows why: in 2021, <code>E484K</code> arose by itself. In 2024–2026 ($n = 2{,}787$ genomes), <code>K484</code> only spread because it traveled 100% of the time with two KP.2 innovations: the <strong><code>L455S</code> / <code>F456L</code> / <code>L452W</code> / <code>N450D</code> ridge remodel</strong> (which reshapes the binding surface right next to 484; <a href="https://doi.org/10.1038/s41586-024-07636-1" target="_blank" rel="noopener noreferrer">Dadonaite et al., 2024</a>) and <strong><code>K356T</code></strong>, which attaches a brand-new <strong>sugar shield (an N-linked glycan at <code>N354</code>)</strong> over the RBD core.</li>
 
-                        <li><strong>From RBD germline loss to NTD conformational clamping:</strong>
-                        To address the authors’ third study limitation—that monomeric RBD probes miss other Spike domains and "RBD-down" conformational shifts—we tracked all 129 full-Spike sweeps (Fig. 2B). Selection velocity peaked first in the RBM around <strong>2022.20</strong> (<code>E484A</code>, <code>F486P</code>), then shifted to the <strong>N-terminal domain (NTD, 39 sweeps, median peak 2023.03, highest mean velocity $1.14 \times 10^{-3}$)</strong>. Fully <strong>66.1% (312 / 472)</strong> of RBD epistatic pairs connect to other domains, including <strong>186 NTD–RBD pairs</strong> (led by <code>S50L–L455S</code>, $\mathrm{CESI} = 12.41$) that pack against the neighboring protomer’s closed RBD. Once exposed RBD germline motifs were depleted, SARS-CoV-2 co-evolved an NTD latch to hide the remaining RBD epitopes in the "down" state.</li>
+                        <li><strong>What happens outside the RBD? A two-stage hiding strategy:</strong>
+                        In their Limitations section, the authors note that testing the isolated RBD cannot measure changes elsewhere in Spike—especially the trend for newer variants to keep their RBD tucked in the closed ("down") position where antibodies can't reach it. Across all 129 adaptive sweeps in full Spike, <code>HyphAeon</code> shows a clear two-stage shift (Fig. 2B): in 2022, selection focused directly on the exposed RBD surface (<code>E484A</code>, <code>F486P</code>), shaving off the easy human germline targets. By 2023–2025, once the RBD ran out of easy targets to delete without hurting ACE2 receptor binding, the hottest selection moved to the <strong>N-terminal domain (NTD, 39 sweeps)</strong>. Two-thirds of all co-evolving pairs involving the RBD actually connect it to other domains—including <strong>186 pairs linking the RBD to the NTD</strong> (at sites like <code>S50L</code> and <code>L216F</code> that press against the neighboring RBD in 3D structures to hold it closed). Once the RBD shaved off its most obvious targets, Spike evolved a molecular latch in the NTD to keep the remaining RBD epitopes tucked out of sight.</li>
                     </ul>
 
                     <figure class="blog-figure">
-                        <img src="images/hyphaeon_bloom_fig2_epistasis.png" alt="HyphAeon post-fixation rescue across all 31 Jacob-Dolan et al. Fig 1B RBD sites and full-Spike domain wave progression">
+                        <img src="images/hyphaeon_bloom_fig2_epistasis.png" alt="HyphAeon rescue of fixed RBD sweeps across all 31 Jacob-Dolan et al. Fig 1B sites and full-Spike domain progression">
                         <figcaption>
-                            <strong>Figure 2. Epistatic licensing across the 31 RBD variant sites and two-stage progression across full Spike.</strong>
-                            (A) Static whole-tree selection (x-axis) vs. <code>HyphAeon</code> epistatic network strength ($\sum\mathrm{CESI}$, y-axis) across all 31 RBD sites in Figure 1B of <a href="https://doi.org/10.64898/2026.10.15.759476" target="_blank" rel="noopener noreferrer">Jacob-Dolan et al. (2026)</a>; point size reflects peak velocity. Static scans ($q \le 0.10$, dashed line) miss 22 of 29 confirmed sweeps.
-                            (B) Peak selection velocity dates ($t^*$) across all 129 full-Spike sweeps, showing the transition from Stage 1 direct RBM germline ablation (2022.2) to Stage 2 NTD-mediated RBD-down clamping (2023.0+).
+                            <strong>Figure 2. Rescuing fixed RBD sweeps and tracking Spike’s two-stage hiding strategy.</strong>
+                            (A) Standard whole-tree selection score (x-axis) vs. <code>HyphAeon</code> co-evolution strength with other Spike sites (y-axis) across all 31 RBD sites in Figure 1B of <a href="https://doi.org/10.64898/2026.10.15.759476" target="_blank" rel="noopener noreferrer">Jacob-Dolan et al. (2026)</a>; circle size reflects peak sweep speed. Standard static scans ($q \le 0.10$, dashed line) miss 22 of 29 confirmed sweeps after they fix.
+                            (B) Timing of peak sweep speed across all 129 full-Spike adaptive sweeps, showing the shift from Stage 1 (shaving exposed RBM targets in 2022) to Stage 2 (latching the RBD closed via NTD mutations in 2023+).
                         </figcaption>
                     </figure>
 
-                    <p>This is why pairing quantitative immunology from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom with millisecond phylogenetic foundation models is so much fun: wet-lab flow cytometry tells us <em>what</em> changed in human B-cell recognition, and <code>HyphAeon</code>’s velocity and epistasis operators show <em>how</em> natural selection wired those changes together across the viral tree.</p>
+                    <p>This is why pairing experimental immunology from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom with fast phylogenetic models is so rewarding: flow cytometry at the lab bench tells us <em>what</em> changed in human B-cell recognition, and the viral tree shows us <em>how</em> natural selection wired those changes together in the wild.</p>
 
                     <div class="callout-box">
                         <strong>Explore the Data &amp; Preprint</strong>

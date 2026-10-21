@@ -1344,7 +1344,7 @@
                 {
                     "url": "blog/2026-10-21-hyphaeon-sars2-antigenicity.html",
                     "link-text": "How SARS-CoV-2 learned to hide from our naïve B cells—and how HyphAeon sees it in the tree",
-                    "subtext": "A new preprint from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom shows that the SARS-CoV-2 RBD evolved a 3-fold drop in recognition by naïve human B cells. Pairing their measurements with HyphAeon—our 1.9M-parameter phylogenetic foundation model—shows how germline-stealth mutations drove the fastest selective sweeps of the pandemic before shifting evolution to an NTD conformational clamp."
+                    "subtext": "A new preprint from Catherine Jacob-Dolan, Jim Boonyaratanakornkit, and Jesse Bloom shows that the SARS-CoV-2 RBD evolved a 3-fold drop in recognition by naïve human B cells. Pairing their lab measurements with HyphAeon—our time-resolved selection and co-evolution framework—shows how B-cell stealth mutations drove the fastest selective sweeps of the pandemic before shifting evolution to the N-terminal domain."
                 },
                 {
                     "url": "https://doi.org/10.64898/2026.10.15.759476",
