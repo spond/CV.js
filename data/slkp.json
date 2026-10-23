@@ -1340,6 +1340,18 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-23",
+                {
+                    "url": "blog/2026-10-23-shamonda.html",
+                    "link-text": "From a 1965 Nigerian cattle market to two 2026 European outbreaks: how Shamonda virus evolves across continents",
+                    "subtext": "Spread by tiny biting midges, Shamonda virus causes mild fever in adult cows but severe birth defects in unborn calves. Tracing all 34 known isolates across 61 years—from a 1965 Nigerian cattle market to Japan, Israel, South Africa, and Europe's summer 2026 cattle outbreaks—reveals a steady evolutionary clock, two long-separated lineages arriving in Europe at the same time, zero segment swapping, and an almost frozen protein core."
+                },
+                {
+                    "url": "blog/2026-10-23-shamonda-slides.html",
+                    "link-text": "60-Sec Slide Deck"
+                }
+            ],
+            [
                 "2026-10-21",
                 {
                     "url": "blog/2026-10-21-hyphaeon-sars2-antigenicity.html",

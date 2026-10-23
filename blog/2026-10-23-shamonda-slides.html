@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shamonda Virus in 60 Seconds (Slide Deck) | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Shamonda Virus in 60 Seconds: From a 1965 Nigerian Cattle Market to Two 2026 European Outbreaks">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-23-shamonda-slides.html">
+    <meta name="twitter:description" content="A 6-slide, 60-second visual guide to Shamonda virus: what it does in cattle, where all 34 isolates come from, how fast it evolves, and why Europe saw two different lineages in summer 2026.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/shamonda_fig1_provenance_clocks.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Shamonda Virus in 60 Seconds: From a 1965 Nigerian Cattle Market to Two 2026 European Outbreaks">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-23-shamonda-slides.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/shamonda_fig1_provenance_clocks.png">
+    <meta property="og:description" content="A 6-slide, 60-second visual guide to Shamonda virus: what it does in cattle, where all 34 isolates come from, how fast it evolves, and why Europe saw two different lineages in summer 2026.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .deck-wrapper { max-width: 980px; padding: 2.5rem 3.5rem; }
+        .deck-topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;
+        }
+        .deck-nav-btn {
+            background: #000000; color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.55rem 1.1rem;
+            font-size: 0.75rem; border: 2px solid #000000; display: inline-block; cursor: pointer;
+        }
+        .deck-nav-btn.secondary { background: #ffffff; color: #000000; }
+        .deck-nav-btn:hover { background: #333333; color: #ffffff; }
+        .progress-rail {
+            width: 100%; height: 10px; border: 2px solid #000000;
+            background: #ffffff; margin-bottom: 1.5rem; position: relative;
+        }
+        .progress-fill { height: 100%; background: #000000; width: 16.66%; transition: width 0.2s ease; }
+        .slide {
+            display: none; border: 3px solid #000000; background: #ffffff;
+            padding: 2.5rem 2.75rem; min-height: 540px; flex-direction: column;
+            justify-content: space-between; margin-bottom: 1.5rem;
+        }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid #000000; padding-bottom: 1.1rem; margin-bottom: 1.5rem; }
+        .slide-kicker {
+            display: inline-block; background: #000000; color: #ffffff;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.55rem; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+        }
+        .slide h2 { font-size: 1.75rem; font-weight: 900; line-height: 1.18; letter-spacing: -0.02em; margin: 0; color: #000000; }
+        .slide-body { font-family: 'Merriweather', Georgia, serif; font-size: 0.98rem; line-height: 1.65; color: #111827; flex: 1; }
+        .slide-body p { margin-bottom: 1rem; }
+        .slide-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1rem 0; }
+        .slide-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .stat-card { border: 2px solid #000000; padding: 1.1rem 1.25rem; background: #f9fafb; }
+        .stat-card.highlight { background: #000000; color: #ffffff; }
+        .stat-card.highlight .stat-big, .stat-card.highlight .stat-title, .stat-card.highlight .stat-text { color: #ffffff; }
+        .stat-big { font-family: var(--font-family); font-size: 1.65rem; font-weight: 900; line-height: 1.1; margin-bottom: 0.3rem; color: #000000; }
+        .stat-title { font-family: var(--font-family); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; color: #000000; }
+        .stat-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 0.84rem; line-height: 1.45; color: #374151; margin: 0 !important; }
+        .slide-fig { border: 2px solid #000000; padding: 0.75rem; background: #ffffff; margin: 0.75rem 0; }
+        .slide-fig img { width: 100%; height: auto; display: block; }
+        .slide-fig-cap { font-family: var(--font-family); font-size: 0.75rem; color: #4b5563; margin-top: 0.5rem; line-height: 1.4; }
+        .zinger-banner {
+            border-left: 5px solid #000000; background: #f3f4f6;
+            padding: 0.9rem 1.2rem; font-family: var(--font-family);
+            font-size: 0.88rem; font-weight: 700; color: #000000; margin-top: 1rem;
+        }
+        .slide-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 2px solid #000000; padding-top: 1rem; margin-top: 1.25rem;
+            font-family: var(--font-family); font-size: 0.78rem;
+        }
+        .deck-controls { display: flex; gap: 0.6rem; align-items: center; }
+        .ctrl-btn {
+            background: #000000; color: #ffffff; border: 2px solid #000000;
+            padding: 0.5rem 1.1rem; font-family: var(--font-family);
+            font-size: 0.76rem; font-weight: 800; text-transform: uppercase; cursor: pointer;
+        }
+        .ctrl-btn.secondary { background: #ffffff; color: #000000; }
+        .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .ctrl-btn:not(:disabled):hover { background: #333333; color: #ffffff; }
+        .kbd-hint { color: #4b5563; font-size: 0.74rem; }
+        .kbd-key { border: 1.5px solid #000000; padding: 0.1rem 0.4rem; background: #ffffff; font-weight: 800; font-size: 0.7rem; }
+        body.view-all .slide { display: flex !important; border-bottom: 3px solid #000000; }
+        body.view-all .slide-footer { display: none; }
+        @media (max-width: 900px) {
+            .deck-wrapper { padding: 1.5rem; }
+            .slide { padding: 1.5rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide-grid-2, .slide-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="2026-10-23-shamonda.html">← Read Full Blog Post</a>
+                    <a href="../index.html#/blog">All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Papers &amp; Software</h3>
+                <div class="links-list">
+                    <a href="2026-10-23-shamonda.html">Full Blog Post</a>
+                    <a href="https://doi.org/10.1080/00034983.1972.11686835" target="_blank" rel="noopener noreferrer">Causey et al. (1972)</a>
+                    <a href="https://doi.org/10.3201/eid1810.120835" target="_blank" rel="noopener noreferrer">Goller et al. (2012)</a>
+                    <a href="https://doi.org/10.1007/s00705-025-06233-5" target="_blank" rel="noopener noreferrer">Tomochi et al. (2025)</a>
+                    <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">RhizAeon Web App</a>
+                    <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div class="deck-wrapper">
+                <div class="deck-topbar">
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <a href="2026-10-23-shamonda.html" class="deck-nav-btn">← Back to Blog Post</a>
+                        <button id="toggleViewBtn" class="deck-nav-btn secondary" onclick="toggleViewAll()">View All 6 Slides</button>
+                    </div>
+                    <div class="kbd-hint">
+                        Use <span class="kbd-key">←</span> <span class="kbd-key">→</span> or <span class="kbd-key">Space</span> to navigate · 60-Second Summary
+                    </div>
+                </div>
+
+                <div class="progress-rail">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- SLIDE 1 -->
+                <section class="slide active" data-slide="1">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 1 of 6 · Biology &amp; Pathology</span>
+                            <h2>What is Shamonda virus, and what does it do in cattle?</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                Carried by tiny blood-feeding biting midges (<em>Culicoides</em>), <strong>Shamonda virus</strong> is a three-segmented RNA virus in the Simbu group—closely related to <strong>Schmallenberg</strong> and <strong>Akabane</strong> viruses:
+                            </p>
+                            <div class="slide-grid-3">
+                                <div class="stat-card">
+                                    <div class="stat-big">Mild in Adults</div>
+                                    <div class="stat-title">Often Unnoticed on Farms</div>
+                                    <p class="stat-text">In adult cows, infection causes only a brief fever, diarrhea, or a few days of lower milk yield before the virus is cleared.</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">Severe in Fetuses</div>
+                                    <div class="stat-title">Crossing the Placenta</div>
+                                    <p class="stat-text">When midges bite pregnant cows, sheep, or goats in early-to-mid gestation, the virus attacks the fetal brain and spinal cord, causing abortions or deformed calves.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">3 RNA Segments</div>
+                                    <div class="stat-title">S, M, and L Genes</div>
+                                    <p class="stat-text">Small ($S$) builds the inner protein shell, Medium ($M$) builds the outer surface spikes, and Large ($L$) builds the replication enzyme.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Because adult infections are mild, Shamonda virus can spread silently through midge populations during summer before congenital defects appear months later.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 1 / 6 · Biology &amp; Clinical Impact</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()" disabled>← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 2 -->
+                <section class="slide" data-slide="2">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 2 of 6 · 61 Years of Global Sampling (1965–2026)</span>
+                            <h2>Where do all 97 public sequences (34 unique isolates) come from?</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                Tracing all 97 public genetic records back to their original field samples shows they come from <strong>34 animal and insect isolates</strong> (26 cattle, 6 biting midges, 1 horse, and 1 goat; zero human cases) across three continents:
+                            </p>
+                            <div class="slide-grid-3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">1965 Nigeria</div>
+                                    <div class="stat-title">The Ibadan Market Cow</div>
+                                    <p class="stat-text">First isolated by Otto Causey &amp; Graham Kemp from trade cow <code>Ib An 5550</code> at the Shamonda cattle market in Ibadan, Nigeria (<a href="https://doi.org/10.1080/00034983.1972.11686835" target="_blank" rel="noopener noreferrer" style="color:#fff;">Causey et al., 1972</a>).</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">2002–2023</div>
+                                    <div class="stat-title">Japan, Israel &amp; South Africa</div>
+                                    <p class="stat-text">Detected in midges and cattle in southern Japan (2002, 2007, 2015, 2023), cattle in Israel (2018–2021), and a horse and goat in South Africa (2018, 2021).</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Summer 2026</div>
+                                    <div class="stat-title">18 European Cattle Genomes</div>
+                                    <p class="stat-text">In July–August 2026, labs in France, Switzerland, and Germany sequenced 18 complete three-segment genomes (54 segments) from sick cattle.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Because freeze-dried vials of the 1965 Nigerian cow virus were re-sequenced by five labs after the 2011 Schmallenberg outbreak, most database copies carry a 2012 date instead of 1965.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 2 / 6 · Global Sampling History (1965–2026)</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 3 -->
+                <section class="slide" data-slide="3">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 3 of 6 · The Evolutionary Clock (ChronAeon)</span>
+                            <h2>Restoring the 1965 Nigerian date reveals a steady clock—and two separate branches</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/shamonda_fig1_provenance_clocks.png" alt="Evolutionary clock of Shamonda virus from 1965 Nigeria and 2002 Japan to the two 2026 European cattle outbreaks">
+                                <div class="slide-fig-cap">
+                                    <strong>Left:</strong> Putting the founding Nigerian cow isolate (<code>Ib An 5550</code>) back in 1965 rather than its 2012 re-sequencing date removes a $4.4\times$ clock distortion. <strong>Right:</strong> Across all verified isolates, <code>ChronAeon</code> resolves two parallel lineages evolving at $1.21 \times 10^{-3}$ and $1.32 \times 10^{-3}$ substitutions/site/year (~14 changes/year across the genome).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 3 / 6 · Steady 61-Year Evolutionary Clock</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4 -->
+                <section class="slide" data-slide="4">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 4 of 6 · Two Simultaneous 2026 European Outbreaks</span>
+                            <h2>Europe was hit by two long-separated branches of Shamonda virus in the same summer</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                The 18 cattle genomes sequenced across Europe in July and August 2026 split into two distinct geographic and evolutionary groups separated by <strong>1,425 DNA letter differences</strong>:
+                            </p>
+                            <div class="slide-grid-2">
+                                <div class="stat-card">
+                                    <div class="stat-big">Alpine &amp; French Cattle</div>
+                                    <div class="stat-title">The African Branch (9 Genomes)</div>
+                                    <p class="stat-text">
+                                        <strong>Regions:</strong> Eastern/central France, Switzerland (Luzern, Thurgau), and southwestern Germany (Baden-Württemberg).<br>
+                                        <strong>Ancestry:</strong> Descends directly from the lineage first sampled in the <strong>1965 Nigerian market cow</strong> ($98.6\%$ polymerase protein identity).
+                                    </p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">North-Central Germany</div>
+                                    <div class="stat-title">The East Asian Branch (9 Genomes)</div>
+                                    <p class="stat-text">
+                                        <strong>Regions:</strong> North Rhine-Westphalia, Lower Saxony, and Hesse.<br>
+                                        <strong>Ancestry:</strong> Belongs to the <strong>2002–2015 Japanese midge and cattle lineage</strong> ($99.6\%$ polymerase protein identity to 2002 Japanese isolates).
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Within each region, the 2026 cattle viruses are $99.9\text{–}100\%$ identical—reflecting two separate, rapid local expansions during the summer midge season.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 4 / 6 · Two Separate 2026 Introductions</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 5 -->
+                <section class="slide" data-slide="5">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 5 of 6 · Segment Swapping (RhizAeon) &amp; Protein Evolution (HyphAeon)</span>
+                            <h2>No hybrid viruses, an almost frozen core, and a single adaptive hotspot on the outer spike</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/shamonda_fig2_proteome_sieve.png" alt="DNA vs protein conservation and single surface spike hotspot across the Shamonda virus proteome">
+                                <div class="slide-fig-cap">
+                                    <strong>Left:</strong> <code>RhizAeon</code> shows neither 2026 outbreak is a segment-swapped hybrid, and cycling between insects and cattle keeps the internal proteins $97.6\text{–}99.6\%$ identical despite 1,425 DNA differences. <strong>Right:</strong> Across all 3,890 amino acids, <code>HyphAeon</code> finds just one adaptive hotspot—position 74 on the Gn outer surface spike (red circle)—evolving with partner sites in the coat and polymerase (blue arcs).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 5 / 6 · Reassortment &amp; Natural Selection</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 6 -->
+                <section class="slide" data-slide="6">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 6 of 6 · Summary</span>
+                            <h2>The 61-year evolutionary story of Shamonda virus in one glance</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-grid-3">
+                                <div class="stat-card">
+                                    <div class="stat-big">Two Clocks</div>
+                                    <div class="stat-title">~14 Changes / Year</div>
+                                    <p class="stat-text">Anchored to the 1965 Nigerian cow and 2002 Japanese midges, both branches evolve at a steady $1.2\text{–}1.3 \times 10^{-3}\text{ subs/site/yr}$ (<code>ChronAeon</code>).</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">No Hybrids</div>
+                                    <div class="stat-title">Intact S–M–L Genomes</div>
+                                    <p class="stat-text">Despite co-circulating in Europe in summer 2026, the Alpine/French and northern German clades have not swapped segments (<code>RhizAeon</code>).</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">Frozen Core</div>
+                                    <div class="stat-title">One Spike Hotspot (Gn E74T)</div>
+                                    <p class="stat-text">Alternating between midges and cattle preserves $99.6\%$ of the inner shell and $97.6\%$ of the polymerase, focusing change on the outer spike (<code>HyphAeon</code>).</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Read the full 4-minute story at <a href="2026-10-23-shamonda.html" style="color: #000; text-decoration: underline;">2026-10-23-shamonda.html</a> · Explore <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">RhizAeon</a> &amp; <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">HyphAeon</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 6 / 6 · Summary &amp; Links</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()" disabled>Next →</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function updateDeck() {
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.slide) === currentSlide);
+            });
+            document.getElementById('progressFill').style.width = ((currentSlide / totalSlides) * 100) + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) { currentSlide++; updateDeck(); }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) { currentSlide--; updateDeck(); }
+        }
+
+        function toggleViewAll() {
+            document.body.classList.toggle('view-all');
+            const btn = document.getElementById('toggleViewBtn');
+            btn.textContent = document.body.classList.contains('view-all') ? 'Single-Slide Mode' : 'View All 6 Slides';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.body.classList.contains('view-all')) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From a 1965 Nigerian cattle market to two 2026 European outbreaks: how Shamonda virus evolves across continents | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="From a 1965 Nigerian cattle market to two 2026 European outbreaks: how Shamonda virus evolves across continents">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-23-shamonda.html">
+    <meta name="twitter:description" content="Spread by tiny biting midges, Shamonda virus causes mild fever in adult cows but severe birth defects in unborn calves. Tracing all 34 known isolates from a 1965 Nigerian cattle market to Europe's summer 2026 outbreaks reveals two long-separated viral lineages arriving in Europe at the same time.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/shamonda_fig1_provenance_clocks.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="From a 1965 Nigerian cattle market to two 2026 European outbreaks: how Shamonda virus evolves across continents">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-23-shamonda.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/shamonda_fig1_provenance_clocks.png">
+    <meta property="og:description" content="Spread by tiny biting midges, Shamonda virus causes mild fever in adult cows but severe birth defects in unborn calves. Tracing all 34 known isolates from a 1965 Nigerian cattle market to Europe's summer 2026 outbreaks reveals two long-separated viral lineages arriving in Europe at the same time.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .blog-article-container { max-width: 820px; padding: 4rem; }
+        .blog-nav-bar { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .blog-nav-btn {
+            background: var(--text-main); color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.65rem 1.25rem;
+            font-size: 0.78rem; border: 2px solid var(--border-color); display: inline-block;
+        }
+        .blog-nav-btn.secondary { background: #ffffff; color: var(--text-main); }
+        .blog-nav-btn:hover { background: #333333; color: #ffffff; }
+        .post-header { border-bottom: 2px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2.5rem; }
+        .post-tag {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.6rem; margin-bottom: 1rem; letter-spacing: 0.06em;
+        }
+        .post-header h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+        .post-meta a { color: var(--text-main); font-weight: 700; text-decoration: underline; }
+        .post-content { font-family: 'Merriweather', Georgia, serif; font-size: 1.04rem; line-height: 1.8; color: #111827; }
+        .post-content p { margin-bottom: 1.4rem; }
+        .post-content a { color: #000000; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+        .post-content a:hover { background: #000000; color: #ffffff; text-decoration: none; }
+        .post-content code { font-family: var(--font-family); font-size: 0.88em; background: #f3f4f6; padding: 0.15rem 0.4rem; border: 1px solid #d1d5db; }
+        .post-content ul, .post-content ol { margin: 1.25rem 0 1.6rem 1.75rem; }
+        .post-content li { margin-bottom: 0.75rem; }
+        .post-content hr.fine-line-divider { border: none; border-top: 2px solid var(--border-color); margin: 2.75rem 0; }
+        .dropcap {
+            float: left; font-family: var(--font-family); font-size: 3.1rem;
+            line-height: 0.85; padding-top: 4px; padding-right: 10px; padding-bottom: 2px; font-weight: 800;
+        }
+        .blog-figure { margin: 2.5rem 0; border: 2px solid var(--border-color); padding: 1.25rem; background: #ffffff; }
+        .blog-figure img { width: 100%; height: auto; display: block; }
+        .blog-figure figcaption {
+            font-family: var(--font-family); font-size: 0.78rem; line-height: 1.5;
+            color: var(--text-muted); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #e5e7eb;
+        }
+        /* Industrial 2x2 Key Takeaways Grid + Thesis Zinger */
+        .takeaways-section { margin: 0 0 2.75rem 0; }
+        .takeaways-header {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; padding: 0.25rem 0.65rem; letter-spacing: 0.08em; margin-bottom: 0;
+        }
+        .takeaways-zinger {
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            background: #f9fafb;
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #111827;
+            margin: 0 !important;
+        }
+        .takeaways-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color); border-left: 2px solid var(--border-color); background: #ffffff;
+        }
+        .takeaway-card { border-right: 2px solid var(--border-color); border-bottom: 2px solid var(--border-color); padding: 1.35rem 1.5rem; }
+        .takeaway-stat {
+            font-family: var(--font-family); font-size: 1.45rem; font-weight: 900;
+            line-height: 1.1; color: var(--text-main); margin-bottom: 0.35rem; letter-spacing: -0.02em;
+        }
+        .takeaway-label {
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); margin-bottom: 0.5rem;
+        }
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem; line-height: 1.5; color: #374151; margin: 0 !important;
+        }
+        .callout-box {
+            font-family: var(--font-family); border: 2px solid var(--border-color);
+            padding: 1.5rem; margin: 2rem 0; background: #f9fafb; font-size: 0.88rem; line-height: 1.6;
+        }
+        .callout-box strong { text-transform: uppercase; display: block; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.05em; }
+        @media (max-width: 1024px) { .blog-article-container { padding: 2rem; } .post-header h1 { font-size: 1.6rem; } }
+        @media (max-width: 640px) { .takeaways-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="../index.html#/blog">← All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Papers &amp; Software</h3>
+                <div class="links-list">
+                    <a href="2026-10-23-shamonda-slides.html">60-Second Slide Deck</a>
+                    <a href="https://doi.org/10.1080/00034983.1972.11686835" target="_blank" rel="noopener noreferrer">Causey et al. (1972)</a>
+                    <a href="https://doi.org/10.3201/eid1810.120835" target="_blank" rel="noopener noreferrer">Goller et al. (2012)</a>
+                    <a href="https://doi.org/10.1007/s00705-025-06233-5" target="_blank" rel="noopener noreferrer">Tomochi et al. (2025)</a>
+                    <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">RhizAeon Web App</a>
+                    <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <article class="blog-article-container">
+                <div class="blog-nav-bar">
+                    <a href="../index.html#/blog" class="blog-nav-btn">← Back to Blog</a>
+                    <a href="2026-10-23-shamonda-slides.html" class="blog-nav-btn">60-Second Slide Deck →</a>
+                    <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">RhizAeon ↗</a>
+                    <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">HyphAeon ↗</a>
+                </div>
+
+                <header class="post-header">
+                    <span class="post-tag">Viral Evolution &amp; Outbreak History</span>
+                    <h1>From a 1965 Nigerian cattle market to two 2026 European outbreaks: how Shamonda virus evolves across continents</h1>
+                    <div class="post-meta">
+                        <span><i>23 Oct 2026, by Sergei</i></span>
+                        <span>4 min read</span>
+                        <span>Companion: <a href="2026-10-23-shamonda-slides.html">60-Second Slide Summary</a></span>
+                    </div>
+                </header>
+
+                <div class="post-content">
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">Key Takeaways</span>
+                        <p class="takeaways-zinger">
+                            <strong>Spread by tiny biting midges, Shamonda virus passes through adult cows as a brief, mild fever, but crosses the placenta in pregnant animals to cause severe birth defects.</strong>
+                            Following all 34 known isolates across 61 years—from a 1965 Nigerian cattle market to Japan, Israel, South Africa, and the sudden wave of European cattle cases in summer 2026—shows a remarkably steady evolutionary clock, two long-separated lineages arriving in Europe at the same time, no hybrid segment swapping, and an almost frozen protein core.
+                        </p>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">34 Isolates (61 Yrs)</div>
+                                <div class="takeaway-label">Cattle, Midges, a Horse &amp; a Goat</div>
+                                <p class="takeaway-desc">All 97 public gene records come from 34 animal and vector samples across Africa, Asia, and Europe (26 cattle, 6 biting midges, 1 horse, and 1 goat; zero human cases).</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">~14 Letters / Year</div>
+                                <div class="takeaway-label">A Steady 61-Year Clock</div>
+                                <p class="takeaway-desc">Once the founding 1965 Nigerian cow virus is anchored to 1965 rather than its 2012 re-sequencing date, both major branches evolve at a steady $1.2\text{–}1.3 \times 10^{-3}$ substitutions/site/year.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">2 Clades in 2026</div>
+                                <div class="takeaway-label">Simultaneous European Arrivals</div>
+                                <p class="takeaway-desc">Summer 2026 cattle cases in France, Switzerland, and southern Germany descend from the 1965 Nigerian branch, while cases in northern Germany match the Japanese branch.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">97.6–99.6% Identical</div>
+                                <div class="takeaway-label">Frozen Core, One Surface Hotspot</div>
+                                <p class="takeaway-desc">Cycling between insects and mammals weeds out almost all protein changes: only a single spot on the outer spike (<code>Gn E74T</code>) shows active adaptive evolution.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        <span class="dropcap">S</span>hamonda virus is a quiet traveler. Carried by tiny blood-feeding biting midges (<em>Culicoides</em>) that drift on warm summer winds, it belongs to the Simbu group of orthobunyaviruses—the same close-knit family of three-segmented RNA viruses as <strong>Akabane virus</strong> in Asia and <strong>Schmallenberg virus</strong>, which swept across European sheep and cattle farms in 2011.
+                    </p>
+                    <p>
+                        What makes viruses in this group so deceptive is the gap between what they do to an adult animal and what they do to a fetus. When an infected midge bites an adult cow, the infection is usually so mild that it passes unnoticed: a day or two of fever, a brief bout of diarrhea, or a temporary dip in milk yield before the cow's immune system clears the virus from its bloodstream. Because the virus stays in the blood for only a few days, herds can be infected across an entire valley without raising an alarm. The true veterinary toll only becomes visible months later, if pregnant cows, ewes, or nanny goats were bitten during a critical window of early-to-mid gestation. Crossing the placenta, the virus infects the fetus's developing brain and spinal cord, leading to abortions, stillbirths, or newborn calves with locked, twisted joints and fluid-filled brain cavities (<em>arthrogryposis–hydranencephaly syndrome</em>).
+                    </p>
+
+                    <hr class="fine-line-divider" />
+
+                    <p>
+                        Where has Shamonda virus been found since its discovery, and who does it infect? If you gather all 97 Shamonda virus gene sequences ever deposited in public databases and trace each one back to its original field sample, they collapse into <strong>34 individual isolates</strong>—all from animals or insects (26 from cattle, 6 from <em>Culicoides</em> biting midges, 1 from a South African horse, and 1 from a South African goat, with no human isolates anywhere in the record). Together, those 34 samples trace a 61-year trail across three continents:
+                    </p>
+
+                    <ul>
+                        <li><strong>1965 — A Nigerian cattle market (the founding isolate):</strong> Between 1964 and 1969, virologists Otto Causey and Graham Kemp at the University of Ibadan Arbovirus Research Project (established with the Rockefeller Foundation) bled trade cattle brought to the Shamonda market and abattoir in Ibadan, Nigeria (<a href="https://doi.org/10.1080/00034983.1972.11686835" target="_blank" rel="noopener noreferrer">Causey et al., 1972</a>). From cow #5550 (<code>Ib An 5550</code>), they isolated the first Shamonda virus alongside three other new cattle viruses (Sango, Sabo, and Shuni).</li>
+                        <li><strong>2002 to 2023 — Southern Japan, Israel, and South Africa:</strong> For nearly four decades after 1965, Shamonda vanished from the scientific literature. Then in 2002, Japanese researchers trapping midges and monitoring sentinel cattle in Kagoshima and Okinawa found it circulating in East Asia, and detected it again in 2007, 2015, and 2023 (<a href="https://doi.org/10.1007/s00705-004-0419-3" target="_blank" rel="noopener noreferrer">Yanase et al., 2005</a>; <a href="https://doi.org/10.3201/eid2306.161946" target="_blank" rel="noopener noreferrer">Hirashima et al., 2017</a>; <a href="https://doi.org/10.1007/s00705-025-06233-5" target="_blank" rel="noopener noreferrer">Tomochi et al., 2025</a>). Sporadic detections followed in cattle in Israel (2018–2021) and in a horse and goat in South Africa (2018 and 2021).</li>
+                        <li><strong>July &amp; August 2026 — The sudden European cattle wave:</strong> Over just a few weeks in late summer 2026, veterinary institutes in France (<a href="https://www.envt.fr/" target="_blank" rel="noopener noreferrer">ENVT Toulouse</a> and Biosellal/IHU), Switzerland (<a href="https://www.ivi.admin.ch/" target="_blank" rel="noopener noreferrer">IVI Mittelhäusern</a>), and Germany (<a href="https://www.fli.de/" target="_blank" rel="noopener noreferrer">Friedrich-Loeffler-Institut</a>) sequenced 18 complete three-segment Shamonda genomes from sick cattle—nearly doubling the world's collection of sequences.</li>
+                    </ul>
+
+                    <hr class="fine-line-divider" />
+
+                    <p>
+                        How fast does Shamonda virus evolve across those 61 years, and how are the 2026 European cattle outbreaks connected to the older African and Asian viruses?
+                    </p>
+                    <p>
+                        When we ran the sequences through <code>ChronAeon</code> to measure the virus's evolutionary clock, the tool immediately flagged a historical quirk in the database. When Schmallenberg virus emerged in Europe in 2011, five different laboratories pulled freeze-dried vials of the original 1965 Nigerian cow virus (<code>Ib An 5550</code>) out of reference collections and sequenced it to compare the two viruses (<a href="https://doi.org/10.3201/eid1810.120835" target="_blank" rel="noopener noreferrer">Goller et al., 2012</a>; <a href="https://doi.org/10.1007/s00705-012-1341-8" target="_blank" rel="noopener noreferrer">Yanase et al., 2012</a>). Because most of those database entries recorded the 2012 sequencing date instead of the 1965 collection date, a naive clock analysis treats the 1965 Nigerian virus as if it were sampled in 2012—making the evolutionary rate look $4.4\times$ faster than it really is (Figure 1A).
+                    </p>
+
+                    <figure class="blog-figure">
+                        <img src="images/shamonda_fig1_provenance_clocks.png" alt="Evolutionary clock of Shamonda virus from 1965 Nigeria and 2002 Japan to the two 2026 European cattle outbreaks">
+                        <figcaption>
+                            <strong>Figure 1. Sixty-one years of Shamonda virus evolution lead to two separate European cattle outbreaks in summer 2026.</strong>
+                            <strong>(A)</strong> Because reference vials of the 1965 Nigerian cow isolate (<code>Ib An 5550</code>) were re-sequenced in 2012 without a 1965 collection date tag, raw database dates compress 61 years of evolution into 14 years (dashed red line). Restoring the true 1965 date reveals a steady clock of $1.21 \times 10^{-3}$ substitutions per site per year (solid black line).
+                            <strong>(B)</strong> Across all verified isolates, <code>ChronAeon</code> resolves two parallel evolutionary branches ticking at the same steady pace: an African–Alpine branch (blue) linking the 1965 Nigerian cow to the 2026 outbreaks in France, Switzerland, and southern Germany, and an East Asian–Northern German branch (amber) linking 2002–2015 Japanese midge and cattle isolates to the 2026 outbreak in north-central Germany.
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        Once that founding Nigerian cow is placed back in 1965, the evolutionary picture snaps into sharp focus (Figure 1B). Shamonda virus evolves at a remarkably steady pace of $1.2\text{ to }1.3 \times 10^{-3}$ substitutions per site per year—about 14 letter changes per year across its 12,000-letter genome. More importantly, <strong>Europe was not hit by a single Shamonda strain in summer 2026; it was hit by two long-separated branches of the viral family tree at the exact same time</strong>:
+                    </p>
+
+                    <ol>
+                        <li><strong>The Alpine &amp; French Outbreak (African Branch):</strong> All nine cattle viruses sampled across eastern and central France, Switzerland (Luzern and Thurgau), and southwestern Germany (Baden-Württemberg) in July and August 2026 are 99.9% identical to one another and descend directly from the lineage first sampled in that 1965 Nigerian market cow.</li>
+                        <li><strong>The North-Central German Outbreak (East Asian Branch):</strong> Just a few hundred kilometers north, all nine cattle viruses sampled in August 2026 in North Rhine-Westphalia, Lower Saxony, and Hesse differ from the French and Swiss viruses at <strong>1,425 genetic letters</strong> (over 12% of the genome). Instead of the Nigerian branch, they belong to the East Asian lineage sampled in Japanese midges and cattle between 2002 and 2015.</li>
+                    </ol>
+
+                    <hr class="fine-line-divider" />
+
+                    <p>
+                        Because Shamonda virus packages its genome into three separate RNA segments—<strong>Small ($S$)</strong> for the inner protein shell, <strong>Medium ($M$)</strong> for the outer surface spikes, and <strong>Large ($L$)</strong> for the replication enzyme—orthobunyaviruses can shuffle their segments like a deck of cards whenever two strains infect the same midge or cow. In fact, Japanese researchers recently documented a natural hybrid between Shamonda and Sathuperi viruses (<a href="https://doi.org/10.1007/s00705-025-06233-5" target="_blank" rel="noopener noreferrer">Tomochi et al., 2025</a>).
+                    </p>
+                    <p>
+                        Did the two Shamonda lineages co-circulating in Europe in summer 2026 swap segments with each other, or splice genes internally? Screening all three segments with <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer"><code>RhizAeon</code></a> shows that <strong>neither outbreak is a hybrid</strong>: there is no internal recombination within any segment, and every Alpine/French virus carries the African-branch $S$, $M$, and $L$ segments, while every northern German virus carries the Asian-branch $S$, $M$, and $L$ segments (Figure 2A).
+                    </p>
+                    <p>
+                        Finally, what do 61 years of evolution and 1,425 nucleotide differences do to the virus's actual proteins? Scanning all 3,890 amino acids across the three segments with <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer"><code>HyphAeon</code></a> reveals a classic signature of insect-borne viruses:
+                    </p>
+
+                    <ul>
+                        <li><strong>Strong purifying selection freezes the internal machinery:</strong> Because Shamonda virus has to replicate inside two completely different hosts—cold-blooded biting midges and warm-blooded cattle—natural selection ruthlessly weeds out amino acid changes in its core machinery. Despite 1,425 DNA differences between the two 2026 European clades, nearly all of those mutations are silent: the 233-amino-acid inner nucleocapsid shell ($S$) differs by <strong>just 1 amino acid</strong> ($99.6\%$ identical), and the 2,254-amino-acid polymerase enzyme ($L$) is $97.6\%$ identical (Figure 2A).</li>
+                        <li><strong>Adaptive evolution focuses on a single spot on the outer spike:</strong> The only gene that tolerates substantial protein change ($5.3\%$ amino acid difference) is the Medium ($M$) segment, which builds the outer surface spikes targeted by the cow's antibodies. Across the entire 3,890-amino-acid proteome, only one position shows statistically significant positive diversifying selection: <strong>residue 74 on the Gn surface spike</strong> (red circle in Figure 2B), which evolves in lockstep with a small network of partner positions in the coat and polymerase proteins (blue arcs).</li>
+                    </ul>
+
+                    <figure class="blog-figure">
+                        <img src="images/shamonda_fig2_proteome_sieve.png" alt="DNA vs protein conservation and single surface spike hotspot across the Shamonda virus proteome">
+                        <figcaption>
+                            <strong>Figure 2. Cycling between midges and cattle keeps Shamonda virus's internal proteins nearly unchanged while focusing adaptation on the outer spike.</strong>
+                            <strong>(A)</strong> Although the two summer 2026 European cattle lineages differ at 1,425 DNA letters (black bars), purifying selection keeps their proteins (amber bars) $94.7\text{–}99.6\%$ identical, and <code>RhizAeon</code> confirms no segment swapping between the two clades.
+                            <strong>(B)</strong> Across all 3,890 amino acids of the virus ($S + M + L$), <code>HyphAeon</code> identifies a single site under adaptive diversifying selection—position 74 on the Gn outer surface spike (red circle)—coupled to co-evolving partner sites across the coat and polymerase (blue arcs).
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        Put together, the 97 public sequences tell a remarkably clear biological story: two branches of a midge-borne cattle virus that diverged decades ago—one tracked from a 1965 Nigerian market cow, the other from East Asian midges and cattle—both surfaced in European herds in the same summer, ticking along parallel evolutionary clocks while keeping their internal proteins almost unchanged. And having fast, lightweight tools (`ChronAeon`, `RhizAeon`, and `HyphAeon`) means we can untangle that 61-year history—clock, reassortment, and selection—in a few seconds on a laptop.
+                    </p>
+
+                    <div class="callout-box">
+                        <strong>Explore the 60-Second Slide Summary &amp; Tools</strong>
+                        Step through the 6-slide visual summary of this story in the <a href="2026-10-23-shamonda-slides.html">60-Second Slide Deck</a>, screen viral alignments in your browser with <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">RhizAeon</a>, or explore selection and co-evolution models with <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer">HyphAeon</a>.
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>
