@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean breaks: tracking recombination across whole genomes in seconds | Sergei L. Kosakovsky Pond</title>
+    <title>Clean breaks: how RhizAeon finds recombination across whole genomes in seconds | Sergei L. Kosakovsky Pond</title>
 
     <!-- Twitter Card metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@sergeilkp">
     <meta name="twitter:creator" content="@sergeilkp">
-    <meta name="twitter:title" content="Clean breaks: tracking recombination across whole genomes in seconds">
+    <meta name="twitter:title" content="Clean breaks: how RhizAeon finds recombination across whole genomes in seconds">
     <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-24-rhizaeon.html">
-    <meta name="twitter:description" content="Tree-partitioning recombination detectors bog down on whole genomes, while fast triplet scanners count the same ancestral crossover dozens of times. Here is how RhizAeon maps mosaic genomes in linear O(NKL) time inside a web browser.">
+    <meta name="twitter:description" content="Tree-building recombination tools bog down on whole genomes, while fast triplet scanners count the same ancestral crossover dozens of times. Here is an intuitive look at how RhizAeon uses attention maps, force dipoles, and dyadic polishing to map mosaic DNA in seconds.">
     <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/rhizaeon_fig3_sarbecovirus_landscape.png">
 
     <!-- Open Graph metadata -->
-    <meta property="og:title" content="Clean breaks: tracking recombination across whole genomes in seconds">
+    <meta property="og:title" content="Clean breaks: how RhizAeon finds recombination across whole genomes in seconds">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-24-rhizaeon.html">
     <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/rhizaeon_fig3_sarbecovirus_landscape.png">
-    <meta property="og:description" content="Tree-partitioning recombination detectors bog down on whole genomes, while fast triplet scanners count the same ancestral crossover dozens of times. Here is how RhizAeon maps mosaic genomes in linear O(NKL) time inside a web browser.">
+    <meta property="og:description" content="Tree-building recombination tools bog down on whole genomes, while fast triplet scanners count the same ancestral crossover dozens of times. Here is an intuitive look at how RhizAeon uses attention maps, force dipoles, and dyadic polishing to map mosaic DNA in seconds.">
     <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
 
     <link rel="stylesheet" href="../style.css">
@@ -165,7 +165,7 @@
 
                 <header class="post-header">
                     <span class="post-tag">Methods &amp; Reticulate Evolution</span>
-                    <h1>Clean breaks: tracking recombination across whole genomes in seconds</h1>
+                    <h1>Clean breaks: how RhizAeon finds recombination across whole genomes in seconds</h1>
                     <div class="post-meta">
                         <span><i>24 Oct 2026, by Sergei</i></span>
                         <span>·</span>
@@ -181,112 +181,127 @@
                     <div class="takeaways-section">
                         <span class="takeaways-header">Key Takeaways</span>
                         <p class="takeaways-zinger">
-                            <strong>Recombination detectors have long forced an uncomfortable trade-off: phylogenetic tree-partitioning models bog down on whole genomes, whereas fast sequence-triplet scanners count a single ancestral crossover dozens of times and mistake fast-evolving branches for hybrids.</strong>
-                            By tracking sequences as continuous trajectories across a metric embedding in linear $\mathcal{O}(NKL)$ time, <code>RhizAeon</code> holds false positives near 1% across a million simulated genomes while reconstructing sarbecovirus Spike origins, 2.22 Mb bacterial chromosomes, and primate MHC micro-conversions in seconds inside a web browser.
+                            <strong>When viruses or bacteria swap DNA, a single family tree can no longer describe the alignment—yet tree-splitting tools are too slow for whole genomes, and fast triplet scanners count the same ancestral swap dozens of times.</strong>
+                            <code>RhizAeon</code> places reference sequences on a map, tracks where each genome points using continuous attention weights, and detects parent swaps as sharp force dipoles polished across multiple scales—scanning whole viral and bacterial genomes in seconds inside a web browser.
                         </p>
                         <div class="takeaways-grid">
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">0.58% – 1.01% FPR</div>
-                                <div class="takeaway-label">Calibrated Null Control</div>
-                                <p class="takeaway-desc">An unpolarized root sink absorbs lineage-specific evolutionary rate bursts, keeping false positives at 0.58% across 1,200 rate-variation nulls and 1.01% across 333,334 neutral genomes.</p>
+                                <div class="takeaway-label">Center Drain Absorbs Rate Bursts</div>
+                                <p class="takeaway-desc">A neutral drain at the center of the map absorbs fast-evolving branches, keeping false alarms at 0.58% on rate-burst tests and 1.01% across 333,334 clonal genomes.</p>
                             </div>
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">1 Event, Not 14.4</div>
-                                <div class="takeaway-label">Ancestral Clade Deduplication</div>
-                                <p class="takeaway-desc">When an ancestral recombinant spawns a 10-taxon clade, triplet scanners average 14.37 fragmented calls; <code>RhizAeon</code> collapses the shared mosaic into $1.01 \pm 0.08$ ancestral events (98.8% exact).</p>
+                                <div class="takeaway-label">Force Dipoles &amp; Clade Merging</div>
+                                <p class="takeaway-desc">When an ancestral hybrid leaves 10 descendants, triplet scanners average 14.37 calls; <code>RhizAeon</code> merges the shared DNA swap into $1.01 \pm 0.08$ events (98.8% exact).</p>
                             </div>
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">4.5 Days → 2.6 Sec</div>
-                                <div class="takeaway-label">Whole-Genome Sarbecoviruses</div>
-                                <p class="takeaway-desc">Scans all 78–83 complete sarbecovirus genomes (30,956 nt) in 2.6 seconds, matching published 4.5-day <code>GARD</code> Spike junctions within 9–12 nt and isolating the <code>BANAL-20-52</code> RBD exchange.</p>
+                                <div class="takeaway-label">83 Whole Sarbecoviruses</div>
+                                <p class="takeaway-desc">Scans 78–83 full sarbecovirus genomes (30,956 letters) in 2.6 seconds, matching 4.5-day <code>GARD</code> Spike breakpoints within 9–12 letters and finding the <code>BANAL-20-52</code> RBD swap.</p>
                             </div>
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">2.22 Mb in 36.1s</div>
-                                <div class="takeaway-label">Bacteria, MHC &amp; WebAssembly</div>
-                                <p class="takeaway-desc">Maps 392 horizontal transfer tracts across 240 <em>S. pneumoniae</em> chromosomes (~35× faster than <code>Gubbins</code>), resolves 86–150 bp HLA gene conversions, and runs locally in any browser.</p>
+                                <div class="takeaway-label">Dyadic Wavelets at Every Scale</div>
+                                <p class="takeaway-desc">Finds both 30 kb drug-resistance transfers in 240 <em>S. pneumoniae</em> chromosomes and 86 bp micro-conversions in 379 primate MHC alleles, and runs locally in any browser.</p>
                             </div>
                         </div>
                     </div>
 
-                    <p>Twenty years ago, when David Posada, Simon Frost, and I built <a href="https://doi.org/10.1093/molbev/msl051" target="_blank" rel="noopener noreferrer"><code>GARD</code></a>, we wanted a reliable way to stop homologous recombination from breaking phylogenetic trees and manufacturing false positives in $dN/dS$ selection scans (<a href="https://doi.org/10.1371/journal.pgen.1002764" target="_blank" rel="noopener noreferrer">Murrell et al., 2012</a>; <a href="https://doi.org/10.1093/molbev/msv035" target="_blank" rel="noopener noreferrer">Murrell et al., 2015</a>).
-                    <code>GARD</code> works well on single genes, but fitting separate maximum-likelihood trees across candidate breakpoint partitions scales poorly with both genome length and taxon count.
-                    When Spyros Lytras, Darren Martin, David Robertson, and I analyzed 78 complete sarbecovirus genomes ($30{,}956\text{ nt}$) to map the recombinant origins of SARS-CoV-2 (<a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al., 2022</a>), we had to downsample the alignment to 18 genomes just to finish a <code>GARD</code> run in <strong>4.5 days of cluster compute</strong>.</p>
+                    <p>When two viruses infect the same cell—or a bacterium takes up DNA from a neighbor—the child genome is a mosaic: part comes from Parent A, and part comes from Parent B.
+                    Forcing that mosaic alignment onto a single family tree distorts branch lengths and creates false positives in $dN/dS$ selection scans (<a href="https://doi.org/10.1371/journal.pgen.1002764" target="_blank" rel="noopener noreferrer">Murrell et al., 2012</a>; <a href="https://doi.org/10.1093/molbev/msv035" target="_blank" rel="noopener noreferrer">Murrell et al., 2015</a>).</p>
 
-                    <p>In a new <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">preprint</a> with Danielle Callan, Steven Weaver, Hannah Verdonk, Jordan Zehr, Spyros Lytras, Anton Nekrutenko, Taylor Paisie, and Darren Martin (<a href="https://github.com/veg/rhizaeon-code" target="_blank" rel="noopener noreferrer">open-source Rust/Python code</a>, <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">browser app</a>, and <a href="https://doi.org/10.5281/zenodo.23600798" target="_blank" rel="noopener noreferrer">Zenodo archive</a>), we introduce <strong><code>RhizAeon</code></strong>—a recombination engine that replaces combinatorial tree search and triplet enumeration with continuous trajectory tracking in linear $\mathcal{O}(NKL)$ time.</p>
+                    <p>Twenty years ago, David Posada, Simon Frost, and I built <a href="https://doi.org/10.1093/molbev/msl051" target="_blank" rel="noopener noreferrer"><code>GARD</code></a> to find where the tree changes along an alignment.
+                    <code>GARD</code> works well on single genes, but rebuilding trees across every candidate split is too slow for whole genomes: when Spyros Lytras, Darren Martin, David Robertson, and I analyzed 78 sarbecovirus genomes ($30{,}956$ letters) to trace the origins of SARS-CoV-2 (<a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al., 2022</a>), we had to drop 60 genomes just to finish one <code>GARD</code> run in <strong>4.5 days of cluster time</strong>.</p>
+
+                    <p>In a new <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">preprint</a> with Danielle Callan, Steven Weaver, Hannah Verdonk, Jordan Zehr, Spyros Lytras, Anton Nekrutenko, Taylor Paisie, and Darren Martin (<a href="https://github.com/veg/rhizaeon-code" target="_blank" rel="noopener noreferrer">GitHub</a>, <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">browser app</a>, <a href="https://doi.org/10.5281/zenodo.23600798" target="_blank" rel="noopener noreferrer">Zenodo</a>), we introduce <strong><code>RhizAeon</code></strong>—a method that maps recombinant DNA in linear $\mathcal{O}(NKL)$ time without building trees in windows or testing sequence triplets.</p>
 
                     <hr class="fine-line-divider" />
 
-                    <p><span class="dropcap">W</span>hy not just run a fast sequence-triplet scanner like <a href="https://doi.org/10.1093/molbev/msx263" target="_blank" rel="noopener noreferrer"><code>3SEQ</code></a> or <a href="https://doi.org/10.1093/ve/veaa087" target="_blank" rel="noopener noreferrer"><code>RDP5</code></a>?
-                    Evaluating $\binom{N}{3}$ triplets for runs of informative sites is fast on small virus alignments, but testing triplets in isolation creates four blind spots on modern datasets (Fig. 1):</p>
+                    <p><span class="dropcap">W</span>hy not use a fast triplet scanner such as <a href="https://doi.org/10.1093/molbev/msx263" target="_blank" rel="noopener noreferrer"><code>3SEQ</code></a> or <a href="https://doi.org/10.1093/ve/veaa087" target="_blank" rel="noopener noreferrer"><code>RDP5</code></a>?
+                    Triplet scanners check three sequences at a time ($\binom{N}{3}$ triplets) to see if Sequence C matches Parent A on the left and Parent B on the right.
+                    Testing each triplet by itself creates three problems on large alignments (Fig. 1):</p>
 
                     <ul>
-                        <li><strong>Ancestral clade overcounting:</strong> If a single recombination event occurred in the ancestor of a 10-sequence clade, testing every descendant against every pair of donor cousins triggers $\mathcal{O}(C \cdot D^2)$ redundant hits. On simulated 10-child recombinant clades, <code>3SEQ</code> reports an average of <strong>$14.37 \pm 7.27$ separate events</strong> for a single historical crossover (Fig. 1B).</li>
-                        <li><strong>Rate bursts mistaken for recombination:</strong> When one viral or bacterial lineage speeds up—or undergoes an APOBEC hypermutation burst—its genetic distance to outgroup taxa shifts abruptly without any DNA exchange.</li>
-                        <li><strong>Extinct ("ghost") donors and multi-parent mosaics:</strong> Standard triplet tests assume both parental lineages sit inside your sample and that every recombinant has exactly two parents. When the donor lineage goes extinct or remains unsampled (Fig. 1C), or when serial transfers splice three or more donors into the same chromosome (Fig. 1D), two-parent triplet tests break down.</li>
+                        <li><strong>Counting one ancestral swap many times:</strong> When one swap happens in an ancestor that leaves 10 descendants, a triplet scanner tests every descendant against every pair of cousins—reporting <strong>$14.37 \pm 7.27$ separate events</strong> for one historical swap (Fig. 1B).</li>
+                        <li><strong>Mistaking fast mutation rates for hybrids:</strong> When one branch mutates faster than its neighbors, its distance to other sequences jumps even though no DNA was exchanged.</li>
+                        <li><strong>Missing unsampled ("ghost") parents and three-parent mosaics:</strong> Triplet tests assume both parents are in your sample and that every hybrid has only two parents. They fail when the donor is extinct or unsampled (Fig. 1C), or when three parents built one chromosome (Fig. 1D).</li>
                     </ul>
 
                     <figure class="blog-figure">
-                        <img src="images/rhizaeon_fig1_specialized_scenarios.png" alt="RhizAeon performance across rate heterogeneity, ancestral clade deduplication, ghost donors, and 3-parent mosaics">
+                        <img src="images/rhizaeon_fig1_specialized_scenarios.png" alt="RhizAeon performance across rate bursts, ancestral clade merging, ghost donors, and 3-parent mosaics">
                         <figcaption>
-                            <strong>Figure 1. Resolving four failure modes of classical triplet scanners.</strong>
-                            (A) Routing branch-specific rate bursts into an unpolarized root sink holds false positives at $\alpha = 0.05$ across severe rate heterogeneity.
-                            (B) When a single ancestral recombination event spawns a 10-taxon clade, <code>3SEQ</code> averages $14.37$ redundant calls while <code>RhizAeon</code> collapses the shared tract into $1.01 \pm 0.08$ ancestral events (98.8% exact single-event accuracy).
-                            (C–D) Recovery of unsampled "ghost" donor introgressions (89.2% F1) and three-parent compound mosaics (90.0% full triplet donor recovery).
+                            <strong>Figure 1. Fixing four failure modes of sequence-triplet scanners.</strong>
+                            (A) Sending branch rate bursts into a neutral center drain keeps false alarms at $\alpha = 0.05$.
+                            (B) When one ancestral swap leaves 10 descendants, <code>3SEQ</code> averages $14.37$ calls while <code>RhizAeon</code> merges them into $1.01 \pm 0.08$ events (98.8% exact).
+                            (C–D) Accurate detection of unsampled "ghost" donors (89.2% F1) and three-parent mosaics (90.0% full parent recovery).
                         </figcaption>
                     </figure>
 
                     <hr class="fine-line-divider" />
 
-                    <p>How do we get the whole-alignment discipline of a phylogenetic model at linear $\mathcal{O}(NKL)$ speed?
-                    Instead of rebuilding trees in sliding windows or checking $\binom{N}{3}$ triplets, <code>RhizAeon</code> embeds $K$ landmark reference sequences into low-dimensional metric coordinates $\mathbf{x}_k \in \mathbb{R}^d$ via classical multidimensional scaling (<a href="https://doi.org/10.1093/biomet/53.3-4.325" target="_blank" rel="noopener noreferrer">Gower, 1966</a>) and tracks each sequence $i$ along the alignment $u$ as a smooth attention weight vector $\mathbf{w}_i(u)$ over those references—plus one extra coordinate at the origin, an <strong>unpolarized root sink ($w_{i,0}$)</strong>:</p>
+                    <p>How does <code>RhizAeon</code> solve this in one linear pass?
+                    Instead of testing triplets one by one, <code>RhizAeon</code> runs a five-step stack that treats recombination as movement across a map:</p>
 
-                    $$\mathcal{L}(\mathbf{w}_i(u)) = \frac{1}{2}\left\lVert \mathbf{r}_i(u) - \sum_{k=1}^{K} w_{i,k}(u)\,\mathbf{x}_k - \beta_i(u)\,\mathbf{d}_{\mathrm{ghost}} \right\rVert_2^2 + \gamma \sum_{k=1}^{K} w_{i,k}(u)\,\widetilde{D}_{ik}(u) - \tau \sum_{k=0}^{K} w_{i,k}(u)\ln w_{i,k}(u)$$
+                    <ol>
+                        <li><strong>Reference Map and Center Drain (Root Sink):</strong>
+                        <code>RhizAeon</code> places $K$ diverse reference sequences as fixed landmarks $\mathbf{x}_k$ on a low-dimensional map (<a href="https://doi.org/10.1093/biomet/53.3-4.325" target="_blank" rel="noopener noreferrer">Gower, 1966</a>), with a neutral <strong>center drain ($w_{i,0}$, the root sink)</strong> at the origin. When a branch mutates fast on its own, it moves away from all landmarks at once; that extra distance flows into the center drain instead of faking a parent swap.</li>
 
-                    <p>When a lineage simply evolves faster on its own branch, its distances to all references rise together and flow harmlessly into the root sink $w_{i,0}$.
-                    Across 1,200 coalescent rate-variation nulls and <strong>1,000,000 simulated whole genomes</strong> spanning six orders of magnitude of mutation and recombination rates, <code>RhizAeon</code> holds its false-positive rate at <strong>0.58%</strong> and <strong>1.01%</strong>—well below the 5% nominal ceiling (Fig. 2).
-                    When a true crossover occurs, the trajectory $\mathbf{w}_i(u)$ snaps from one donor coordinate to another (or activates the orthogonal ghost vector $\mathbf{d}_{\mathrm{ghost}}$ when a tract diverges from all sampled references).
-                    A Brownian-bridge filter and 5-state Viterbi decoder lock in the breakpoints, iteratively scrub the mosaic tract out of the alignment to uncover older nested layers, and merge co-recombinant clades into a single ancestral event.</p>
+                        <li><strong>Attention Maps (Where Each Sequence Points):</strong>
+                        Moving left to right along the alignment ($u = 1 \dots L$), each sequence $i$ assigns soft <strong>attention weights</strong> $\mathbf{w}_i(u)$ to the $K$ landmarks (plus the center drain) to match its local position $\mathbf{r}_i(u)$ and genetic distances $\widetilde{D}_{ik}(u)$:
+                        $$\mathcal{L}(\mathbf{w}_i(u)) = \frac{1}{2}\left\lVert \mathbf{r}_i(u) - \sum_{k=1}^{K} w_{i,k}(u)\,\mathbf{x}_k - \beta_i(u)\,\mathbf{d}_{\mathrm{ghost}} \right\rVert_2^2 + \gamma \sum_{k=1}^{K} w_{i,k}(u)\,\widetilde{D}_{ik}(u) - \tau \sum_{k=0}^{K} w_{i,k}(u)\ln w_{i,k}(u)$$
+                        When sequence $i$ stays in one family branch, its attention map stays flat. If a segment comes from an unsampled "ghost" donor outside all landmarks, $\beta_i(u)$ lifts the sequence along an <strong>orthogonal ghost axis ($\mathbf{d}_{\mathrm{ghost}}$)</strong> at a right angle to the map.</li>
+
+                        <li><strong>Force Dipoles (Turning Parent Swaps into Sharp Signals):</strong>
+                        At a breakpoint where sequence $i$ jumps from Parent A to Parent B, Parent A's weight drops while Parent B's weight rises by the same amount. Comparing the attention vector just left of site $u$ with the vector just right of site $u$ creates an equal-and-opposite <strong>force dipole</strong> ($\Delta \mathbf{w}_i(u) = \mathbf{w}_i^{+}(u) - \mathbf{w}_i^{-}(u)$): a push away from Parent A paired with an equal pull toward Parent B, which we test against a Brownian-bridge null model.</li>
+
+                        <li><strong>Dyadic Polishing and Viterbi Decoding (Sharp Edges at Every Scale):</strong>
+                        Transferred DNA ranges from 80 letters in immune genes to 30,000 letters in bacteria. <code>RhizAeon</code> scans the force dipoles with a <strong>dyadic wavelet bank</strong>—matched filters whose widths double at each step ($2, 4, 8, 16, 32\dots$ informative sites)—to catch both tiny conversions and long transfers. A 5-state Viterbi decoder traces the parent path, and a local likelihood check <strong>polishes each breakpoint</strong> to the exact nucleotide.</li>
+
+                        <li><strong>Iterative Scrubbing and Clade Merging:</strong>
+                        After confirming a tract, <code>RhizAeon</code> masks ("scrubs") that DNA out of the alignment and runs again to uncover older swaps underneath. Finally, if 10 descendants share the same breakpoints and parents, <code>RhizAeon</code> merges them into <strong>one ancestral event</strong>.</li>
+                    </ol>
 
                     <figure class="blog-figure">
                         <img src="images/rhizaeon_fig2_operational_envelope.png" alt="RhizAeon 1,000,000-genome continuous parameter sweep and multi-event sequential scrubbing">
                         <figcaption>
-                            <strong>Figure 2. Calibration and power across 1,000,000 simulated genomes.</strong>
-                            (A) Across 333,334 strictly clonal alignments ($R=0$) spanning $\theta \in [10^{-4}, 10^{-1}]$ and $N \in [10, 250]$, the unpolarized root sink holds global false-positive rates at 1.01%.
-                            (B) Detection sensitivity across the $(\rho, \theta)$ plane rises smoothly to 88.2% where breakpoints are flanked by informative polymorphisms.
-                            (C) Iterative tract scrubbing peels back $R = 1\text{ to }10$ overlapping recombination events with near-constant breakpoint precision.
+                            <strong>Figure 2. Testing RhizAeon across 1,000,000 simulated genomes.</strong>
+                            (A) Across 333,334 clonal genomes ($R=0$), the center drain holds false alarms at 1.01% (and 0.58% on 1,200 coalescent rate-burst tests).
+                            (B) Detection power across mutation ($\theta$) and recombination ($\rho$) rates reaches 88.2% where mutations flank the breakpoint.
+                            (C) Iterative tract scrubbing peels back $R = 1\text{ to }10$ overlapping swaps without losing breakpoint precision.
                         </figcaption>
                     </figure>
 
                     <hr class="fine-line-divider" />
 
-                    <p>What does linear-time metric tracking unlock on real viral, bacterial, and vertebrate datasets? Three empirical benchmarks tell the story:</p>
+                    <p>What does this stack find in real viral, bacterial, and primate genomes?</p>
 
                     <ul>
                         <li><strong>78–83 whole sarbecovirus genomes in 2.6 seconds (vs. 4.5 days in <code>GARD</code>):</strong>
-                        Running <code>RhizAeon</code> directly on the full 78-genome sarbecovirus alignment from <a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al. (2022)</a> ($30{,}956\text{ nt}$) plus 5 Laotian <code>BANAL</code> bat coronaviruses (<a href="https://doi.org/10.1038/s41586-022-04532-4" target="_blank" rel="noopener noreferrer">Temmam et al., 2022</a>) finishes in <strong>2.6 seconds</strong> on a laptop (Fig. 3). Without downsampling, it recovers all 21 whole-genome breakpoints inferred by 4.5 days of <code>GARD</code> with a median offset of <strong>99.0 nt</strong>—matching the critical Spike NTD ($21{,}825\text{ bp}$) and S1/S2 ($23{,}617\text{ bp}$) junctions within <strong>9 to 12 nucleotides</strong>—and directly isolates the <code>BANAL-20-52</code> / <code>RaTG13</code> receptor-binding domain (RBD) cassette exchange ($p < 10^{-16}$).</li>
+                        On all 78 sarbecovirus genomes from <a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al. (2022)</a> ($30{,}956\text{ nt}$) plus 5 Laotian <code>BANAL</code> bat viruses (<a href="https://doi.org/10.1038/s41586-022-04532-4" target="_blank" rel="noopener noreferrer">Temmam et al., 2022</a>), <code>RhizAeon</code> finishes in <strong>2.6 seconds</strong> (Fig. 3). Force dipoles and dyadic polishing match all 21 whole-genome breakpoints from 4.5 days of <code>GARD</code> (median offset <strong>99.0 nt</strong>; <strong>9–12 letters</strong> at Spike junctions) and isolate the <code>BANAL-20-52</code> / <code>RaTG13</code> RBD swap ($p < 10^{-16}$).</li>
 
                         <li><strong>A 2.22-megabase <em>Streptococcus pneumoniae</em> chromosome in 36.1 seconds:</strong>
-                        Across 240 multidrug-resistant <em>S. pneumoniae</em> PMEN1 whole-chromosome alignments ($2{,}221{,}315\text{ bp}$, <a href="https://doi.org/10.1126/science.1198545" target="_blank" rel="noopener noreferrer">Croucher et al., 2011</a>), <code>RhizAeon</code> maps <strong>392 horizontal gene transfer tracts</strong> in <strong>36.1 seconds</strong> (~35× faster than <a href="https://doi.org/10.1093/nar/gku1196" target="_blank" rel="noopener noreferrer"><code>Gubbins</code></a>), pinpointing the exact resistance cassettes at penicillin-binding proteins <code>pbp2x</code>, <code>pbp1a</code>, and <code>pbp2b</code>, dihydrofolate reductase <code>folA</code>/<code>folP</code>, and the serotype 23F $\to$ 19A capsule switch locus (<code>cps</code>).</li>
+                        Across 240 multidrug-resistant <em>S. pneumoniae</em> PMEN1 chromosomes ($2{,}221{,}315\text{ bp}$, <a href="https://doi.org/10.1126/science.1198545" target="_blank" rel="noopener noreferrer">Croucher et al., 2011</a>), <code>RhizAeon</code> maps <strong>392 horizontal transfers</strong> in <strong>36.1 seconds</strong> (~35× faster than <a href="https://doi.org/10.1093/nar/gku1196" target="_blank" rel="noopener noreferrer"><code>Gubbins</code></a>), pinpointing drug-resistance swaps in <code>pbp2x</code>, <code>pbp1a</code>, <code>pbp2b</code>, <code>folA</code>, <code>folP</code>, and the 23F $\to$ 19A capsule switch (<code>cps</code>).</li>
 
-                        <li><strong>86–150 bp micro-conversions across 379 primate MHC Class I alleles in 1.1 seconds:</strong>
-                        In hominoid <code>HLA-A</code>, <code>HLA-B</code>, and <code>HLA-C</code> alleles (<a href="https://doi.org/10.1111/j.1600-065x.1995.tb00674.x" target="_blank" rel="noopener noreferrer">Parham et al., 1995</a>), gene conversion swaps tiny 50–150 bp Exon 2/3 cassettes that remodel peptide-binding pockets without disturbing flanking introns. <code>RhizAeon</code>'s dyadic matched filter detects 103 conversion tracts in 1.1 seconds—including the classic inter-locus <a href="https://doi.org/10.1084/jem.184.2.735" target="_blank" rel="noopener noreferrer"><code>HLA-B*46:01</code></a> hybrid spliced between <code>HLA-B*15:01</code> and <code>HLA-C*01:02</code> across nucleotides 462–607 ($p = 2.8 \times 10^{-8}$).</li>
+                        <li><strong>86–150 bp micro-conversions in 379 primate MHC Class I alleles in 1.1 seconds:</strong>
+                        Across 379 human and ape <code>HLA-A/B/C</code> alleles (<a href="https://doi.org/10.1111/j.1600-065x.1995.tb00674.x" target="_blank" rel="noopener noreferrer">Parham et al., 1995</a>), fine-scale dyadic filters catch 103 short Exon 2/3 conversions (86–150 letters)—including the classic <a href="https://doi.org/10.1084/jem.184.2.735" target="_blank" rel="noopener noreferrer"><code>HLA-B*46:01</code></a> cassette spliced between <code>HLA-B*15:01</code> and <code>HLA-C*01:02</code> at positions 462–607 ($p = 2.8 \times 10^{-8}$).</li>
                     </ul>
 
                     <figure class="blog-figure">
                         <img src="images/rhizaeon_fig3_sarbecovirus_landscape.png" alt="Whole-genome recombination landscape across 78-83 sarbecovirus genomes in 2.6 seconds">
                         <figcaption>
                             <strong>Figure 3. Whole-genome sarbecovirus recombination mapped in 2.6 seconds.</strong>
-                            (A) Continuous breakpoint flux $\Phi_{\mathrm{bp}}(u)$ (orange) and cumulative strain $\rho(u)$ (blue) across 78–83 full-length sarbecovirus genomes ($30{,}956\text{ nt}$), highlighting hotspots at the RdRp exit, Spike NTD, NTD/RBD hinge, and ORF8/N cluster.
-                            (B) Concordance with all 21 whole-genome <code>GARD</code> breakpoints from <a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al. (2022)</a> (median deviation 99.0 nt; 9–12 nt at Spike junctions).
-                            (C–D) Direct isolation of the Laotian bat <code>BANAL-20-52</code> / <code>RaTG13</code> RBD exchange and 60,000× runtime speedup over <code>GARD</code>.
+                            (A) Force-dipole breakpoint flux $\Phi_{\mathrm{bp}}(u)$ (orange) and cumulative strain $\rho(u)$ (blue) across 78–83 full sarbecovirus genomes ($30{,}956\text{ nt}$), showing hotspots at the RdRp exit, Spike NTD, NTD/RBD hinge, and ORF8/N cluster.
+                            (B) Agreement with all 21 whole-genome <code>GARD</code> breakpoints from <a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al. (2022)</a> (median offset 99.0 nt; 9–12 nt at Spike junctions).
+                            (C–D) Isolation of the Laotian bat <code>BANAL-20-52</code> / <code>RaTG13</code> RBD exchange and 60,000× speedup over <code>GARD</code>.
                         </figcaption>
                     </figure>
 
-                    <p>Next up, we are wiring <code>RhizAeon</code>'s linear-time partition maps directly into <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener noreferrer"><code>HyPhy 3</code></a> and <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer"><code>HyphAeon</code></a> so that every selection and molecular-clock scan can automatically partition mosaic chromosomes in seconds before testing $dN/dS$.</p>
+                    <p>Next, we are connecting <code>RhizAeon</code>'s breakpoint maps to <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener noreferrer"><code>HyPhy 3</code></a> and <a href="https://github.com/veg/hyphaeon" target="_blank" rel="noopener noreferrer"><code>HyphAeon</code></a> so selection and clock scans automatically split mosaic genomes into clean blocks before testing $dN/dS$.</p>
 
                     <div class="callout-box">
                         <strong>Try RhizAeon in Your Browser or Terminal</strong>
-                        Step through the <a href="2026-10-24-rhizaeon-slides.html">60-Second Slide Deck</a>, read the preprint on <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">bioRxiv (2026.10.19.760237)</a>, drop a FASTA alignment into the client-side WebAssembly app at <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">veg.github.io/rhizaeon-code</a>, or grab the Rust/Python package and benchmark archives on <a href="https://github.com/veg/rhizaeon-code" target="_blank" rel="noopener noreferrer">GitHub (veg/rhizaeon-code)</a> and <a href="https://doi.org/10.5281/zenodo.23600798" target="_blank" rel="noopener noreferrer">Zenodo (10.5281/zenodo.23600798)</a>.
+                        Step through the <a href="2026-10-24-rhizaeon-slides.html">60-Second Slide Deck</a>, read the preprint on <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">bioRxiv (2026.10.19.760237)</a>, drop a FASTA file into the WebAssembly app at <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">veg.github.io/rhizaeon-code</a>, or download the Rust/Python package and benchmark archives from <a href="https://github.com/veg/rhizaeon-code" target="_blank" rel="noopener noreferrer">GitHub (veg/rhizaeon-code)</a> and <a href="https://doi.org/10.5281/zenodo.23600798" target="_blank" rel="noopener noreferrer">Zenodo (10.5281/zenodo.23600798)</a>.
                     </div>
                 </div>
             </article>

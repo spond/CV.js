@@ -1343,8 +1343,8 @@
                 "2026-10-24",
                 {
                     "url": "blog/2026-10-24-rhizaeon.html",
-                    "link-text": "Clean breaks: tracking recombination across whole genomes in seconds",
-                    "subtext": "Recombination detectors have long forced a stark choice between slow tree-partitioning models and fast triplet scanners that count the same ancestral crossover dozens of times. Here is how RhizAeon tracks sequences as continuous metric trajectories in linear O(NKL) time—holding false positives near 1% across 1,000,000 simulated genomes while mapping whole-genome sarbecovirus Spike origins, 2.22 Mb pneumococcal chromosomes, and 86–150 bp primate MHC micro-conversions in seconds inside a web browser."
+                    "link-text": "Clean breaks: how RhizAeon finds recombination across whole genomes in seconds",
+                    "subtext": "When viruses or bacteria swap DNA, a single family tree can no longer describe the alignment—yet tree-splitting tools are too slow for whole genomes, and fast triplet scanners count the same ancestral swap dozens of times. Here is an intuitive look at how RhizAeon uses reference maps, continuous attention weights, force dipoles, and dyadic wavelet polishing to map mosaic DNA in seconds inside a web browser."
                 },
                 {
                     "url": "blog/2026-10-24-rhizaeon-slides.html",
