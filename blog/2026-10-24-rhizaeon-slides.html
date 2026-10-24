@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RhizAeon in 60 Seconds (Slide Deck) | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="RhizAeon in 60 Seconds: Tracking Recombination Across Whole Genomes in Linear Time">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-24-rhizaeon-slides.html">
+    <meta name="twitter:description" content="A 6-slide, 60-second visual guide to RhizAeon: why tree partitioning bogs down and triplet scanners overcount, how continuous metric trajectories work, and what they find in sarbecoviruses, pneumococci, and primate MHC.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/rhizaeon_fig3_sarbecovirus_landscape.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="RhizAeon in 60 Seconds: Tracking Recombination Across Whole Genomes in Linear Time">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-24-rhizaeon-slides.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/rhizaeon_fig3_sarbecovirus_landscape.png">
+    <meta property="og:description" content="A 6-slide, 60-second visual guide to RhizAeon: why tree partitioning bogs down and triplet scanners overcount, how continuous metric trajectories work, and what they find in sarbecoviruses, pneumococci, and primate MHC.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .deck-wrapper { max-width: 980px; padding: 2.5rem 3.5rem; }
+        .deck-topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;
+        }
+        .deck-nav-btn {
+            background: #000000; color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.55rem 1.1rem;
+            font-size: 0.75rem; border: 2px solid #000000; display: inline-block; cursor: pointer;
+        }
+        .deck-nav-btn.secondary { background: #ffffff; color: #000000; }
+        .deck-nav-btn:hover { background: #333333; color: #ffffff; }
+        .progress-rail {
+            width: 100%; height: 10px; border: 2px solid #000000;
+            background: #ffffff; margin-bottom: 1.5rem; position: relative;
+        }
+        .progress-fill { height: 100%; background: #000000; width: 16.66%; transition: width 0.2s ease; }
+        .slide {
+            display: none; border: 3px solid #000000; background: #ffffff;
+            padding: 2.5rem 2.75rem; min-height: 540px; flex-direction: column;
+            justify-content: space-between; margin-bottom: 1.5rem;
+        }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid #000000; padding-bottom: 1.1rem; margin-bottom: 1.5rem; }
+        .slide-kicker {
+            display: inline-block; background: #000000; color: #ffffff;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.55rem; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+        }
+        .slide h2 { font-size: 1.75rem; font-weight: 900; line-height: 1.18; letter-spacing: -0.02em; margin: 0; color: #000000; }
+        .slide-body { font-family: 'Merriweather', Georgia, serif; font-size: 0.98rem; line-height: 1.65; color: #111827; flex: 1; }
+        .slide-body p { margin-bottom: 1rem; }
+        .slide-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1rem 0; }
+        .slide-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .stat-card { border: 2px solid #000000; padding: 1.1rem 1.25rem; background: #f9fafb; }
+        .stat-card.highlight { background: #000000; color: #ffffff; }
+        .stat-card.highlight .stat-big, .stat-card.highlight .stat-title, .stat-card.highlight .stat-text { color: #ffffff; }
+        .stat-big { font-family: var(--font-family); font-size: 1.65rem; font-weight: 900; line-height: 1.1; margin-bottom: 0.3rem; color: #000000; }
+        .stat-title { font-family: var(--font-family); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; color: #000000; }
+        .stat-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 0.84rem; line-height: 1.45; color: #374151; margin: 0 !important; }
+        .slide-fig { border: 2px solid #000000; padding: 0.75rem; background: #ffffff; margin: 0.75rem 0; }
+        .slide-fig img { width: 100%; height: auto; display: block; }
+        .slide-fig-cap { font-family: var(--font-family); font-size: 0.75rem; color: #4b5563; margin-top: 0.5rem; line-height: 1.4; }
+        .zinger-banner {
+            border-left: 5px solid #000000; background: #f3f4f6;
+            padding: 0.9rem 1.2rem; font-family: var(--font-family);
+            font-size: 0.88rem; font-weight: 700; color: #000000; margin-top: 1rem;
+        }
+        .slide-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 2px solid #000000; padding-top: 1rem; margin-top: 1.25rem;
+            font-family: var(--font-family); font-size: 0.78rem;
+        }
+        .deck-controls { display: flex; gap: 0.6rem; align-items: center; }
+        .ctrl-btn {
+            background: #000000; color: #ffffff; border: 2px solid #000000;
+            padding: 0.5rem 1.1rem; font-family: var(--font-family);
+            font-size: 0.76rem; font-weight: 800; text-transform: uppercase; cursor: pointer;
+        }
+        .ctrl-btn.secondary { background: #ffffff; color: #000000; }
+        .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .ctrl-btn:not(:disabled):hover { background: #333333; color: #ffffff; }
+        .kbd-hint { color: #4b5563; font-size: 0.74rem; }
+        .kbd-key { border: 1.5px solid #000000; padding: 0.1rem 0.4rem; background: #ffffff; font-weight: 800; font-size: 0.7rem; }
+        body.view-all .slide { display: flex !important; border-bottom: 3px solid #000000; }
+        body.view-all .slide-footer { display: none; }
+        @media (max-width: 900px) {
+            .deck-wrapper { padding: 1.5rem; }
+            .slide { padding: 1.5rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide-grid-2, .slide-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="2026-10-24-rhizaeon.html">← Read Full Blog Post</a>
+                    <a href="../index.html#/blog">All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprint &amp; Software</h3>
+                <div class="links-list">
+                    <a href="2026-10-24-rhizaeon.html">Full Blog Post</a>
+                    <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">bioRxiv Preprint</a>
+                    <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer">RhizAeon Web App (WASM)</a>
+                    <a href="https://github.com/veg/rhizaeon-code" target="_blank" rel="noopener noreferrer">RhizAeon on GitHub</a>
+                    <a href="https://doi.org/10.5281/zenodo.23600798" target="_blank" rel="noopener noreferrer">Zenodo Archive</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div class="deck-wrapper">
+                <div class="deck-topbar">
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <a href="2026-10-24-rhizaeon.html" class="deck-nav-btn">← Back to Blog Post</a>
+                        <button id="toggleViewBtn" class="deck-nav-btn secondary" onclick="toggleViewAll()">View All 6 Slides</button>
+                    </div>
+                    <div class="kbd-hint">
+                        Use <span class="kbd-key">←</span> <span class="kbd-key">→</span> or <span class="kbd-key">Space</span> to navigate · 60-Second Summary
+                    </div>
+                </div>
+
+                <div class="progress-rail">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- SLIDE 1 -->
+                <section class="slide active" data-slide="1">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 1 of 6 · The Algorithmic Dilemma</span>
+                            <h2>Why recombination detection has been stuck between two extremes</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                Homologous recombination and horizontal gene transfer splice mosaic chromosomes together—breaking bifurcating trees and inflating $dN/dS$ scans. Existing detectors force a stark choice:
+                            </p>
+                            <div class="slide-grid-3">
+                                <div class="stat-card">
+                                    <div class="stat-big">4.5 Days</div>
+                                    <div class="stat-title">Tree Partitioning (GARD)</div>
+                                    <p class="stat-text">Optimizing maximum-likelihood trees across candidate breakpoints works on single genes, but required downsampling 78 sarbecovirus genomes to 18 and 4.5 days of cluster compute.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">14.4× Blowup</div>
+                                    <div class="stat-title">Triplet Scanners (3SEQ / RDP5)</div>
+                                    <p class="stat-text">Testing $\binom{N}{3}$ triplets is fast on small alignments, but counts a single ancestral crossover in a 10-taxon clade 14.37 times on average and assumes two sampled parents.</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">$\mathcal{O}(NKL)$ Linear</div>
+                                    <div class="stat-title">RhizAeon Metric Trajectories</div>
+                                    <p class="stat-text">Projects $K$ landmarks into metric coordinates and tracks every sequence as a continuous trajectory—mapping 78 sarbecovirus genomes in 2.6 seconds and 2.22 Mb chromosomes in 36.1 seconds.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                RhizAeon delivers whole-alignment topological discipline at linear sequence-scan speed—and compiles to WebAssembly to run inside any web browser.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 1 / 6 · The Recombination Dilemma</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()" disabled>← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 2 -->
+                <section class="slide" data-slide="2">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 2 of 6 · Four Failure Modes Fixed</span>
+                            <h2>Rate bursts, ancestral clades, ghost donors, and three-parent mosaics</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/rhizaeon_fig1_specialized_scenarios.png" alt="RhizAeon performance across rate heterogeneity, ancestral clade deduplication, ghost donors, and 3-parent mosaics">
+                                <div class="slide-fig-cap">
+                                    <strong>(A)</strong> Routing branch rate bursts into an unpolarized root sink $w_{i,0}$ holds false positives at $\alpha = 0.05$.
+                                    <strong>(B)</strong> On 10-child recombinant clades, <code>RhizAeon</code> collapses the shared mosaic into $1.01 \pm 0.08$ ancestral events (98.8% exact) vs. $14.37$ calls in <code>3SEQ</code>.
+                                    <strong>(C–D)</strong> Orthogonal residual projection detects extinct "ghost" donors (89.2% F1) and three-parent mosaics (90.0% full triplet recovery).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 2 / 6 · Four Structural Capabilities</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 3 -->
+                <section class="slide" data-slide="3">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 3 of 6 · 1,000,000-Genome Continuous Sweep</span>
+                            <h2>1.01% false-positive rate and iterative scrubbing across 1,000,000 simulated genomes</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/rhizaeon_fig2_operational_envelope.png" alt="RhizAeon 1,000,000-genome continuous parameter sweep and multi-event sequential scrubbing">
+                                <div class="slide-fig-cap">
+                                    <strong>(A)</strong> Across 333,334 clonal alignments ($R=0$) spanning $\theta \in [10^{-4}, 10^{-1}]$ and $N \in [10, 250]$, global FPR is 1.01% (and 0.58% on 1,200 coalescent rate-variation nulls).
+                                    <strong>(B)</strong> Detection sensitivity across the $(\rho, \theta)$ plane reaches 88.2% where breakpoints carry flanking substitutions.
+                                    <strong>(C)</strong> Iterative tract scrubbing peels back $R = 1\text{ to }10$ overlapping crossovers with stable breakpoint accuracy.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 3 / 6 · 1M-Genome Operational Envelope</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4 -->
+                <section class="slide" data-slide="4">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 4 of 6 · Empirical Vignette 1 (Sarbecoviruses)</span>
+                            <h2>78–83 whole sarbecovirus genomes in 2.6 seconds (vs. 4.5 days in GARD)</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/rhizaeon_fig3_sarbecovirus_landscape.png" alt="Whole-genome recombination landscape across 78-83 sarbecovirus genomes in 2.6 seconds">
+                                <div class="slide-fig-cap">
+                                    <strong>(A–B)</strong> Scanning all 78–83 full-length sarbecovirus genomes ($30{,}956\text{ nt}$) in 2.6 seconds recovers all 21 whole-genome <code>GARD</code> breakpoints from <a href="https://doi.org/10.1093/gbe/evac018" target="_blank" rel="noopener noreferrer">Lytras et al. (2022)</a> (median offset 99.0 nt; 9–12 nt at Spike NTD and S1/S2 junctions).
+                                    <strong>(C–D)</strong> Pinpoints the Laotian bat <code>BANAL-20-52</code> / <code>RaTG13</code> receptor-binding domain cassette exchange at a 60,000× speedup.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 4 / 6 · Whole-Genome Sarbecovirus Mosaicism</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 5 -->
+                <section class="slide" data-slide="5">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 5 of 6 · Empirical Vignettes 2 &amp; 3 (Bacteria &amp; Primate MHC)</span>
+                            <h2>From 2.22 Mb pneumococcal chromosomes to 86 bp HLA micro-conversions</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                The same continuous metric engine scales across four orders of magnitude in tract length—from multi-kilobase bacterial transfers to sub-exon immunological gene conversions:
+                            </p>
+                            <div class="slide-grid-2">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">2.22 Mb in 36.1s</div>
+                                    <div class="stat-title">Streptococcus pneumoniae PMEN1</div>
+                                    <p class="stat-text">
+                                        Across 240 multidrug-resistant isolates (<a href="https://doi.org/10.1126/science.1198545" target="_blank" rel="noopener noreferrer" style="color:#fff;">Croucher et al., 2011</a>), <code>RhizAeon</code> maps <strong>392 horizontal transfer tracts</strong> (~35× faster than <code>Gubbins</code>), recovering the exact drug-resistance cassettes at <code>pbp2x</code>, <code>pbp1a</code>, <code>pbp2b</code>, <code>folA</code>, <code>folP</code>, and the capsule switch locus <code>cps</code>.
+                                    </p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">379 Alleles in 1.1s</div>
+                                    <div class="stat-title">Hominoid MHC Class I (HLA-A/B/C)</div>
+                                    <p class="stat-text">
+                                        Across 379 primate MHC Class I alleles (<a href="https://doi.org/10.1111/j.1600-065x.1995.tb00674.x" target="_blank" rel="noopener noreferrer">Parham et al., 1995</a>), dyadic matched filters resolve <strong>103 short Exon 2/3 conversions (86–150 bp)</strong>—including the classic inter-locus <code>HLA-B*46:01</code> cassette spliced between <code>HLA-B*15:01</code> and <code>HLA-C*01:02</code>.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Whether a tract is 90 base pairs in an MHC binding pocket or 30 kilobases in a bacterial chromosome, RhizAeon resolves its boundaries and parental donors in seconds.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 5 / 6 · Bacteria &amp; Primate MHC</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 6 -->
+                <section class="slide" data-slide="6">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 6 of 6 · Open-Source Ecosystem</span>
+                            <h2>Run RhizAeon in your browser, Python notebook, or command line</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-grid-3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">WebAssembly</div>
+                                    <div class="stat-title">Zero-Install Browser App</div>
+                                    <p class="stat-text">Drop any FASTA alignment into <a href="https://veg.github.io/rhizaeon-code/" target="_blank" rel="noopener noreferrer" style="color:#fff;">veg.github.io/rhizaeon-code</a> to explore interactive breakpoint profiles and donor maps locally.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Rust + Python</div>
+                                    <div class="stat-title">CLI &amp; PyO3 Bindings</div>
+                                    <p class="stat-text">Built in Rust with SIMD acceleration and wrapped via PyO3 (<a href="https://github.com/veg/rhizaeon-code" target="_blank" rel="noopener noreferrer">github.com/veg/rhizaeon-code</a>) for high-throughput genomic pipelines.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Full Archive</div>
+                                    <div class="stat-title">1M Genomes on Zenodo</div>
+                                    <p class="stat-text">All simulated benchmarks, empirical alignments, and validation scripts are archived at <a href="https://doi.org/10.5281/zenodo.23600798" target="_blank" rel="noopener noreferrer">10.5281/zenodo.23600798</a>.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Read the full 4-minute post at <a href="2026-10-24-rhizaeon.html" style="color: #000; text-decoration: underline;">2026-10-24-rhizaeon.html</a> · Read the preprint on <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">bioRxiv (2026.10.19.760237)</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 6 / 6 · Summary &amp; Links</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()" disabled>Next →</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function updateDeck() {
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.slide) === currentSlide);
+            });
+            document.getElementById('progressFill').style.width = ((currentSlide / totalSlides) * 100) + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) { currentSlide++; updateDeck(); }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) { currentSlide--; updateDeck(); }
+        }
+
+        function toggleViewAll() {
+            document.body.classList.toggle('view-all');
+            const btn = document.getElementById('toggleViewBtn');
+            btn.textContent = document.body.classList.contains('view-all') ? 'Single-Slide Mode' : 'View All 6 Slides';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.body.classList.contains('view-all')) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+    </script>
+</body>
+</html>

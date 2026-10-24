@@ -1340,6 +1340,22 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-24",
+                {
+                    "url": "blog/2026-10-24-rhizaeon.html",
+                    "link-text": "Clean breaks: tracking recombination across whole genomes in seconds",
+                    "subtext": "Recombination detectors have long forced a stark choice between slow tree-partitioning models and fast triplet scanners that count the same ancestral crossover dozens of times. Here is how RhizAeon tracks sequences as continuous metric trajectories in linear O(NKL) time—holding false positives near 1% across 1,000,000 simulated genomes while mapping whole-genome sarbecovirus Spike origins, 2.22 Mb pneumococcal chromosomes, and 86–150 bp primate MHC micro-conversions in seconds inside a web browser."
+                },
+                {
+                    "url": "blog/2026-10-24-rhizaeon-slides.html",
+                    "link-text": "60-Sec Slide Deck"
+                },
+                {
+                    "url": "https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1",
+                    "link-text": "bioRxiv: 2026.10.19.760237"
+                }
+            ],
+            [
                 "2026-10-23",
                 {
                     "url": "blog/2026-10-23-shamonda.html",

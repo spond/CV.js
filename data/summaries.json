@@ -1,4 +1,14 @@
 {
+  "KosakovskyPond:2026rhizaeon": {
+    "summary": "RhizAeon detects and deconvolves homologous recombination and horizontal gene transfer in linear O(NKL) time by tracking sequences as continuous metric trajectories with an unpolarized root sink, bounding false positives near 1% across 1,000,000 simulated genomes while mapping whole-genome viral, bacterial, and MHC mosaicism in seconds.",
+    "keywords": [
+      "recombination",
+      "reticulate evolution",
+      "sequence manifolds",
+      "multidimensional scaling",
+      "sarbecovirus"
+    ]
+  },
   "KosakovskyPond:2026dfel": {
     "summary": "Directional Fixed Effects Likelihood (dFEL) models lineage-specific AT and GC compositional drift as a fast three-regime transition probability mixture, recalibrating boundary-codon selection calls, cutting apparent synonymous rate variance by up to 63%, and rooting coding trees without an outgroup.",
     "keywords": [
