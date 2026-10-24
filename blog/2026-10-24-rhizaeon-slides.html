@@ -166,37 +166,37 @@
                 <section class="slide active" data-slide="1">
                     <div>
                         <div class="slide-header">
-                            <span class="slide-kicker">Slide 1 of 6 · The Problem</span>
-                            <h2>Why recombination detection has been stuck between two extremes</h2>
+                            <span class="slide-kicker">Slide 1 of 6 · A New Continuous-Field Paradigm</span>
+                            <h2>Rethinking recombination from first principles with AI-accelerated algorithm design</h2>
                         </div>
                         <div class="slide-body">
                             <p>
-                                When viruses or bacteria swap DNA, a single family tree can no longer describe the alignment. Existing tools force a difficult choice:
+                                Instead of porting discrete tree searches or triplet loops to faster hardware, we formulated recombination as continuous motion across a metric reference map in linear $\mathcal{O}(NKL)$ time:
                             </p>
                             <div class="slide-grid-3">
-                                <div class="stat-card">
-                                    <div class="stat-big">4.5 Days</div>
-                                    <div class="stat-title">Tree Splitting (GARD)</div>
-                                    <p class="stat-text">Rebuilding trees across candidate splits works well on single genes, but required dropping 60 of 78 sarbecovirus genomes and 4.5 days of cluster time.</p>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="stat-big">14.4× Overcount</div>
-                                    <div class="stat-title">Triplet Scanners (3SEQ / RDP5)</div>
-                                    <p class="stat-text">Testing three sequences at a time is fast, but counts one ancestral swap in a 10-sequence clade 14.37 times on average and assumes two sampled parents.</p>
-                                </div>
                                 <div class="stat-card highlight">
                                     <div class="stat-big">$\mathcal{O}(NKL)$ Linear</div>
-                                    <div class="stat-title">The RhizAeon Stack</div>
-                                    <p class="stat-text">Tracks sequences across a landmark map using attention weights, force dipoles, and dyadic wavelets—scanning 83 sarbecoviruses in 2.6s and 2.22 Mb bacteria in 36.1s.</p>
+                                    <div class="stat-title">Continuous Attention Trajectories</div>
+                                    <p class="stat-text">Embeds $K$ reference genomes on a metric map with a neutral center drain, tracking each sequence site-by-site via soft attention weights and an orthogonal ghost-donor axis.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Force Dipoles</div>
+                                    <div class="stat-title">Dyadic Wavelet Polishing</div>
+                                    <p class="stat-text">Parent switches create equal-and-opposite attention dipoles across breakpoints, resolved across four orders of magnitude in tract length by dyadic wavelets and Viterbi decoding.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Seconds in Browser</div>
+                                    <div class="stat-title">Rust, Python &amp; WebAssembly</div>
+                                    <p class="stat-text">Scans 83 whole sarbecoviruses (31 kb) in 2.6s, 240 <em>S. pneumoniae</em> chromosomes (2.22 Mb) in 36.1s, and 379 primate MHC alleles in 1.1s.</p>
                                 </div>
                             </div>
                             <div class="zinger-banner">
-                                RhizAeon checks the whole alignment in one linear pass and runs directly inside a web browser via WebAssembly.
+                                Validated across 1,000,000 simulated genomes (0.58%–1.01% false-positive rate) and compiled to WebAssembly for zero-install browser execution.
                             </div>
                         </div>
                     </div>
                     <div class="slide-footer">
-                        <span>Slide 1 / 6 · The Recombination Problem</span>
+                        <span>Slide 1 / 6 · Continuous-Field Recombination Paradigm</span>
                         <div class="deck-controls">
                             <button class="ctrl-btn secondary" onclick="prevSlide()" disabled>← Prev</button>
                             <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
