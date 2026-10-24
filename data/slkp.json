@@ -1342,6 +1342,22 @@
             [
                 "2026-10-24",
                 {
+                    "url": "blog/2026-10-24-chronaeon.html",
+                    "link-text": "No chains attached: tree-free molecular clock calibration across millions of pathogen genomes",
+                    "subtext": "For forty years, calibrating a molecular clock has required first building a phylogenetic tree—forcing pandemic surveillance pipelines to discard over 99.9% of sequences or wait weeks on MCMC chains. ChronAeon decouples molecular dating from tree reconstruction using continuous profile roots, HyphAeon attention covariance, AutoClock spectral partitioning, and online Nyström coresets—matching Bayesian accuracy across 42 BEAST benchmarks and the 50,000-generation E. coli LTEE (-0.8% rate error) in seconds while streaming 6.32 million SARS-CoV-2 genomes to detect emerging variant clocks 18–119 days before global dominance."
+                },
+                {
+                    "url": "blog/2026-10-24-chronaeon-slides.html",
+                    "link-text": "60-Sec Slide Deck"
+                },
+                {
+                    "url": "https://doi.org/10.5281/zenodo.23560893",
+                    "link-text": "Zenodo: 10.5281/zenodo.23560893"
+                }
+            ],
+            [
+                "2026-10-24",
+                {
                     "url": "blog/2026-10-24-rhizaeon.html",
                     "link-text": "Clean breaks: a continuous-field paradigm for whole-genome recombination",
                     "subtext": "Using AI-accelerated algorithm design to rethink foundational molecular evolution methods from first principles: RhizAeon replaces discrete tree searches and combinatorial triplet tests with continuous attention maps, force dipoles, and dyadic wavelet polishing in linear O(NKL) time—mapping 83 sarbecovirus genomes in 2.6 seconds, 240 S. pneumoniae chromosomes (2.22 Mb) in 36.1 seconds, and 379 primate MHC Class I alleles in 1.1 seconds."

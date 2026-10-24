@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronAeon in 60 Seconds (Slide Deck) | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="ChronAeon in 60 Seconds: Tree-Free Molecular Clocks Across Millions of Genomes">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-24-chronaeon-slides.html">
+    <meta name="twitter:description" content="A 6-slide, 60-second plain-English guide to ChronAeon: how continuous profile roots, HyphAeon attention covariance, AutoClock spectral partitioning, and online Nyström coresets calibrate millions of pathogen genomes in seconds.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/chronaeon_fig7_sars2_streaming_rewind.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="ChronAeon in 60 Seconds: Tree-Free Molecular Clocks Across Millions of Genomes">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-24-chronaeon-slides.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/chronaeon_fig7_sars2_streaming_rewind.png">
+    <meta property="og:description" content="A 6-slide, 60-second plain-English guide to ChronAeon: how continuous profile roots, HyphAeon attention covariance, AutoClock spectral partitioning, and online Nyström coresets calibrate millions of pathogen genomes in seconds.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .deck-wrapper { max-width: 980px; padding: 2.5rem 3.5rem; }
+        .deck-topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;
+        }
+        .deck-nav-btn {
+            background: #000000; color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.55rem 1.1rem;
+            font-size: 0.75rem; border: 2px solid #000000; display: inline-block; cursor: pointer;
+        }
+        .deck-nav-btn.secondary { background: #ffffff; color: #000000; }
+        .deck-nav-btn:hover { background: #333333; color: #ffffff; }
+        .progress-rail {
+            width: 100%; height: 10px; border: 2px solid #000000;
+            background: #ffffff; margin-bottom: 1.5rem; position: relative;
+        }
+        .progress-fill { height: 100%; background: #000000; width: 16.66%; transition: width 0.2s ease; }
+        .slide {
+            display: none; border: 3px solid #000000; background: #ffffff;
+            padding: 2.5rem 2.75rem; min-height: 540px; flex-direction: column;
+            justify-content: space-between; margin-bottom: 1.5rem;
+        }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid #000000; padding-bottom: 1.1rem; margin-bottom: 1.5rem; }
+        .slide-kicker {
+            display: inline-block; background: #000000; color: #ffffff;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.55rem; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+        }
+        .slide h2 { font-size: 1.75rem; font-weight: 900; line-height: 1.18; letter-spacing: -0.02em; margin: 0; color: #000000; }
+        .slide-body { font-family: 'Merriweather', Georgia, serif; font-size: 0.98rem; line-height: 1.65; color: #111827; flex: 1; }
+        .slide-body p { margin-bottom: 1rem; }
+        .slide-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1rem 0; }
+        .slide-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .stat-card { border: 2px solid #000000; padding: 1.1rem 1.25rem; background: #f9fafb; }
+        .stat-card.highlight { background: #000000; color: #ffffff; }
+        .stat-card.highlight .stat-big, .stat-card.highlight .stat-title, .stat-card.highlight .stat-text { color: #ffffff; }
+        .stat-big { font-family: var(--font-family); font-size: 1.55rem; font-weight: 900; line-height: 1.1; margin-bottom: 0.3rem; color: #000000; }
+        .stat-title { font-family: var(--font-family); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; color: #000000; }
+        .stat-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 0.84rem; line-height: 1.45; color: #374151; margin: 0 !important; }
+        .slide-fig { border: 2px solid #000000; padding: 0.75rem; background: #ffffff; margin: 0.75rem 0; }
+        .slide-fig img { width: 100%; height: auto; display: block; }
+        .slide-fig-cap { font-family: var(--font-family); font-size: 0.75rem; color: #4b5563; margin-top: 0.5rem; line-height: 1.4; }
+        .zinger-banner {
+            border-left: 5px solid #000000; background: #f3f4f6;
+            padding: 0.9rem 1.2rem; font-family: var(--font-family);
+            font-size: 0.88rem; font-weight: 700; color: #000000; margin-top: 1rem;
+        }
+        .slide-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 2px solid #000000; padding-top: 1rem; margin-top: 1.25rem;
+            font-family: var(--font-family); font-size: 0.78rem;
+        }
+        .deck-controls { display: flex; gap: 0.6rem; align-items: center; }
+        .ctrl-btn {
+            background: #000000; color: #ffffff; border: 2px solid #000000;
+            padding: 0.5rem 1.1rem; font-family: var(--font-family);
+            font-size: 0.76rem; font-weight: 800; text-transform: uppercase; cursor: pointer;
+        }
+        .ctrl-btn.secondary { background: #ffffff; color: #000000; }
+        .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .ctrl-btn:not(:disabled):hover { background: #333333; color: #ffffff; }
+        .kbd-hint { color: #4b5563; font-size: 0.74rem; }
+        .kbd-key { border: 1.5px solid #000000; padding: 0.1rem 0.4rem; background: #ffffff; font-weight: 800; font-size: 0.7rem; }
+        body.view-all .slide { display: flex !important; border-bottom: 3px solid #000000; }
+        body.view-all .slide-footer { display: none; }
+        @media (max-width: 900px) {
+            .deck-wrapper { padding: 1.5rem; }
+            .slide { padding: 1.5rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide-grid-2, .slide-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="2026-10-24-chronaeon.html">← Read Full Blog Post</a>
+                    <a href="../index.html#/blog">All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprint &amp; Software</h3>
+                <div class="links-list">
+                    <a href="2026-10-24-chronaeon.html">Full Blog Post</a>
+                    <a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">Zenodo Preprint &amp; Suite</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App (WASM)</a>
+                    <a href="https://veg.github.io/chronaeon/" target="_blank" rel="noopener noreferrer">Interactive Benchmarks</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div class="deck-wrapper">
+                <div class="deck-topbar">
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <a href="2026-10-24-chronaeon.html" class="deck-nav-btn">← Back to Blog Post</a>
+                        <button id="toggleViewBtn" class="deck-nav-btn secondary" onclick="toggleViewAll()">View All 6 Slides</button>
+                    </div>
+                    <div class="kbd-hint">
+                        Use <span class="kbd-key">←</span> <span class="kbd-key">→</span> or <span class="kbd-key">Space</span> to navigate · 60-Second Summary
+                    </div>
+                </div>
+
+                <div class="progress-rail">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- SLIDE 1 -->
+                <section class="slide active" data-slide="1">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 1 of 6 · Tree-Free Molecular Clocks</span>
+                            <h2>Decoupling molecular clock dating from phylogenetic tree reconstruction</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                Dating a population requires only two algebraic operations: anchoring the ancestral root and weighting shared ancestry across sublineages. <code>ChronAeon</code> executes both in continuous distance space:
+                            </p>
+                            <div class="slide-grid-3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">426× – 725×</div>
+                                    <div class="stat-title">Faster Than Mutation-Tree MCMC</div>
+                                    <p class="stat-text">Matches Bayesian rates and root dates across 42 empirical BEAST benchmarks ($\log_{10} R = 0.94$) in seconds while outpacing <code>Delphy</code> by two orders of magnitude.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">49,875 Genomes</div>
+                                    <div class="stat-title">72 Influenza A Clocks</div>
+                                    <p class="stat-text">Processes an uncurated century-long BV-BRC dump across 16 HA subtypes in minutes, quarantining 453 temporal outliers and resolving 72 host/clade clocks.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">6.32M Genomes</div>
+                                    <div class="stat-title">18–119 Days Early Warning</div>
+                                    <p class="stat-text">Streams 6,317,042 SARS-CoV-2 Spike genomes (2020–2026) in flat memory ($M = 1{,}887$ landmarks), locking onto emerging VOC clocks weeks before 50% dominance.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Validated across 42 BEAST benchmarks, the 50,000-generation E. coli LTEE (-0.8% rate error), and 148,516 forward-time epidemic simulations.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 1 / 6 · Tree-Free Molecular Clock Calibration</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()" disabled>← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 2 -->
+                <section class="slide" data-slide="2">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 2 of 6 · How the ChronAeon Stack Works</span>
+                            <h2>Profile rooting, foundation covariance, AutoClock, and online coresets</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-grid-2">
+                                <div class="stat-card">
+                                    <div class="stat-big">1. Profile Root ($\mathbf{Q}$)</div>
+                                    <div class="stat-title">Continuous Ancestral Anchor</div>
+                                    <p class="stat-text">Weights sequences exponentially toward earlier sampling dates to form a soft nucleotide profile $\mathbf{Q} \in \Delta^{L \times 4}$, contracting saturated distances back into the linear regime.</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">2. HyphAeon PGLS</div>
+                                    <div class="stat-title">Attention Covariance &amp; Fieller CIs</div>
+                                    <p class="stat-text">Extracts cross-taxa attention covariance $\mathbf{K}$ from <code>HyphAeon</code> in one forward pass and computes exact asymmetric confidence sets via Fieller's theorem ($g &lt; 1$).</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">3. AutoClock</div>
+                                    <div class="stat-title">Spectral Laplacian Partitioning</div>
+                                    <p class="stat-text">Recursively bisects the normalized graph Laplacian along its Fiedler vector to separate co-circulating rate regimes while flagging high-leverage outliers via Sherman-Morrison LOOCV.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">4. Online ALD Coreset</div>
+                                    <div class="stat-title">Million-Taxon Streaming ($N \gg L$)</div>
+                                    <p class="stat-text">Locks 256 ancestral anchors + 1,792 online Approximate Linear Dependence (ALD) landmarks to stream millions of genomes in $\mathcal{O}(N \cdot M)$ time and flat memory.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 2 / 6 · The 4-Part Algorithmic Stack</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 3 -->
+                <section class="slide" data-slide="3">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 3 of 6 · Deep Mutational Saturation</span>
+                            <h2>Dating pandemic HIV-1 Group M ($N = 466$) without building a tree</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/chronaeon_fig1_faria_calibration.png" alt="ChronAeon calibration of pandemic HIV-1 Group M (Faria et al. 2014, N=466)">
+                                <div class="slide-fig-cap">
+                                    <strong>(a)</strong> Unrooted pairwise distances vs. $\Delta t$ collapse into a saturated cloud ($r = -0.012$, &gt;80% of pairs $d &gt; 0.20$).
+                                    <strong>(b–c)</strong> Continuous profile rooting + <code>HyphAeon</code> cross-attention covariance ($\lambda^* = 0.943$) with a restricted cubic spline dates the HIV-1 Group M crown to <strong>1901.8 CE [1891.2, 1912.4]</strong>, matching Worobey et al.'s 1908 biopsy-calibrated estimate.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 3 / 6 · HIV-1 Group M Calibration</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4 -->
+                <section class="slide" data-slide="4">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 4 of 6 · Five Millennia of Empirical Benchmarks</span>
+                            <h2>42 published BEAST datasets, LTEE ground truth, and Delphy speedups</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/chronaeon_fig2_takehome_concordance.png" alt="ChronAeon concordance across 42 empirical BEAST benchmarks">
+                                <div class="slide-fig-cap">
+                                    <strong>(A–B)</strong> Resolving genealogical scope mismatches and rate mixtures via <code>AutoClock</code> raises modern concordance across 42 BEAST studies from $R = 0.71$ to <strong>$R = 0.86$</strong> ($\mathrm{MAE} = 9.59\text{ yr}$, 25/42 CI overlap) and <strong>$\log_{10} R = 0.94$</strong> across five millennia. On the 50,000-generation <em>E. coli</em> LTEE, <code>ChronAeon</code> achieves <strong>-0.8% rate error</strong> and dates the 1988.15 founding clone to <strong>1987.51</strong>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 4 / 6 · 42 BEAST Benchmarks &amp; LTEE Ground Truth</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 5 -->
+                <section class="slide" data-slide="5">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 5 of 6 · 6.32-Million-Genome Pandemic Rewind</span>
+                            <h2>Streaming 6,317,042 SARS-CoV-2 genomes (2020–2026) with 18–119d lead time</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/chronaeon_fig7_sars2_streaming_rewind.png" alt="Real-time streaming rewind of 6,317,042 SARS-CoV-2 Spike sequences across 2020-2026">
+                                <div class="slide-fig-cap">
+                                    <strong>(A–B)</strong> Online ALD coreset saturates at $M = 1{,}887$ landmarks ($d_{\mathrm{eff}} = 1{,}242.2$), locking onto emerging variant clocks ($g_k &lt; 1$) <strong>18–119 days before 50% global dominance</strong>.
+                                    <strong>(C–D)</strong> <code>AutoClock</code> resolves multi-wave Simpson's paradox into a conserved $1.43 \times 10^{-3}\text{ subs/site/yr}$ within-lineage rate and avoids the 25–93d detection delays of $N=3{,}000$ subsampling.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 5 / 6 · 6.32M SARS-CoV-2 Real-Time Rewind</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 6 -->
+                <section class="slide" data-slide="6">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 6 of 6 · Open-Source Stack &amp; Replication Suite</span>
+                            <h2>Run ChronAeon in your browser or reproduce all 53 manuscript claims</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-grid-3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">WebAssembly</div>
+                                    <div class="stat-title">Zero-Install Browser App</div>
+                                    <p class="stat-text">Drop a FASTA alignment and date table into <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: underline;">primaeon.org/time</a> for instant client-side dating, LOOCV triage, and <code>AutoClock</code> partitioning.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Zenodo v2.0</div>
+                                    <div class="stat-title">Complete Replication Suite</div>
+                                    <p class="stat-text">Includes all 42 BEAST benchmarks, 148,516 simulations, BV-BRC streaming scripts, and exact sequence ID manifests (<a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">10.5281/zenodo.23560893</a>).</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">Interactive</div>
+                                    <div class="stat-title">42-Benchmark Explorer</div>
+                                    <p class="stat-text">Explore interactive diagnostics across all empirical and synthetic benchmarks at <a href="https://veg.github.io/chronaeon/" target="_blank" rel="noopener noreferrer">veg.github.io/chronaeon</a>.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Read the full 4-minute post at <a href="2026-10-24-chronaeon.html" style="color: #000; text-decoration: underline;">2026-10-24-chronaeon.html</a> · Preprint &amp; Replication Archive on <a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">Zenodo (10.5281/zenodo.23560893)</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 6 / 6 · Open-Source Tools &amp; Replication Archive</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()" disabled>Next →</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function updateDeck() {
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.slide) === currentSlide);
+            });
+            document.getElementById('progressFill').style.width = ((currentSlide / totalSlides) * 100) + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) { currentSlide++; updateDeck(); }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) { currentSlide--; updateDeck(); }
+        }
+
+        function toggleViewAll() {
+            document.body.classList.toggle('view-all');
+            const btn = document.getElementById('toggleViewBtn');
+            btn.textContent = document.body.classList.contains('view-all') ? 'Single-Slide Mode' : 'View All 6 Slides';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.body.classList.contains('view-all')) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+    </script>
+</body>
+</html>
