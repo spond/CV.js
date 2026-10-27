@@ -1340,6 +1340,14 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-27",
+                {
+                    "url": "blog/2026-10-27-h5n1-wa-cattle.html",
+                    "link-text": "One clonal spark, three diverging paths: what 19 new H5N1 cattle genomes reveal about selection, scale, and timing",
+                    "subtext": "An interactive scroll-through visual explainer tracing the October 2026 Washington State dairy cattle and human H5N1 outbreak across 5,647 complete genomes (13,136 bp)—from de-anonymizing 14 Yakima cattle genomes (10 of 14 100% clonal) to four national selective sweeps, an early-2026 7.2-herd bottleneck, a sister clade carrying mammalian PB2: T271A + D678G, and multi-scale ChronAeon TimeTree effective population size (Ne) and unsampled stem estimates."
+                }
+            ],
+            [
                 "2026-10-24",
                 {
                     "url": "blog/2026-10-24-chronaeon.html",
