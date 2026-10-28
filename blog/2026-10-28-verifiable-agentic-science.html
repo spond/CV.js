@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifiable Agentic Science on Public Infrastructure | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Verifiable Agentic Science on Public Infrastructure">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-28-verifiable-agentic-science.html">
+    <meta name="twitter:description" content="When 30 frontier coding agents analyze the same dataset locally, 29 diverge into 18 incompatible pipelines. Grounding agents in public Galaxy supercomputing turns ephemeral prompts into verifiable records—catching hidden errors in published papers and powering discovery across 48 studies.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/orbit_fig1_trajectories.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Verifiable Agentic Science on Public Infrastructure">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-28-verifiable-agentic-science.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/orbit_fig1_trajectories.png">
+    <meta property="og:description" content="Interactive visual explainer: how grounding autonomous coding agents in free public Galaxy and ACCESS-CI supercomputing turns ephemeral prompts into auditable scientific records across 48 studies.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .blog-article-container {
+            max-width: 1080px;
+            padding: 3rem 3.5rem;
+        }
+
+        .blog-nav-bar {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2.25rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blog-nav-group {
+            display: flex;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-nav-btn {
+            background: var(--text-main);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.6rem 1.15rem;
+            font-size: 0.76rem;
+            border: 2px solid var(--border-color);
+            display: inline-block;
+        }
+
+        .blog-nav-btn.secondary {
+            background: #ffffff;
+            color: var(--text-main);
+        }
+
+        .blog-nav-btn:hover {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .post-header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background: #1d4ed8;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.22rem 0.65rem;
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.06em;
+        }
+
+        .post-header h1 {
+            font-size: 1.95rem;
+            font-weight: 800;
+            line-height: 1.22;
+            margin-bottom: 0.85rem;
+            letter-spacing: -0.02em;
+        }
+
+        .post-subtitle {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.06rem;
+            line-height: 1.55;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            align-items: center;
+        }
+
+        .post-meta a {
+            color: var(--text-main);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* 4-Card Top Metric Strip */
+        .headline-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            margin-bottom: 2rem;
+            background: #ffffff;
+        }
+
+        .headline-metric {
+            border-right: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1.05rem 1.1rem;
+        }
+
+        .headline-metric .hm-num {
+            font-family: var(--font-family);
+            font-size: 1.38rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 0.3rem;
+            color: var(--text-main);
+        }
+
+        .headline-metric .hm-num.red { color: #b91c1c; }
+        .headline-metric .hm-num.blue { color: #1d4ed8; }
+        .headline-metric .hm-num.amber { color: #b45309; }
+        .headline-metric .hm-num.teal { color: #0f766e; }
+
+        .headline-metric .hm-label {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.81rem;
+            line-height: 1.4;
+            color: #374151;
+        }
+
+        /* Sticky Chapter / Bite Progress Bar */
+        .wsj-progress-bar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.97);
+            border: 2px solid var(--border-color);
+            padding: 0.55rem 0.75rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .wsj-pills {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .wsj-pill {
+            font-family: var(--font-family);
+            font-size: 0.71rem;
+            font-weight: 700;
+            padding: 0.32rem 0.58rem;
+            border: 1.5px solid #cbd5e1;
+            background: #f8fafc;
+            color: #475569;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .wsj-pill:hover {
+            border-color: #000000;
+            color: #000000;
+        }
+
+        .wsj-pill.active {
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
+        }
+
+        .wsj-nav-hint {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            color: #52525b;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .wsj-step-btn {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            border: 1.5px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            padding: 0.25rem 0.55rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .wsj-step-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* WSJ Split Scrollytelling Container */
+        .scrolly-container {
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+            gap: 1.75rem;
+            align-items: start;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        /* Left Column: Narrative Bites */
+        .scrolly-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 28vh;
+            padding-bottom: 18vh;
+        }
+
+        .bite-card {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            padding: 1.35rem 1.4rem;
+            transition: border-color 0.2s ease, opacity 0.2s ease;
+            opacity: 0.45;
+            cursor: pointer;
+        }
+
+        .bite-card.active {
+            border-color: #000000;
+            box-shadow: 4px 4px 0px #000000;
+            opacity: 1;
+        }
+
+        .bite-step-tag {
+            font-family: var(--font-family);
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #ffffff;
+            background: #000000;
+            display: inline-block;
+            padding: 0.18rem 0.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .bite-card.active .bite-step-tag.tag-red { background: #b91c1c; }
+        .bite-card.active .bite-step-tag.tag-blue { background: #1d4ed8; }
+        .bite-card.active .bite-step-tag.tag-amber { background: #b45309; }
+        .bite-card.active .bite-step-tag.tag-teal { background: #0f766e; }
+
+        .bite-title {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.18rem;
+            font-weight: 800;
+            line-height: 1.3;
+            color: #000000;
+            margin: 0 0 0.75rem 0;
+        }
+
+        .bite-card p {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 0.92rem;
+            line-height: 1.72;
+            color: #1f2937;
+            margin: 0 0 0.8rem 0;
+        }
+
+        .bite-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bite-callout {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.82rem;
+            line-height: 1.48;
+            background: #f8fafc;
+            border-left: 4px solid #0f766e;
+            padding: 0.65rem 0.8rem;
+            margin-top: 0.85rem;
+            color: #111827;
+        }
+
+        .bite-callout.callout-red {
+            border-left-color: #b91c1c;
+            background: #fef2f2;
+        }
+
+        .bite-callout.callout-amber {
+            border-left-color: #b45309;
+            background: #fffbeb;
+        }
+
+        .bite-callout.callout-blue {
+            border-left-color: #1d4ed8;
+            background: #eff6ff;
+        }
+
+        .bite-card code, .post-subtitle code, .deep-dive-section code {
+            font-family: var(--font-family);
+            font-size: 0.82em;
+            background: #f1f5f9;
+            padding: 0.1rem 0.32rem;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
+        }
+
+        /* Right Column: Sticky WSJ One-Bite Graphic Stage */
+        .scrolly-stage {
+            position: sticky;
+            top: 4.2rem;
+            background: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: 5px 5px 0px #000000;
+            padding: 1.25rem 1.4rem 1.1rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stage-top-rule {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stage-kicker {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #1d4ed8;
+        }
+
+        .stage-counter {
+            font-family: var(--font-family);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #52525b;
+        }
+
+        .stage-headline {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: #000000;
+            line-height: 1.28;
+            margin-bottom: 0.25rem;
+        }
+
+        .stage-subhead {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.83rem;
+            color: #4b5563;
+            line-height: 1.42;
+            margin-bottom: 0.9rem;
+        }
+
+        .graphic-viewport {
+            position: relative;
+            width: 100%;
+            min-height: 325px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bite-graphic {
+            display: none;
+            width: 100%;
+        }
+
+        .bite-graphic.active {
+            display: block;
+        }
+
+        .bite-graphic svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stage-footer {
+            border-top: 1px solid #e4e4e7;
+            padding-top: 0.6rem;
+            margin-top: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-family);
+            font-size: 0.68rem;
+            color: #6b7280;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Interactive Audit Row Hover in Bite 4 */
+        .audit-row {
+            cursor: pointer;
+        }
+        .audit-row:hover rect.row-bg {
+            stroke-width: 2.5px;
+            stroke: #000000;
+        }
+        .audit-tooltip-bar {
+            font-family: var(--font-family);
+            font-size: 0.74rem;
+            background: #f8fafc;
+            border: 1.5px solid #000000;
+            padding: 0.45rem 0.7rem;
+            margin-top: 0.55rem;
+            color: #0f172a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Deep-Dive Reference Section at Bottom */
+        .deep-dive-section {
+            border-top: 2px solid #000000;
+            padding-top: 2.25rem;
+            margin-top: 2rem;
+        }
+
+        .deep-dive-section h2 {
+            font-family: var(--font-family);
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border-left: 6px solid #000000;
+            padding-left: 0.85rem;
+        }
+
+        .clean-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.84rem;
+            margin: 1.25rem 0 2.25rem 0;
+            border: 2px solid #000000;
+        }
+
+        .clean-table th {
+            font-family: var(--font-family);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            background: #000000;
+            color: #ffffff;
+            padding: 0.65rem 0.75rem;
+            text-align: left;
+        }
+
+        .clean-table td {
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid #e4e4e7;
+            color: #18181b;
+            vertical-align: top;
+        }
+
+        .clean-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        .reference-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .reference-card {
+            border: 2px solid #000000;
+            background: #ffffff;
+            padding: 1.25rem;
+        }
+
+        .reference-card h3 {
+            font-family: var(--font-family);
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .reference-card p {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.88rem;
+            color: #3f3f46;
+            line-height: 1.5;
+            margin-bottom: 0.85rem;
+        }
+
+        .reference-card img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #d4d4d8;
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+            .blog-article-container {
+                padding: 2rem;
+            }
+            .headline-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .scrolly-container {
+                grid-template-columns: 1fr;
+            }
+            .scrolly-stage {
+                position: sticky;
+                top: 3.6rem;
+                z-index: 30;
+                order: -1;
+                margin-bottom: 1.5rem;
+            }
+            .scrolly-steps {
+                gap: 2rem;
+                padding-bottom: 2rem;
+            }
+            .bite-card {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .headline-strip {
+                grid-template-columns: 1fr;
+            }
+            .scrolly-stage {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="../index.html#/blog">← All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprint &amp; Infrastructure</h3>
+                <div class="links-list">
+                    <a href="https://www.biorxiv.org/content/10.64898/2026.10.26.761864v1" target="_blank" rel="noopener noreferrer">bioRxiv: 2026.10.26.761864</a>
+                    <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a>
+                    <a href="https://brc-analytics.org" target="_blank" rel="noopener noreferrer">BRC-Analytics</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">ChronAeon &amp; HyphAeon</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <article class="blog-article-container">
+                <div class="blog-nav-bar">
+                    <div class="blog-nav-group">
+                        <a href="../index.html#/blog" class="blog-nav-btn">← Back to Blog</a>
+                        <a href="https://www.biorxiv.org/content/10.64898/2026.10.26.761864v1" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">Read on bioRxiv ↗</a>
+                        <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">UseGalaxy.org ↗</a>
+                    </div>
+                    <span style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
+                        DOI: 10.64898/2026.10.26.761864
+                    </span>
+                </div>
+
+                <header class="post-header">
+                    <span class="post-tag">Interactive Visual Explainer • Agentic Science &amp; Public Infrastructure</span>
+                    <h1>30 Agents, 18 Pipelines, One Glass Box: Verifiable Agentic Science on Public Infrastructure</h1>
+                    <p class="post-subtitle">
+                        Scroll through six visual "one-bite" chapters from our new preprint (<a href="https://www.biorxiv.org/content/10.64898/2026.10.26.761864v1" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:600;">Baker et al., 2026</a>)—showing why unguided local coding agents splinter into irreproducible chaos, and how grounding them in free public Galaxy and ACCESS-CI supercomputers turns AI agents into forensic auditors and discovery engines across 48 datasets.
+                    </p>
+                    <div class="post-meta">
+                        <span><i>28 Oct 2026, by Sergei</i></span>
+                        <span>·</span>
+                        <span>5 min interactive scroll</span>
+                        <span>·</span>
+                        <span>Preprint: <a href="https://www.biorxiv.org/content/10.64898/2026.10.26.761864v1" target="_blank" rel="noopener noreferrer">bioRxiv 2026.10.26.761864v1</a></span>
+                    </div>
+                </header>
+
+                <!-- 4-Card Top Metric Strip -->
+                <div class="headline-strip">
+                    <div class="headline-metric">
+                        <div class="hm-num red">30 → 18</div>
+                        <div class="hm-label"><strong>Incompatible pipelines</strong> when 30 frontier agents reanalyze the same RNA-seq study locally</div>
+                    </div>
+                    <div class="headline-metric">
+                        <div class="hm-num blue">~2M Jobs/mo</div>
+                        <div class="hm-label"><strong>Free public supercomputing</strong> via UseGalaxy.org &amp; ACCESS-CI with full DAG provenance</div>
+                    </div>
+                    <div class="headline-metric">
+                        <div class="hm-num amber">82% Missing</div>
+                        <div class="hm-label"><strong>Cells silently dropped</strong> by a <em>Nature</em> agent benchmark that ran a 1,000-cell demo file</div>
+                    </div>
+                    <div class="headline-metric">
+                        <div class="hm-num teal">48 Studies</div>
+                        <div class="hm-label"><strong>Audited &amp; scaled</strong>—from unifying 2,592 malaria antigens on GPUs to dating 42 epidemics</div>
+                    </div>
+                </div>
+
+                <!-- Sticky WSJ Step Bar -->
+                <div class="wsj-progress-bar">
+                    <div class="wsj-pills" id="bite-pills">
+                        <button class="wsj-pill active" data-step="0">1. Local Chaos (30→18)</button>
+                        <button class="wsj-pill" data-step="1">2. The Galactic Plane</button>
+                        <button class="wsj-pill" data-step="2">3. The 82% Demo Trap</button>
+                        <button class="wsj-pill" data-step="3">4. Forensic Audits</button>
+                        <button class="wsj-pill" data-step="4">5. Malaria GPU Discovery</button>
+                        <button class="wsj-pill" data-step="5">6. 42 Epidemics in Seconds</button>
+                    </div>
+                    <div class="wsj-nav-hint">
+                        <span>Step:</span>
+                        <button class="wsj-step-btn" id="prev-bite" title="Previous step (←)">← Prev</button>
+                        <button class="wsj-step-btn" id="next-bite" title="Next step (→)">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Split-Screen Scrollytelling Container -->
+                <div class="scrolly-container">
+                    <!-- LEFT COLUMN: Scroll-Through Story Bites -->
+                    <div class="scrolly-steps">
+
+                        <!-- BITE 1 -->
+                        <div class="bite-card active" data-step="0">
+                            <span class="bite-step-tag tag-red">Bite 1 of 6 • The Local Reproducibility Crisis</span>
+                            <h2 class="bite-title">Hand One Dataset to 30 Local Coding Agents—Get 18 Incompatible Pipelines</h2>
+                            <p>
+                                Autonomous coding agents can design and execute a complete multi-step study from a single prompt. But what happens when they improvise in isolated local terminals?
+                            </p>
+                            <p>
+                                We handed a published bacterial RNA-seq study of <em>Bacillus cereus</em> enterotoxin regulation (Vyklická et al., 2025) to <strong>30 independent frontier agents</strong>—10 Claude Opus, 10 OpenAI Codex, and 10 Google Gemini—and asked each for a replication plan.
+                            </p>
+                            <p>
+                                Exposed to two routine ambiguities (a suppressed RefSeq assembly after taxonomic reclassification to <em>B. pacificus</em>, and whether <code>DESeq2</code> pooled all 19 libraries or only 5 focal samples), <strong>29 of the 30 agents diverged from the paper, splintering into 18 distinct pipelines</strong>.
+                            </p>
+                            <div class="bite-callout callout-red">
+                                <strong>Silent biological distortion:</strong> When executed locally, aligning to <em>B. pacificus</em> completely erased an actively transcribed toxin gene (<code>cytK2</code>, ~800 read pairs/library on ATCC 10987) and left behind <strong>26 unversioned glue scripts (&gt;1,200 lines of code)</strong>.
+                            </div>
+                        </div>
+
+                        <!-- BITE 2 -->
+                        <div class="bite-card" data-step="1">
+                            <span class="bite-step-tag tag-blue">Bite 2 of 6 • Public Infrastructure</span>
+                            <h2 class="bite-title">Moving Agentic Science from Private Black Boxes onto the Galactic Plane</h2>
+                            <p>
+                                Today's vision of "agentic science" is largely being built behind closed doors—running on laptops or paid commercial clouds where intermediate files vanish when the session ends.
+                            </p>
+                            <p>
+                                We took the opposite path. We connected CLI coding agents—and <strong>Orbit</strong>, our open-source desktop workbench built on Pi.dev—directly into <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer">UseGalaxy.org</a> and free national <strong>ACCESS-CI supercomputers</strong> (Stampede3, Bridges-2, Expanse, Anvil, Jetstream2) via curated domain skills and a typed <strong>Galaxy Model Context Protocol (MCP)</strong> server.
+                            </p>
+                            <p>
+                                Any researcher or student can drive multi-core CPUs, terabyte-RAM nodes, and NVIDIA GPUs at zero cost under one rule: <strong>the agent cannot hide its tracks</strong>.
+                            </p>
+                            <div class="bite-callout callout-blue">
+                                <strong>Permanent provenance by design:</strong> Instead of throwaway local scripts, bespoke code is packaged into containerized <strong>User-Defined Tools (UDTs)</strong>, and every input, parameter, and output is locked into an inspectable Directed Acyclic Graph (DAG) and living research notebook.
+                            </div>
+                        </div>
+
+                        <!-- BITE 3 -->
+                        <div class="bite-card" data-step="2">
+                            <span class="bite-step-tag tag-amber">Bite 3 of 6 • Forensic Audit I</span>
+                            <h2 class="bite-title">When an Agent Benchmark Silently Runs a Demo File: The 82% Missing-Data Trap</h2>
+                            <p>
+                                What if a landmark <em>Nature</em> paper about reproducible agentic science itself fell prey to an unverified agentic shortcut—and our public provenance harness caught it?
+                            </p>
+                            <p>
+                                In <em>Paper2Agent</em> (Miao et al., 2026), an agent wrapped the spatial transcriptomics tool <code>TISSUE</code> and cited a <strong>5,613-cell mouse somatosensory cortex atlas</strong> (Dataset 15). Yet when we audited the result on Galaxy, we discovered that the benchmark had actually been run on a <strong>1,000-cell unit-test demo file (<code>tests/data/scRNA_count.txt</code>)</strong> bundled inside the GitHub repo—silently discarding <strong>82% of the reference cells</strong>!
+                            </p>
+                            <p>
+                                On the 1,000-cell demo subset, predicted <em>Acta2</em> expression was nearly uncorrelated with ground truth ($r = 0.0861$). Running <code>TISSUE</code> on UseGalaxy.org reproduced their 1,000-cell tutorial output to floating-point precision ($r = 1.0000$) and scaled to all 5,613 cells—<strong>tripling prediction accuracy to $r = 0.2553$</strong>.
+                            </p>
+                            <div class="bite-callout callout-amber">
+                                <strong>Why provenance matters:</strong> Without an auditable trail of input file digests and dimensions, an agent substituting a 1,000-cell unit test for a 5,613-cell atlas looks like a successful run.
+                            </div>
+                        </div>
+
+                        <!-- BITE 4 -->
+                        <div class="bite-card" data-step="3">
+                            <span class="bite-step-tag tag-teal">Bite 4 of 6 • Forensic Audit II</span>
+                            <h2 class="bite-title">Exposing Unstated Pooling, Unmerged Replicates, and Annotation Traps</h2>
+                            <p>
+                                Across 48 biological analyses, keeping every intermediate table in the open turned our agents into automated forensic auditors of peer-reviewed papers:
+                            </p>
+                            <p>
+                                • <strong><em>Aspergillus fumigatus</em> (30-library azole time-course):</strong> Pairwise <code>DESeq2</code> missed 39% of published DEGs until our agent spotted identical <code>baseMean</code> values across all 5 timepoints—proving the authors had fitted <strong>one pooled 30-sample model (25 residual d.f.)</strong>. Switching to the pooled design matched published counts within <strong>0.3–1.3% ($r \ge 0.9996$)</strong>.<br>
+                                • <strong><em>Anopheles gambiae</em> (infection ATAC-seq):</strong> Reproduced <strong>90.7–93.2%</strong> of chromatin peaks while proving headline region counts came from unmerged replicate rows.<br>
+                                • <strong><em>Aedes aegypti</em> (midgut scRNA-seq, 6,707 cells):</strong> Fixed a non-model <code>AAEL</code> mitochondrial prefix that caused standard <code>Scanpy</code> QC to report 0% mitochondrial reads.
+                            </p>
+                            <div class="bite-callout">
+                                <strong>Hover any row in the scorecard →</strong> to inspect the exact discrepancy uncovered and how the Galaxy workflow resolved it.
+                            </div>
+                        </div>
+
+                        <!-- BITE 5 -->
+                        <div class="bite-card" data-step="4">
+                            <span class="bite-step-tag tag-blue">Bite 5 of 6 • Discovery at Scale I</span>
+                            <h2 class="bite-title">Unifying 2,592 Malaria Surface Antigens Across Three Continents on Public GPUs</h2>
+                            <p>
+                                Moving from auditing past studies to new discovery, we directed Orbit to resolve the hypervariable <strong>VIR surface protein repertoire</strong> across three <em>Plasmodium vivax</em> genomes from <strong>Indonesia, Thailand, and Peru</strong> (2,592 proteins).
+                            </p>
+                            <p>
+                                Because VIR proteins diverge into the sequence twilight zone ($\le 30\%$ amino acid identity), sequence clustering fractures them into <strong>146–203 fragmented groups</strong>, obscuring whether parasites on different continents use distinct immune-evasion scaffolds.
+                            </p>
+                            <p>
+                                By registering 10 unprivileged UDTs on UseGalaxy.org to orchestrate <strong><code>ProstT5</code> (3Di protein language model), <code>Foldseek</code>, <code>FoldMason</code>, and <code>IQ-TREE 3</code></strong> on national ACCESS-CI GPUs, Orbit collapsed the entire repertoire into <strong>73–76 structural classes</strong>—showing that <strong>over 97% of all VIR proteins belong to 21 conserved ancestral folds shared across all three continents</strong> ($p = 0.55$).
+                            </p>
+                            <div class="bite-callout callout-blue">
+                                <strong>Zero local GPU required:</strong> Any researcher can orchestrate heavyweight protein language models and structural phylogenetics on national GPU allocations directly through Galaxy.
+                            </div>
+                        </div>
+
+                        <!-- BITE 6 -->
+                        <div class="bite-card" data-step="5">
+                            <span class="bite-step-tag tag-teal">Bite 6 of 6 • Discovery at Scale II</span>
+                            <h2 class="bite-title">Dating 42 Pathogen Epidemics in Seconds Instead of Days of MCMC</h2>
+                            <p>
+                                Finally, we wrapped <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer"><code>ChronAeon</code></a> as Galaxy User-Defined Tools and tasked Orbit with dating <strong>42 published viral and bacterial BEAST benchmark alignments</strong> (41 unique cohorts across 37 studies, including Ebola, SARS-CoV-2, Zika, Dengue, Mpox, H1N1, Rabies, and <em>Yersinia pestis</em>).
+                            </p>
+                            <p>
+                                Traditional Bayesian molecular clock inference (`BEAST`) requires hours to days of Markov chain Monte Carlo (MCMC) sampling per dataset. On UseGalaxy.org, Orbit executed all 42 cohorts in <strong>seconds per alignment</strong>, matching reference Bayesian emergence ($t_{\text{MRCA}}$) intervals across <strong>61.5–64.1% of scored outbreaks</strong> with a median error of just <strong>0.40 years</strong> for post-1980 epidemics.
+                            </p>
+                            <div class="bite-callout">
+                                <strong>The takeaway:</strong> Anchoring autonomous agents to open-source tools and free public supercomputing turns a looming reproducibility crisis into a permanent, verifiable engine for discovery.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: Sticky WSJ One-Bite Graphic Stage -->
+                    <div class="scrolly-stage" id="scrolly-stage">
+                        <div>
+                            <div class="stage-top-rule">
+                                <span class="stage-kicker" id="stage-kicker">BITE 1 • MULTI-AGENT DIVERGENCE BENCHMARK</span>
+                                <span class="stage-counter" id="stage-counter">1 / 6</span>
+                            </div>
+                            <div class="stage-headline" id="stage-headline">30 Frontier Coding Agents Splinter Into 18 Incompatible Pipelines</div>
+                            <div class="stage-subhead" id="stage-subhead">Given the same Bacillus cereus RNA-seq study without infrastructure guardrails, 29 of 30 agents diverged from the published workflow.</div>
+                        </div>
+
+                        <div class="graphic-viewport">
+
+                            <!-- GRAPHIC 1: 30 AGENTS -> 18 PIPELINES -->
+                            <div class="bite-graphic active" data-graphic="0">
+                                <svg viewBox="0 0 560 350" aria-label="30 autonomous coding agents splinter into 18 incompatible bioinformatics pipelines">
+                                    <rect x="0" y="0" width="560" height="350" fill="#ffffff" />
+
+                                    <!-- Left Column: 30 Agents -->
+                                    <text x="16" y="24" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#18181b">30 INDEPENDENT AGENTS</text>
+
+                                    <rect x="16" y="38" width="142" height="54" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+                                    <text x="28" y="60" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#1e3a8a">10 Claude Opus</text>
+                                    <text x="28" y="78" font-family="Inter, sans-serif" font-size="10" fill="#1e40af">Local shell planning</text>
+
+                                    <rect x="16" y="104" width="142" height="54" fill="#fffbeb" stroke="#b45309" stroke-width="2" />
+                                    <text x="28" y="126" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#92400e">10 OpenAI Codex</text>
+                                    <text x="28" y="144" font-family="Inter, sans-serif" font-size="10" fill="#78350f">Local shell planning</text>
+
+                                    <rect x="16" y="170" width="142" height="54" fill="#f0fdfa" stroke="#0f766e" stroke-width="2" />
+                                    <text x="28" y="192" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#115e59">10 Google Gemini</text>
+                                    <text x="28" y="210" font-family="Inter, sans-serif" font-size="10" fill="#134e4a">Local shell planning</text>
+
+                                    <!-- Diverging Flow Lines -->
+                                    <path d="M 158 65 C 210 65, 210 58, 258 58" fill="none" stroke="#1d4ed8" stroke-width="3" opacity="0.65" />
+                                    <path d="M 158 65 C 210 65, 210 132, 258 132" fill="none" stroke="#1d4ed8" stroke-width="2" opacity="0.45" />
+                                    <path d="M 158 131 C 210 131, 210 58, 258 58" fill="none" stroke="#b45309" stroke-width="2.5" opacity="0.55" />
+                                    <path d="M 158 131 C 210 131, 210 132, 258 132" fill="none" stroke="#b45309" stroke-width="3" opacity="0.65" />
+                                    <path d="M 158 197 C 210 197, 210 132, 258 132" fill="none" stroke="#0f766e" stroke-width="3.5" opacity="0.65" />
+                                    <path d="M 158 197 C 210 197, 210 202, 258 202" fill="none" stroke="#0f766e" stroke-width="1.8" opacity="0.8" />
+
+                                    <!-- Right Column: Outcomes -->
+                                    <text x="258" y="24" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#b91c1c">OUTCOME ACROSS 8 DECISIONS</text>
+
+                                    <rect x="258" y="36" width="286" height="58" fill="#fef2f2" stroke="#b91c1c" stroke-width="2" />
+                                    <text x="272" y="58" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#991b1b">29 of 30 Diverged → 18 Pipelines</text>
+                                    <text x="272" y="76" font-family="Inter, sans-serif" font-size="10.5" fill="#7f1d1d">Wrong genome (B. pacificus) or wrong DESeq2 matrix</text>
+
+                                    <rect x="258" y="106" width="286" height="58" fill="#fffbeb" stroke="#b45309" stroke-width="2" />
+                                    <text x="272" y="128" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#92400e">11 Count-Altering Designs</text>
+                                    <text x="272" y="146" font-family="Inter, sans-serif" font-size="10.5" fill="#78350f">Split across Bowtie2, HISAT2, BWA-MEM, STAR, Subread</text>
+
+                                    <rect x="258" y="176" width="286" height="48" fill="#f0fdf4" stroke="#0f766e" stroke-width="2" />
+                                    <text x="272" y="197" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#0f766e">Only 1 of 30 Matched the Paper</text>
+                                    <text x="272" y="213" font-family="Inter, sans-serif" font-size="10" fill="#134e4a">ATCC 10987 reference + 5-sample focal contrast</text>
+
+                                    <!-- Bottom Consequence Box -->
+                                    <line x1="16" y1="242" x2="544" y2="242" stroke="#e4e4e7" stroke-width="1.5" />
+                                    <text x="16" y="262" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#000000">WHAT HAPPENED WHEN EXECUTED LOCALLY:</text>
+
+                                    <g transform="translate(16, 272)">
+                                        <rect x="0" y="0" width="256" height="64" fill="#fef2f2" stroke="#000000" stroke-width="1.5" />
+                                        <text x="12" y="21" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#b91c1c">cytK2 Toxin Gene Erased</text>
+                                        <text x="12" y="39" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="#18181b">~800 read pairs/lib → 0 reads</text>
+                                        <text x="12" y="54" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#52525b">Absent from B. pacificus reference</text>
+                                    </g>
+                                    <g transform="translate(288, 272)">
+                                        <rect x="0" y="0" width="256" height="64" fill="#f8fafc" stroke="#000000" stroke-width="1.5" />
+                                        <text x="12" y="21" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#18181b">26 Disposable Glue Scripts</text>
+                                        <text x="12" y="39" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="#18181b">&gt;1,200 lines of unversioned code</text>
+                                        <text x="12" y="54" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#52525b">No container digest or audit trail</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- GRAPHIC 2: THE GALACTIC PLANE ARCHITECTURE -->
+                            <div class="bite-graphic" data-graphic="1">
+                                <svg viewBox="0 0 560 350" aria-label="Three-layer architecture for verifiable agentic science on Galaxy and ACCESS-CI">
+                                    <!-- Layer 1: Agent Layer -->
+                                    <rect x="16" y="14" width="528" height="86" fill="#eff6ff" stroke="#000000" stroke-width="2" />
+                                    <text x="30" y="36" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#1d4ed8">LAYER 1 • AGENT &amp; WORKBENCH LAYER</text>
+                                    <rect x="30" y="48" width="235" height="38" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.5" />
+                                    <text x="147" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#1e3a8a">Orbit Desktop Workbench (Pi.dev)</text>
+                                    <text x="147" y="79" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#475569">Execution guardrails + multi-model</text>
+
+                                    <rect x="285" y="48" width="243" height="38" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.5" />
+                                    <text x="406" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#1e3a8a">Generic CLI Agents + Skills</text>
+                                    <text x="406" y="79" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#475569">Claude Code, Codex, Gemini CLI</text>
+
+                                    <!-- Arrow 1 -> 2 via Galaxy MCP -->
+                                    <line x1="280" y1="100" x2="280" y2="128" stroke="#000000" stroke-width="3" />
+                                    <polygon points="274,124 280,134 286,124" fill="#000000" />
+                                    <rect x="175" y="105" width="210" height="20" fill="#000000" />
+                                    <text x="280" y="119" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" fill="#ffffff">Galaxy MCP + Workflow Foundry</text>
+
+                                    <!-- Layer 2: Public Infrastructure Layer -->
+                                    <rect x="16" y="134" width="528" height="98" fill="#f0fdfa" stroke="#000000" stroke-width="2" />
+                                    <text x="30" y="156" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#0f766e">LAYER 2 • PUBLIC CYBERINFRASTRUCTURE (UseGalaxy.org + ACCESS-CI)</text>
+
+                                    <rect x="30" y="168" width="156" height="50" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                    <text x="108" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">National HPC &amp; GPUs</text>
+                                    <text x="108" y="204" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#134e4a">TACC, PSC, SDSC, Anvil</text>
+
+                                    <rect x="200" y="168" width="160" height="50" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                    <text x="280" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">BioContainers &amp; Tools</text>
+                                    <text x="280" y="204" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#134e4a">~2,000,000 jobs / month</text>
+
+                                    <rect x="374" y="168" width="154" height="50" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                    <text x="451" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">User-Defined Tools</text>
+                                    <text x="451" y="204" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#134e4a">Unprivileged &amp; versioned</text>
+
+                                    <!-- Arrow 2 -> 3 -->
+                                    <line x1="280" y1="232" x2="280" y2="256" stroke="#000000" stroke-width="3" />
+                                    <polygon points="274,252 280,262 286,252" fill="#000000" />
+
+                                    <!-- Layer 3: Verifiable Result Layer -->
+                                    <rect x="16" y="262" width="528" height="74" fill="#18181b" stroke="#000000" stroke-width="2" />
+                                    <text x="30" y="285" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#fde047">LAYER 3 • PERMANENT VERIFIABLE RECORD (THE GLASS BOX)</text>
+                                    <text x="30" y="306" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#ffffff">Immutable Execution DAG + Container Digests + Shareable Research Notebook</text>
+                                    <text x="30" y="324" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#a1a1aa">Every intermediate table, tool version, and parameter is inspectable and re-runnable by anyone.</text>
+                                </svg>
+                            </div>
+
+                            <!-- GRAPHIC 3: THE 82% DEMO-FILE TRAP (PAPER2AGENT / TISSUE) -->
+                            <div class="bite-graphic" data-graphic="2">
+                                <svg viewBox="0 0 560 350" aria-label="Comparison of Paper2Agent 1,000-cell tutorial demo subset versus full 5,613-cell mouse cortex atlas on Galaxy">
+                                    <!-- Left Panel: Input Cells Used -->
+                                    <rect x="16" y="18" width="252" height="238" fill="#f8fafc" stroke="#000000" stroke-width="2" />
+                                    <text x="30" y="42" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#000000">1. REFERENCE CELLS USED</text>
+                                    <text x="30" y="58" font-family="Inter, sans-serif" font-size="10" fill="#52525b">Mouse somatosensory cortex (Dataset 15)</text>
+
+                                    <!-- Bar 1: Cited vs Run -->
+                                    <text x="30" y="88" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#b91c1c">Paper2Agent Benchmark Run:</text>
+                                    <rect x="30" y="96" width="220" height="26" fill="#e2e8f0" />
+                                    <rect x="30" y="96" width="39" height="26" fill="#b91c1c" />
+                                    <text x="77" y="113" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#991b1b">1,000 cells (82% dropped!)</text>
+                                    <text x="30" y="136" font-family="JetBrains Mono, monospace" font-size="9" fill="#7f1d1d">Ran tests/data/scRNA_count.txt demo</text>
+
+                                    <text x="30" y="168" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">Orbit + UseGalaxy.org Full Run:</text>
+                                    <rect x="30" y="176" width="220" height="26" fill="#0f766e" stroke="#000000" stroke-width="1.5" />
+                                    <text x="140" y="193" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#ffffff">All 5,613 Reference Cells</text>
+                                    <text x="30" y="216" font-family="JetBrains Mono, monospace" font-size="9" fill="#134e4a">Full cited archive + tutorial verified</text>
+
+                                    <!-- Right Panel: Spatial Prediction Accuracy (Acta2) -->
+                                    <rect x="288" y="18" width="256" height="238" fill="#f0fdfa" stroke="#0f766e" stroke-width="2" />
+                                    <text x="302" y="42" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#0f766e">2. SPATIAL ACCURACY (Acta2 r)</text>
+                                    <text x="302" y="58" font-family="Inter, sans-serif" font-size="10" fill="#134e4a">Pearson correlation vs. ground truth</text>
+
+                                    <!-- Bar A: 1,000-cell demo -->
+                                    <text x="302" y="88" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#991b1b">1,000-Cell Demo Subset:</text>
+                                    <rect x="302" y="96" width="220" height="26" fill="#ffffff" stroke="#cbd5e1" />
+                                    <rect x="302" y="96" width="68" height="26" fill="#fca5a5" stroke="#b91c1c" stroke-width="1.5" />
+                                    <text x="378" y="113" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#991b1b">r = 0.0861</text>
+                                    <text x="302" y="136" font-family="JetBrains Mono, monospace" font-size="9" fill="#52525b">Reproduced on Galaxy at r = 1.0000</text>
+
+                                    <!-- Bar B: 5,613-cell full atlas -->
+                                    <text x="302" y="168" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">Full 5,613-Cell Atlas on Galaxy:</text>
+                                    <rect x="302" y="176" width="220" height="26" fill="#ffffff" stroke="#cbd5e1" />
+                                    <rect x="302" y="176" width="202" height="26" fill="#0f766e" stroke="#000000" stroke-width="1.5" />
+                                    <text x="403" y="193" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#ffffff">r = 0.2553 (3.0× higher)</text>
+                                    <text x="302" y="216" font-family="JetBrains Mono, monospace" font-size="9" fill="#134e4a">Restores vascular smooth muscle signal</text>
+
+                                    <!-- Bottom Takeaway Banner -->
+                                    <rect x="16" y="272" width="528" height="62" fill="#fffbeb" stroke="#b45309" stroke-width="2" />
+                                    <text x="30" y="294" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#92400e">HOW GALAXY PROVENANCE CAUGHT IT:</text>
+                                    <text x="30" y="314" font-family="Inter, sans-serif" font-size="10.5" fill="#78350f">Inspecting the exact input matrix dimensions and SHA-256 digests exposed the 1,000-cell test file immediately.</text>
+                                </svg>
+                            </div>
+
+                            <!-- GRAPHIC 4: FORENSIC SCORECARD ACROSS PUBLISHED PAPERS -->
+                            <div class="bite-graphic" data-graphic="3">
+                                <svg viewBox="0 0 560 315" aria-label="Forensic audits across four functional genomics studies on UseGalaxy.org">
+                                    <text x="14" y="20" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#000000">HOVER ANY STUDY TO INSPECT THE HIDDEN TRAP CAUGHT BY PROVENANCE:</text>
+
+                                    <!-- Row 1: Bacillus cereus -->
+                                    <g class="audit-row" data-audit="Bacillus cereus (Vyklická et al., 2025) • Caught spliced eukaryotic aligner (HISAT2) + split CDS annotations; switched to Kallisto (r = 0.9622 in 38–60s/lib).">
+                                        <rect class="row-bg" x="14" y="32" width="532" height="60" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                                        <rect x="14" y="32" width="8" height="60" fill="#0f766e" />
+                                        <text x="32" y="54" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#000000">1. Bacillus cereus RNA-seq (5 libraries, 5,472 loci)</text>
+                                        <text x="32" y="74" font-family="Inter, sans-serif" font-size="10.5" fill="#3f3f46">Trap: Spliced aligner on intronless bacterium + split CDS rows</text>
+                                        <rect x="422" y="44" width="112" height="34" fill="#0f766e" />
+                                        <text x="478" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#ffffff">r = 0.9622</text>
+                                    </g>
+
+                                    <!-- Row 2: Aspergillus fumigatus -->
+                                    <g class="audit-row" data-audit="Aspergillus fumigatus (Hokken et al., 2019) • Identical baseMean across all 5 timepoints proved a single pooled 30-sample DESeq2 design (25 d.f.), matching DEGs within 0.3–1.3%.">
+                                        <rect class="row-bg" x="14" y="102" width="532" height="60" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                                        <rect x="14" y="102" width="8" height="60" fill="#1d4ed8" />
+                                        <text x="32" y="124" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#000000">2. Aspergillus fumigatus Time-Course (30 libraries)</text>
+                                        <text x="32" y="144" font-family="Inter, sans-serif" font-size="10.5" fill="#3f3f46">Trap: Unstated 30-sample pooled DESeq2 dispersion model</text>
+                                        <rect x="422" y="114" width="112" height="34" fill="#1d4ed8" />
+                                        <text x="478" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#ffffff">r ≥ 0.9996</text>
+                                    </g>
+
+                                    <!-- Row 3: Anopheles gambiae -->
+                                    <g class="audit-row" data-audit="Anopheles gambiae ATAC-seq (Ruiz et al., 2021) • Reproduced 90.7–93.2% of MACS2 peaks; proved headline region counts reflected unmerged per-replicate rows.">
+                                        <rect class="row-bg" x="14" y="172" width="532" height="60" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                                        <rect x="14" y="172" width="8" height="60" fill="#b45309" />
+                                        <text x="32" y="194" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#000000">3. Anopheles gambiae Chromatin ATAC-seq (4 libraries)</text>
+                                        <text x="32" y="214" font-family="Inter, sans-serif" font-size="10.5" fill="#3f3f46">Trap: Unmerged replicate rows &amp; custom summit-window filter</text>
+                                        <rect x="422" y="184" width="112" height="34" fill="#b45309" />
+                                        <text x="478" y="205" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#ffffff">93.2% Peaks</text>
+                                    </g>
+
+                                    <!-- Row 4: Aedes aegypti -->
+                                    <g class="audit-row" data-audit="Aedes aegypti Midgut Atlas (Wang et al., 2024) • Non-model AAEL mitochondrial gene IDs broke standard Scanpy MT-% QC; fixed via BRC-Analytics reference staging.">
+                                        <rect class="row-bg" x="14" y="242" width="532" height="60" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                                        <rect x="14" y="242" width="8" height="60" fill="#b91c1c" />
+                                        <text x="32" y="264" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#000000">4. Aedes aegypti Single-Cell Atlas (6,707 post-QC cells)</text>
+                                        <text x="32" y="284" font-family="Inter, sans-serif" font-size="10.5" fill="#3f3f46">Trap: Non-model AAEL mitochondrial prefix → 0% MT reads</text>
+                                        <rect x="422" y="254" width="112" height="34" fill="#b91c1c" />
+                                        <text x="478" y="275" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#ffffff">20 Clusters</text>
+                                    </g>
+                                </svg>
+                                <div class="audit-tooltip-bar" id="audit-tooltip">
+                                    <span><strong>Selected Audit:</strong> Aspergillus fumigatus (Hokken et al., 2019) • Identical baseMean across all 5 timepoints proved a single pooled 30-sample DESeq2 design.</span>
+                                </div>
+                            </div>
+
+                            <!-- GRAPHIC 5: PLASMODIUM VIVAX VIR STRUCTURAL UNIFICATION -->
+                            <div class="bite-graphic" data-graphic="4">
+                                <svg viewBox="0 0 560 350" aria-label="GPU structure-aware phylogenomics collapses 2,592 Plasmodium vivax VIR proteins into 21 conserved folds across 3 continents">
+                                    <!-- Step 1: Sequence Twilight Zone -->
+                                    <rect x="16" y="16" width="528" height="82" fill="#fef2f2" stroke="#b91c1c" stroke-width="2" />
+                                    <text x="30" y="39" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#b91c1c">STAGE 1 • SEQUENCE TWILIGHT ZONE (≤30% IDENTITY)</text>
+                                    <text x="30" y="59" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#18181b">2,592 Hypervariable VIR Proteins Across 3 Genomes (Indonesia, Thailand, Peru)</text>
+                                    <text x="30" y="79" font-family="JetBrains Mono, monospace" font-size="10" fill="#7f1d1d">Sequence alignment fractures repertoire into 146–203 disconnected clusters</text>
+
+                                    <!-- Arrow through GPU UDTs -->
+                                    <line x1="280" y1="98" x2="280" y2="132" stroke="#000000" stroke-width="3" />
+                                    <polygon points="274,128 280,138 286,128" fill="#000000" />
+                                    <rect x="105" y="104" width="350" height="22" fill="#1d4ed8" />
+                                    <text x="280" y="119" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" fill="#ffffff">10 Galaxy UDTs on ACCESS-CI GPUs: ProstT5 3Di + Foldseek + FoldMason</text>
+
+                                    <!-- Step 2: Structural Unification -->
+                                    <rect x="16" y="140" width="528" height="110" fill="#f0fdfa" stroke="#0f766e" stroke-width="2" />
+                                    <text x="30" y="164" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#0f766e">STAGE 2 • 3Di STRUCTURAL UNIFICATION (73–76 CLASSES)</text>
+
+                                    <rect x="30" y="178" width="240" height="56" fill="#0f766e" />
+                                    <text x="150" y="202" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#ffffff">&gt;97% in 21 Folds</text>
+                                    <text x="150" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#ccfbf1">Conserved ancestral structural cores</text>
+
+                                    <rect x="286" y="178" width="242" height="56" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                    <text x="407" y="202" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#0f766e">p = 0.55 Interleaving</text>
+                                    <text x="407" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#134e4a">Shared across Asia &amp; South America</text>
+
+                                    <!-- Bottom Continent Bar -->
+                                    <rect x="16" y="266" width="528" height="68" fill="#f8fafc" stroke="#000000" stroke-width="1.5" />
+                                    <text x="30" y="288" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#18181b">BIOLOGICAL INSIGHT (IQ-TREE 3 + FOLDMASON):</text>
+                                    <text x="30" y="308" font-family="Inter, sans-serif" font-size="10.5" fill="#3f3f46">Extreme sequence diversification operates on top of a globally conserved structural scaffold inherited prior to continental dispersal.</text>
+                                </svg>
+                            </div>
+
+                            <!-- GRAPHIC 6: 42 PATHOGEN EPIDEMICS IN SECONDS (CHRONAEON) -->
+                            <div class="bite-graphic" data-graphic="5">
+                                <svg viewBox="0 0 560 350" aria-label="ChronAeon on UseGalaxy.org dates 42 pathogen BEAST benchmark cohorts in seconds per alignment">
+                                    <!-- Top Comparison Cards -->
+                                    <rect x="16" y="16" width="254" height="118" fill="#fef2f2" stroke="#b91c1c" stroke-width="2" />
+                                    <text x="30" y="40" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#b91c1c">TRADITIONAL BAYESIAN MCMC</text>
+                                    <text x="30" y="72" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700" fill="#991b1b">Hours to Days</text>
+                                    <text x="30" y="94" font-family="Inter, sans-serif" font-size="10.5" fill="#7f1d1d">Per pathogen alignment (BEAST chains)</text>
+                                    <text x="30" y="116" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#991b1b">Bottlenecks real-time outbreak response</text>
+
+                                    <rect x="290" y="16" width="254" height="118" fill="#f0fdfa" stroke="#0f766e" stroke-width="2" />
+                                    <text x="304" y="40" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#0f766e">CHRONAEON UDTs ON GALAXY</text>
+                                    <text x="304" y="72" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700" fill="#0f766e">Seconds / Cohort</text>
+                                    <text x="304" y="94" font-family="Inter, sans-serif" font-size="10.5" fill="#134e4a">Across 42 viral &amp; bacterial alignments</text>
+                                    <text x="304" y="116" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#0f766e">0.40 yr median error (post-1980 outbreaks)</text>
+
+                                    <!-- Benchmark Concordance Visual -->
+                                    <rect x="16" y="152" width="528" height="182" fill="#f8fafc" stroke="#000000" stroke-width="2" />
+                                    <text x="30" y="176" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#000000">BENCHMARK CONCORDANCE ACROSS 42 EPIDEMIC ALIGNMENTS (37 STUDIES)</text>
+
+                                    <!-- Sample Pathogen Pills -->
+                                    <g transform="translate(30, 192)">
+                                        <rect x="0" y="0" width="114" height="44" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                        <text x="57" y="19" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">Ebola (Gire 14)</text>
+                                        <text x="57" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#3f3f46">West Africa epidemic</text>
+
+                                        <rect x="124" y="0" width="114" height="44" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                        <text x="181" y="19" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">Zika (Faria 17)</text>
+                                        <text x="181" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#3f3f46">Americas introduction</text>
+
+                                        <rect x="248" y="0" width="114" height="44" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                        <text x="305" y="19" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">SARS-CoV-2 / H1N1</text>
+                                        <text x="305" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#3f3f46">Pandemic emergence</text>
+
+                                        <rect x="372" y="0" width="126" height="44" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+                                        <text x="435" y="19" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0f766e">Mpox / Y. pestis</text>
+                                        <text x="435" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#3f3f46">Viral &amp; ancient DNA</text>
+                                    </g>
+
+                                    <!-- Summary Accuracy Bar -->
+                                    <text x="30" y="264" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#1d4ed8">61.5%–64.1% Match Reference Bayesian 95% HPD Intervals:</text>
+                                    <rect x="30" y="274" width="498" height="22" fill="#dbeafe" />
+                                    <rect x="30" y="274" width="320" height="22" fill="#1d4ed8" />
+                                    <text x="190" y="289" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#ffffff">25 / 39 Scored Cohorts Within Bayesian 95% HPD</text>
+                                    <text x="30" y="315" font-family="Inter, sans-serif" font-size="10" fill="#3f3f46">All 42 datasets, container digests, and ChronAeon UDTs permanently archived on UseGalaxy.org.</text>
+                                </svg>
+                            </div>
+
+                        </div>
+
+                        <div class="stage-footer">
+                            <span id="stage-source">Source: Baker et al. (2026) bioRxiv 10.64898/2026.10.26.761864v1 • UseGalaxy.org &amp; ACCESS-CI</span>
+                            <span>Use ← / → keys or click any step</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Reference Table & Full-Resolution Deep-Dive Figures -->
+                <section class="deep-dive-section">
+                    <h2>Summary of Empirical Validations &amp; Discovery Analyses on the Galactic Plane</h2>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 0.94rem; color: #3f3f46; line-height: 1.6;">
+                        Across 48 biological investigations spanning bacteria, mammalian spatial cortex, fungi, mosquito vectors, protozoan parasites, and 42 pathogen epidemic alignments, autonomous agents executed reproducible workflows on free public <a href="https://usegalaxy.org" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:600;">UseGalaxy.org</a> and national <a href="https://access-ci.org" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:600;">ACCESS-CI</a> supercomputing infrastructure.
+                    </p>
+
+                    <table class="clean-table">
+                        <thead>
+                            <tr>
+                                <th>Biological System &amp; Study</th>
+                                <th>Assay &amp; Scale</th>
+                                <th>Agent &amp; Infrastructure Stack</th>
+                                <th>Forensic Audit or Discovery Finding</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong><em>Bacillus cereus</em> enterotoxin regulation</strong><br>Vyklická et al. (2025)</td>
+                                <td>Bacterial RNA-seq<br>5 libraries, 5,472 loci</td>
+                                <td>Generic CLI agent + Galaxy MCP + Skills</td>
+                                <td>Replaced 26 unversioned local glue scripts from 30 unconstrained runs; caught split bacterial CDS rows and switched to <code>Kallisto</code> (38–60s/lib, $r = 0.9622$).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mouse cortex spatial transcriptomics</strong><br><em>Paper2Agent</em> (Miao et al., 2026) / <code>TISSUE</code></td>
+                                <td>scRNA-seq + spatial<br>3,405 spatial &amp; 5,613 reference cells</td>
+                                <td>Orbit + 2 UDTs on UseGalaxy.org</td>
+                                <td>Exposed that the published benchmark ran on a 1,000-cell tutorial demo file (dropping 82% of cells); reproduced tutorial ($r = 1.0000$) and scaled to all 5,613 cells, <strong>tripling accuracy ($r = 0.0861 \to 0.2553$)</strong>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong><em>Aspergillus fumigatus</em> azole time-course</strong><br>Hokken et al. (2019)</td>
+                                <td>Fungal RNA-seq<br>30 libraries (3 isolates × 5 timepoints)</td>
+                                <td>Orbit + Workflow Foundry + BRC-Analytics + 3 UDTs</td>
+                                <td>Compiled a 60-step workflow; proved from identical <code>baseMean</code> columns that the authors fitted one pooled 30-sample <code>DESeq2</code> model (matching counts within 0.3–1.3%, $r \ge 0.9996$).</td>
+                            </tr>
+                            <tr>
+                                <td><strong><em>Anopheles gambiae</em> infection chromatin</strong><br>Ruiz et al. (2021)</td>
+                                <td>Vector ATAC-seq<br>4 libraries (midguts &amp; salivary glands)</td>
+                                <td>Orbit + 3 UDTs on UseGalaxy.org</td>
+                                <td>Reproduced <strong>90.7–93.2%</strong> of published chromatin peaks without free parameters while showing headline region counts came from unmerged replicate rows.</td>
+                            </tr>
+                            <tr>
+                                <td><strong><em>Aedes aegypti</em> midgut single-cell atlas</strong><br>Wang et al. (2024)</td>
+                                <td>Vector 10x 3' scRNA-seq<br>6,707 post-QC cells</td>
+                                <td>Orbit + BRC-Analytics on UseGalaxy.org</td>
+                                <td>Staged non-model vector reference data, fixed an <code>AAEL</code> mitochondrial gene prefix mismatch that caused standard <code>Scanpy</code> QC to report 0% MT reads, and recovered 20 cell clusters de novo.</td>
+                            </tr>
+                            <tr>
+                                <td><strong><em>Plasmodium vivax</em> VIR phylogenomics</strong><br>Carlton et al. (2008), Harrison et al. (2020)</td>
+                                <td>Structure-aware phylogenomics<br>3 genomes, 2,592 proteins</td>
+                                <td>Orbit + 10 UDTs (GPU &amp; CPU) on ACCESS-CI</td>
+                                <td>Orchestrated <code>ProstT5</code>, <code>Foldseek</code>, <code>FoldMason</code>, and <code>IQ-TREE 3</code> on public GPUs, collapsing 146–203 sequence clusters into 73–76 structural classes (<strong>&gt;97% in 21 conserved folds across 3 continents</strong>, $p = 0.55$).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pathogen emergence dating</strong><br>42 BEAST benchmark alignments (37 studies)</td>
+                                <td>Genomic epidemiology<br>42 viral &amp; bacterial cohorts</td>
+                                <td>Orbit + 2 <code>ChronAeon</code> UDTs on UseGalaxy.org</td>
+                                <td>Dated 42 epidemic alignments in <strong>seconds per cohort</strong> instead of hours/days of Bayesian MCMC, matching Bayesian emergence dates on <strong>61.5–64.1%</strong> of scored outbreaks ($0.40\text{ yr}$ median post-1980 error).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Full-Resolution Reference Figures from the Preprint</h2>
+                    <div class="reference-grid">
+                        <div class="reference-card">
+                            <h3>Figure 1 • 30 Autonomous Agents Propose 18 Incompatible Pipelines for the Same Study</h3>
+                            <p>
+                                Alluvial diagram tracing 30 reanalysis plans generated by Claude Opus (blue), OpenAI Codex (orange), and Google Gemini (teal) without infrastructure guardrails across the eight pipeline steps of Vyklická et al. (2025).
+                            </p>
+                            <a href="images/orbit_fig1_trajectories.png" target="_blank">
+                                <img src="images/orbit_fig1_trajectories.png" alt="Alluvial diagram of 30 autonomous agents splintering into 18 incompatible bioinformatics pipelines">
+                            </a>
+                        </div>
+
+                        <div class="reference-card">
+                            <h3>Figure 2 • Architecture for Verifiable Agentic Science on Public Infrastructure</h3>
+                            <p>
+                                Command-line coding agents or the Orbit desktop workbench connect via curated domain skills and the Galaxy Model Context Protocol (MCP) server to execute containerized workflows and User-Defined Tools across free national ACCESS-CI supercomputers, recording every step in a living research notebook.
+                            </p>
+                            <a href="images/orbit_fig2_architecture.png" target="_blank">
+                                <img src="images/orbit_fig2_architecture.png" alt="Architecture for verifiable agentic science on public Galaxy infrastructure">
+                            </a>
+                        </div>
+
+                        <div class="reference-card">
+                            <h3>Figure 3 • Structure-Aware Phylogenomics of <em>Plasmodium vivax</em> VIR Antigens on Public GPUs</h3>
+                            <p>
+                                Orchestrating <code>ProstT5</code> 3Di structural embeddings, <code>Foldseek</code>, <code>FoldMason</code>, and <code>IQ-TREE 3</code> via unprivileged UDTs on UseGalaxy.org collapses sequence-fragmented VIR surface antigens across Indonesia, Thailand, and Peru into 21 globally shared ancestral folds.
+                            </p>
+                            <a href="images/orbit_fig4_vir.png" target="_blank">
+                                <img src="images/orbit_fig4_vir.png" alt="Structure-aware reconstruction of Plasmodium vivax VIR surface antigens across three continents">
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        (function() {
+            const biteMeta = [
+                {
+                    kicker: "BITE 1 • MULTI-AGENT DIVERGENCE BENCHMARK",
+                    counter: "1 / 6",
+                    headline: "30 Frontier Coding Agents Splinter Into 18 Incompatible Pipelines",
+                    subhead: "Given the same Bacillus cereus RNA-seq study without infrastructure guardrails, 29 of 30 agents diverged from the published workflow."
+                },
+                {
+                    kicker: "BITE 2 • PUBLIC INFRASTRUCTURE ARCHITECTURE",
+                    counter: "2 / 6",
+                    headline: "The Galactic Plane: Grounding Agents in Free National Supercomputers",
+                    subhead: "Connecting CLI agents or the Orbit workbench to UseGalaxy.org via MCP routes jobs onto ACCESS-CI CPUs/GPUs while locking every step into an auditable DAG."
+                },
+                {
+                    kicker: "BITE 3 • FORENSIC AUDIT OF AN AGENT BENCHMARK",
+                    counter: "3 / 6",
+                    headline: "Catching an 82% Missing-Data Trap in a Published Agent Benchmark",
+                    subhead: "Provenance exposed that the Paper2Agent spatial benchmark ran on a 1,000-cell tutorial demo file instead of the cited 5,613-cell mouse cortex atlas."
+                },
+                {
+                    kicker: "BITE 4 • FORENSIC AUDITS ACROSS THE LITERATURE",
+                    counter: "4 / 6",
+                    headline: "Uncovering Unstated Pooling, Unmerged Replicates & Annotation Traps",
+                    subhead: "Public execution histories exposed hidden statistical models and reference mismatches across bacterial, fungal, and mosquito vector genomics studies."
+                },
+                {
+                    kicker: "BITE 5 • GPU DISCOVERY AT CONTINENTAL SCALE",
+                    counter: "5 / 6",
+                    headline: "Unifying 2,592 Malaria Surface Antigens Across Three Continents",
+                    subhead: "Orchestrating ProstT5, Foldseek, FoldMason, and IQ-TREE 3 on public GPUs showed that >97% of hypervariable P. vivax VIR proteins share 21 ancestral folds."
+                },
+                {
+                    kicker: "BITE 6 • RAPID GENOMIC EPIDEMIOLOGY",
+                    counter: "6 / 6",
+                    headline: "Dating 42 Pathogen Epidemics in Seconds Instead of Days of MCMC",
+                    subhead: "Wrapping ChronAeon as Galaxy UDTs dated 42 viral and bacterial BEAST benchmark alignments in seconds per cohort (0.40 yr median post-1980 error)."
+                }
+            ];
+
+            const cards = Array.from(document.querySelectorAll('.bite-card'));
+            const graphics = Array.from(document.querySelectorAll('.bite-graphic'));
+            const pills = Array.from(document.querySelectorAll('.wsj-pill'));
+            const kickerEl = document.getElementById('stage-kicker');
+            const counterEl = document.getElementById('stage-counter');
+            const headlineEl = document.getElementById('stage-headline');
+            const subheadEl = document.getElementById('stage-subhead');
+            const prevBtn = document.getElementById('prev-bite');
+            const nextBtn = document.getElementById('next-bite');
+
+            let currentStep = 0;
+
+            function activateStep(stepIndex, scrollIntoView = false) {
+                if (stepIndex < 0 || stepIndex >= biteMeta.length) return;
+                currentStep = stepIndex;
+
+                cards.forEach((c, idx) => c.classList.toggle('active', idx === stepIndex));
+                graphics.forEach((g, idx) => g.classList.toggle('active', idx === stepIndex));
+                pills.forEach((p, idx) => p.classList.toggle('active', idx === stepIndex));
+
+                const meta = biteMeta[stepIndex];
+                kickerEl.textContent = meta.kicker;
+                counterEl.textContent = meta.counter;
+                headlineEl.textContent = meta.headline;
+                subheadEl.textContent = meta.subhead;
+
+                if (scrollIntoView && cards[stepIndex]) {
+                    cards[stepIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const idx = parseInt(entry.target.getAttribute('data-step'), 10);
+                        if (!isNaN(idx)) {
+                            activateStep(idx, false);
+                        }
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '-32% 0px -42% 0px',
+                threshold: 0.05
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+                card.addEventListener('click', () => {
+                    const idx = parseInt(card.getAttribute('data-step'), 10);
+                    activateStep(idx, true);
+                });
+            });
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    const idx = parseInt(pill.getAttribute('data-step'), 10);
+                    activateStep(idx, true);
+                });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const target = Math.max(0, currentStep - 1);
+                activateStep(target, true);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const target = Math.min(biteMeta.length - 1, currentStep + 1);
+                activateStep(target, true);
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    activateStep(Math.min(biteMeta.length - 1, currentStep + 1), true);
+                } else if (e.key === 'ArrowLeft') {
+                    activateStep(Math.max(0, currentStep - 1), true);
+                }
+            });
+
+            const auditRows = document.querySelectorAll('.audit-row');
+            const auditTooltip = document.getElementById('audit-tooltip');
+            auditRows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    const info = row.getAttribute('data-audit');
+                    if (info && auditTooltip) {
+                        auditTooltip.innerHTML = `<span><strong>Selected Audit:</strong> ${info}</span>`;
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

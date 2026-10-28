@@ -1340,6 +1340,18 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-28",
+                {
+                    "url": "blog/2026-10-28-verifiable-agentic-science.html",
+                    "link-text": "30 agents, 18 pipelines, one glass box: verifiable agentic science on public infrastructure",
+                    "subtext": "An interactive scroll-through visual explainer for our new preprint (Baker et al., 2026): when 30 frontier coding agents analyze the same RNA-seq study locally, 29 diverge into 18 incompatible pipelines and leave 26 unversioned glue scripts. Grounding CLI agents and the Orbit workbench in free public Galaxy and ACCESS-CI supercomputers turns ephemeral prompts into permanently auditable records—catching an 82% missing-data demo-file trap in a Nature benchmark, unifying 2,592 malaria VIR antigens on GPUs, and dating 42 pathogen epidemics in seconds."
+                },
+                {
+                    "url": "https://www.biorxiv.org/content/10.64898/2026.10.26.761864v1",
+                    "link-text": "bioRxiv: 2026.10.26.761864"
+                }
+            ],
+            [
                 "2026-10-27",
                 {
                     "url": "blog/2026-10-27-h5n1-wa-cattle.html",
