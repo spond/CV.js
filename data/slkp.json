@@ -1340,6 +1340,14 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-29",
+                {
+                    "url": "blog/2026-10-29-obelisks.html",
+                    "link-text": "Two blueprints in one circle: decoding obelisk families with HyphAeon, RhizAeon, and ChronAeon",
+                    "subtext": "Standard codon evolution models break on obelisks because their circular RNA genomes fold into a tight base-paired rod while simultaneously encoding proteins, freezing third-codon positions. Pairing thermodynamic RNA folding with HyphAeon, RhizAeon, and ChronAeon across 87 human Obelisk-alpha assemblies and all 25 reference obelisk families proves universal antiparallel RNA rod locking, isolates 3D epistatic protein sectors and aquatic recombination, and separates study-batch pseudoreplication from active host-associated molecular clocks."
+                }
+            ],
+            [
                 "2026-10-28",
                 {
                     "url": "blog/2026-10-28-verifiable-agentic-science.html",

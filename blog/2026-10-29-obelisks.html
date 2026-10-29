@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Blueprints in One Circle: Decoding Obelisk Families with HyphAeon, RhizAeon, and ChronAeon | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Two Blueprints in One Circle: Decoding Obelisk Families with HyphAeon, RhizAeon, and ChronAeon">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-29-obelisks.html">
+    <meta name="twitter:description" content="Pairing thermodynamic RNA folding with HyphAeon, RhizAeon, and ChronAeon across 87 human Obelisk-alpha assemblies and all 25 reference obelisk families separates antiparallel RNA rod locking from 3D protein epistasis, aquatic recombination, and host-associated molecular clocks.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/obelisk_fig3_comparative_families.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Two Blueprints in One Circle: Decoding Obelisk Families with HyphAeon, RhizAeon, and ChronAeon">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-29-obelisks.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/obelisk_fig3_comparative_families.png">
+    <meta property="og:description" content="Pairing thermodynamic RNA folding with HyphAeon, RhizAeon, and ChronAeon across 87 human Obelisk-alpha assemblies and all 25 reference obelisk families separates antiparallel RNA rod locking from 3D protein epistasis, aquatic recombination, and host-associated molecular clocks.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .blog-article-container { max-width: 860px; padding: 4rem; }
+        .blog-nav-bar { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .blog-nav-btn {
+            background: var(--text-main); color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.65rem 1.25rem;
+            font-size: 0.78rem; border: 2px solid var(--border-color); display: inline-block;
+        }
+        .blog-nav-btn.secondary { background: #ffffff; color: var(--text-main); }
+        .blog-nav-btn:hover { background: #333333; color: #ffffff; }
+        .post-header { border-bottom: 2px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2.5rem; }
+        .post-tag {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.6rem; margin-bottom: 1rem; letter-spacing: 0.06em;
+        }
+        .post-header h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+        .post-meta a { color: var(--text-main); font-weight: 700; text-decoration: underline; }
+        .post-content { font-family: 'Merriweather', Georgia, serif; font-size: 1.04rem; line-height: 1.8; color: #111827; }
+        .post-content p { margin-bottom: 1.4rem; }
+        .post-content a { color: #000000; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+        .post-content a:hover { background: #000000; color: #ffffff; text-decoration: none; }
+        .post-content code { font-family: var(--font-family); font-size: 0.88em; background: #f3f4f6; padding: 0.15rem 0.4rem; border: 1px solid #d1d5db; }
+        .post-content ul, .post-content ol { margin: 1.25rem 0 1.6rem 1.75rem; }
+        .post-content li { margin-bottom: 0.75rem; }
+        .post-content hr.fine-line-divider { border: none; border-top: 2px solid var(--border-color); margin: 2.75rem 0; }
+        .post-content h2 {
+            font-family: var(--font-family); font-size: 1.25rem; font-weight: 800;
+            letter-spacing: -0.01em; margin: 2.25rem 0 1rem 0; color: var(--text-main);
+        }
+        .dropcap {
+            float: left; font-family: var(--font-family); font-size: 3.1rem;
+            line-height: 0.85; padding-top: 4px; padding-right: 10px; padding-bottom: 2px; font-weight: 800;
+        }
+        .blog-figure { margin: 2.5rem 0; border: 2px solid var(--border-color); padding: 1.25rem; background: #ffffff; }
+        .blog-figure img { width: 100%; height: auto; display: block; }
+        .blog-figure figcaption {
+            font-family: var(--font-family); font-size: 0.78rem; line-height: 1.5;
+            color: var(--text-muted); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #e5e7eb;
+        }
+        .takeaways-section { margin: 0 0 2.75rem 0; }
+        .takeaways-header {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; padding: 0.25rem 0.65rem; letter-spacing: 0.08em; margin-bottom: 0;
+        }
+        .takeaways-zinger {
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            background: #f9fafb;
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #111827;
+            margin: 0 !important;
+        }
+        .takeaways-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color); border-left: 2px solid var(--border-color); background: #ffffff;
+        }
+        .takeaway-card { border-right: 2px solid var(--border-color); border-bottom: 2px solid var(--border-color); padding: 1.35rem 1.5rem; }
+        .takeaway-stat {
+            font-family: var(--font-family); font-size: 1.45rem; font-weight: 900;
+            line-height: 1.1; color: var(--text-main); margin-bottom: 0.35rem; letter-spacing: -0.02em;
+        }
+        .takeaway-label {
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); margin-bottom: 0.5rem;
+        }
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem; line-height: 1.5; color: #374151; margin: 0 !important;
+        }
+        .table-wrap { overflow-x: auto; margin: 1.8rem 0 2.2rem 0; border: 2px solid var(--border-color); }
+        .comparative-table {
+            width: 100%; border-collapse: collapse; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.81rem; line-height: 1.45; background: #ffffff;
+        }
+        .comparative-table th {
+            background: var(--text-main); color: #ffffff; font-family: var(--font-family);
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;
+            padding: 0.65rem 0.75rem; text-align: left; border-right: 1px solid #374151;
+        }
+        .comparative-table td {
+            padding: 0.58rem 0.75rem; border-top: 1px solid #d1d5db; border-right: 1px solid #e5e7eb; vertical-align: top;
+        }
+        .comparative-table tr:nth-child(even) td { background: #f9fafb; }
+        .callout-box {
+            font-family: var(--font-family); border: 2px solid var(--border-color);
+            padding: 1.5rem; margin: 2rem 0; background: #f9fafb; font-size: 0.88rem; line-height: 1.6;
+        }
+        .callout-box strong { text-transform: uppercase; display: block; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.05em; }
+        @media (max-width: 1024px) { .blog-article-container { padding: 2rem; } .post-header h1 { font-size: 1.6rem; } }
+        @media (max-width: 640px) { .takeaways-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="../index.html#/blog">← All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprints &amp; Archives</h3>
+                <div class="links-list">
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                    <a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">ChronAeon Zenodo Suite</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App</a>
+                    <a href="https://doi.org/10.1016/j.cell.2024.09.033" target="_blank" rel="noopener noreferrer">Zheludev et al. (Cell 2024)</a>
+                    <a href="https://purl.stanford.edu/wb363nt3637" target="_blank" rel="noopener noreferrer">Stanford SDR Obelisk Archive</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <article class="blog-article-container">
+                <div class="blog-nav-bar">
+                    <a href="../index.html#/blog" class="blog-nav-btn">← Back to Blog</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">HyphAeon ↗</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">ChronAeon ↗</a>
+                    <a href="https://purl.stanford.edu/wb363nt3637" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">Stanford SDR Archive ↗</a>
+                </div>
+
+                <header class="post-header">
+                    <span class="post-tag">ISO 24495-3:2026 Science Brief · Viroid-Like Replicons</span>
+                    <h1>Two Blueprints in One Circle: Decoding Obelisk Families with HyphAeon, RhizAeon, and ChronAeon</h1>
+                    <div class="post-meta">
+                        <span><i>29 Oct 2026, by Sergei</i></span>
+                        <span>·</span>
+                        <span>6 min read</span>
+                        <span>·</span>
+                        <span>Cohort: 25 Reference Obelisk Families (87 Human Obelisk-α &amp; 429 Multi-Family CDS)</span>
+                    </div>
+                </header>
+
+                <div class="post-content">
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">Key Takeaways</span>
+                        <p class="takeaways-zinger">
+                            <strong>Standard codon evolution models break on obelisks because their circular RNA genomes fold into a tight base-paired rod while simultaneously encoding proteins. That dual constraint freezes third-codon positions and manufactures false selection signals.</strong>
+                            Pairing thermodynamic RNA folding with <code>HyphAeon</code>, <code>RhizAeon</code>, and <code>ChronAeon</code> across 87 human Obelisk-$\alpha$ assemblies and all 25 reference obelisk families (<code>Obelisk-alpha</code> through <code>Obelisk-omega</code>, plus oral <em>Streptococcus sanguinis</em>) proves that antiparallel RNA rod locking is universal across one-oblin and two-oblin lineages. The combined pipeline isolates 3D epistatic protein sectors and aquatic recombination while separating study-batch pseudoreplication from active host-associated molecular clocks.
+                        </p>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">25 / 25 Families</div>
+                                <div class="takeaway-label">Universal Antiparallel RNA Rods</div>
+                                <p class="takeaway-desc">All 25 reference families lock $64.3\%\text{–}76.3\%$ of their circular genomes into stems ($Z = -4.38\text{ to }-13.11$ vs. iso-protein shuffles), with 89 double-compensatory flips preserving family-specific registers.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">q = 2.4 × 10⁻¹⁴</div>
+                                <div class="takeaway-label">RNA-Protein Epistatic Sectors</div>
+                                <p class="takeaway-desc"><code>HyphAeon</code> isolates co-selected interior sectors in <code>Obelisk-alpha</code> (<code>S34G–I42S–V168I</code>, $p = 0.0007$), <code>epsilon</code> ($p = 0.0052$), <code>pi</code> ($p = 0.010$), and <code>omicron</code> ($p = 0.020$), alongside rigid Domain A cores.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">p = 2.8 × 10⁻²²</div>
+                                <div class="takeaway-label">Clonal Guts vs. Aquatic Recombination</div>
+                                <p class="takeaway-desc">Obelisk-$\alpha$ persists clonally inside individual humans for up to 325 days ($0\text{–}3\text{ nt}$), whereas aquatic <code>Obelisk-pi</code> and <code>Obelisk-omicron</code> undergo frequent homologous crossovers in <code>RhizAeon</code>.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">1.33–8.11 × 10⁻³</div>
+                                <div class="takeaway-label">Tree-Free PGLS Clock Deconvolution</div>
+                                <p class="takeaway-desc"><code>ChronAeon</code> Attention PGLS purges batch pseudoreplication in UK human and soil cohorts ($g = 6.47\text{–}50.1$). It also isolates bounded clocks in human Community 2 ($1.33 \times 10^{-3}\text{/yr}$) and macaque <code>Obelisk-chi</code> ($8.11 \times 10^{-3}\text{/yr}$).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>Viroids broke a textbook rule of biology in 1971 when Theodor Diener showed that naked rings of RNA could infect plants without a protein shell or a single protein-coding gene. Obelisks—discovered in 2024 inside human gut and oral bacteria (<a href="https://doi.org/10.1016/j.cell.2024.09.033" target="_blank" rel="noopener noreferrer">Zheludev et al., 2024</a>)—break the opposite rule. They are circular, non-encapsidated RNA replicons of roughly 1,100 nucleotides that fold into an end-to-end rod-like RNA duplex, yet dedicate 70% to 80% of their circle to encoding proteins called <strong>oblins</strong>.</p>
+
+                    <p>Most obelisk families encode only a single conserved ~200-amino-acid protein, <code>Oblin-1</code>. A prominent human gut lineage called <strong>Obelisk-$\alpha$</strong> carries a second gene, <code>Oblin-2</code>, which encodes a 60-amino-acid $\alpha$-helical leucine zipper. When we examined 87 paired human metatranscriptomic assemblies of Obelisk-$\alpha$, a foundational question came into focus. <em>How do you measure natural selection, genetic exchange, and evolutionary time when every nucleotide is simultaneously constrained by a 3D protein and a base-paired RNA rod?</em></p>
+
+                    <hr class="fine-line-divider" />
+
+                    <p><span class="dropcap">C</span>lassical selection tests compare amino-acid-changing (nonsynonymous) mutations against silent (synonymous) third-position mutations, assuming that third codon positions evolve as a neutral clock. Inside a viroid-like RNA rod, that assumption fails. Thermodynamic partition-function folding of <code>Oblin-1</code> (609 nt) in <code>ViennaRNA</code> reveals a minimum free energy of $-188.90\text{ kcal/mol}$—nearly $18.5\text{ kcal/mol}$ more stable than codon-shuffled sequences encoding the exact same protein ($Z = -1.84$). Nearly three-quarters of <code>Oblin-1</code> ($73.6\%$, $448/609\text{ nt}$) is locked in base-paired stems. Furthermore, third codon positions carry the highest pairing probability of all three positions ($P_{\mathrm{pair}}^{(3)} = 0.741$), which directly suppresses synonymous polymorphism ($\rho = -0.230, p = 0.0010$).</p>
+
+                    <p>When mutations do occur in the <code>Oblin-1</code> duplex across the 87 human strains, 55.0% ($33/60$) of variable base pairs preserve RNA stem geometry through guanine-uracil wobble transitions ($25$) or double Watson-Crick flips ($8$) where both paired bases mutate together. Plotting those 8 double-compensatory flips along the gene reveals a clean geometric register (Fig. 1A, lower teal arcs). Every pair satisfies $\mathrm{Codon}_i + \mathrm{Codon}_j \approx 190$ (`37↔152`, `40↔150`, `42↔148`, `55↔135`, `59↔131`, `72↔119`, `91↔99`, `94↔97`) around an apical hairpin turn at codon 95.</p>
+
+                    <figure class="blog-figure">
+                        <img src="images/obelisk_fig1_rod_and_epistasis.png" alt="Oblin-1 antiparallel RNA rod covariation, HyphAeon epistatic sectors, and four biophysical regimes">
+                        <figcaption>
+                            <strong>Figure 1. Antiparallel RNA duplex locking and 3D epistatic sectors in Oblin-1.</strong>
+                            Panel A lower teal arcs trace the 8 double-compensatory Watson-Crick base-pair flips across the antiparallel RNA rod ($\mathrm{Codon}_i + \mathrm{Codon}_j \approx 190$). Upper crimson and amber arcs show the two significant <code>HyphAeon</code> co-selection sectors: Sector 1 (<code>[S34G–I42S–V168I]</code>, $p_{\mathrm{perm}} = 0.0007$) and Sector 2 (<code>[S9–S13]</code>, $p_{\mathrm{perm}} = 0.0176$).
+                            Panel B combines <code>HyphAeon</code> digital deep mutational scanning plasticity ($\Phi$) with RNA pairing probability ($P_{\mathrm{pair}}$) to separate dual-locked core residues ($n=9$), catalytic loop residues ($n=9$), frozen RNA stem anchors ($n=50$), and diversifying surface loops ($n=6$).
+                        </figcaption>
+                    </figure>
+
+                    <hr class="fine-line-divider" />
+
+                    <p>How do we separate RNA stem locking from protein evolution and host epidemiology? Running <code>HyphAeon</code>, <code>RhizAeon</code>, and <code>ChronAeon</code> across the 87 assemblies—combined with forensic recovery of all 86 Sequence Read Archive (SRA) and European Nucleotide Archive (ENA) BioSample records—yields four concrete biological findings.</p>
+
+                    <ul>
+                        <li><strong>An epistatic bridge between 3D protein hubs, RNA stems, and <code>Oblin-2</code>.</strong>
+                        In under two seconds, <code>HyphAeon</code> digital deep mutational scanning (`hyphaeon dms`, 4,959 single-amino-acid mutants) and branch co-selection (`hyphaeon epistasis`) isolate a rigid three-residue interior sector in <code>Oblin-1</code>—<code>S34G</code>, <code>I42S</code>, and <code>V168I</code> ($C(S) = 0.942, p_{\mathrm{perm}} = 0.0007$, 23–27 shared branches, $q \le 8.9 \times 10^{-29}$). When we map the primary clade split of <code>Oblin-2</code> onto the <code>Oblin-1</code> tree via <code>hyphaeon phenotype</code>, that exact triad (`S34G`, `I42S`, `V168I`) emerges as the top directional signature differentiating the two obelisk sublineages ($q = 2.4 \times 10^{-14}$), accompanied by synonymous flips at <code>R149R</code> ($q = 2.3 \times 10^{-4}$) and <code>V150V</code> ($q = 3.0 \times 10^{-5}$). Why do synonymous changes at codons 149–150 co-mutate with amino acid changes at codons 34, 42, and 168? Codons 40–42 base-pair directly across the RNA rod with codons 148–150. Mutating <code>I42S</code> simultaneously remodels the protein core and forces a compensatory synonymous flip on the opposite strand of the RNA duplex.</li>
+
+                        <li><strong>Months-long clonal persistence inside single human hosts.</strong>
+                        Linking the 86 SRA runs by human participant ID uncovered 9 individuals sampled across multiple longitudinal visits (Fig. 2A). First, the unlabeled <code>Reference</code> genome is 100% identical across both genes to <code>SRR5950395_primary</code>, collected on December 1, 2015 from inflammatory bowel disease patient <code>P6038</code> in the Human Microbiome Project 2 cohort (<code>PRJNA398089</code>). Second, all three assemblies with a premature <code>TAG</code> stop codon at position 59 of <code>Oblin-2</code> (<code>SRR24541421</code>, <code>SRR24541275</code>, <code>SRR24541274</code>) come from consecutive monthly stool samples of a single person in St. Louis (Subject <code>UMB17</code>, <code>PRJNA400628</code>). Across 8 of the 9 longitudinal subjects—including Subject <code>016</code> (7 visits over 24 days, 0 substitutions) and Subject <code>M2077</code> (8 visits over 325 days, 0–2 substitutions in <code>Oblin-1</code> and 0 in <code>Oblin-2</code>)—a single clonal obelisk lineage persists stably inside its human host.</li>
+
+                        <li><strong>Co-infection chimeras and inter-gene clade jumping.</strong>
+                        One participant in the University of Maryland typhoid vaccine cohort (Subject <code>2006</code>, <code>PRJNA407499</code>) carried two divergent Obelisk-$\alpha$ strains across visits (8 nt difference in <code>Oblin-1</code>, 3 nt in <code>Oblin-2</code>). Co-infection explains why pairwise distances between <code>Oblin-1</code> and <code>Oblin-2</code> correlate at only $r = 0.496$ and why 8 of the 87 assemblies switch primary spectral clades between the two genes (`hyphaeon splits`). Disabling SNP compression in <code>RhizAeon</code> (`--no-compress-snps`) isolates 3 mosaic tracts inside <code>Oblin-1</code> ($p_{\mathrm{Fisher}} = 3.8 \times 10^{-6}\text{ to }2.6 \times 10^{-5}$), including clade-jumper <code>ERR11507765_primary</code> and donor lineage <code>SRR21886050_primary</code>.</li>
+
+                        <li><strong>Separating ancient commensal divergence from modern sublineage clocks.</strong>
+                        Naive root-to-tip regression (`OLS`) on all 87 deposition dates produces a spurious crown date of 1984.4 $[1952.7, 1996.0]$ because 24 United Kingdom <code>INTEGRATE</code> assemblies (`PRJEB62473`) were released on a single day in June 2023. Downweighting shared clade history via <code>HyphAeon</code> Attention PGLS inside <code>ChronAeon</code> ($\lambda^* = 0.974\text{--}0.999$) restores an unbounded Fieller confidence interval ($[-\infty, 2005.7]$, $g = 6.47 > 1$), proving that global Obelisk-$\alpha$ diversity predates modern sampling. Within that ancient backbone, <code>ChronAeon AutoClock</code> ($K^* = 3$ communities, 23.6× eigengap cliff; Fig. 2B) isolates an actively diverging 15-strain sublineage (Community 2) evolving at $\mu = 1.33 \times 10^{-3}\text{ subs/site/yr}$ ($R^2_{\mathrm{gls}} = 0.755, t_{\mathrm{MRCA}} = 1993.6\text{ }[1979.9, 2000.3]$). That substitution rate matches the within-host drift rate of $\sim 1.9 \times 10^{-3}\text{ subs/site/yr}$ observed over 325 days in Subject <code>M2077</code>.</li>
+                    </ul>
+
+                    <figure class="blog-figure">
+                        <img src="images/obelisk_fig2_persistence_and_clocks.png" alt="Within-host longitudinal stability across 9 human subjects and ChronAeon AutoClock 3-community decomposition">
+                        <figcaption>
+                            <strong>Figure 2. Within-host longitudinal stability and tree-free multi-clock deconvolution.</strong>
+                            Panel A plots maximum pairwise nucleotide differences across 9 longitudinally sampled human subjects (2 to 8 runs each), separating clonal within-host persistence (8 subjects, $\le 3\text{ nt}$ over up to 325 days) from multi-strain co-infection (Subject 2006, $8\text{ nt}$).
+                            Panel B shows how <code>ChronAeon AutoClock</code> spectral decomposition ($K^* = 3$, eigengap cliff $= 23.6\times$) separates deep commensal reservoirs (Communities 0 and 1) from an actively evolving 15-strain sublineage (Community 2, PGLS $\mu = 1.33 \times 10^{-3}\text{ subs/site/yr}, R^2 = 0.755$).
+                        </figcaption>
+                    </figure>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>Beyond Obelisk-α: Comparative Architecture and Evolution Across All 25 Reference Families</h2>
+
+                    <p>Does the antiparallel RNA rod register and dual protein-RNA lock discovered in Obelisk-$\alpha$ hold across the wider obelisk radiation? We extended our <code>ViennaRNA</code>, <code>HyphAeon</code>, <code>RhizAeon</code>, and <code>ChronAeon</code> pipeline across all 25 reference obelisk families established by Zheludev and colleagues (<a href="https://purl.stanford.edu/wb363nt3637" target="_blank" rel="noopener noreferrer"><code>Obelisk_000001</code> through <code>Obelisk_000025</code></a>, spanning <code>Obelisk-alpha</code> through <code>Obelisk-omega</code> and the <em>Streptococcus sanguinis</em> human oral prototype <code>Obelisk-S.s</code>). Fifteen of these 25 families encode only a single conserved gene, <code>Oblin-1</code> (193 to 297 amino acids). Ten families encode both <code>Oblin-1</code> and an accessory <code>Oblin-2</code> protein (<code>alpha</code>, <code>beta</code>, <code>gamma</code>, <code>kappa</code>, <code>lambda</code>, <code>mu</code>, <code>pi</code>, <code>sigma</code>, <code>upsilon</code>, and <code>chi</code>).</p>
+
+                    <p>Thermodynamic folding of the 25 family centroids confirms that end-to-end RNA duplex architecture is a universal invariant of the obelisk supergroup (Fig. 3A). Full circular genomes (733 nucleotides in <code>Obelisk-iota</code> to 1,434 nucleotides in <code>Obelisk-omega</code>) fold with minimum free energies of $-255.1$ to $-457.3\text{ kcal/mol}$, locking $64.3\%$ to $76.3\%$ of all genomic nucleotides into base-paired stems. Across all 25 families, the <code>Oblin-1</code> coding region is far more stable than codon-shuffled controls that preserve the exact amino acid sequence ($Z = -4.38$ in <code>Obelisk-pi</code> to $Z = -13.11$ in cattle-associated <code>Obelisk-upsilon</code>, with a median $Z = -7.28$). One-oblin families ($n = 15$, mean $Z = -7.83$, mean paired fraction $= 67.6\%$) and two-oblin families ($n = 10$, mean $Z = -7.39$, mean paired fraction $= 68.1\%$) exhibit indistinguishable RNA rod stability in <code>Oblin-1</code>. In compact one-oblin families such as <code>Obelisk-delta</code> (785 nt, 231 codons, $Z = -9.83$) and <code>Obelisk-tau</code> (799 nt, 222 codons, $Z = -7.59$), the single <code>Oblin-1</code> open reading frame spans $83\%$ to $88\%$ of the circular chromosome and forms the entire self-complementary rod without requiring a second open reading frame. Even the human oral <em>Streptococcus sanguinis</em> prototype (1,137 nt, encoding a single 230-codon <code>Oblin-1</code> on the sense strand) locks $72.3\%$ of its circular genome into a $-381.4\text{ kcal/mol}$ rod ($Z = -6.69$, $P_{\mathrm{pair}}^{(3)} = 0.693$) centered on an antiparallel codon register of $\mathrm{Codon}_i + \mathrm{Codon}_j \approx 205$ ($\mathrm{IQR} = 2.0\text{ codons}$).</p>
+
+                    <figure class="blog-figure">
+                        <img src="images/obelisk_fig3_comparative_families.png" alt="Comparative RNA rod folding, compensatory covariation, mutational plasticity, and molecular clocks across 25 Obelisk families">
+                        <figcaption>
+                            <strong>Figure 3. Comparative RNA rod folding, compensatory covariation, mutational plasticity, and molecular clocks across 25 Obelisk families.</strong>
+                            Panel A shows excess thermodynamic stability ($Z$-score versus 50 iso-protein codon shuffles) across all 25 reference obelisk families, comparing one-oblin (blue, $n=15$) and two-oblin (amber, $n=10$) architectures.
+                            Panel B illustrates universal suppression of third-position nucleotide diversity ($\pi_3$) by RNA base-pairing ($P_{\mathrm{pair}}^{(3)}$) and family-specific antiparallel compensatory registers across 89 double Watson-Crick base-pair flips.
+                            Panel C plots <code>HyphAeon</code> deep mutational scanning plasticity ($\Phi$) contrasting the conserved C-terminal Domain A (<code>RGY..KG..R</code>) against the rest of <code>Oblin-1</code>, alongside significant epistatic sectors and <code>RhizAeon</code> recombination in aquatic families.
+                            Panel D compares naive OLS versus <code>ChronAeon</code> Attention PGLS substitution rates across 332 ENA/SRA runs, eliminating ecological batch pseudoreplication in soil <code>Obelisk-tau</code> ($g=50.1$) while confirming bounded PGLS clocks in mammalian gut lineages.
+                        </figcaption>
+                    </figure>
+
+                    <p>Extracting exact-length in-frame <code>Oblin-1</code> coding alignments across all 15 multi-sequence families ($N = 5$ to $103$ unique assemblies, 429 unique coding sequences in total) reveals four comparative evolutionary rules.</p>
+
+                    <ul>
+                        <li><strong>Universal third-position synonymous suppression and family-specific antiparallel registers.</strong>
+                        Across all 15 multi-sequence families, third-position nucleotide diversity ($\pi_3$) correlates negatively with RNA base-pairing probability ($P_{\mathrm{pair}}^{(3)}$), reaching $p < 0.05$ in 10 of 15 families. The strongest synonymous suppression occurs in <code>Obelisk-alpha</code> ($\rho = -0.244, p = 0.00048$), macaque <code>Obelisk-chi</code> ($\rho = -0.187, p = 0.0071$), macaque <code>Obelisk-phi</code> ($\rho = -0.185, p = 0.0099$), macaque <code>Obelisk-rho</code> ($\rho = -0.180, p = 0.0065$), human <code>Obelisk-delta</code> ($\rho = -0.175, p = 0.0077$), and cattle <code>Obelisk-upsilon</code> ($\rho = -0.167, p = 0.016$). Across the 15 alignments, 89 double-compensatory Watson-Crick base-pair flips obey family-specific folding registers: $\mathrm{Codon}_i + \mathrm{Codon}_j \approx 185$ in <code>Obelisk-phi</code>, $\approx 192$ in <code>Obelisk-upsilon</code>, $\approx 199$ in <code>Obelisk-omicron</code>, and $\approx 200$ in <code>Obelisk-tau</code> and <code>Obelisk-psi</code>. Longer oblins shift their register outward to $\approx 251$ in 244-codon <code>Obelisk-pi</code> and $\approx 274$ in 297-codon <code>Obelisk-epsilon</code>.</li>
+
+                        <li><strong>Domain A (<code>RGY..KG..R</code>) rigidity across one-oblin and two-oblin families.</strong>
+                        In 10 of the 12 families evaluated by <code>hyphaeon dms</code>, the conserved C-terminal Domain A signature (<code>[RK]..GY[KDRN][DH]G[ST]..R</code>) exhibits lower mutational plasticity ($\Phi$) than the remainder of the protein. That pattern shows that Domain A acts as the conserved catalytic or RNA-binding anchor across both one-oblin and two-oblin lineages. Even in <code>Obelisk-sigma</code> and <code>Obelisk-upsilon</code>, where the canonical glycine-tyrosine loop is remodeled into a twin-cysteine motif (<code>GYCCGY</code> at codon 150 and <code>GYCRGY</code> at codon 153), Domain A remains tightly constrained ($\Phi = 1.87$ vs. $1.97$ in <code>sigma</code> and $\Phi = 2.19$ vs. $2.43$ in <code>upsilon</code>).</li>
+
+                        <li><strong>3D epistatic sectors and homologous recombination in aquatic biofilms.</strong>
+                        Running <code>hyphaeon epistasis</code> discovers statistically significant co-evolving amino acid sectors ($p_{\mathrm{perm}} < 0.05$) in three additional families. Human 297-codon <code>Obelisk-epsilon</code> contains 3 sectors led by <code>[S11–S68–T170–L217–E220]</code> ($C(S) = 0.907, p = 0.0052$). Aquatic two-oblin <code>Obelisk-pi</code> contains 2 sectors led by <code>[M15–V17–V34–L40–V55–K71–I106]</code> ($C(S) = 0.835, p = 0.0100$), and aquatic one-oblin <code>Obelisk-omicron</code> contains <code>[K4–P56–G86–I98–Q121–K182]</code> ($C(S) = 0.873, p = 0.0201$). Whereas mammalian gut obelisks (<code>rho</code>, <code>sigma</code>, <code>upsilon</code>, <code>phi</code>, <code>chi</code>, and <code>omega</code>) show zero recombination events at strict default thresholds in <code>RhizAeon</code>, aquatic and wastewater obelisks undergo verified homologous exchange. In <code>Obelisk-omicron</code>, <code>RhizAeon</code> identifies a 15-SNP recombinant tract in <code>SRR10932000</code> (positions 84–172, Fisher $p = 1.71 \times 10^{-9}, Z = 8.08$). In <code>Obelisk-pi</code>, <code>RhizAeon</code> uncovers two macroscopic crossovers (positions 429–732, 33 informative sites, $p = 2.78 \times 10^{-22}, Z = 2.41$, and positions 1–360, 38 informative sites, $p = 1.15 \times 10^{-20}, Z = 2.82$).</li>
+
+                        <li><strong>Cross-habitat phylodynamics separates soil batch artifacts from active mammalian clocks.</strong>
+                        Retrieving ENA and SRA collection dates across all 332 non-$\alpha$ runs reveals a sharp contrast between environmental reservoirs and mammalian gut cohorts (Fig. 3D). In soil and peat <code>Obelisk-tau</code> ($N = 51$, 2010.7–2018.0), naive OLS regression produces a steep clock slope ($\mu_{\mathrm{OLS}} = 1.51 \times 10^{-2}\text{ subs/site/yr}, R^2 = 0.698, p = 2.5 \times 10^{-14}$). However, <code>ChronAeon</code> Attention PGLS ($\lambda^* = 0.999$) proves that this slope is an ecological batch artifact of sampling distinct soil clades in different years, collapsing the rate 41-fold ($\mu_{\mathrm{PGLS}} = 3.64 \times 10^{-4}, R^2_{\mathrm{gls}} = 0.011, g = 50.08$, unbounded $[-\infty, 1991.7]$). By contrast, cattle rumen <code>Obelisk-upsilon</code> ($N = 28$, 2014.2–2017.7) retains a PGLS rate of $2.56 \times 10^{-3}\text{ subs/site/yr}$ ($R^2_{\mathrm{gls}} = 0.428$). Rhesus macaque <code>Obelisk-chi</code> ($N = 28$, 2016.5–2019.2) yields a bounded PGLS clock at $\mu_{\mathrm{PGLS}} = 8.11 \times 10^{-3}\text{ subs/site/yr}$ ($R^2_{\mathrm{gls}} = 0.525, g = 0.147$) with a crown ancestor in 2015.7 ($[2013.6, 2016.5]$).</li>
+                    </ul>
+
+                    <div class="table-wrap">
+                        <table class="comparative-table">
+                            <thead>
+                                <tr>
+                                    <th>Obelisk Family</th>
+                                    <th>ORFs</th>
+                                    <th>Ecological Niche</th>
+                                    <th>CDS (N / L)</th>
+                                    <th>Rod Z &amp; Register</th>
+                                    <th>ρ(P<sub>pair</sub><sup>(3)</sup>, π<sub>3</sub>)</th>
+                                    <th>Flips</th>
+                                    <th>DMS Φ (Dom. A / Rest)</th>
+                                    <th>Epistatic Sectors &amp; RhizAeon / ChronAeon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Obelisk-α</strong> (<code>Ob_000001</code>)</td>
+                                    <td>2</td>
+                                    <td>Human gut (global)</td>
+                                    <td>22 (87) / 202</td>
+                                    <td>$Z = -5.99$, reg $\approx 190$</td>
+                                    <td>$-0.244$ ($p = 0.00048$)</td>
+                                    <td>4 (8)</td>
+                                    <td>$1.88 / 2.25$</td>
+                                    <td>2 sectors (<code>S34-I42-V168</code>, $p=0.0007$); Comm. 2 clock $1.33 \times 10^{-3}$</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-β</strong> (<code>Ob_000002</code>)</td>
+                                    <td>2</td>
+                                    <td>Human oral/gut (USA)</td>
+                                    <td>2 (12) / 216</td>
+                                    <td>$Z = -8.05$, reg $\approx 190$</td>
+                                    <td>Low polymorphism</td>
+                                    <td>0</td>
+                                    <td>$P_{\mathrm{pair}}^{(3)} = 0.726$</td>
+                                    <td>Clonal human cohort (<code>PRJNA940499</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-S.s</strong> (<code>Ob_000003</code>)</td>
+                                    <td>1</td>
+                                    <td>Oral <em>S. sanguinis</em></td>
+                                    <td>2 / 230</td>
+                                    <td>$Z = -6.69$, reg $\approx 205$</td>
+                                    <td>98.2% AA identity</td>
+                                    <td>0</td>
+                                    <td>$P_{\mathrm{pair}}^{(3)} = 0.693$</td>
+                                    <td>SK36 monoculture &amp; human saliva EVs (<code>PRJNA917314</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-δ</strong> (<code>Ob_000005</code>)</td>
+                                    <td>1</td>
+                                    <td>Human gut &amp; bioreactor</td>
+                                    <td>5 / 231</td>
+                                    <td>$Z = -9.83$, reg $\approx 193$</td>
+                                    <td>$-0.175$ ($p = 0.0077$)</td>
+                                    <td>1</td>
+                                    <td>$P_{\mathrm{pair}}^{(3)} = 0.728$</td>
+                                    <td>Compact 785 nt 1-oblin rod (<code>2↔190</code> flip)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-ε</strong> (<code>Ob_000006</code>)</td>
+                                    <td>1</td>
+                                    <td>Human metagenome</td>
+                                    <td>9 / 297</td>
+                                    <td>$Z = -8.29$, reg $\approx 272$</td>
+                                    <td>$-0.126$ ($p = 0.030$)</td>
+                                    <td>21</td>
+                                    <td>$1.29 / 1.24$</td>
+                                    <td>3 sectors (<code>S11-S68-T170-L217-E220</code>, $p=0.0052$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-ο</strong> (<code>Ob_000016</code>)</td>
+                                    <td>1</td>
+                                    <td>Aquatic &amp; wastewater</td>
+                                    <td>103 / 199</td>
+                                    <td>$Z = -5.04$, reg $\approx 199$</td>
+                                    <td>$-0.091$ ($p = 0.20$)</td>
+                                    <td>10</td>
+                                    <td>$3.10 / 2.87$</td>
+                                    <td>1 sector ($p=0.020$); 1 recomb tract ($p=1.7 \times 10^{-9}, Z=8.08$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-π</strong> (<code>Ob_000017</code>)</td>
+                                    <td>2</td>
+                                    <td>Aquatic &amp; bioreactor</td>
+                                    <td>41 / 244</td>
+                                    <td>$Z = -4.38$, reg $\approx 252$</td>
+                                    <td>$-0.091$ ($p = 0.16$)</td>
+                                    <td>2</td>
+                                    <td>$2.35 / 2.62$</td>
+                                    <td>2 sectors ($p=0.010$); 2 recomb crossovers ($p=2.8 \times 10^{-22}$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-ρ</strong> (<code>Ob_000018</code>)</td>
+                                    <td>1</td>
+                                    <td><em>Macaca mulatta</em> gut</td>
+                                    <td>41 / 227</td>
+                                    <td>$Z = -6.47$, reg $\approx 212$</td>
+                                    <td>$-0.180$ ($p = 0.0065$)</td>
+                                    <td>1</td>
+                                    <td>$2.16 / 2.87$</td>
+                                    <td>Single 2019 primate cohort (<code>T206</code> $\Phi = 0.24$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-σ</strong> (<code>Ob_000019</code>)</td>
+                                    <td>2</td>
+                                    <td><em>Macaca mulatta</em> gut</td>
+                                    <td>13 / 203</td>
+                                    <td>$Z = -9.75$, reg $\approx 190$</td>
+                                    <td>$-0.055$ ($p = 0.43$)</td>
+                                    <td>1</td>
+                                    <td>$1.87 / 1.97$</td>
+                                    <td>Cysteine-remodeled Domain A (<code>GYCCGY</code>, <code>H81</code> $\Phi = 0.24$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-τ</strong> (<code>Ob_000020</code>)</td>
+                                    <td>1</td>
+                                    <td>Soil &amp; peat (global)</td>
+                                    <td>51 / 222</td>
+                                    <td>$Z = -7.59$, reg $\approx 202$</td>
+                                    <td>$-0.143$ ($p = 0.033$)</td>
+                                    <td>16</td>
+                                    <td>$1.91 / 2.53$</td>
+                                    <td>9 co-selection edges; PGLS purges OLS soil batch ($g = 50.1$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-υ</strong> (<code>Ob_000021</code>)</td>
+                                    <td>2</td>
+                                    <td>Cattle rumen (Canada)</td>
+                                    <td>28 / 209</td>
+                                    <td>$Z = -13.11$, reg $\approx 193$</td>
+                                    <td>$-0.167$ ($p = 0.016$)</td>
+                                    <td>6</td>
+                                    <td>$2.19 / 2.43$</td>
+                                    <td>Extreme rod lock ($76.3\%$ paired); $\mu_{\mathrm{PGLS}} = 2.56 \times 10^{-3}$</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-φ</strong> (<code>Ob_000022</code>)</td>
+                                    <td>1</td>
+                                    <td><em>Macaca mulatta</em> gut</td>
+                                    <td>34 / 194</td>
+                                    <td>$Z = -7.28$, reg $\approx 185$</td>
+                                    <td>$-0.185$ ($p = 0.0099$)</td>
+                                    <td>3</td>
+                                    <td>$2.35 / 2.71$</td>
+                                    <td>Conserved 1-oblin primate rod (<code>51↔133</code>, <code>74↔111</code> flips)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-χ</strong> (<code>Ob_000023</code>)</td>
+                                    <td>2</td>
+                                    <td><em>Macaca mulatta</em> gut</td>
+                                    <td>28 / 207</td>
+                                    <td>$Z = -4.47$, reg $\approx 192$</td>
+                                    <td>$-0.187$ ($p = 0.0071$)</td>
+                                    <td>1</td>
+                                    <td>$2.17 / 2.45$</td>
+                                    <td>Bounded PGLS clock ($\mu = 8.11 \times 10^{-3}$, crown $2015.7$)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-ψ</strong> (<code>Ob_000024</code>)</td>
+                                    <td>2</td>
+                                    <td>Bioreactor &amp; sludge</td>
+                                    <td>23 / 231</td>
+                                    <td>$Z = -11.74$, reg $\approx 198$</td>
+                                    <td>$-0.059$ ($p = 0.37$)</td>
+                                    <td>22</td>
+                                    <td>$1.88 / 2.12$</td>
+                                    <td>22 compensatory rod flips (<code>14↔186</code>, <code>15↔185</code>, <code>16↔184</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Obelisk-ω</strong> (<code>Ob_000025</code>)</td>
+                                    <td>1</td>
+                                    <td><em>Macaca mulatta</em> gut</td>
+                                    <td>17 / 244</td>
+                                    <td>$Z = -9.16$, reg $\approx 194$</td>
+                                    <td>$-0.025$ ($p = 0.70$)</td>
+                                    <td>0</td>
+                                    <td>$1.71 / 2.24$</td>
+                                    <td>Largest 1,434 nt circle (<code>V152</code> $\Phi = 0.38$, <code>V150</code> $\Phi = 0.43$)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="callout-box">
+                        <strong>Explore the Aeon Software Suite &amp; Reference Obelisk Archives.</strong>
+                        Run cross-taxa selection, deep mutational scanning, and epistatic sector discovery with <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon</a>, calibrate tree-free molecular clocks in the <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App</a> (<a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">Zenodo v2.0</a>), and inspect the 25 reference obelisk family centroids and clustering tables in the <a href="https://purl.stanford.edu/wb363nt3637" target="_blank" rel="noopener noreferrer">Stanford Digital Repository</a> (<a href="https://doi.org/10.1016/j.cell.2024.09.033" target="_blank" rel="noopener noreferrer">Zheludev et al., <em>Cell</em> 2024</a>).
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>
