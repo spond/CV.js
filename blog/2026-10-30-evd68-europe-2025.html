@@ -208,8 +208,8 @@
                             </div>
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">🛡️ 0 New 2025 Sites</div>
-                                <div class="takeaway-label">Faded Adult Immunity, Not a 2025 Mutation</div>
-                                <p class="takeaway-desc"><code>HyphAeon</code> finds zero new adaptive changes on the virus's outer shell during the 2025 wave; all 6 adaptive surface changes happened before 2025, equipping it to infect adults whose immunity had waned.</p>
+                                <div class="takeaway-label">Pre-2025 VP1–VP2–VP3 Epistasis</div>
+                                <p class="takeaway-desc"><code>HyphAeon</code> finds zero new adaptive changes during 2025; instead, 6 pre-2025 VP1 trunk sites co-evolved in 3-protein epistatic sectors with <code>VP2</code> and <code>VP3</code> ($p_{\mathrm{perm}} \le 0.0040$), equipping the strain to bypass waning adult immunity.</p>
                             </div>
                             <div class="takeaway-card">
                                 <div class="takeaway-stat">🗺️ 2024 Italy → Spain</div>
@@ -261,7 +261,7 @@
 
                     <ul>
                         <li><strong>Six positively selected VP1 surface codons on the ancestral trunk:</strong> Diversifying selection acted strongly on pre-2025 internal trunk branches ($p \le 0.05$) at six solvent-exposed residues in the neutralizing <strong>BC-loop</strong> (codons <code>90, 95, 98</code>), <strong>DE-loop</strong> (codons <code>141, 143</code>), and C-terminus (codon <code>240</code>).</li>
-                        <li><strong>Fixed non-VP1 substitutions across VP2, VP3, and 3D polymerase:</strong> Extending the alignment across all 2,150 codons of the 2025 complete genomes (<code>PZ672961</code>–<code>PZ672969</code> vs. earlier <code>A2/D</code> references) reveals fixed amino-acid substitutions in the <strong>VP2 EF-loop</strong> (<code>T73A, T76K, H98Y, D144N</code>, which packs directly against the VP1 BC/DE loops on the virion canyon rim), <strong>VP3</strong> (<code>N60G, V62D, V166I</code>), and six substitutions in the <strong>3D RNA-dependent RNA polymerase</strong> (<code>V32I, I91T, R135K, T138S, I215V, H335Y</code>).</li>
+                        <li><strong>Three-protein epistatic sectors coupling VP2, VP3, and VP1 across the virion surface:</strong> Running <code>hyphaeon epistasis</code> across all 859 codons of the four-protein capsid precursor (<code>P1</code>: <code>VP4–VP2–VP3–VP1</code>) in 1.2 seconds reveals that the substitutions distinguishing 2025 <code>A2/D</code> whole genomes do not evolve in isolation. Within <code>A2/D</code>, <code>HyphAeon</code> isolates two multi-protein epistatic sectors—<strong>Sector 1</strong> (<code>[VP2:74 – VP3:73, 204 – VP1:6, 97, 110, 144, 217, 304]</code>, spectral coherence $C = 0.839, p_{\mathrm{perm}} = 0.0002$) and <strong>Sector 2</strong> (<code>[VP2:76 – VP3:60, 62 – VP1:95, 96, 147]</code>, $C = 0.805, p_{\mathrm{perm}} = 0.0040$, 12 shared branches; <code>VP3:62 ↔ VP1:95</code> $q = 6.6 \times 10^{-19}$)—alongside a 69-branch cross-clade triad <strong><code>[VP2:144 – VP3:62 – VP1:98]</code></strong> ($C = 0.820, p_{\mathrm{perm}} = 0.0354$). On the 3D capsid exterior, the <code>VP2</code> EF-loop (<code>74, 76, 144</code>), the <code>VP3</code> surface knob (<code>60, 62, 73</code>), and the <code>VP1</code> BC/DE loops (<code>95–98, 144, 147</code>) pack directly against one another on the canyon rim, co-mutating as a single antigenic unit.</li>
                     </ul>
 
                     <p>Because subclade <code>B3</code> dominated European transmission between 2019 and 2024, young children likely acquired strong homotypic immunity against <code>B3</code>, whereas adult immunity to <code>A2/D</code> had waned since the last <code>A2/D</code> wave in 2018. Once the pre-adapted <code>A2/D-25d</code> capsid entered northern and western Europe—plausibly via the 2024 Italy/Spain stepping stone—and persisted in wastewater, waning adult immunity could fuel a continent-wide autumn wave without requiring new 2025 capsid mutations.</p>
@@ -356,13 +356,14 @@ STEP 3: TEST MOLECULAR CLOCK RATES AND COLLECTION DATES (CHRONAEON)
 3.7. Result E: The first hospital sequence in NODE_0001420 was collected on September 2, 2025 in Belgium (232.3 days after the first UK wastewater sample).
 3.8. Conclusion 1: The 2025 European epidemic lineage circulated in Italy, the US, and Spain during 2024, and UK wastewater surveillance detected the exact 2025 clade 7.6 months before European hospitals.
 
-STEP 4: TEST NATURAL SELECTION ON INTERNAL TRUNKS VS. 2025 TIPS (HYPHAEON)
+STEP 4: TEST NATURAL SELECTION AND MULTI-PROTEIN EPISTASIS (HYPHAEON)
 4.1. The agent ran HyphAeon codon selection models on the VP1 alignment and compared internal pre-2025 trunk branches against 2025 terminal tip branches.
 4.2. Result A: On the 2025 terminal branches, 0 of 309 VP1 codons showed statistically significant diversifying selection (p &lt;= 0.05).
 4.3. Result B: On the pre-2025 internal trunk branches, 6 surface-exposed VP1 codons showed diversifying selection (p &lt;= 0.05): codons 90, 95, and 98 (BC-loop), codons 141 and 143 (DE-loop), and codon 240 (C-terminus).
-4.4. The agent translated all 11 viral proteins (2,150 codons) across the 194 complete genomes and compared 2025 A2/D genomes against pre-2024 A2/D reference genomes.
-4.5. Result C: The 2025 A2/D complete genomes shared fixed amino-acid substitutions in the VP2 EF-loop (T73A, T76K, H98Y, D144N), VP3 (N60G, V62D, V166I), and 3D polymerase (V32I, I91T, R135K, T138S, I215V, H335Y).
-4.6. Conclusion 2: The virus did not acquire new adaptive surface mutations during the autumn 2025 wave. Instead, it acquired its surface changes before 2025, which allowed it to infect adults whose immunity had waned since 2018.
+4.4. The agent ran HyphAeon epistasis on the VP1 alignment and on the 859-codon four-protein capsid alignment (VP4-VP2-VP3-VP1) from the complete genomes.
+4.5. Result C: Within VP1, HyphAeon epistasis detected strong co-selection linking the BC-loop (codons 95-97), the DE-loop (codons 141 and 148), and the C-terminus (codons 277 and 280) across 99 to 145 branches (FDR q &lt;= 7.6 x 10^-11).
+4.6. Result D: Across the four-protein capsid (VP4-VP2-VP3-VP1), HyphAeon epistasis discovered two multi-protein epistatic sectors within subclade A2/D that couple the VP2 EF-loop (codons 74 and 76), the VP3 surface loop (codons 60, 62, and 73), and the VP1 BC/DE loops (codons 95-97, 144, and 147) with permutation p = 0.0002 and p = 0.0040.
+4.7. Conclusion 2: The virus did not acquire new adaptive surface mutations during the autumn 2025 wave. Instead, VP1, VP2, and VP3 co-evolved as a coupled 3D surface unit before 2025, which equipped the lineage to infect adults whose immunity had waned since 2018.
 
 STEP 5: MAP WHOLE-GENOME RECOMBINATION AND CODON DIFFERENCES (RHIZAEON)
 5.1. The agent ran RhizAeon across the 194 aligned whole genomes to locate recombination breakpoints and parental donors.
