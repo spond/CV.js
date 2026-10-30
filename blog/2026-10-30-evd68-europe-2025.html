@@ -324,6 +324,56 @@
                         <strong>Data &amp; Reproducibility.</strong>
                         All analyses and figures were generated directly from the publicly released sequences in GenBank and Nextstrain (<a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al., 2026</a>; 1,571 VP1 sequences and 194 complete EV-D68 genomes) using <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon</a>, <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon</a> (<a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">Zenodo v2.0</a>), and <a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">RhizAeon</a> (<a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760237v1" target="_blank" rel="noopener noreferrer">bioRxiv: 2026.10.19.760237</a>). Six study accessions remain under routine NCBI processing hold (including the reported Dutch <code>A2/D–B3</code> recombinant <code>PZ797495</code>); once released, a single breakpoint check at nucleotide 3,736 will determine whether the Dutch isolate belongs to the same trans-Atlantic <code>PZ672967 / PZ210600</code> lineage or represents an independent recombination event.
                     </div>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>4. Agentic Protocol: How We Performed the Analysis and Reached Each Conclusion (ASD-STE100 Plain Text)</h2>
+
+                    <p>The plain-text protocol below follows <a href="https://www.asd-ste100.org" target="_blank" rel="noopener noreferrer">ASD-STE100 (Simplified Technical English)</a> rules. Each step uses short active-voice sentences to record what the coding agent executed and how each quantitative result produced a specific conclusion.</p>
+
+<pre style="font-family: 'Inter', monospace; font-size: 0.83rem; line-height: 1.55; background: #f9fafb; border: 2px solid var(--border-color); padding: 1.35rem 1.5rem; white-space: pre-wrap; word-wrap: break-word; color: #111827;">
+AGENTIC PROTOCOL (ASD-STE100 SIMPLIFIED TECHNICAL ENGLISH)
+
+STEP 1: READ THE PREPRINT AND EXTRACT DATA IDENTIFIERS
+1.1. The agent read the preprint PDF (Dyrdak et al., 2026; medRxiv 2026.10.23.26366309v1).
+1.2. The agent extracted all GenBank accession ranges and Nextstrain repository URLs from the text.
+
+STEP 2: DOWNLOAD AND VERIFY PUBLIC SEQUENCES
+2.1. The agent downloaded the Nextstrain phylogenetic build (evd68-2025_vp1.json, 1,571 tips) and root sequence.
+2.2. The agent reconstructed the 1,571 full-length VP1 nucleotide sequences (927 nt) by applying branch mutations from the root sequence to each tip.
+2.3. The agent queried NCBI Entrez for all study GenBank accessions and all 2024-2026 Enterovirus D68 whole genomes.
+2.4. NCBI returned 227 study sequences (211 VP1 sequences and 16 complete genomes) and 137 US complete genomes from 2025.
+2.5. Six study accessions (including Dutch isolate PZ797495) returned HTTP 400 from NCBI because they remain under pre-release hold.
+2.6. The agent aligned 194 complete genomes (7,156 alignment columns) with MAFFT for whole-genome analysis.
+
+STEP 3: TEST MOLECULAR CLOCK RATES AND COLLECTION DATES (CHRONAEON)
+3.1. The agent ran ChronAeon on the 1,571 VP1 sequences and collection dates.
+3.2. Result A: Across the full 1962-2025 tree, ChronAeon measured a clock rate of 3.86 x 10^-3 substitutions/site/year (R^2 = 0.78).
+3.3. Result B: Inside the 2025 A2/D-25d wave (365 sequences), the root-to-tip regression slope was flat (p = 0.25).
+3.4. The agent extracted all pre-2025 and 2025 tips inside clade A2/D-25d (NODE_0001696) and its primary 2025 European subcluster (NODE_0001420, 112 tips).
+3.5. Result C: Clade A2/D-25d contained 24 Northern Italian sequences and 18 Maryland (US) sequences from January-March 2024, plus 104 Spanish sequences from late 2024.
+3.6. Result D: Inside the 112-tip 2025 European subcluster (NODE_0001420), the first 23 tips by date (January 12, 2025 to August 31, 2025) were all UK wastewater samples.
+3.7. Result E: The first hospital sequence in NODE_0001420 was collected on September 2, 2025 in Belgium (232.3 days after the first UK wastewater sample).
+3.8. Conclusion 1: The 2025 European epidemic lineage circulated in Italy, the US, and Spain during 2024, and UK wastewater surveillance detected the exact 2025 clade 7.6 months before European hospitals.
+
+STEP 4: TEST NATURAL SELECTION ON INTERNAL TRUNKS VS. 2025 TIPS (HYPHAEON)
+4.1. The agent ran HyphAeon codon selection models on the VP1 alignment and compared internal pre-2025 trunk branches against 2025 terminal tip branches.
+4.2. Result A: On the 2025 terminal branches, 0 of 309 VP1 codons showed statistically significant diversifying selection (p &lt;= 0.05).
+4.3. Result B: On the pre-2025 internal trunk branches, 6 surface-exposed VP1 codons showed diversifying selection (p &lt;= 0.05): codons 90, 95, and 98 (BC-loop), codons 141 and 143 (DE-loop), and codon 240 (C-terminus).
+4.4. The agent translated all 11 viral proteins (2,150 codons) across the 194 complete genomes and compared 2025 A2/D genomes against pre-2024 A2/D reference genomes.
+4.5. Result C: The 2025 A2/D complete genomes shared fixed amino-acid substitutions in the VP2 EF-loop (T73A, T76K, H98Y, D144N), VP3 (N60G, V62D, V166I), and 3D polymerase (V32I, I91T, R135K, T138S, I215V, H335Y).
+4.6. Conclusion 2: The virus did not acquire new adaptive surface mutations during the autumn 2025 wave. Instead, it acquired its surface changes before 2025, which allowed it to infect adults whose immunity had waned since 2018.
+
+STEP 5: MAP WHOLE-GENOME RECOMBINATION AND CODON DIFFERENCES (RHIZAEON)
+5.1. The agent ran RhizAeon across the 194 aligned whole genomes to locate recombination breakpoints and parental donors.
+5.2. Result A: Swedish isolate PZ672967 and five 2025 US isolates (PZ210600-PZ210604) shared an identical recombination breakpoint at alignment position 3,736 (the boundary between the 2A and 2B genes).
+5.3. Result B: Across all 7,156 nucleotides, Swedish isolate PZ672967 matched the five US isolates at 99.26%-99.31% identity (50 to 53 nucleotide differences).
+5.4. Result C: Upstream of position 3,736 (5' capsid + 2A), the recombinant genomes matched a 2024 Northern Italian A2/D isolate (PQ426635) that carried a 4-codon BC-loop change (G95T, E96A, R97Q, I98T). Downstream of position 3,736 (2B-3D), they matched subclade B3 (PQ862939).
+5.5. The agent counted synonymous and nonsynonymous codon differences across all 11 proteins between recombinant isolate PZ672967 and non-recombinant 2025 A2/D isolate PZ672961.
+5.6. Result D: Downstream of the 2A/2B breakpoint (1,143 codons in 2B-3D), the B3 and A2/D sequences differed at 410 nucleotide positions across 386 codons.
+5.7. Result E: Of those 386 changed codons, 353 codons (91.5%) were synonymous (silent) and 33 codons changed an amino acid (1 in 2B, 10 in 2C, 4 in 3A, 0 in 3B, 7 in 3C, and 11 in 3D).
+5.8. Conclusion 3: The Swedish and US 2025 recombinants descend from a single 2024 recombination event involving an Italian A2/D donor. Strong purifying selection (91.5% silent codon differences) keeps the 2B-3D replication proteins structurally compatible when swapped at the 2A/2B boundary.
+</pre>
                 </div>
             </article>
         </main>
