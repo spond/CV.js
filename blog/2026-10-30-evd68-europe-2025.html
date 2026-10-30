@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.6 Months in the Sewer and Modular Genomes: Whole-Genome Evolution of Europe's 2025 Enterovirus D68 Wave | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="7.6 Months in the Sewer and Modular Genomes: Whole-Genome Evolution of Europe's 2025 Enterovirus D68 Wave">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-30-evd68-europe-2025.html">
+    <meta name="twitter:description" content="Re-analyzing 1,571 VP1 sequences and 194 complete genomes from the 2025 European Enterovirus D68 resurgence with ChronAeon, HyphAeon, and RhizAeon uncovers a 2024 Southern European stepping stone, a 232-day wastewater lead time, and why enteroviruses recombine cleanly at the 2A/2B junction.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/evd68_2025_fig1_chronaeon_hyphaeon.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="7.6 Months in the Sewer and Modular Genomes: Whole-Genome Evolution of Europe's 2025 Enterovirus D68 Wave">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-30-evd68-europe-2025.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/evd68_2025_fig1_chronaeon_hyphaeon.png">
+    <meta property="og:description" content="Re-analyzing 1,571 VP1 sequences and 194 complete genomes from the 2025 European Enterovirus D68 resurgence with ChronAeon, HyphAeon, and RhizAeon uncovers a 2024 Southern European stepping stone, a 232-day wastewater lead time, and why enteroviruses recombine cleanly at the 2A/2B junction.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .blog-article-container { max-width: 860px; padding: 4rem; }
+        .blog-nav-bar { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .blog-nav-btn {
+            background: var(--text-main); color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.65rem 1.25rem;
+            font-size: 0.78rem; border: 2px solid var(--border-color); display: inline-block;
+        }
+        .blog-nav-btn.secondary { background: #ffffff; color: var(--text-main); }
+        .blog-nav-btn:hover { background: #333333; color: #ffffff; }
+        .post-header { border-bottom: 2px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2.5rem; }
+        .post-tag {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.6rem; margin-bottom: 1rem; letter-spacing: 0.06em;
+        }
+        .post-header h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+        .post-meta a { color: var(--text-main); font-weight: 700; text-decoration: underline; }
+        .post-content { font-family: 'Merriweather', Georgia, serif; font-size: 1.04rem; line-height: 1.8; color: #111827; }
+        .post-content p { margin-bottom: 1.4rem; }
+        .post-content a { color: #000000; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+        .post-content a:hover { background: #000000; color: #ffffff; text-decoration: none; }
+        .post-content code { font-family: var(--font-family); font-size: 0.88em; background: #f3f4f6; padding: 0.15rem 0.4rem; border: 1px solid #d1d5db; }
+        .post-content ul, .post-content ol { margin: 1.25rem 0 1.6rem 1.75rem; }
+        .post-content li { margin-bottom: 0.75rem; }
+        .post-content hr.fine-line-divider { border: none; border-top: 2px solid var(--border-color); margin: 2.75rem 0; }
+        .post-content h2 {
+            font-family: var(--font-family); font-size: 1.25rem; font-weight: 800;
+            letter-spacing: -0.01em; margin: 2.25rem 0 1rem 0; color: var(--text-main);
+        }
+        .dropcap {
+            float: left; font-family: var(--font-family); font-size: 3.1rem;
+            line-height: 0.85; padding-top: 4px; padding-right: 10px; padding-bottom: 2px; font-weight: 800;
+        }
+        .blog-figure { margin: 2.5rem 0; border: 2px solid var(--border-color); padding: 1.25rem; background: #ffffff; }
+        .blog-figure img { width: 100%; height: auto; display: block; }
+        .blog-figure figcaption {
+            font-family: var(--font-family); font-size: 0.78rem; line-height: 1.5;
+            color: var(--text-muted); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #e5e7eb;
+        }
+        .takeaways-section { margin: 0 0 2.75rem 0; }
+        .takeaways-header {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; padding: 0.25rem 0.65rem; letter-spacing: 0.08em; margin-bottom: 0;
+        }
+        .takeaways-zinger {
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            background: #f9fafb;
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #111827;
+            margin: 0 !important;
+        }
+        .takeaways-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color); border-left: 2px solid var(--border-color); background: #ffffff;
+        }
+        .takeaway-card { border-right: 2px solid var(--border-color); border-bottom: 2px solid var(--border-color); padding: 1.35rem 1.5rem; }
+        .takeaway-stat {
+            font-family: var(--font-family); font-size: 1.45rem; font-weight: 900;
+            line-height: 1.1; color: var(--text-main); margin-bottom: 0.35rem; letter-spacing: -0.02em;
+        }
+        .takeaway-label {
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); margin-bottom: 0.5rem;
+        }
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem; line-height: 1.5; color: #374151; margin: 0 !important;
+        }
+        .table-wrap { overflow-x: auto; margin: 1.8rem 0 2.2rem 0; border: 2px solid var(--border-color); }
+        .comparative-table {
+            width: 100%; border-collapse: collapse; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.81rem; line-height: 1.45; background: #ffffff;
+        }
+        .comparative-table th {
+            background: var(--text-main); color: #ffffff; font-family: var(--font-family);
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;
+            padding: 0.65rem 0.75rem; text-align: left; border-right: 1px solid #374151;
+        }
+        .comparative-table td {
+            padding: 0.58rem 0.75rem; border-top: 1px solid #d1d5db; border-right: 1px solid #e5e7eb; vertical-align: top;
+        }
+        .comparative-table tr:nth-child(even) td { background: #f9fafb; }
+        .callout-box {
+            font-family: var(--font-family); border: 2px solid var(--border-color);
+            padding: 1.5rem; margin: 2rem 0; background: #f9fafb; font-size: 0.88rem; line-height: 1.6;
+        }
+        .callout-box strong { text-transform: uppercase; display: block; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.05em; }
+        @media (max-width: 1024px) { .blog-article-container { padding: 2rem; } .post-header h1 { font-size: 1.6rem; } }
+        @media (max-width: 640px) { .takeaways-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="../index.html#/blog">← All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprints &amp; Tools</h3>
+                <div class="links-list">
+                    <a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al. (medRxiv 2026)</a>
+                    <a href="2026-10-30-evd68-europe-2025-slides.html">4-Slide Executive Deck</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App</a>
+                    <a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">ChronAeon Zenodo Suite</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <article class="blog-article-container">
+                <div class="blog-nav-bar">
+                    <a href="../index.html#/blog" class="blog-nav-btn">← Back to Blog</a>
+                    <a href="2026-10-30-evd68-europe-2025-slides.html" class="blog-nav-btn secondary">4-Slide Deck ↗</a>
+                    <a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">medRxiv Preprint ↗</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">HyphAeon ↗</a>
+                </div>
+
+                <header class="post-header">
+                    <span class="post-tag">ISO 24495-3:2026 Science Brief · Enterovirus Genomics</span>
+                    <h1>7.6 Months in the Sewer and Modular Genomes: Whole-Genome Evolution of Europe's 2025 Enterovirus D68 Wave</h1>
+                    <div class="post-meta">
+                        <span><i>30 Oct 2026, by Sergei</i></span>
+                        <span>·</span>
+                        <span>5 min read</span>
+                        <span>·</span>
+                        <span>Cohort: 1,571 VP1 Sequences &amp; 194 Complete EV-D68 Genomes</span>
+                    </div>
+                </header>
+
+                <div class="post-content">
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">Key Takeaways</span>
+                        <p class="takeaways-zinger">
+                            <strong>Why did a childhood respiratory virus suddenly shift to hospitalized adults (median age 39 vs. 4 years) across 13 European countries in autumn 2025?</strong>
+                            In a model of rapid open science, <a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al. (2026)</a> (highlighted by <a href="https://x.com/firefoxx66/status/2116121332995739842" target="_blank" rel="noopener noreferrer">Emma Hodcroft</a>) immediately shared 385 new clinical and wastewater sequences alongside a curated 1,571-sequence Nextstrain build. Building on their open dataset with <code>ChronAeon</code>, <code>HyphAeon</code>, and <code>RhizAeon</code> across all 1,571 VP1 sequences and 194 complete genomes shows that the epidemic lineage (<code>A2/D-25d</code>) assembled its adult-evading capsid before 2025, built up across a 2024 stepping stone in Italy, Maryland, and Spain, and was detected in UK wastewater 232 days before the first patient entered a European hospital.
+                        </p>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">232 Days (7.6 mo)</div>
+                                <div class="takeaway-label">Wastewater Early-Warning Lead Time</div>
+                                <p class="takeaway-desc">Inside the main 112-tip 2025 European epidemic clade (<code>NODE_0001420</code>), the first 23 consecutive detections (Jan 12–Aug 31, 2025) came 100% from UK sewage before Europe's first clinical admission on Sep 2.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">6 Trunk vs. 0 Tip</div>
+                                <div class="takeaway-label">Pre-2025 Multi-Protein Adaptation</div>
+                                <p class="takeaway-desc"><code>HyphAeon</code> finds zero adaptive VP1 sites within 2025, but 6 positively selected surface sites on the pre-2025 trunk plus fixed substitutions in the <code>VP2</code> EF-loop and <code>VP3</code> that drove the +35-year adult shift.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">2024 Italy → Spain</div>
+                                <div class="takeaway-label">The Stepping-Stone Reservoir</div>
+                                <p class="takeaway-desc"><code>A2/D-25d</code> circulated in early 2024 in Northern Italy ($N=24$) and Maryland ($N=18$), surged in Spain in late 2024 ($N=104$), and spawned the exact <code>95T</code> BC-loop donor (<code>PQ426635</code>) of the 2025 recombinants.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">91.5% Synonymous</div>
+                                <div class="takeaway-label">Modular 2A/2B Recombination</div>
+                                <p class="takeaway-desc">Across the 1,143-codon <code>B3</code> replication block (<code>2B–3D</code>), 353 of 386 codon differences vs. <code>A2/D</code> are synonymous, preserving protein interfaces while transferring 33 AA changes in <code>2C</code>, <code>3C</code>, and <code>3D</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><span class="dropcap">E</span>nterovirus D68 (EV-D68) is an unusual picornavirus. Whereas most enteroviruses replicate in the gastrointestinal tract, EV-D68 infects the upper respiratory tract, causing severe childhood wheezing and—in rare, devastating clusters first recognized in 2014—polio-like spinal cord paralysis known as <strong>acute flaccid myelitis (AFM)</strong>. From 2014 through 2024, European EV-D68 waves were dominated by subclade <strong>B3</strong> and primarily affected toddlers and young children.</p>
+
+                    <p>In autumn 2025, a multi-country European surveillance consortium sequenced 385 clinical and environmental samples across 13 countries (<a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al., 2026</a>) and documented a sudden epidemiological reversal. Subclade <strong>A2/D</strong> accounted for <strong>88%</strong> of all 2025 detections (concentrated in lineage <code>A2/D-25d</code>), and the median age of infected patients jumped by 35 years—from <strong>4 years</strong> in subclade <code>B3</code> to <strong>39 years</strong> in subclade <code>A2/D</code>. Because the authors generously made their sequences and curated Nextstrain phylogeny publicly available alongside the preprint, we were able to run the full dataset—<strong>1,571 VP1 sequences</strong> and <strong>194 whole genomes (7,156 nt)</strong>—through <code>ChronAeon</code>, <code>HyphAeon</code>, and <code>RhizAeon</code> to explore three follow-up evolutionary questions on how the 2025 wave emerged.</p>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>1. The Hidden Timeline: A 2024 Stepping Stone and a 7.6-Month Wastewater Lead Time</h2>
+
+                    <p>When a viral lineage surges simultaneously across a dozen countries in autumn, two hypotheses compete: either a newly mutated variant just emerged and swept the continent, or an already-adapted lineage was circulating cryptically until seasonal transmission amplified it. Deconvolving tip dates and sample sources across the <code>A2/D-25d</code> phylogeny (<code>NODE_0001696</code> and its primary 2025 European epidemic subcluster <code>NODE_0001420</code>, defined by the <code>G444A</code> nucleotide marker) reveals a three-stage trajectory (Fig. 1A):</p>
+
+                    <ul>
+                        <li><strong>Stage 1 — Early-to-late 2024 stepping-stone reservoir:</strong> Nearly a year before the autumn 2025 European hospital wave, <code>A2/D-25d</code> was already circulating in <strong>January–March 2024 in Northern Italy ($N = 24$, <code>PQ426629</code>–<code>PQ426654</code>) and Maryland, USA ($N = 18$, <code>PV624832</code>–<code>PV624841</code>)</strong>, followed by a <strong>late-2024 clinical wave in Spain ($N = 104$ sequences)</strong>.</li>
+                        <li><strong>Stage 2 — 232 days (7.6 months) of cryptic wastewater circulation in 2025:</strong> Inside the main 112-tip 2025 European epidemic clade (<code>NODE_0001420</code>), <strong>the first 23 consecutive detections—spanning January 12, 2025 (<code>25-013b_D1</code>) through August 31, 2025 (<code>25-154_D1</code>)—came 100% from UK environmental wastewater surveillance</strong>.</li>
+                        <li><strong>Stage 3 — Synchronous autumn 2025 hospital wave:</strong> The first clinical hospital case anywhere in Europe inside this epidemic clade did not appear until <strong>September 2, 2025</strong> in Belgium (<code>BE_Brugge</code>), followed within ten days by clinical admissions in the Netherlands (September 7) and Sweden (September 12), and then across 12 European countries simultaneously. Moreover, two of the three 2025 subclade B3 lineages (<code>B3-25a</code> and <code>B3-25c</code>) were detected <strong>exclusively in UK wastewater</strong> throughout 2025 with zero hospital cases across Europe.</li>
+                    </ul>
+
+                    <figure class="blog-figure">
+                        <img src="images/evd68_2025_fig1_chronaeon_hyphaeon.png" alt="7.6-month wastewater lead time in the 2025 European epidemic clade and pre-2025 trunk adaptation driving the adult age shift">
+                        <figcaption>
+                            <strong>Figure 1. Wastewater surveillance detected the 2025 epidemic clade 7.6 months before hospitals, and pre-2025 trunk evolution drove the adult shift.</strong>
+                            Panel A traces cumulative sequenced detections inside the primary 2025 European epidemic clade (<code>NODE_0001420</code>, $N = 112$). Following the 2024 Italy/US/Spain stepping-stone wave, UK sewage surveillance detected the exact epidemic genotype 23 consecutive times between January 12 and August 31, 2025—a <strong>232-day (7.6-month) lead time</strong> before Europe's first hospital case on September 2, 2025.
+                            Panel B contrasts <code>HyphAeon</code> branch-site selection on the pre-2025 ancestral trunk (<strong>6 positively selected VP1 surface codons</strong>) against the 2025 wave itself (<strong>0 adaptive codons</strong>, flat intra-season clock slope $p = 0.25$), alongside the 35-year median age shift from pediatric <code>B3</code> cases (<strong>4 years</strong>) to adult <code>A2/D</code> cases (<strong>39 years</strong>).
+                        </figcaption>
+                    </figure>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>2. Pre-2025 Multi-Protein Capsid Adaptation Drove the Adult Age Shift</h2>
+
+                    <p>In <code>ChronAeon</code>, the 80-year global EV-D68 tree ticks steadily at $3.86 \times 10^{-3}$ substitutions/site/year, yet the 365 sequences inside the 2025 <code>A2/D-25d</code> wave exhibit a flat intra-season root-to-tip slope ($p = 0.25$). Consistent with rapid star-like seasonal radiation rather than ongoing selective sweeps during the outbreak, <code>HyphAeon</code> branch-site testing identifies <strong>zero</strong> VP1 codons under diversifying selection among the 2025 terminal branches (Fig. 1B).</p>
+
+                    <p>Instead, the antigenic remodeling that enabled <code>A2/D</code> to infect older adults was completed <em>before 2025</em> across multiple capsid and non-structural proteins:</p>
+
+                    <ul>
+                        <li><strong>Six positively selected VP1 surface codons on the ancestral trunk:</strong> Diversifying selection acted strongly on pre-2025 internal trunk branches ($p \le 0.05$) at six solvent-exposed residues in the neutralizing <strong>BC-loop</strong> (codons <code>90, 95, 98</code>), <strong>DE-loop</strong> (codons <code>141, 143</code>), and C-terminus (codon <code>240</code>).</li>
+                        <li><strong>Fixed non-VP1 substitutions across VP2, VP3, and 3D polymerase:</strong> Extending the alignment across all 2,150 codons of the 2025 complete genomes (<code>PZ672961</code>–<code>PZ672969</code> vs. earlier <code>A2/D</code> references) reveals fixed amino-acid substitutions in the <strong>VP2 EF-loop</strong> (<code>T73A, T76K, H98Y, D144N</code>, which packs directly against the VP1 BC/DE loops on the virion canyon rim), <strong>VP3</strong> (<code>N60G, V62D, V166I</code>), and six substitutions in the <strong>3D RNA-dependent RNA polymerase</strong> (<code>V32I, I91T, R135K, T138S, I215V, H335Y</code>).</li>
+                    </ul>
+
+                    <p>Because subclade <code>B3</code> dominated European transmission between 2019 and 2024, young children acquired strong homotypic immunity against <code>B3</code>, whereas adult immunity to <code>A2/D</code> had waned since the last <code>A2/D</code> wave in 2018. Once the pre-adapted <code>A2/D-25d</code> capsid seeded northern and western Europe via the 2024 Italy/Spain stepping stone and overwintered in wastewater, waning adult immunity fueled a continent-wide autumn wave without requiring new 2025 capsid mutations.</p>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>3. From the 2024 Italian Stepping Stone to Modular 2A/2B Recombination Across All 11 Proteins</h2>
+
+                    <p>Connecting the early-2024 Northern Italian cohort to the 194 complete genomes in <code>RhizAeon</code> exposes the origin and biochemical logic of the 2025 inter-clade recombinants. During the January–March 2024 wave in Northern Italy, an 8-isolate sublineage (<code>NODE_0001729</code>, represented by complete genome <code>PQ426635</code>) underwent a <strong>4-codon remodel of its VP1 BC-loop (<code>G95T, E96A, R97Q, I98T</code>)</strong>, reverting residue 95 to the threonine state (<code>95T</code>) characteristic of subclade <code>A1</code>.</p>
+
+                    <p>Sliding-window whole-genome scanning (Fig. 2A) demonstrates that this exact 2024 Italian BC-loop lineage (<code>PQ426635</code>) recombined with a co-circulating subclade <code>B3</code> strain (<code>PQ862939</code>) at <strong>nucleotide 3,736—precisely at the junction between the <code>2A</code> protease and the <code>2B</code> viroporin</strong>. That single late-2024 recombination event generated a trans-Atlantic hybrid lineage sampled in 2025 in both <strong>Sweden (<code>PZ672967</code>) and five US clinical patients (<code>PZ210600</code>–<code>PZ210604</code>)</strong>, which share <strong>99.26%–99.31% nucleotide identity across all 7,156 nucleotides</strong> (differing by only 50 to 53 SNPs genome-wide).</p>
+
+                    <figure class="blog-figure">
+                        <img src="images/evd68_2025_fig2_rhizaeon_recombinants.png" alt="Whole-genome recombination scan and codon comparison across all 11 EV-D68 proteins">
+                        <figcaption>
+                            <strong>Figure 2. How the 2024 Italian BC-loop donor spawned a trans-Atlantic recombinant—and why recombination splits cleanly at 2A/2B across all 11 proteins.</strong>
+                            Panel A plots sliding-window nucleotide identity across the 7,156-nt genome, showing that the 2025 Swedish recombinant (<code>PZ672967</code>) and five 2025 US recombinants (<code>PZ210600</code>–<code>PZ210604</code>, green dashed curve) inherited their 5' structural capsid + <code>2A</code> module from the 2024 Italian BC-loop donor (<code>PQ426635</code>, red) and their 3' replication module from subclade <code>B3</code> (<code>PQ862939</code>, blue) at nucleotide 3,736.
+                            Panel B compares all <strong>11 viral polyprotein products (2,150 codons)</strong> between the recombinant (<code>PZ672967</code>) and pure 2025 <code>A2/D</code> (<code>PZ672961</code>): across the 1,143-codon <code>B3</code> replication cassette (<code>2B–3D</code>), <strong>353 of 386 changed codons (91.5%) are strictly synonymous</strong> (blue bars), delivering <strong>33 concentrated amino-acid changes</strong> (red bars) in the <code>2C</code> helicase, <code>3C</code> protease, and <code>3D</code> polymerase without structural clash.
+                        </figcaption>
+                    </figure>
+
+                    <p>Why do enteroviruses repeatedly recombine at the <code>2A/2B</code> boundary rather than inside the capsid or randomly along the polyprotein? Translating and comparing all <strong>11 mature proteins (2,150 codons)</strong> between the 2025 recombinant (<code>PZ672967</code>) and co-circulating non-recombinant 2025 <code>A2/D</code> (<code>PZ672961</code>) reveals a striking division between RNA divergence and protein conservation (Fig. 2B):</p>
+
+                    <div class="table-wrap">
+                        <table class="comparative-table">
+                            <thead>
+                                <tr>
+                                    <th>Polyprotein Module</th>
+                                    <th>Mature Proteins</th>
+                                    <th>Codons</th>
+                                    <th>Nucleotide SNPs</th>
+                                    <th>Synonymous Codons</th>
+                                    <th>Nonsynonymous Codons (AA Substitutions)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>5' Capsid + Primary Protease</strong><br>(<code>A2/D</code> donor <code>PQ426635</code>)</td>
+                                    <td><code>VP4, VP2, VP3, VP1, 2A</code></td>
+                                    <td>1,006</td>
+                                    <td>54 SNPs (1.8%)</td>
+                                    <td>48 / 53 (90.6%)</td>
+                                    <td><strong>5 AA changes</strong> (<code>VP2:I108V</code>, <code>VP1:N141G</code>, <code>VP1:E296D</code>, <code>2A:I34V</code>, <code>2A:N139S</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3' Replication Cassette</strong><br>(<code>B3</code> parent <code>PQ862939</code>)</td>
+                                    <td><code>2B, 2C, 3A, 3B, 3C, 3D</code></td>
+                                    <td>1,143</td>
+                                    <td><strong>410 SNPs (12.0%)</strong></td>
+                                    <td><strong>353 / 386 (91.5%)</strong></td>
+                                    <td><strong>33 AA changes</strong> (<code>2B</code>: 1; <code>2C</code> helicase: 10; <code>3A</code>: 4; <code>3B</code>: 0; <code>3C</code> protease: 7; <code>3D</code> polymerase: 11)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>During enterovirus translation, the <code>2A</code> protease cleaves its own N-terminus in <em>cis</em> to release the structural capsid precursor (<code>P1</code>: <code>VP4–VP2–VP3–VP1</code>) from the non-structural replication proteins. Placing the crossover at the <code>2A/2B</code> junction keeps the adult-adapted <code>A2/D</code> capsid paired with its cognate <code>2A</code> protease. Downstream of <code>2A/2B</code>, even though the <code>B3</code> and <code>A2/D</code> lineages differ by <strong>410 nucleotide SNPs (12.0% divergence)</strong> across <code>2B–3D</code>, <strong>91.5% of the altered codons are synonymous</strong>. Intense purifying selection preserves 97.1% amino-acid identity across the membrane-associated replication complex, allowing the <code>B3</code> replication engine—with <strong>33 focused amino-acid substitutions</strong> in the <code>2C</code> helicase, <code>3C</code> innate-immune protease, and <code>3D</code> polymerase—to snap onto the <code>A2/D</code> capsid module without epistatic incompatibility.</p>
+
+                    <div class="callout-box">
+                        <strong>Data &amp; Reproducibility.</strong>
+                        All analyses and figures were generated directly from the publicly released sequences in GenBank and Nextstrain (<a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al., 2026</a>; 1,571 VP1 sequences and 194 complete EV-D68 genomes) using <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon</a>, <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon</a> (<a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">Zenodo v2.0</a>), and <code>RhizAeon</code>. Six study accessions remain under routine NCBI processing hold (including the reported Dutch <code>A2/D–B3</code> recombinant <code>PZ797495</code>); once released, a single breakpoint check at nucleotide 3,736 will determine whether the Dutch isolate belongs to the same trans-Atlantic <code>PZ672967 / PZ210600</code> lineage or represents an independent recombination event.
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

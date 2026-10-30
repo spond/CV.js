@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV-D68 Europe 2025 in 60 Seconds (Slide Deck) | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="7.6 Months in the Sewer and Modular Genomes: Europe's 2025 Enterovirus D68 Wave in 4 Slides">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-10-30-evd68-europe-2025-slides.html">
+    <meta name="twitter:description" content="A 4-slide visual summary of the 2025 European Enterovirus D68 resurgence analyzed with ChronAeon, HyphAeon, and RhizAeon.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/evd68_2025_fig1_chronaeon_hyphaeon.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="7.6 Months in the Sewer and Modular Genomes: Europe's 2025 Enterovirus D68 Wave in 4 Slides">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-10-30-evd68-europe-2025-slides.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/evd68_2025_fig1_chronaeon_hyphaeon.png">
+    <meta property="og:description" content="A 4-slide visual summary of the 2025 European Enterovirus D68 resurgence analyzed with ChronAeon, HyphAeon, and RhizAeon.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .deck-wrapper { max-width: 980px; padding: 2.5rem 3.5rem; }
+        .deck-topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;
+        }
+        .deck-nav-btn {
+            background: #000000; color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.55rem 1.1rem;
+            font-size: 0.75rem; border: 2px solid #000000; display: inline-block; cursor: pointer;
+        }
+        .deck-nav-btn.secondary { background: #ffffff; color: #000000; }
+        .deck-nav-btn:hover { background: #333333; color: #ffffff; }
+        .progress-rail {
+            width: 100%; height: 10px; border: 2px solid #000000;
+            background: #ffffff; margin-bottom: 1.5rem; position: relative;
+        }
+        .progress-fill { height: 100%; background: #000000; width: 25%; transition: width 0.2s ease; }
+        .slide {
+            display: none; border: 3px solid #000000; background: #ffffff;
+            padding: 2.5rem 2.75rem; min-height: 540px; flex-direction: column;
+            justify-content: space-between; margin-bottom: 1.5rem;
+        }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid #000000; padding-bottom: 1.1rem; margin-bottom: 1.5rem; }
+        .slide-kicker {
+            display: inline-block; background: #000000; color: #ffffff;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.55rem; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+        }
+        .slide h2 { font-size: 1.75rem; font-weight: 900; line-height: 1.18; letter-spacing: -0.02em; margin: 0; color: #000000; }
+        .slide-body { font-family: 'Merriweather', Georgia, serif; font-size: 0.98rem; line-height: 1.65; color: #111827; flex: 1; }
+        .slide-body p { margin-bottom: 1rem; }
+        .slide-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1rem 0; }
+        .slide-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .stat-card { border: 2px solid #000000; padding: 1.1rem 1.25rem; background: #f9fafb; }
+        .stat-card.highlight { background: #000000; color: #ffffff; }
+        .stat-card.highlight .stat-big, .stat-card.highlight .stat-title, .stat-card.highlight .stat-text { color: #ffffff; }
+        .stat-big { font-family: var(--font-family); font-size: 1.65rem; font-weight: 900; line-height: 1.1; margin-bottom: 0.3rem; color: #000000; }
+        .stat-title { font-family: var(--font-family); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; color: #000000; }
+        .stat-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 0.84rem; line-height: 1.45; color: #374151; margin: 0 !important; }
+        .slide-fig { border: 2px solid #000000; padding: 0.75rem; background: #ffffff; margin: 0.75rem 0; }
+        .slide-fig img { width: 100%; height: auto; display: block; }
+        .slide-fig-cap { font-family: var(--font-family); font-size: 0.75rem; color: #4b5563; margin-top: 0.5rem; line-height: 1.4; }
+        .zinger-banner {
+            border-left: 5px solid #000000; background: #f3f4f6;
+            padding: 0.9rem 1.2rem; font-family: var(--font-family);
+            font-size: 0.88rem; font-weight: 700; color: #000000; margin-top: 1rem;
+        }
+        .slide-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 2px solid #000000; padding-top: 1rem; margin-top: 1.25rem;
+            font-family: var(--font-family); font-size: 0.78rem;
+        }
+        .deck-controls { display: flex; gap: 0.6rem; align-items: center; }
+        .ctrl-btn {
+            background: #000000; color: #ffffff; border: 2px solid #000000;
+            padding: 0.5rem 1.1rem; font-family: var(--font-family);
+            font-size: 0.76rem; font-weight: 800; text-transform: uppercase; cursor: pointer;
+        }
+        .ctrl-btn.secondary { background: #ffffff; color: #000000; }
+        .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .ctrl-btn:not(:disabled):hover { background: #333333; color: #ffffff; }
+        .kbd-hint { color: #4b5563; font-size: 0.74rem; }
+        .kbd-key { border: 1.5px solid #000000; padding: 0.1rem 0.4rem; background: #ffffff; font-weight: 800; font-size: 0.7rem; }
+        body.view-all .slide { display: flex !important; border-bottom: 3px solid #000000; }
+        body.view-all .slide-footer { display: none; }
+        @media (max-width: 900px) {
+            .deck-wrapper { padding: 1.5rem; }
+            .slide { padding: 1.5rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide-grid-2, .slide-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="2026-10-30-evd68-europe-2025.html">← Read Full Blog Post</a>
+                    <a href="../index.html#/blog">All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprints &amp; Tools</h3>
+                <div class="links-list">
+                    <a href="2026-10-30-evd68-europe-2025.html">Full Blog Post</a>
+                    <a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al. (medRxiv 2026)</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div class="deck-wrapper">
+                <div class="deck-topbar">
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <a href="2026-10-30-evd68-europe-2025.html" class="deck-nav-btn">← Back to Blog Post</a>
+                        <button id="toggleViewBtn" class="deck-nav-btn secondary" onclick="toggleViewAll()">View All 4 Slides</button>
+                    </div>
+                    <div class="kbd-hint">
+                        Use <span class="kbd-key">←</span> <span class="kbd-key">→</span> or <span class="kbd-key">Space</span> to navigate · 60-Second Summary
+                    </div>
+                </div>
+
+                <div class="progress-rail">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- SLIDE 1 -->
+                <section class="slide active" data-slide="1">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 1 of 4 · Clinical &amp; Epidemiological Context</span>
+                            <h2>Why did a pediatric respiratory virus suddenly shift to adults across 13 European countries?</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                <strong>Enterovirus D68 (EV-D68)</strong> infects the upper airway, causing severe childhood wheezing and—in rare clusters—polio-like spinal cord paralysis (acute flaccid myelitis, AFM). In autumn 2025 (<a href="https://doi.org/10.1101/2026.10.23.26366309" target="_blank" rel="noopener noreferrer">Dyrdak et al., 2026</a>), European surveillance documented a dramatic shift:
+                            </p>
+                            <div class="slide-grid-3">
+                                <div class="stat-card">
+                                    <div class="stat-big">88% A2/D</div>
+                                    <div class="stat-title">Continent-Wide Takeover</div>
+                                    <p class="stat-text">Subclade <code>A2/D</code> (lineage <code>A2/D-25d</code>) displaced <code>B3</code> across 13 European countries after a decade of <code>B3</code> dominance.</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">39 vs. 4 Yrs</div>
+                                    <div class="stat-title">+35-Year Adult Age Shift</div>
+                                    <p class="stat-text">Median patient age jumped from <strong>4 years</strong> in subclade <code>B3</code> to <strong>39 years</strong> in subclade <code>A2/D</code>.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">194 WGS</div>
+                                    <div class="stat-title">Beyond VP1 (13% of Genome)</div>
+                                    <p class="stat-text">Analyzing all 1,571 VP1 sequences and 194 complete genomes with <code>ChronAeon</code>, <code>HyphAeon</code>, and <code>RhizAeon</code> reveals how the wave emerged.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 1 / 4 · Context</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()" disabled>← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 2 -->
+                <section class="slide" data-slide="2">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 2 of 4 · ChronAeon + HyphAeon Discovery</span>
+                            <h2>A 2024 stepping stone, a 7.6-month wastewater lead time, and pre-2025 trunk adaptation</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/evd68_2025_fig1_chronaeon_hyphaeon.png" alt="Figure 1: 7.6-Month Wastewater Lead Time and Pre-2025 Trunk Adaptation">
+                                <div class="slide-fig-cap">
+                                    <strong>Left:</strong> Inside the main 112-tip 2025 European clade (<code>NODE_0001420</code>), the first 23 consecutive detections (Jan 12–Aug 31, 2025) came 100% from UK sewage—232 days before the first hospital case (Sep 2). <strong>Right:</strong> 6 VP1 surface codons were selected on the pre-2025 trunk vs. 0 within 2025.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 2 / 4 · Wastewater Lead Time &amp; Selection</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 3 -->
+                <section class="slide" data-slide="3">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 3 of 4 · RhizAeon Whole-Genome Discovery</span>
+                            <h2>From the 2024 Italian BC-loop donor to modular 2A/2B recombination across 11 proteins</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/evd68_2025_fig2_rhizaeon_recombinants.png" alt="Figure 2: Whole-genome recombination and 11-protein codon comparison">
+                                <div class="slide-fig-cap">
+                                    <strong>Left:</strong> A 2024 Northern Italian BC-loop variant (<code>PQ426635</code>, <code>95T</code>) recombined with <code>B3</code> at nt 3,736 (shared by Sweden &amp; 5 US genomes). <strong>Right:</strong> Across <code>2B–3D</code> (1,143 codons), 91.5% of 386 codon differences are synonymous, transferring 33 targeted AA changes in <code>2C</code>, <code>3C</code>, and <code>3D</code> without clash.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 3 / 4 · Whole-Genome Recombination</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4 -->
+                <section class="slide" data-slide="4">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 4 of 4 · Synthesis</span>
+                            <h2>Three lessons from whole-genome evolutionary forensics</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-grid-3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">232 Days</div>
+                                    <div class="stat-title">Wastewater Early Radar</div>
+                                    <p class="stat-text">UK sewage surveillance caught the exact 2025 European epidemic genotype 7.6 months before the first hospitalized patient.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">VP2 + VP3 + VP1</div>
+                                    <div class="stat-title">Pre-2025 Capsid Remodeling</div>
+                                    <p class="stat-text">Antigenic escape in adults was built before 2025 across 6 VP1 trunk codons plus fixed substitutions in the VP2 EF-loop and VP3.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">91.5% Silent</div>
+                                    <div class="stat-title">Modular 2A/2B Breakpoint</div>
+                                    <p class="stat-text">Purifying selection across <code>2B–3D</code> lets EV-D68 swap its 3' replication complex at the <code>2A/2B</code> boundary without epistatic clash.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Read the full post at <a href="2026-10-30-evd68-europe-2025.html" style="color: #000; text-decoration: underline;">2026-10-30-evd68-europe-2025.html</a> · Explore <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">HyphAeon</a> &amp; <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">ChronAeon</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 4 / 4 · Synthesis</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()" disabled>Next →</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+
+        function updateDeck() {
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.slide) === currentSlide);
+            });
+            document.getElementById('progressFill').style.width = ((currentSlide / totalSlides) * 100) + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) { currentSlide++; updateDeck(); }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) { currentSlide--; updateDeck(); }
+        }
+
+        function toggleViewAll() {
+            document.body.classList.toggle('view-all');
+            const btn = document.getElementById('toggleViewBtn');
+            btn.textContent = document.body.classList.contains('view-all') ? 'Single-Slide Mode' : 'View All 4 Slides';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.body.classList.contains('view-all')) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+    </script>
+</body>
+</html>

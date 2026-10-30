@@ -1340,6 +1340,22 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-10-30",
+                {
+                    "url": "blog/2026-10-30-evd68-europe-2025.html",
+                    "link-text": "7.6 months in the sewer and modular genomes: whole-genome evolution of Europe's 2025 Enterovirus D68 wave",
+                    "subtext": "Building on the open 2025 European Enterovirus D68 surveillance dataset (Dyrdak et al., 2026; 1,571 VP1 sequences and 194 complete genomes) with ChronAeon, HyphAeon, and RhizAeon reveals a 2024 Italy/Spain stepping-stone reservoir, a 232-day (7.6-month) UK wastewater early-warning lead time before the first European hospital case, pre-2025 trunk capsid adaptation driving the 35-year adult age shift, and why 91.5% synonymous purifying selection across the 2B–3D replication complex enables clean modular recombination at the 2A/2B junction."
+                },
+                {
+                    "url": "blog/2026-10-30-evd68-europe-2025-slides.html",
+                    "link-text": "4-Slide Deck"
+                },
+                {
+                    "url": "https://doi.org/10.1101/2026.10.23.26366309",
+                    "link-text": "medRxiv: 2026.10.23.26366309"
+                }
+            ],
+            [
                 "2026-10-29",
                 {
                     "url": "blog/2026-10-29-obelisks.html",
