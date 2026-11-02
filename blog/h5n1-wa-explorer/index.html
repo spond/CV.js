@@ -569,7 +569,7 @@
             finalize(ch, nd.id);
             nd.leafCount += ch.leafCount;
           }
-          nd.children.sort((a, b) => a.leafCount - b.leafCount || a.id - b.id);
+          nd.children.sort((a, b) => a.leafCount - b.leafCount || a.branchLength - b.branchLength || a.id - b.id);
           const childCols = nd.children.map(c => c.color);
           nd.color = childCols.every(c => c === childCols[0]) ? childCols[0] : '#64748b';
         }
