@@ -314,11 +314,10 @@
       <select id="selMinority" onchange="renderCanvas()">
         <option value="">Minority Variant Overlay: Off</option>
         <option value="PB2:T1647C" selected>Highlight PB2:T1647C (Oct 12 Human 100% + Cows 36%/27%/12%)</option>
-        <option value="UW_HA_RBD">Highlight Oct 29 Human HA RBD iSNVs (Q222R [H3-Q226R] 16.3%, H125N 18.1%, S181P 11.2%)</option>
         <option value="PB2:C381T">Highlight PB2:C381T (Cow 26G14027-006 100% + Bulk 26G14594-002 13.5%)</option>
         <option value="PA:A1735C">Highlight PA:M579L Bulk-Tank Packet (26G14594-001 12.2% + 26G14595 2.7%)</option>
         <option value="PA:G369A">Highlight PA:G369A Bridge (26G14598-001 13.2% + 26G14594-001 5.1%)</option>
-        <option value="NS:G301A">Highlight NS1:D101N Positive Selection (26G14597-002 40.8%)</option>
+        <option value="NS:G301A">Highlight NS1:D101N Sub-Consensus (26G14597-002 40.8%)</option>
       </select>
 
       <!-- Search -->
@@ -377,12 +376,6 @@
           "A_cattle_USA_26G14027-011_2026__SRR41219908__2026-10-16": 36.2,
           "A_cattle_USA_26G14594-001_2026__SRR41439170__2026-10-30": 27.4,
           "A_cattle_USA_26G14594-002_2026__SRR41439169__2026-10-30": 12.2
-        }
-      },
-      "UW_HA_RBD": {
-        label: "HA RBD Sub-Consensus (Q222R [H3-Q226R] 16.3%, H125N 18.1%, S181P 11.2%)",
-        carriers: {
-          "A_Washington_UW-110701_2026__SRR41477511__2026-10-29": 45.6
         }
       },
       "PB2:C381T": {
@@ -596,9 +589,9 @@
       if (!m) return nd.rawLabel;
       if (m.is_wa_human) {
         if (nd.rawLabel.includes('UW-110701')) {
-          return '★ A/Washington/UW-110701/2026 (Human • Oct 29 • 14 iSNVs)';
+          return '★ A/Washington/UW-110701/2026 (Human • Oct 29 • +4 SNPs)';
         }
-        return '★ A/Washington/WAPHL-916948/2026 (Human • Oct 12)';
+        return '★ A/Washington/WAPHL-916948/2026 (Human • Oct 12 • +2 SNPs)';
       }
       if (m.is_oct30_sra) {
         const isBulk = (m.isolation_source || '').includes('BULK');
