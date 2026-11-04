@@ -630,6 +630,17 @@
     },
     "Courses Taught": {
         "rows": [
+            ["2026", {
+                    "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
+                    "link-text": {
+                        "text": "Genomics in Medicine"
+                    }
+                },
+                "Instructor (100%)", {
+                    "text": "Undergraduate/Graduate",
+                    "subtext": "~160 students"
+                }
+           ],
             ["2025", {
                     "url": "https://www.temple.edu/academics/degree-programs/genome-medicine-certificate-undergraduate-st-gnmd-cert",
                     "link-text": {
@@ -744,7 +755,7 @@
             ["2018", {
                     "url": "http://igem.temple.edu/education/courses",
                     "link-text": {
-                        "text": "Genome Analyticss"
+                        "text": "Genome Analytics"
                     }
                 },
                 "Instructor (100%)", {
@@ -766,7 +777,7 @@
             ["2017", {
                     "url": "http://igem.temple.edu/education/courses",
                     "link-text": {
-                        "text": "Genome Analyticss"
+                        "text": "Genome Analytics"
                     }
                 },
                 "Instructor (100%)", {
@@ -1311,7 +1322,7 @@
        ]
     },
     "Publications": {
-        "subtext": " ~44,300 total citations, h-index 84 (per Google Scholar), weighted RCR of >1000 (per NIH iCite)",
+        "subtext": " >50,000 total citations, h-index >90 (per Google Scholar), weighted RCR of >1,000 (per NIH iCite)",
         "highlight": ["Pond S","Kosakovsky Pond S"],
         "bibtex": "data/slkp.bib"
     },
@@ -1320,17 +1331,22 @@
         "rows": [
             [{"url": "http://hyphy.org", "link-text": "HyPhy", "print-text": "HyPhy (hyphy.org)"},
             {"text": "Hypothesis testing using phylogenies",
-                      "subtext" : "A molecular evolution and statistical inference package with >10000 registered users and ~2500 citations"}
+                      "subtext" : "A molecular evolution and statistical inference package with >10,000 registered users and >6,500 citations"}
 
             ],
             [{"url": "http://www.datamonkey.org", "link-text": "Datamonkey", "print-text": "Datamonkey (www.datamonkey.org)"},
             {"text": "Datamonkey sequence analysis server",
-                      "subtext" : "A comprehensive and efficient suite of methods aimed at finding adaptive and purifying selection acting on coding sequences as well as uncovering evidence of recombination in the evolutionary past of the sample (~500000 processed analyses and ~1000 citations)"}
+                      "subtext" : "A comprehensive and efficient suite of methods aimed at finding adaptive and purifying selection acting on coding sequences as well as uncovering evidence of recombination (~1,000,000 processed analyses and >2,000 citations)"}
 
             ],
             [{"url": "http://www.hivtrace.org", "link-text": "HIV-TRACE", "print-text": "HIV-TRACE (www.hivtrace.org)"},
             {"text": "HIV Transmission Cluster Engine",
-                      "subtext" : "A web applications and software library for high throughput molecular epidemiology surveillance of HIV and other pathogens. Currently in use by the CDC and many other public health and research entities."}
+                      "subtext" : "A web application and software library for high throughput molecular epidemiology surveillance of HIV and other pathogens. Currently in use by the CDC and many other public health and research entities."}
+
+            ],
+            [{"url": "https://github.com/veg/HyphAeon", "link-text": "Aeon Suite & Orbit", "print-text": "Aeon Suite & Orbit (github.com/veg)"},
+            {"text": "Next-generation phylogenetic foundation models & agentic computing",
+                      "subtext" : "HyphAeon (selection/epistasis/DMS), ChronAeon (tree-free clocks), RhizAeon (linear-time recombination), TRACE-5.0, and Orbit in Galaxy."}
 
             ]
         ]
@@ -1339,6 +1355,22 @@
     "Blog": {
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
+            [
+                "2026-11-04",
+                {
+                    "url": "blog/2026-11-04-h3n2-ltee.html",
+                    "link-text": "Tight locks, narrow side doors: what 1,200 generations of lab-evolved H3N2 flu reveal about protein constraint",
+                    "subtext": "When de Rooij et al. (2026) evolved seasonal influenza A/H3N2 across 100 passages (1,200 generations) in human airway cultures, 63.5% (40/63) of fixed amino-acid mutations occurred at positions ≥90% conserved across 58 years of human circulation—suggesting weak intrinsic protein constraint. Re-analyzing all 4,477 codons and 121 consensus genomes with HyphAeon and ChronAeon in under 25 seconds shows that those globally conserved sites are actually under nearly twice as much overall constraint (p = 1.9e-13), but mutated through narrow residue-specific side doors (median zero-shot Digital DMS rank 2.0 out of 19, p = 4.2e-12) while igniting a 1.78× faster selective-sweep clock and 4 multi-segment epistatic sectors."
+                },
+                {
+                    "url": "blog/2026-11-04-h3n2-ltee-slides.html",
+                    "link-text": "4-Slide Deck"
+                },
+                {
+                    "url": "https://doi.org/10.64898/2026.10.26.761891",
+                    "link-text": "bioRxiv: 2026.10.26.761891"
+                }
+            ],
             [
                 "2026-10-30",
                 {
@@ -1465,6 +1497,14 @@
                 {
                     "url": "https://doi.org/10.64898/2026.10.14.759254",
                     "link-text": "bioRxiv: 2026.10.14.759254"
+                }
+            ],
+            [
+                "2026-10-16",
+                {
+                    "url": "blog/2026-10-16-orbit.html",
+                    "link-text": "What happens when you hand a scientific dataset to 30 coding agents—and why agentic science needs public infrastructure",
+                    "subtext": "Connecting CLI coding agents and the Orbit desktop workbench to Galaxy routes heavy compute onto national ACCESS-CI and EuroScienceGateway supercomputers while recording every dataset, containerized custom tool, and statistical validation in an auditable notebook."
                 }
             ]
         ]

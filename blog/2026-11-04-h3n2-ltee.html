@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tight Locks, Narrow Side Doors: What 1,200 Generations of Lab-Evolved H3N2 Flu Reveal About Protein Constraint | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Tight Locks, Narrow Side Doors: What 1,200 Generations of Lab-Evolved H3N2 Flu Reveal About Protein Constraint">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-11-04-h3n2-ltee.html">
+    <meta name="twitter:description" content="Re-analyzing 1,200 generations of human-airway-passaged A/H3N2 influenza (de Rooij et al., 2026) with HyphAeon and ChronAeon resolves why 63.5% of fixed mutations hit globally invariant sites: those sites are tightly constrained overall, but mutate through narrow residue-specific side doors (median DMS rank 2/19).">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/h3n2_ltee_fig1_dms_clock.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Tight Locks, Narrow Side Doors: What 1,200 Generations of Lab-Evolved H3N2 Flu Reveal About Protein Constraint">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-11-04-h3n2-ltee.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/h3n2_ltee_fig1_dms_clock.png">
+    <meta property="og:description" content="Re-analyzing 1,200 generations of human-airway-passaged A/H3N2 influenza (de Rooij et al., 2026) with HyphAeon and ChronAeon resolves why 63.5% of fixed mutations hit globally invariant sites: those sites are tightly constrained overall, but mutate through narrow residue-specific side doors (median DMS rank 2/19).">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .blog-article-container { max-width: 860px; padding: 4rem; }
+        .blog-nav-bar { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .blog-nav-btn {
+            background: var(--text-main); color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.65rem 1.25rem;
+            font-size: 0.78rem; border: 2px solid var(--border-color); display: inline-block;
+        }
+        .blog-nav-btn.secondary { background: #ffffff; color: var(--text-main); }
+        .blog-nav-btn:hover { background: #333333; color: #ffffff; }
+        .post-header { border-bottom: 2px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2.5rem; }
+        .post-tag {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.6rem; margin-bottom: 1rem; letter-spacing: 0.06em;
+        }
+        .post-header h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+        .post-meta a { color: var(--text-main); font-weight: 700; text-decoration: underline; }
+        .post-content { font-family: 'Merriweather', Georgia, serif; font-size: 1.04rem; line-height: 1.8; color: #111827; }
+        .post-content p { margin-bottom: 1.4rem; }
+        .post-content a { color: #000000; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+        .post-content a:hover { background: #000000; color: #ffffff; text-decoration: none; }
+        .post-content code { font-family: var(--font-family); font-size: 0.88em; background: #f3f4f6; padding: 0.15rem 0.4rem; border: 1px solid #d1d5db; }
+        .post-content ul, .post-content ol { margin: 1.25rem 0 1.6rem 1.75rem; }
+        .post-content li { margin-bottom: 0.75rem; }
+        .post-content hr.fine-line-divider { border: none; border-top: 2px solid var(--border-color); margin: 2.75rem 0; }
+        .post-content h2 {
+            font-family: var(--font-family); font-size: 1.25rem; font-weight: 800;
+            letter-spacing: -0.01em; margin: 2.25rem 0 1rem 0; color: var(--text-main);
+        }
+        .dropcap {
+            float: left; font-family: var(--font-family); font-size: 3.1rem;
+            line-height: 0.85; padding-top: 4px; padding-right: 10px; padding-bottom: 2px; font-weight: 800;
+        }
+        .blog-figure { margin: 2.5rem 0; border: 2px solid var(--border-color); padding: 1.25rem; background: #ffffff; }
+        .blog-figure img { width: 100%; height: auto; display: block; }
+        .blog-figure figcaption {
+            font-family: var(--font-family); font-size: 0.78rem; line-height: 1.5;
+            color: var(--text-muted); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #e5e7eb;
+        }
+        .takeaways-section { margin: 0 0 2.75rem 0; }
+        .takeaways-header {
+            display: inline-block; background: var(--text-main); color: #ffffff;
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; padding: 0.25rem 0.65rem; letter-spacing: 0.08em; margin-bottom: 0;
+        }
+        .takeaways-zinger {
+            border-top: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            background: #f9fafb;
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #111827;
+            margin: 0 !important;
+        }
+        .takeaways-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 2px solid var(--border-color); border-left: 2px solid var(--border-color); background: #ffffff;
+        }
+        .takeaway-card { border-right: 2px solid var(--border-color); border-bottom: 2px solid var(--border-color); padding: 1.35rem 1.5rem; }
+        .takeaway-stat {
+            font-family: var(--font-family); font-size: 1.45rem; font-weight: 900;
+            line-height: 1.1; color: var(--text-main); margin-bottom: 0.35rem; letter-spacing: -0.02em;
+        }
+        .takeaway-label {
+            font-family: var(--font-family); font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); margin-bottom: 0.5rem;
+        }
+        .takeaway-desc {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem; line-height: 1.5; color: #374151; margin: 0 !important;
+        }
+        .table-wrap { overflow-x: auto; margin: 1.8rem 0 2.2rem 0; border: 2px solid var(--border-color); }
+        .comparative-table {
+            width: 100%; border-collapse: collapse; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.81rem; line-height: 1.45; background: #ffffff;
+        }
+        .comparative-table th {
+            background: var(--text-main); color: #ffffff; font-family: var(--font-family);
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;
+            padding: 0.65rem 0.75rem; text-align: left; border-right: 1px solid #374151;
+        }
+        .comparative-table td {
+            padding: 0.58rem 0.75rem; border-top: 1px solid #d1d5db; border-right: 1px solid #e5e7eb; vertical-align: top;
+        }
+        .comparative-table tr:nth-child(even) td { background: #f9fafb; }
+        .callout-box {
+            font-family: var(--font-family); border: 2px solid var(--border-color);
+            padding: 1.5rem; margin: 2rem 0; background: #f9fafb; font-size: 0.88rem; line-height: 1.6;
+        }
+        .callout-box strong { text-transform: uppercase; display: block; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.05em; }
+        @media (max-width: 1024px) { .blog-article-container { padding: 2rem; } .post-header h1 { font-size: 1.6rem; } }
+        @media (max-width: 640px) { .takeaways-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="../index.html#/blog">← All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/publications">Publications</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprints &amp; Tools</h3>
+                <div class="links-list">
+                    <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al. (bioRxiv 2026)</a>
+                    <a href="https://github.com/AMC-LAEB/LTEE-flu" target="_blank" rel="noopener noreferrer">AMC-LAEB/LTEE-flu GitHub</a>
+                    <a href="2026-11-04-h3n2-ltee-slides.html">4-Slide Executive Deck</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App</a>
+                    <a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">ChronAeon Zenodo Suite</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <article class="blog-article-container">
+                <div class="blog-nav-bar">
+                    <a href="../index.html#/blog" class="blog-nav-btn">← Back to Blog</a>
+                    <a href="2026-11-04-h3n2-ltee-slides.html" class="blog-nav-btn secondary">4-Slide Deck ↗</a>
+                    <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">bioRxiv Preprint ↗</a>
+                    <a href="https://github.com/AMC-LAEB/LTEE-flu" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">LTEE-flu Repo ↗</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer" class="blog-nav-btn secondary">HyphAeon ↗</a>
+                </div>
+
+                <header class="post-header">
+                    <span class="post-tag">ISO 24495-3:2026 Science Brief · Experimental Viral Evolution</span>
+                    <h1>Tight Locks, Narrow Side Doors: What 1,200 Generations of Lab-Evolved H3N2 Flu Reveal About Protein Constraint</h1>
+                    <div class="post-meta">
+                        <span><i>04 Nov 2026, by Sergei</i></span>
+                        <span>·</span>
+                        <span>4 min read</span>
+                        <span>·</span>
+                        <span>Cohort: 12 Replicate H3N2 Populations · 100 Passages (1,200 Generations, 4,477 Codons)</span>
+                    </div>
+                </header>
+
+                <div class="post-content">
+                    <div class="takeaways-section">
+                        <span class="takeaways-header">What Does This All Mean?</span>
+                        <p class="takeaways-zinger">
+                            <strong>When <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al. (2026)</a> evolved human seasonal influenza A/H3N2 across 100 serial passages (1,200 viral generations) in primary human airway cultures, nearly two-thirds (40 of 63) of the amino-acid mutations that swept to fixation occurred at positions that have been &ge;90% invariant across 58 years of global human circulation—leading the authors to conclude that flu proteins have surprisingly weak intrinsic constraints.</strong>
+                            Running their open dataset (<a href="https://github.com/AMC-LAEB/LTEE-flu" target="_blank" rel="noopener noreferrer">AMC-LAEB/LTEE-flu</a>) through <code>HyphAeon</code> and <code>ChronAeon</code> in under 25 seconds resolves this paradox: those globally conserved positions actually sit under <em>stronger</em> average structural constraint than unmutated positions ($p = 1.9 \times 10^{-13}$), but the specific amino-acid changes that fixed in the lab slipped through narrow, contextually tolerated side doors (median zero-shot Digital DMS rank <strong>2.0 out of 19</strong> possible substitutions, $p = 4.2 \times 10^{-12}$).
+                        </p>
+                        <div class="takeaways-grid">
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">🚪 Rank 2.0 / 19</div>
+                                <div class="takeaway-label">Narrow Permissive Side Doors</div>
+                                <p class="takeaway-desc">Out of 19 possible amino-acid swaps at each site, the 40 mutations that fixed at globally invariant positions—and even the 8 with negative <code>BLOSUM62</code> scores—rank at a median of <strong>2.0 / 19</strong> for biophysical tolerance in zero-shot <code>HyphAeon</code> Digital DMS.</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">⏱️ 1.78× Acceleration</div>
+                                <div class="takeaway-label">Two-Phase LTEE Clock</div>
+                                <p class="takeaway-desc"><code>ChronAeon AutoClock</code> ($\Delta\mathrm{AICc} = 100.3$) splits the 1,200-generation experiment into an early drift-buffered waiting phase (passages 0–40) and a 1.78× faster selective-sweep phase (passages 50–100), flagging stalled replicate <code>P60-3A</code> ($z = -3.06$).</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">🎯 0 / 4,378 False</div>
+                                <div class="takeaway-label">19 Seconds vs. 20,000 ODE Runs</div>
+                                <p class="takeaway-desc">Without simulating 20,000 ODE drift trajectories or fitting a Hidden Markov Model, <code>hyphaeon temporal</code> confirms 82.5% (52/63) of fixed sweeps across all 10 viral proteins with zero false positives on 4,378 neutral codons ($p = 5.7 \times 10^{-90}$).</p>
+                            </div>
+                            <div class="takeaway-card">
+                                <div class="takeaway-stat">🔗 4 Multi-Gene Sectors</div>
+                                <div class="takeaway-label">Inter-Segment Co-Evolution</div>
+                                <p class="takeaway-desc"><code>hyphaeon epistasis</code> maps 10 co-selected residue pairs ($q \le 6.8 \times 10^{-6}$) across segments, recovering the <code>PB1:181 ↔ PA:606 ↔ HA:36</code> clonal-interference triad and linking <code>PB2:D740N</code> to <code>PA</code> and <code>NA:G448S</code> ($p_{\mathrm{perm}} = 0.0003$).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><span class="dropcap">I</span>n nature, human influenza A/H3N2 is famous for relentless antigenic evolution on the head of its hemagglutinin (HA) surface protein, while the internal polymerase and nucleoprotein machinery stays nearly frozen at the amino-acid level over decades. Why do those internal proteins barely budge in global surveillance? A long-standing view is that their 3D structures are so tightly packed that almost any amino-acid change breaks the viral copying machine.</p>
+
+                    <p>In a tour-de-force preprint from Emma de Rooij, Katie Hulme, Alvin X. Han, Colin A. Russell, and colleagues at Amsterdam UMC (<a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al., 2026</a>), the authors tested that idea by evolving a 2008 human A/H3N2 isolate (<code>A/Netherlands/177/2008</code>) across <strong>100 serial passages (~1,200 viral generations, 300 cumulative days of replication)</strong> in 12 independent primary human airway epithelial (HAE) cultures lacking antibodies and host-to-host transmission bottlenecks. When they compared their 63 fixed amino-acid substitutions against 118,000 global H3N2 sequences from GISAID (1968–2025), they found a surprise: <strong>40 of the 63 fixed mutations (63.5%) landed at positions that have been &ge;90% invariant across 58 years of human circulation</strong>, including 8 fixed substitutions with negative <code>BLOSUM62</code> scores. From this, the authors argued that seasonal H3N2 proteins are only weakly constrained intrinsically.</p>
+
+                    <p>Because the authors openly shared their complete processed variant trajectories, reconstructed haplotypes, and GISAID conservation tables on <a href="https://github.com/AMC-LAEB/LTEE-flu" target="_blank" rel="noopener noreferrer">GitHub</a> and <a href="https://doi.org/10.5281/zenodo.23661876" target="_blank" rel="noopener noreferrer">Zenodo</a>, I ran all 10 viral proteins (<strong>4,477 codons</strong>) and the 6-segment concatenation (<strong>121 consensus genomes, 3,765 codons</strong>) through <code>HyphAeon</code> and <code>ChronAeon</code>. <strong>What it all means in plain language:</strong> the global conservation of those H3N2 positions is not an illusion, and the proteins are not loosely constrained. Instead, an amino-acid site can have 18 of its 19 possible mutations locked shut by purifying selection while still leaving one or two residue-specific "side doors" open—and coarse 1992 substitution matrices like <code>BLOSUM62</code> mistake those open side doors for radical changes.</p>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>1. Resolving the Paradox: Locked Sites with Narrow Residue-Specific Side Doors</h2>
+
+                    <p>How can a codon stay 99.9% unchanged for half a century in human epidemics yet rapidly fix a mutation in a laboratory dish? When we run zero-shot Digital Deep Mutational Scanning (<code>hyphaeon dms</code>) on the 2008 founder virus—using only the founder's protein sequence context, with zero information from the passage experiment—we get two measurements for every codon: (1) its overall <strong>site plasticity ($\Phi$)</strong>, which averages how well the site tolerates all 19 possible amino-acid swaps, and (2) the <strong>specific substitution rank (`1` to `19`)</strong> of the exact amino-acid change that actually occurred in the experiment, where Rank `1` is the single least disruptive change at that position and Rank `19` is the most disruptive.</p>
+
+                    <p>Looking at both numbers together immediately reconciles the global tree with the laboratory dish (Fig. 1A):</p>
+
+                    <ul>
+                        <li><strong>The mutated positions really are tightly locked overall:</strong> Across the 3,818 globally invariant codons (&ge;90% conserved in GISAID) that never fixed a mutation in the lab, the median site plasticity is $\Phi = 2.088$. Across the 39 globally invariant codons that <em>did</em> fix a mutation in the lab, the median site plasticity is nearly twice as tight: <strong>$\Phi = 1.202$ (Mann-Whitney $p = 1.94 \times 10^{-13}$)</strong>. Most random amino-acid changes at these sites are strongly deleterious, which is why they remain conserved in nature.</li>
+                        <li><strong>The mutations that fixed in the lab walked through the #1 or #2 open side door:</strong> When we check which of the 19 possible amino-acid substitutions actually fixed across the 12 replicate populations ($N = 63$ fixed events), their median <code>HyphAeon</code> rank is <strong>2.0 out of 19</strong> (mean 3.10; Wilcoxon test against the random expectation of Rank 10: $p = 4.18 \times 10^{-12}$). For the 40 fixed mutations at globally invariant sites, the median rank is also <strong>2.0 out of 19</strong> ($p = 9.09 \times 10^{-12}$, median $|\Delta\mathrm{LRT}| = 0.061$).</li>
+                        <li><strong>Why <code>BLOSUM62</code> called tolerated swaps "radical":</strong> What about the 8 fixed substitutions at globally invariant sites that had negative <code>BLOSUM62</code> scores? Because <code>BLOSUM62</code> averages substitution frequencies across thousands of unrelated protein families from 1992, it penalizes swaps like isoleucine-to-threonine or glycine-to-glutamate everywhere. In the local structural context of the 2008 H3N2 proteins, however, all 8 of those "non-conservative" substitutions sit in the top 1 to 5 most tolerated choices at their codon—with a <strong>median <code>HyphAeon</code> DMS rank of 2.0 out of 19</strong> (Table 1).</li>
+                    </ul>
+
+                    <div class="table-wrap">
+                        <table class="comparative-table">
+                            <thead>
+                                <tr>
+                                    <th>Protein &amp; Fixed Substitution</th>
+                                    <th>Replicate Line</th>
+                                    <th>1968–2025 Global GISAID Conservation</th>
+                                    <th>BLOSUM62 Score</th>
+                                    <th>Site Mean Constraint ($\Phi$)</th>
+                                    <th>Specific Swap $\Delta\mathrm{LRT}$</th>
+                                    <th>Zero-Shot HyphAeon DMS Rank (1–19)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong><code>HA: I316T</code></strong> (HA1 300)</td>
+                                    <td><code>3B</code></td>
+                                    <td>99.84%</td>
+                                    <td>$-1$</td>
+                                    <td>1.518</td>
+                                    <td>$+0.032$</td>
+                                    <td><strong>Rank 1 / 19</strong> (#1 most tolerated AA)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>PA: T177I</code></strong></td>
+                                    <td><code>4B</code></td>
+                                    <td>99.83%</td>
+                                    <td>$-1$</td>
+                                    <td>1.196</td>
+                                    <td>$-0.044$</td>
+                                    <td><strong>Rank 2 / 19</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>PA: P534L</code></strong></td>
+                                    <td><code>3A</code></td>
+                                    <td>99.98%</td>
+                                    <td>$-3$</td>
+                                    <td>1.390</td>
+                                    <td>$+0.078$</td>
+                                    <td><strong>Rank 2 / 19</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>NP: M481T</code></strong></td>
+                                    <td><code>2A</code></td>
+                                    <td>99.96%</td>
+                                    <td>$-1$</td>
+                                    <td>0.946</td>
+                                    <td>$-0.119$</td>
+                                    <td><strong>Rank 2 / 19</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>NA: G357E</code></strong></td>
+                                    <td><code>4B</code></td>
+                                    <td>99.37%</td>
+                                    <td>$-2$</td>
+                                    <td>1.288</td>
+                                    <td>$+0.091$</td>
+                                    <td><strong>Rank 2 / 19</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>PA: D606G</code></strong></td>
+                                    <td><code>3A</code></td>
+                                    <td>99.94%</td>
+                                    <td>$-1$</td>
+                                    <td>0.592</td>
+                                    <td>$-0.041$</td>
+                                    <td><strong>Rank 3 / 19</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>PA: G627E</code></strong></td>
+                                    <td><code>3B</code></td>
+                                    <td>99.97%</td>
+                                    <td>$-2$</td>
+                                    <td>0.916</td>
+                                    <td>$-0.415$</td>
+                                    <td><strong>Rank 3 / 19</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>PB2: P43L</code></strong></td>
+                                    <td><code>2A</code></td>
+                                    <td>99.98%</td>
+                                    <td>$-3$</td>
+                                    <td>1.703</td>
+                                    <td>$+1.195$</td>
+                                    <td><strong>Rank 5 / 19</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <figure class="blog-figure">
+                        <img src="images/h3n2_ltee_fig1_dms_clock.png" alt="HyphAeon zero-shot DMS ranks of observed H3N2 LTEE mutations and ChronAeon AutoClock two-phase clock deconvolution">
+                        <figcaption>
+                            <strong>Figure 1. Fixed mutations at globally invariant H3N2 positions pass through narrow permissive corridors, igniting a 1.78× faster molecular clock phase after ~350 generations.</strong>
+                            Panel A plots the zero-shot <code>HyphAeon</code> Digital DMS rank (<code>1</code> = most tolerated of 19 possible amino-acid changes, <code>19</code> = most disruptive) across all 891 scored non-synonymous trajectories: drift ($N = 785$, median 4.0), transient ($N = 43$, median 3.0), all fixed ($N = 63$, median 2.0, Wilcoxon $p = 4.2 \times 10^{-12}$), globally conserved + fixed ($N = 40$, median 2.0, $p = 9.1 \times 10^{-12}$), and globally conserved + fixed with <code>BLOSUM62 &lt; 0</code> ($N = 8$, median 2.0, $p = 0.0078$).
+                            Panel B shows <code>ChronAeon AutoClock</code> ($K^* = 2$, $\Delta\mathrm{AICc} = 100.3$) across the 121 consensus genomes (3,765 codons), separating the early drift-buffered waiting phase (Community 0, blue, $\mu_0 = 8.74 \times 10^{-4}$ subs/site/yr) from the post-sweep fixation phase (Community 1, vermilion, $\mu_1 = 1.55 \times 10^{-3}$ subs/site/yr) and flagging stalled replicate <code>P60-3A</code> ($z = -3.06$).
+                        </figcaption>
+                    </figure>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>2. A Two-Speed Experimental Clock: The 350-Generation Waiting Room</h2>
+
+                    <p>One of the most striking experimental observations in <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al. (2026)</a> is that almost no mutations fixed during the first 25 to 35 passages (~300 to 400 viral generations); after that waiting period, selective sweeps ignited across all 12 populations. When we run <code>chronaeon date</code> and <code>chronaeon autoclock</code> on the 121 concatenated 6-segment consensus genomes (1.8 seconds total), this transition emerges directly from the sequence distances without any manual windowing (Fig. 1B):</p>
+
+                    <ul>
+                        <li><strong>Non-linear rate acceleration ($p = 0.0010$):</strong> Operating in the low-divergence metric regime ($d_{90} = 0.0018 &lt; 0.05$ substitutions/site, Spearman $\rho = 0.933$), <code>chronaeon date</code> recovers the exact 2008 founder timestamp ($t_{\mathrm{MRCA}} = 2008.44$, leave-one-out jackknife $\mathrm{SE} = 6.9$ days) and an overall rate of $3.88 \times 10^{-6}$ substitutions/site/day (matching the paper's $3.6 \times 10^{-6}$ subs/site/day), while the restricted cubic spline clock confirms a significant upward bend in substitution rate over time ($F = 11.36, p = 0.0010, \Delta\mathrm{AIC} = -9.12$).</li>
+                        <li><strong>Unsupervised two-phase partitioning ($\Delta\mathrm{AICc} = 100.3$):</strong> <code>chronaeon autoclock</code> automatically partitions the 121 timepoints into two clock regimes ($K^* = 2$, $\Delta\mathrm{BIC} = 65.3$ over a single clock): a slower <strong>Waiting Phase</strong> (Community 0, $N = 58$, covering passages <code>P0</code>–<code>P40</code> plus late-fixing replicates <code>3A</code> and <code>4C</code> at $\mu_0 = 8.74 \times 10^{-4}$ subs/site/yr) and a <strong>1.78× faster Sweep Phase</strong> (Community 1, $N = 63$, covering passages <code>P50</code>–<code>P100</code> at $\mu_1 = 1.55 \times 10^{-3}$ subs/site/yr). Out of 121 samples, sequence triage flags a single outlier—<strong><code>P60-3A</code> ($z = -3.06$)</strong>—pinpointing the exact passage where replicate <code>3A</code> sat with zero fixed mutations right before its delayed sweep at passage 60.</li>
+                    </ul>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>3. Nineteen Seconds vs. 20,000 ODE Trajectories: Sweeps and Multi-Segment Epistasis</h2>
+
+                    <p>To distinguish adaptive sweeps from random genetic drift across passages, the authors built an ordinary differential equation (ODE) model of viral growth in airway droplets, simulated 20,000 neutral drift trajectories, and trained a 2-state Gaussian Hidden Markov Model (HMM). To test for epistasis across genomic segments, they correlated single-passage frequency jumps ($\Delta f$), which can conflate unlinked mutations that happen to sweep during the same passage window.</p>
+
+                    <p>What happens if we hand the raw sequence and haplotype alignments straight to <code>hyphaeon temporal</code>, <code>hyphaeon meme</code>, and <code>hyphaeon epistasis</code> (Fig. 2)?</p>
+
+                    <figure class="blog-figure">
+                        <img src="images/h3n2_ltee_fig2_selection_epistasis.png" alt="HyphAeon tree-free selection surveillance vs paper ODE+HMM pipeline and multi-segment epistatic sectors">
+                        <figcaption>
+                            <strong>Figure 2. Tree-free <code>HyphAeon</code> selection and epistasis inference across all 10 viral proteins in under 22 seconds.</strong>
+                            Panel A compares haplotype <code>hyphaeon meme</code> episodic selection scores ($\widehat{\mathrm{LRT}}$) against <code>hyphaeon temporal</code> fixation sweep significance ($-\log_{10} p_{\mathrm{perm}}$) across all variable codons: <code>hyphaeon temporal</code> confirms 50 of 99 non-drift codons (and 52 of 63 individual fixed NS trajectories, 82.5%) with <strong>0 false positives across 4,378 neutral/drift codons</strong> (Fisher's exact $p = 5.7 \times 10^{-90}$).
+                            Panel B shows the 10 significant co-evolving residue pairs ($\mathrm{FDR}\ q \le 6.8 \times 10^{-6}$) identified by <code>hyphaeon epistasis</code> across the 6-segment concatenation, resolving 4 multi-segment sectors coupling the RNA polymerase (<code>PB2, PB1, PA</code>) to <code>HA</code> and <code>NA</code>.
+                        </figcaption>
+                    </figure>
+
+                    <ul>
+                        <li><strong>Zero false positives across 4,378 neutral codons in 19 seconds:</strong> Running <code>hyphaeon temporal</code> (`--time-units generations --sweep-mode fixation`) and <code>hyphaeon meme --attribute</code> across all 4,477 codons of all 10 viral proteins takes 19 seconds on an Apple M-series laptop. Without an ODE simulator or phylogenetic tree, <code>hyphaeon temporal</code> confirms <strong>82.5% (52 of 63) of the individual fixed non-synonymous sweeps</strong> while calling <strong>0 false positives out of 4,378 neutral or drift codons</strong> ($p = 5.70 \times 10^{-90}$, Fig. 2A). At the same time, single-taxon counterfactual attribution in <code>hyphaeon meme</code> isolates the top parallel and episodic drivers across the proteome: <strong><code>NA:G448S</code></strong> ($\widehat{\mathrm{LRT}} = 10.51, p = 0.0023$), <strong><code>PB2:D740N</code></strong> ($\widehat{\mathrm{LRT}} = 9.96, p = 0.0030$, parallel in <code>2C, 3B, 4A</code>), <strong><code>PA:D606G/N/E</code></strong> ($\widehat{\mathrm{LRT}} = 8.85, p = 0.0053$), <strong><code>M2:D24N</code></strong> ($\widehat{\mathrm{LRT}} = 8.34, p = 0.0068$, parallel in <code>3C, 4A, 4B</code>), <strong><code>NS1:D139N</code></strong> ($\widehat{\mathrm{LRT}} = 6.71, p = 0.0157$), and the overlapping-reading-frame sweep <strong><code>NEP:E52K / NS1:R204K</code></strong> ($\widehat{\mathrm{LRT}} = 6.64, p = 0.0162$).</li>
+                        <li><strong>Four multi-segment epistatic sectors coupling the polymerase to HA and NA:</strong> In 1.79 seconds on the concatenated 6-segment alignment, <code>hyphaeon epistasis</code> identifies 10 co-selected codon pairs ($\mathrm{FDR}\ q \le 6.78 \times 10^{-6}$, Fig. 2B) grouped into four spectral sectors ($p_{\mathrm{perm}} = 0.0003$ to $0.0175$). Sector 2 (<strong><code>PB1:I181M/V ↔ PA:D606G/N/E ↔ HA:V36I</code></strong>, $C = 0.843, p_{\mathrm{perm}} = 0.0059$) recovers the exact inter-segment clonal-interference sweep in population <code>2B</code> discussed by the authors—where multiple competing amino acids at <code>PB1:181</code> and <code>PA:606</code> rise and fall in lockstep ($\mathrm{CESI} = 4.87, q &lt; 10^{-300}$)—and shows that it is also coupled to <code>HA:V36I</code>. Even better, Sector 1 (<strong><code>PB2:D740N ↔ PA:R192H ↔ PA:D419N ↔ NA:G448S</code></strong>, $C = 0.856, p_{\mathrm{perm}} = 0.0003$) connects the paper's #1 parallel polymerase mutation (<code>PB2:D740N</code>) directly to the <code>PA–NA</code> co-evolutionary module in replicate <code>2C</code>, a link that pairwise $\Delta f$ correlation missed because <code>PB2:D740N</code> started rising one passage earlier.</li>
+                    </ul>
+
+                    <div class="callout-box">
+                        <strong>Data &amp; Reproducibility.</strong>
+                        All alignments, integrated codon and trajectory tables, and analysis scripts were generated from the publicly released data of <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al. (2026)</a> (<a href="https://github.com/AMC-LAEB/LTEE-flu" target="_blank" rel="noopener noreferrer">AMC-LAEB/LTEE-flu</a>; <a href="https://doi.org/10.5281/zenodo.23661876" target="_blank" rel="noopener noreferrer">Zenodo: 10.5281/zenodo.23661876</a>) using <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon</a> and <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon</a> (<a href="https://doi.org/10.5281/zenodo.23560893" target="_blank" rel="noopener noreferrer">Zenodo v2.0</a>). View the <a href="2026-11-04-h3n2-ltee-slides.html">4-Slide Executive Deck</a> for a 60-second visual walkthrough.
+                    </div>
+
+                    <hr class="fine-line-divider" />
+
+                    <h2>4. Agentic Protocol: How We Performed the Analysis and Reached Each Conclusion (ASD-STE100 Plain Text)</h2>
+
+                    <p>The plain-text protocol below follows <a href="https://www.asd-ste100.org" target="_blank" rel="noopener noreferrer">ASD-STE100 (Simplified Technical English)</a> rules so that any researcher or coding agent can audit and reproduce every number in this post from the raw repository files.</p>
+
+<pre style="font-family: 'Inter', monospace; font-size: 0.83rem; line-height: 1.55; background: #f9fafb; border: 2px solid var(--border-color); padding: 1.35rem 1.5rem; white-space: pre-wrap; word-wrap: break-word; color: #111827;">
+AGENTIC PROTOCOL (ASD-STE100 SIMPLIFIED TECHNICAL ENGLISH)
+
+STEP 1: CLONE THE PUBLIC REPOSITORY AND RECONSTRUCT IN-FRAME CODON ALIGNMENTS
+1.1. The agent read the preprint PDF (de Rooij et al., 2026; bioRxiv 2026.10.26.761891v1) and cloned https://github.com/AMC-LAEB/LTEE-flu.
+1.2. From data/stock_consensus_cds.fasta, results/snv_trajectories.csv, and results/raw_snv_haplotpes.csv, the agent reconstructed in-frame codon alignments (with terminal stop codons removed) for all 10 viral proteins (PB2, PB1, PA, HA, NP, NA, M1, M2, NS1, NEP; 4,477 codons total) across all 12 populations (2A-2C, 3A-3C, 4A-4F) and 10 sequenced passage timepoints (P10-P100, spanning 120 to 1,200 viral generations) plus the founder (stock|0).
+1.3. For whole-genome clock and epistasis analyses, the agent concatenated the 6 non-overlapping coding segments (PB2, PB1, PA, HA, NP, NA) into a 121-taxon alignment of 3,765 codons (11,295 nucleotides).
+
+STEP 2: TEST ZERO-SHOT BIOPHYSICAL CONSTRAINT AND MUTATION RANKS (HYPHAEON DMS)
+2.1. The agent ran hyphaeon dms on each of the 10 protein alignments relative to the 2008 founder sequence (stock|0).
+2.2. For each codon, hyphaeon dms calculated the site-level mutational plasticity (Phi, mean |Delta LRT| across all 19 missense substitutions) and ranked the 19 possible amino-acid substitutions from 1 (smallest |Delta LRT|, most biophysically tolerated) to 19 (largest |Delta LRT|, most disruptive).
+2.3. Result A (Site-Level Constraint): Globally conserved sites (&gt;=90% dominant amino acid in 1968-2025 GISAID) that fixed a mutation in the experiment (N = 39 sites) had a significantly lower median plasticity (Phi = 1.202) than globally conserved sites that never mutated (N = 3,818 sites, median Phi = 2.088; Mann-Whitney p = 1.94 x 10^-13).
+2.4. Result B (Residue-Specific Rank): Across all 63 fixed non-synonymous mutation events, the observed amino-acid substitution had a median HyphAeon DMS rank of 2.0 / 19 (mean 3.10; Wilcoxon test vs. random rank 10: p = 4.18 x 10^-12). Across the 40 fixed events at globally conserved sites, the median rank was 2.0 / 19 (mean 3.20, p = 9.09 x 10^-12). Across the 8 fixed events at globally conserved sites with BLOSUM62 &lt; 0, the median rank was 2.0 / 19 (mean 2.50, p = 0.0078; all 8 ranked between 1/19 and 5/19).
+2.5. Conclusion 1: Globally conserved H3N2 positions are strongly constrained across average substitutions, but fixed laboratory mutations used specific biophysically permissive amino-acid channels that coarse BLOSUM62 scores misclassified as radical.
+
+STEP 3: TEST MOLECULAR CLOCK ACCELERATION AND TWO-PHASE PARTITIONING (CHRONAEON)
+3.1. The agent ran chronaeon date and chronaeon autoclock (-k 6) on the 121-taxon Concat6 alignment (completed in 1.8 seconds).
+3.2. Result A: Pairwise 90th-percentile divergence was d_90 = 0.0018 (&lt; 0.05 substitutions/site), confirming the outbreak/LTEE metricity regime (Spearman rho = 0.933, R^2 = 0.728). ChronAeon estimated t_MRCA = 2008.44 (120-iteration jackknife SE = 6.9 days) and a mean substitution rate of 1.42 x 10^-3 substitutions/site/year (3.88 x 10^-6 substitutions/site/day). A restricted cubic spline clock detected significant non-linear rate acceleration across passages (F = 11.36, p = 0.0010, Delta AIC = -9.12).
+3.3. Result B: ChronAeon AutoClock selected K* = 2 clock communities (Delta AICc = 100.28, Delta BIC = 65.31 over K = 1), separating Community 0 (early waiting phase P0-P40 plus late-fixing replicates 3A and 4C; N = 58, mu_0 = 8.74 x 10^-4 subs/site/yr, R^2 = 0.769) from Community 1 (post-sweep fixation phase P50-P100; N = 63, mu_1 = 1.55 x 10^-3 subs/site/yr, R^2 = 0.534) and flagging outlier P60-3A (studentized residual z = -3.06).
+3.4. Conclusion 2: Sequence divergence alone separates the ~350-generation pre-sweep waiting period from the 1.78x faster selective-sweep phase.
+
+STEP 4: TEST TREE-FREE SELECTION AND MULTI-SEGMENT EPISTASIS (HYPHAEON TEMPORAL, MEME, EPISTASIS)
+4.1. The agent ran hyphaeon temporal (--time-units generations --sweep-mode fixation) and hyphaeon meme (--attribute) on all 10 proteins, and hyphaeon epistasis on Concat6 (completed in 21 seconds total).
+4.2. Result A: Across all 4,477 codons, hyphaeon temporal identified 50 confirmed fixation sweep codons (p_perm &lt;= 0.05): 50 of 99 non-drift codons vs. 0 of 4,378 neutral/drift codons (Fisher's exact p = 5.70 x 10^-90), confirming 52 of 63 individual fixed NS mutation trajectories (82.5%) while rejecting 763 of 787 drift trajectories (97.0%).
+4.3. Result B: hyphaeon epistasis identified 10 co-selected codon pairs at FDR q &lt;= 6.78 x 10^-6 organized into 4 multi-segment sectors: Sector 1 (PB2:D740N, PA:R192H, PA:D419N, NA:G448S; C = 0.856, p_perm = 0.0003), Sector 2 (PB1:I181M/V, PA:D606G/N/E, HA:V36I; C = 0.843, p_perm = 0.0059), Sector 3 (PB2:V105M, NA:E435K; C = 0.958, p_perm = 0.0109), and Sector 4 (PB2:S590N, NA:D125N; C = 0.942, p_perm = 0.0175).
+4.4. Conclusion 3: Tree-free temporal and manifold-projection operators recover the selective sweeps and multi-segment epistatic networks in seconds without ODE drift simulations or pairwise Delta-f correlation artifacts.
+</pre>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

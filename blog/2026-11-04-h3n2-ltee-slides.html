@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3N2 LTEE in 60 Seconds (Slide Deck) | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Tight Locks, Narrow Side Doors: 1,200 Generations of Lab-Evolved H3N2 Flu in 4 Slides">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-11-04-h3n2-ltee-slides.html">
+    <meta name="twitter:description" content="A 4-slide visual summary of 1,200 generations of human-airway-passaged A/H3N2 influenza (de Rooij et al., 2026) analyzed with HyphAeon and ChronAeon.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/h3n2_ltee_fig1_dms_clock.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Tight Locks, Narrow Side Doors: 1,200 Generations of Lab-Evolved H3N2 Flu in 4 Slides">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-11-04-h3n2-ltee-slides.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/h3n2_ltee_fig1_dms_clock.png">
+    <meta property="og:description" content="A 4-slide visual summary of 1,200 generations of human-airway-passaged A/H3N2 influenza (de Rooij et al., 2026) analyzed with HyphAeon and ChronAeon.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- MathJax Support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .deck-wrapper { max-width: 980px; padding: 2.5rem 3.5rem; }
+        .deck-topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;
+        }
+        .deck-nav-btn {
+            background: #000000; color: #ffffff; text-decoration: none;
+            font-weight: 800; text-transform: uppercase; padding: 0.55rem 1.1rem;
+            font-size: 0.75rem; border: 2px solid #000000; display: inline-block; cursor: pointer;
+        }
+        .deck-nav-btn.secondary { background: #ffffff; color: #000000; }
+        .deck-nav-btn:hover { background: #333333; color: #ffffff; }
+        .progress-rail {
+            width: 100%; height: 10px; border: 2px solid #000000;
+            background: #ffffff; margin-bottom: 1.5rem; position: relative;
+        }
+        .progress-fill { height: 100%; background: #000000; width: 25%; transition: width 0.2s ease; }
+        .slide {
+            display: none; border: 3px solid #000000; background: #ffffff;
+            padding: 2.5rem 2.75rem; min-height: 540px; flex-direction: column;
+            justify-content: space-between; margin-bottom: 1.5rem;
+        }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid #000000; padding-bottom: 1.1rem; margin-bottom: 1.5rem; }
+        .slide-kicker {
+            display: inline-block; background: #000000; color: #ffffff;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            padding: 0.2rem 0.55rem; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+        }
+        .slide h2 { font-size: 1.75rem; font-weight: 900; line-height: 1.18; letter-spacing: -0.02em; margin: 0; color: #000000; }
+        .slide-body { font-family: 'Merriweather', Georgia, serif; font-size: 0.98rem; line-height: 1.65; color: #111827; flex: 1; }
+        .slide-body p { margin-bottom: 1rem; }
+        .slide-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1rem 0; }
+        .slide-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .stat-card { border: 2px solid #000000; padding: 1.1rem 1.25rem; background: #f9fafb; }
+        .stat-card.highlight { background: #000000; color: #ffffff; }
+        .stat-card.highlight .stat-big, .stat-card.highlight .stat-title, .stat-card.highlight .stat-text { color: #ffffff; }
+        .stat-big { font-family: var(--font-family); font-size: 1.65rem; font-weight: 900; line-height: 1.1; margin-bottom: 0.3rem; color: #000000; }
+        .stat-title { font-family: var(--font-family); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem; color: #000000; }
+        .stat-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 0.84rem; line-height: 1.45; color: #374151; margin: 0 !important; }
+        .slide-fig { border: 2px solid #000000; padding: 0.75rem; background: #ffffff; margin: 0.75rem 0; }
+        .slide-fig img { width: 100%; height: auto; display: block; }
+        .slide-fig-cap { font-family: var(--font-family); font-size: 0.75rem; color: #4b5563; margin-top: 0.5rem; line-height: 1.4; }
+        .zinger-banner {
+            border-left: 5px solid #000000; background: #f3f4f6;
+            padding: 0.9rem 1.2rem; font-family: var(--font-family);
+            font-size: 0.88rem; font-weight: 700; color: #000000; margin-top: 1rem;
+        }
+        .slide-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 2px solid #000000; padding-top: 1rem; margin-top: 1.25rem;
+            font-family: var(--font-family); font-size: 0.78rem;
+        }
+        .deck-controls { display: flex; gap: 0.6rem; align-items: center; }
+        .ctrl-btn {
+            background: #000000; color: #ffffff; border: 2px solid #000000;
+            padding: 0.5rem 1.1rem; font-family: var(--font-family);
+            font-size: 0.76rem; font-weight: 800; text-transform: uppercase; cursor: pointer;
+        }
+        .ctrl-btn.secondary { background: #ffffff; color: #000000; }
+        .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .ctrl-btn:not(:disabled):hover { background: #333333; color: #ffffff; }
+        .kbd-hint { color: #4b5563; font-size: 0.74rem; }
+        .kbd-key { border: 1.5px solid #000000; padding: 0.1rem 0.4rem; background: #ffffff; font-weight: 800; font-size: 0.7rem; }
+        body.view-all .slide { display: flex !important; border-bottom: 3px solid #000000; }
+        body.view-all .slide-footer { display: none; }
+        @media (max-width: 900px) {
+            .deck-wrapper { padding: 1.5rem; }
+            .slide { padding: 1.5rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide-grid-2, .slide-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="profile-header">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <img src="../slkp.jpg" alt="Sergei L Kosakovsky Pond" class="profile-img">
+                    <h1>Sergei L Kosakovsky Pond, <small>PhD</small></h1>
+                </a>
+                <p class="title">Professor of Biology</p>
+            </header>
+
+            <section id="links">
+                <h3>Navigation</h3>
+                <div class="links-list">
+                    <a href="2026-11-04-h3n2-ltee.html">← Read Full Blog Post</a>
+                    <a href="../index.html#/blog">All Blog Posts</a>
+                    <a href="../index.html#/">CV Overview</a>
+                    <a href="../index.html#/software-projects">Software Projects</a>
+                </div>
+            </section>
+
+            <section id="paper-links">
+                <h3>Preprints &amp; Tools</h3>
+                <div class="links-list">
+                    <a href="2026-11-04-h3n2-ltee.html">Full Blog Post</a>
+                    <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al. (bioRxiv 2026)</a>
+                    <a href="https://github.com/AMC-LAEB/LTEE-flu" target="_blank" rel="noopener noreferrer">AMC-LAEB/LTEE-flu GitHub</a>
+                    <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer">HyphAeon on GitHub</a>
+                    <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer">ChronAeon Web App</a>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <div class="deck-wrapper">
+                <div class="deck-topbar">
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <a href="2026-11-04-h3n2-ltee.html" class="deck-nav-btn">← Back to Blog Post</a>
+                        <button id="toggleViewBtn" class="deck-nav-btn secondary" onclick="toggleViewAll()">View All 4 Slides</button>
+                    </div>
+                    <div class="kbd-hint">
+                        Use <span class="kbd-key">←</span> <span class="kbd-key">→</span> or <span class="kbd-key">Space</span> to navigate · 60-Second Summary
+                    </div>
+                </div>
+
+                <div class="progress-rail">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- SLIDE 1 -->
+                <section class="slide active" data-slide="1">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 1 of 4 · The Experimental Paradox</span>
+                            <h2>Why did 63.5% of fixed lab mutations hit positions that have been frozen for 58 years in humans?</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>
+                                In <a href="https://doi.org/10.64898/2026.10.26.761891" target="_blank" rel="noopener noreferrer">de Rooij et al. (2026)</a>, 12 seasonal influenza A/H3N2 populations evolved across <strong>100 passages (~1,200 generations)</strong> in primary human airway cultures without antibodies or transmission bottlenecks:
+                            </p>
+                            <div class="slide-grid-3">
+                                <div class="stat-card">
+                                    <div class="stat-big">40 / 63 Fixed</div>
+                                    <div class="stat-title">At &ge;90% GISAID Invariant Sites</div>
+                                    <p class="stat-text">Nearly two-thirds of fixed amino-acid swaps hit positions conserved across 118,000 human H3N2 sequences since 1968.</p>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">Rank 2.0 / 19</div>
+                                    <div class="stat-title">Narrow Permissive Side Doors</div>
+                                    <p class="stat-text">Zero-shot <code>HyphAeon</code> DMS shows those sites are tightly constrained overall ($\Phi = 1.20$), but mutated via their #1 or #2 most tolerated AA swap.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">&lt; 25 Seconds</div>
+                                    <div class="stat-title">Whole-Proteome Inference</div>
+                                    <p class="stat-text"><code>ChronAeon</code> and <code>HyphAeon</code> analyze all 4,477 codons and 121 consensus genomes without ODE simulations or MCMC chains.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 1 / 4 · The Experimental Paradox</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()" disabled>← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 2 -->
+                <section class="slide" data-slide="2">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 2 of 4 · HyphAeon DMS + ChronAeon AutoClock</span>
+                            <h2>Narrow biophysical corridors (Rank 2/19) and a two-speed experimental clock</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/h3n2_ltee_fig1_dms_clock.png" alt="Figure 1: HyphAeon DMS Ranks and ChronAeon AutoClock Two-Phase Clock">
+                                <div class="slide-fig-cap">
+                                    <strong>Left:</strong> Even the 8 fixed swaps at globally invariant sites with <code>BLOSUM62 &lt; 0</code> rank at median <strong>2.0 / 19</strong> in zero-shot <code>HyphAeon</code> DMS (<code>HA:I316T</code> Rank 1/19; <code>PA:T177I, P534L</code> Rank 2/19). <strong>Right:</strong> <code>ChronAeon AutoClock</code> ($\Delta\mathrm{AICc} = 100.3$) separates the P0–P40 waiting phase from the 1.78× faster P50–P100 sweep phase.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 2 / 4 · Digital DMS &amp; Two-Phase Clock</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 3 -->
+                <section class="slide" data-slide="3">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 3 of 4 · HyphAeon Temporal, MEME &amp; Epistasis</span>
+                            <h2>0 / 4,378 false positives in 19 seconds and 4 multi-segment epistatic sectors</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-fig">
+                                <img src="images/h3n2_ltee_fig2_selection_epistasis.png" alt="Figure 2: Tree-free sweep surveillance and inter-segment epistasis">
+                                <div class="slide-fig-cap">
+                                    <strong>Left:</strong> <code>hyphaeon temporal</code> confirms 82.5% (52/63) of fixed NS sweeps with 0 false positives across 4,378 neutral codons ($p = 5.7 \times 10^{-90}$). <strong>Right:</strong> <code>hyphaeon epistasis</code> maps 10 co-selected pairs ($q \le 6.8 \times 10^{-6}$), linking <code>PB2:D740N</code> to <code>PA</code> and <code>NA:G448S</code> and recovering <code>PB1:181 ↔ PA:606 ↔ HA:36</code>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 3 / 4 · Sweeps &amp; Inter-Segment Epistasis</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()">Next →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4 -->
+                <section class="slide" data-slide="4">
+                    <div>
+                        <div class="slide-header">
+                            <span class="slide-kicker">Slide 4 of 4 · Synthesis</span>
+                            <h2>Three lessons from 1,200 generations of H3N2 evolution</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="slide-grid-3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-big">Rank 2.0 / 19</div>
+                                    <div class="stat-title">Context Beats BLOSUM62</div>
+                                    <p class="stat-text">Globally conserved sites are tightly locked overall, but mutate through narrow residue-specific side doors that 1992 matrices misclassify.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">1.78× Clock Jump</div>
+                                    <div class="stat-title">350-Gen Waiting Room</div>
+                                    <p class="stat-text"><code>ChronAeon AutoClock</code> splits the drift-buffered lag phase from the post-passage-40 selective sweep regime directly from distances.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-big">PB2–PA–NA</div>
+                                    <div class="stat-title">Multi-Segment Coupling</div>
+                                    <p class="stat-text"><code>hyphaeon epistasis</code> uncovers cross-segment polymerase–surface coupling missed by single-step $\Delta f$ correlation.</p>
+                                </div>
+                            </div>
+                            <div class="zinger-banner">
+                                Read the full post at <a href="2026-11-04-h3n2-ltee.html" style="color: #000; text-decoration: underline;">2026-11-04-h3n2-ltee.html</a> · Explore <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">HyphAeon</a> &amp; <a href="https://primaeon.org/time/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">ChronAeon</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer">
+                        <span>Slide 4 / 4 · Synthesis</span>
+                        <div class="deck-controls">
+                            <button class="ctrl-btn secondary" onclick="prevSlide()">← Prev</button>
+                            <button class="ctrl-btn" onclick="nextSlide()" disabled>Next →</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+
+        function updateDeck() {
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.slide) === currentSlide);
+            });
+            document.getElementById('progressFill').style.width = ((currentSlide / totalSlides) * 100) + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) { currentSlide++; updateDeck(); }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) { currentSlide--; updateDeck(); }
+        }
+
+        function toggleViewAll() {
+            document.body.classList.toggle('view-all');
+            const btn = document.getElementById('toggleViewBtn');
+            btn.textContent = document.body.classList.contains('view-all') ? 'Single-Slide Mode' : 'View All 4 Slides';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.body.classList.contains('view-all')) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+    </script>
+</body>
+</html>
