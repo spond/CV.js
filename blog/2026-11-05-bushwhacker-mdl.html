@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Evolution as Data Compression: How Four Sequences and Sixteen Sites Explain Polytomies, Long-Branch Attraction, and Reticulate Networks | Sergei L. Kosakovsky Pond</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --accent-amber: #d97706;
+            --text-dark: #111827;
+            --text-muted: #4b5563;
+            --bg-light: #f9fafb;
+            --border-gray: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.75;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-narrow {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header.blog-header {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            background: var(--bg-light);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        h1.post-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.05rem;
+            line-height: 1.12;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: #000;
+        }
+
+        .lead {
+            font-size: 1.22rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.65rem;
+            margin-top: 3rem;
+            margin-bottom: 1.15rem;
+            letter-spacing: -0.025em;
+            color: #000;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1.35rem;
+            font-size: 1.075rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+        }
+
+        pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.55;
+        }
+
+        .callout-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.35rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+        }
+
+        .figure-container {
+            margin: 2.25rem -36px;
+            text-align: center;
+            background: #fff;
+            padding: 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 860px) {
+            .figure-container {
+                margin: 2rem 0;
+            }
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .figure-caption {
+            margin-top: 0.9rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 0 0.5rem;
+            line-height: 1.55;
+        }
+
+        .metric-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        table.blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.75rem 0;
+            font-size: 0.92rem;
+        }
+
+        table.blog-table th {
+            background: var(--bg-light);
+            border-bottom: 2px solid var(--border-gray);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        table.blog-table td {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 9px 12px;
+            vertical-align: top;
+        }
+
+        /* Interactive MDL Ledger Widget */
+        .mdl-widget {
+            background: #f8fafc;
+            border: 2px solid #0f172a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2.25rem 0;
+            box-shadow: 5px 5px 0px #0f172a;
+        }
+
+        .mdl-btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.15rem;
+        }
+
+        .mdl-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 6px;
+            border: 1.5px solid #0f172a;
+            background: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .mdl-btn.active {
+            background: #1e40af;
+            color: #ffffff;
+            border-color: #1e40af;
+        }
+
+        .seq-grid {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.84rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 12px 14px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            line-height: 1.65;
+        }
+
+        .cell-syn {
+            background: #dbeafe;
+            color: #1e40af;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .cell-priv-c {
+            background: #d1fae5;
+            color: #065f46;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .cell-priv-t {
+            background: #fee2e2;
+            color: #991b1b;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .cell-dot {
+            color: #94a3b8;
+            padding: 1px 4px;
+        }
+
+        footer.blog-footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-gray);
+            background: var(--bg-light);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="blog-header">
+        <div class="container-narrow header-nav">
+            <a href="../index.html" class="back-link">← Back to CV &amp; Research</a>
+            <div>
+                <span class="text-muted">November 5, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-narrow">
+        <div class="post-meta">Information Theory • Phylogenetics • Minimum Description Length • 6 Min Read</div>
+        <h1 class="post-title">Evolution as Data Compression: How Four Sequences and Sixteen Sites Explain Polytomies, Long-Branch Attraction, and Reticulate Networks</h1>
+
+        <p class="lead">
+            For forty years, molecular phylogenetics has treated substitution matrices as expensive and tree branches as free—forcing algorithms to output fully bifurcating trees even where the data contain zero evolutionary signal, and then relying on bootstrap cutoffs to clean up the mess. Viewing evolution through Rissanen's Minimum Description Length (MDL) principle flips the problem on its head: a branch, a polytomy, or a horizontal gene transfer is real if and only if encoding it makes the alignment file smaller. You can see the entire mechanism at work with pencil and paper on just four sequences of length sixteen.
+        </p>
+
+        <!-- High-Impact Brutalist 2x2 Summary Grid -->
+        <div style="background: #f8fafc; border: 2px solid #0f172a; border-radius: 12px; padding: 1.75rem; margin-bottom: 2.75rem; box-shadow: 6px 6px 0px #0f172a;">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; margin-bottom: 1.25rem; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <span style="background: #0f172a; color: #fff; padding: 3px 8px; border-radius: 4px;">Key Takeaways</span>
+                <span>The 60-Second Digest</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.15rem;">
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #1e40af; font-size: 1.1rem; margin-bottom: 0.3rem;">🧬 DNA = Delta Coding</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Trees Are Execution Traces of Copying Hardware</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Nature does not generate each new genome from scratch (<em>L</em> ln 4 nats); DNA polymerase copies an ancestral template and emits a sparse diff of mutations. A phylogeny compresses an alignment because it replays that physical copying graph.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b91c1c; font-size: 1.1rem; margin-bottom: 0.3rem;">🌿 The Polytomy Law</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Why 1 Shared Mutation Contracts &amp; 2+ Resolve</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">On a 4-taxon, 16-site alignment where leaves carry 2 private mutations, 1 shared mutation saves <strong>5.28 nats</strong> on the tips but costs <strong>5.93 nats</strong> to open a new internal branch (net <strong>−0.65 nats</strong> → polytomy). Two or three shared mutations split the branch header and resolve the clade (+1.00 to +3.29 nats).</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b45309; font-size: 1.1rem; margin-bottom: 0.3rem;">⚖️ 5.6× LBA Immunity</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Combinadics Automatically Discount Long Branches</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Because a branch with <em>m</em> mutations encodes an <em>unordered set</em> of sites, adding a mutation to a noisy 6-mutation branch costs only ln(10/7) = <strong>0.36 nats</strong> of site address, versus ln(15/2) = <strong>2.01 nats</strong> on a quiet 1-mutation branch—giving short-branch homology a 5.6× compression advantage over long-branch collisions.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #047857; font-size: 1.1rem; margin-bottom: 0.3rem;">📦 <code>.bwz</code> vs. <code>lzma</code></div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">326× Chromosome Delta-Coding &amp; Mosaic Switchpoints</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Compiled into a lossless arithmetic compressor (<code>bushwhacker -c</code>), the MDL tree beats <code>gzip</code>, <code>bzip2</code>, and <code>lzma</code> by 1.4×–10.8× on clonal and deep alignments, while the exact point where row-wise <code>lzma</code> overtakes <code>.bwz</code> diagnoses whole-genome mosaic recombination.</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 2px dashed #cbd5e1; font-size: 0.94rem; color: #0f172a; line-height: 1.55;">
+                <strong style="background: #fef08a; padding: 2px 6px; border-radius: 4px; margin-right: 6px;">💡 What Does This All Mean?</strong>
+                Parsimony counts mutations; Maximum Likelihood estimates continuous branch rates; Bootstrap resamples columns; Network methods hunt for gene transfer. Under Minimum Description Length, all four collapse into a single physical rule measured in one currency (nats): <strong>an evolutionary feature exists if and only if stating the mechanism saves more bits in describing the descendants than it costs to state the mechanism itself.</strong>
+            </div>
+        </div>
+
+        <p>
+            Every standard phylogenetic pipeline begins with a strange accounting asymmetry. First, a model selector such as ModelFinder tests hundreds of 4×4 nucleotide substitution matrices using the Bayesian Information Criterion, <code>BIC = −2 ln P(A | T, θ) + k ln L</code>. In that formula, the complexity penalty <code>k ln L</code> is applied strictly to the 1 to 10 continuous rate parameters of the substitution matrix—while the discrete tree topology <em>T</em> (with its <em>N</em> − 3 binary splits chosen from <code>(2N − 5)!!</code> possible trees and 2<em>N</em> − 3 branch lengths) is charged <strong>zero penalty</strong>.
+        </p>
+
+        <p>
+            Because adding a branch is treated as free, a standard maximum-likelihood tree builder is forced to output a fully bifurcating binary tree even when dozens of internal branches carry zero mutations in the alignment. Practitioners then bolt on a second and third stage—running hundreds of bootstrap replicates and picking an arbitrary support cutoff (70%, 80%, or 95%)—to collapse the zero-evidence branches that the likelihood search was forced to invent in the first place.
+        </p>
+
+        <p>
+            Why does a phylogenetic tree compress a sequence alignment at all? Because <strong>DNA replication is physical delta-compression</strong>. When a cell or virus replicates, nature does not draw <em>L</em> nucleotides independently from an i.i.d. soup; DNA polymerase copies an existing parent template and introduces a sparse diff of <em>m</em> ≪ <em>L</em> point substitutions. If we measure both the evolutionary graph and the mutations along its branches in the exact same information-theoretic unit—<strong>nats</strong> (natural logarithmic units, where 1 nat = 1 / ln 2 ≈ 1.443 bits)—then tree inference, polytomy contraction, long-branch attraction resistance, and horizontal gene transfer detection become a single lossless compression problem. That is what our new engine, <strong><code>Bushwhacker</code></strong>, computes.
+        </p>
+
+        <h2>1. The 4-Sequence, 16-Site Toy Alignment: Counting Every Nat by Hand</h2>
+
+        <p>
+            To see how MDL prices a phylogenetic split without hiding behind matrix exponentials, let's work through a tiny alignment of <strong><em>N</em> = 4 sequences</strong> (<code>T1</code>, <code>T2</code>, <code>T3</code>, <code>T4</code>) across <strong><em>L</em> = 16 nucleotide sites</strong> (<strong>Figure 1</strong>).
+        </p>
+
+        <p>
+            Suppose the ancestral root sequence is 16 adenines (<code>X_r = AAAAAAAAAAAAAAAA</code>). If we transmit the 4 × 16 = 64 nucleotides of the alignment raw, without any tree or ancestral template, each of the 4 possible bases (<code>A, C, G, T</code>) costs <code>ln 4 ≈ 1.386 nats</code> (exactly 2 bits), for a raw uncompressed size of:
+        </p>
+
+        <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 1.02rem; background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <strong>Raw Uncompressed Grid:</strong> &nbsp; 4 × 16 × ln 4 = <strong>88.72 nats</strong> (128 bits = 16 bytes)
+        </p>
+
+        <p>
+            Now suppose we transmit the 16-base ancestral root sequence <code>X_r</code> once up front—which costs <code>16 × ln 4 = 22.18 nats</code>—and then describe each taxon by listing only the sites where it differs from its ancestor. Specifically, across our 16 columns:
+        </p>
+
+        <ul>
+            <li><strong>Sites 4–11 (Private Terminal Noise):</strong> Each of the four sequences carries <strong><em>m<sub>c</sub></em> = 2 private mutations</strong> of its own that no other taxon shares (<code>T1</code> has <code>C</code> at sites 4–5; <code>T2</code> has <code>T</code> at sites 6–7; <code>T3</code> has <code>C</code> at sites 8–9; <code>T4</code> has <code>T</code> at sites 10–11).</li>
+            <li><strong>Sites 12–16 (Conserved Core):</strong> All four sequences retain the ancestral <code>A</code>.</li>
+            <li><strong>Sites 1–3 (Candidate Clade Signal):</strong> Sequences <code>T1</code> and <code>T2</code> share <strong><em>m<sub>e</sub></em> ∈ {1, 2, 3} identical derived <code>G</code> mutations</strong>, while <code>T3</code> and <code>T4</code> retain the ancestral <code>A</code>.</li>
+        </ul>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_fig1_didactic_mdl.png"
+                alt="Four-panel didactic diagram showing (A) the 4x16 nucleotide alignment and single-branch code anatomy, (B) the unresolved star tree T_star versus the resolved quartet T_split, (C) the phase transition bar chart from m_e=1 (contracted) to m_e=2 and m_e=3 (resolved), and (D) combinadic marginal weight asymmetry in the Felsenstein Zone and lateral shunt pricing.">
+            <div class="figure-caption">
+                <strong>Figure 1. Grounding Minimum Description Length phylogenetic graph induction on a 4-taxon, 16-site alignment (<em>N</em> = 4, <em>L</em> = 16).</strong>
+                <strong>(A)</strong> Alignment matrix (ancestral root <code>X_r = A<sup>16</sup></code> costs 22.18 nats; sites 1–3 carry <em>m<sub>e</sub></em> ∈ {1, 2, 3} shared <code>G</code> synapomorphies on <code>T1, T2</code>; sites 4–11 carry <em>m<sub>c</sub></em> = 2 private mutations per leaf; sites 12–16 are invariant) and the four components of the single-branch packet cost <code>L_branch(m, 16)</code>.
+                <strong>(B)</strong> Under the unresolved star tree <code>T_star</code> (left), each shared <code>A → G</code> mutation must be encoded twice in parallel on <code>T1</code> and <code>T2</code> (<span class="metric-badge">Δs = 5.28 nats/site</span>). Under the resolved quartet <code>T_split</code> (right), we pay a one-time topological split header (<span class="metric-badge">L_topo = 0.41 nats</span>) plus <code>L_branch(m_e, 16)</code> to encode the shared mutations once on the internal stem <em>e</em>.
+                <strong>(C)</strong> When <em>m<sub>e</sub></em> = 1, opening a new internal branch costs more (5.93 nats) than it saves on the two leaves (5.28 nats), yielding <span class="metric-badge">G_MDL = −0.65 nats</span> and contracting the split into a polytomy. At <em>m<sub>e</sub></em> = 2 (<span class="metric-badge">+1.00 nats</span>) and <em>m<sub>e</sub></em> = 3 (<span class="metric-badge">+3.29 nats</span>), shared mutations amortize the branch header and resolve the clade.
+                <strong>(D)</strong> The same combinadic formula explains why MDL resists Long-Branch Attraction (5.6× higher positional weight on 1-mutation short branches than 6-mutation long branches) and how Stage 4 certifies lateral shunts.
+            </div>
+        </div>
+
+        <h2>2. Anatomy of a Branch Packet: Startup Fees vs. Combinatorial Bulk Discounts</h2>
+
+        <p>
+            To send <em>m</em> mutations along any single branch of length <em>L</em> = 16 so that a receiver can reconstruct the descendant sequence losslessly, the sender must transmit four pieces of information:
+        </p>
+
+        <ol>
+            <li><strong>A non-zero branch flag (<code>ln 2 = 0.69 nats</code>):</strong> A 1-bit flag stating whether the branch carries any mutations at all.</li>
+            <li><strong>How many mutations occurred (<code>L_N(m)</code>):</strong> Since the receiver does not know <em>m</em> in advance, we encode the integer <em>m</em> using Rissanen's universal prefix code, <code>L_N(m) = ln(1 + m) + ½ ln(1 + ln(1 + m))</code>.</li>
+            <li><strong>Which sites mutated (<code>ln C(16, m)</code>):</strong> Out of 16 columns, there are <code>16 choose m</code> possible subsets of <em>m</em> sites. Specifying which subset mutated—like picking the winning numbers on a lottery ticket—costs <code>ln C(16, m)</code> nats (known in information theory as a <em>combinadic</em> index).</li>
+            <li><strong>Which new nucleotide state appeared (<code>m ln 3</code>):</strong> Since a mutated base changed from its ancestral letter into one of the 3 other letters (costs <code>ln 3 ≈ 1.10 nats</code> under uniform substitution), specifying the <em>m</em> new letters costs <code>m × 1.10 nats</code>.</li>
+        </ol>
+
+        <p>
+            Adding those four pieces together gives the exact price tag of a branch carrying <em>m</em> = 1, 2, or 3 mutations across 16 sites:
+        </p>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Mutations on Branch (<em>m</em>)</th>
+                    <th>1. Branch Flag (<code>ln 2</code>)</th>
+                    <th>2. Count Header <code>L_N(m)</code></th>
+                    <th>3. Combinadic Sites <code>ln C(16, m)</code></th>
+                    <th>4. Base States (<code>m ln 3</code>)</th>
+                    <th>Total Branch Cost <code>L_branch(m, 16)</code></th>
+                    <th>Cost per Mutation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong><em>m</em> = 1 mutation</strong></td>
+                    <td>0.69 nats</td>
+                    <td>0.96 nats</td>
+                    <td>ln(16) = <strong>2.77 nats</strong></td>
+                    <td>1.10 nats</td>
+                    <td><strong>5.52 nats</strong></td>
+                    <td>5.52 nats / mut</td>
+                </tr>
+                <tr>
+                    <td><strong><em>m</em> = 2 mutations</strong></td>
+                    <td>0.69 nats</td>
+                    <td>1.47 nats</td>
+                    <td>ln(120) = <strong>4.79 nats</strong></td>
+                    <td>2.20 nats</td>
+                    <td><strong>9.15 nats</strong></td>
+                    <td>4.58 nats / mut</td>
+                </tr>
+                <tr>
+                    <td><strong><em>m</em> = 3 mutations</strong></td>
+                    <td>0.69 nats</td>
+                    <td>1.82 nats</td>
+                    <td>ln(560) = <strong>6.33 nats</strong></td>
+                    <td>3.30 nats</td>
+                    <td><strong>12.14 nats</strong></td>
+                    <td>4.05 nats / mut</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            Look at the rightmost column of that table: <strong>the first mutation on a brand-new branch costs 5.52 nats, but the second adds only 3.63 nats, and the third adds only 2.99 nats!</strong> Why do mutations get cheaper per site when you pack more of them onto the same branch?
+        </p>
+
+        <ul>
+            <li><strong>First, you only pay for the envelope once:</strong> Every branch has to pay its startup header (<code>ln 2 + L_N(m)</code>) just to open the packet. If you open a brand-new branch to carry a single mutation, that lone mutation bears the entire 1.65-nat envelope fee by itself.</li>
+            <li><strong>Second, a set of sites has no order (the <code>m!</code> discount):</strong> To point to 1 site out of 16 costs <code>ln(16) = 2.77 nats</code>. If you pointed to 3 sites one after another in order, it would cost <code>3 × 2.77 = 8.32 nats</code>. But it doesn't matter whether a branch mutated at sites <code>{1, 4, 5}</code> or <code>{5, 1, 4}</code>—the biological result is identical! Because the binomial coefficient <code>C(16, m) = (16 × 15 × …) / m!</code> divides out all <code>m!</code> orderings, adding one more mutation to a branch that already has <em>m<sub>c</sub></em> = 2 private mutations only increases its site-address cost by:
+                <div style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.96rem; margin: 10px 0; color: #1e40af; font-weight: 600;">
+                    w<sub>c</sub> = ln C(16, 3) − ln C(16, 2) = ln((16 − 2) / (2 + 1)) = ln(14 / 3) = <strong>1.54 nats</strong>
+                </div>
+                instead of <code>ln(16) = 2.77 nats</code>! Adding the base substitution cost (<code>ln 3 = 1.10 nats</code>) means that piggybacking a shared mutation onto an existing 2-mutation leaf costs <code>1.54 + 1.10 = 2.64 nats</code> per leaf, or <strong><code>Δs = 2 × 2.64 = 5.28 nats</code> across both <code>T1</code> and <code>T2</code></strong>.
+            </li>
+        </ul>
+
+        <h2>3. Interactive Ledger: Watch the Split Contract at <em>m<sub>e</sub></em> = 1 and Resolve at <em>m<sub>e</sub></em> ≥ 2</h2>
+
+        <p>
+            Now we can pit the two trees head-to-head. Under the <strong>Star Polytomy (<code>T_star</code>)</strong>, there is no internal split: every shared <code>A → G</code> mutation at Sites 1–3 is written twice in parallel (once in <code>T1</code>'s packet and once in <code>T2</code>'s packet), costing <strong>5.28 nats per shared site</strong>. Under the <strong>Resolved Quartet (<code>T_split = ((T1,T2),(T3,T4))</code>)</strong>, we pay <code>L_topo(2,2) = ln(1.5) = 0.41 nats</code> to state which of the 3 possible quartet pairings we picked, plus <code>L_branch(m_e, 16)</code> to write the shared mutations <em>once</em> on the shared internal stem <em>e</em>.
+        </p>
+
+        <p>
+            Click through <strong><em>m<sub>e</sub></em> = 0, 1, 2, and 3 shared mutations</strong> below to see the exact nat-by-nat receipt:
+        </p>
+
+        <!-- Interactive Live MDL Calculator -->
+        <div class="mdl-widget">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.82rem; color: #0f172a; margin-bottom: 0.65rem;">
+                🎛️ Interactive 4×16 MDL Split Calculator (Click to Change Number of Shared Synapomorphies <em>m<sub>e</sub></em>)
+            </div>
+            <div class="mdl-btn-group">
+                <button class="mdl-btn" onclick="updateMDL(0)" id="btn-me-0">m_e = 0 (No Shared Signal)</button>
+                <button class="mdl-btn active" onclick="updateMDL(1)" id="btn-me-1">m_e = 1 (1 Shared Site → Polytomy!)</button>
+                <button class="mdl-btn" onclick="updateMDL(2)" id="btn-me-2">m_e = 2 (2 Shared Sites → Resolved)</button>
+                <button class="mdl-btn" onclick="updateMDL(3)" id="btn-me-3">m_e = 3 (3 Shared Sites → Strong Clade)</button>
+            </div>
+
+            <div class="seq-grid" id="mdl-seq-display"></div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px;">
+                <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #475569;">Savings on Leaves T1 &amp; T2</div>
+                    <div id="mdl-val-sav" style="font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 700; color: #1e40af; margin: 4px 0;">+5.28 nats</div>
+                    <div id="mdl-sub-sav" style="font-size: 0.8rem; color: #64748b;">1 site × 2 leaves × (1.54 + 1.10)</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #475569;">New Internal Split Cost</div>
+                    <div id="mdl-val-cost" style="font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 700; color: #b45309; margin: 4px 0;">−5.93 nats</div>
+                    <div id="mdl-sub-cost" style="font-size: 0.8rem; color: #64748b;">L_branch(1,16) [5.52] + L_topo [0.41]</div>
+                </div>
+                <div style="background: #fff; border: 2px solid #0f172a; border-radius: 8px; padding: 12px;" id="mdl-card-net">
+                    <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #0f172a;">Net MDL Gain &amp; Decision</div>
+                    <div id="mdl-val-net" style="font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 700; color: #b91c1c; margin: 4px 0;">−0.65 nats (CONTRACT)</div>
+                    <div id="mdl-sub-net" style="font-size: 0.8rem; color: #334155;">Posterior P(e | A) = 34.3% → Star Tree</div>
+                </div>
+            </div>
+            <div id="mdl-explanation" style="font-size: 0.9rem; color: #1e293b; background: #fffbeb; border-left: 4px solid #d97706; padding: 10px 12px; border-radius: 0 6px 6px 0;"></div>
+        </div>
+
+        <script>
+            const mdlData = {
+                0: {
+                    s12: ['.', '.', '.'],
+                    sav: '+0.00 nats',
+                    subSav: '0 shared sites × 5.28 nats',
+                    cost: '−1.10 nats',
+                    subCost: 'Empty branch flag [0.69] + L_topo [0.41]',
+                    net: '−1.10 nats (CONTRACT)',
+                    netColor: '#b91c1c',
+                    subNet: 'Posterior P(e | A) = 0.0% → Star Polytomy',
+                    exp: '<strong>Zero shared mutations (m_e = 0):</strong> Adding an empty internal split saves 0.00 nats on the leaves while wasting 0.41 nats on the quartet topology header and 0.69 nats on the branch flag. Standard ML still picks one of the 3 binary trees at random from floating-point tie-breaking; Bushwhacker contracts it immediately into a 4-way star polytomy.'
+                },
+                1: {
+                    s12: ['G', '.', '.'],
+                    sav: '+5.28 nats',
+                    subSav: '1 site × 2 leaves × (1.54 + 1.10)',
+                    cost: '−5.93 nats',
+                    subCost: 'L_branch(1,16) [5.52] + L_topo [0.41]',
+                    net: '−0.65 nats (CONTRACT)',
+                    netColor: '#b91c1c',
+                    subNet: 'Posterior P(e | A) = 34.3% → Star Polytomy',
+                    exp: '<strong>Why 1 shared mutation (m_e = 1) fails to resolve the clade:</strong> Even though putting the single G mutation on an internal branch saves one parsimony step (1.10 nats of base state), pointing to where that mutation occurred on a brand-new branch costs 4.42 nats of startup + site address + 0.41 nats of split header, versus only 2 × 1.54 = 3.08 nats to piggyback it onto the existing T1 and T2 leaf packets. Because 5.28 − 5.93 = −0.65 nats < 0, the split actually makes the compressed file larger—so Bushwhacker contracts it into a polytomy!'
+                },
+                2: {
+                    s12: ['G', 'G', '.'],
+                    sav: '+10.56 nats',
+                    subSav: '2 sites × 2 leaves × (1.54 + 1.10)',
+                    cost: '−9.56 nats',
+                    subCost: 'L_branch(2,16) [9.15] + L_topo [0.41]',
+                    net: '+1.00 nats (RESOLVE)',
+                    netColor: '#047857',
+                    subNet: 'Posterior P(e | A) = 73.2% → ((T1,T2),(T3,T4))',
+                    exp: '<strong>The phase transition at m_e = 2 shared mutations:</strong> Now the two shared G mutations at Sites 1 and 2 split the cost of the single internal branch header and divide out their 2! = 2 site-ordering permutations via ln C(16, 2) = 4.79 nats. Pulling both mutations off T1 and T2 saves 10.56 nats while the internal split costs 9.56 nats, yielding a net compression gain of +1.00 nat (exact two-part total drops from 69.84 to 68.32 nats).'
+                },
+                3: {
+                    s12: ['G', 'G', 'G'],
+                    sav: '+15.83 nats',
+                    subSav: '3 sites × 2 leaves × (1.54 + 1.10)',
+                    cost: '−12.55 nats',
+                    subCost: 'L_branch(3,16) [12.14] + L_topo [0.41]',
+                    net: '+3.29 nats (RESOLVE)',
+                    netColor: '#047857',
+                    subNet: 'Posterior P(e | A) = 96.4% → ((T1,T2),(T3,T4))',
+                    exp: '<strong>Strong clade resolution at m_e = 3 shared mutations:</strong> Three shared G synapomorphies save 15.83 nats on leaves T1 and T2 while costing only 12.14 + 0.41 = 12.55 nats on the internal stem (amortizing 3! = 6 site orderings via ln C(16, 3) = 6.33 nats). The split compresses the alignment by +3.29 nats (P = 96.4%, exact two-part ledger drops from 74.22 nats on T_star to 71.31 nats on T_split).'
+                }
+            };
+
+            function renderCell(ch, type) {
+                if (ch === 'G') return `<span class="cell-syn">G</span>`;
+                if (ch === 'C') return `<span class="cell-priv-c">C</span>`;
+                if (ch === 'T') return `<span class="cell-priv-t">T</span>`;
+                if (ch === 'A') return `<span style="color:#1e293b;font-weight:600;padding:1px 4px;">A</span>`;
+                return `<span class="cell-dot">.</span>`;
+            }
+
+            function updateMDL(me) {
+                [0, 1, 2, 3].forEach(k => {
+                    document.getElementById('btn-me-' + k).classList.toggle('active', k === me);
+                });
+                const d = mdlData[me];
+                const hdr = `Site:     01 02 03 | 04 05 06 07 08 09 10 11 | 12 13 14 15 16\n`;
+                const root = `Root X_r:  A  A  A |  A  A  A  A  A  A  A  A |  A  A  A  A  A  (22.18 nats)\n`;
+                const s1 = d.s12.map(c => renderCell(c)).join('  ');
+                const t1 = `Taxon T1:  ${s1} |  <span class="cell-priv-c">C</span>  <span class="cell-priv-c">C</span>  .  .  .  .  .  . |  .  .  .  .  .  (${me} shared + 2 priv)\n`;
+                const t2 = `Taxon T2:  ${s1} |  .  .  <span class="cell-priv-t">T</span>  <span class="cell-priv-t">T</span>  .  .  .  . |  .  .  .  .  .  (${me} shared + 2 priv)\n`;
+                const t3 = `Taxon T3:  .  .  . |  .  .  .  .  <span class="cell-priv-c">C</span>  <span class="cell-priv-c">C</span>  .  . |  .  .  .  .  .  (0 shared + 2 priv)\n`;
+                const t4 = `Taxon T4:  .  .  . |  .  .  .  .  .  .  <span class="cell-priv-t">T</span>  <span class="cell-priv-t">T</span> |  .  .  .  .  .  (0 shared + 2 priv)`;
+                document.getElementById('mdl-seq-display').innerHTML = `<pre style="background:transparent;color:#0f172a;margin:0;padding:0;font-size:0.82rem;">${hdr}${root}${t1}${t2}${t3}${t4}</pre>`;
+                document.getElementById('mdl-val-sav').textContent = d.sav;
+                document.getElementById('mdl-sub-sav').textContent = d.subSav;
+                document.getElementById('mdl-val-cost').textContent = d.cost;
+                document.getElementById('mdl-sub-cost').textContent = d.subCost;
+                const netEl = document.getElementById('mdl-val-net');
+                netEl.textContent = d.net;
+                netEl.style.color = d.netColor;
+                document.getElementById('mdl-sub-net').textContent = d.subNet;
+                document.getElementById('mdl-explanation').innerHTML = d.exp;
+            }
+            updateMDL(1);
+        </script>
+
+        <h2>4. Why the Same Formula Defeats Long-Branch Attraction (Without a Rate Matrix)</h2>
+
+        <p>
+            A classic failure mode of unweighted parsimony occurs in the <strong>Felsenstein Zone</strong>: when two non-sister lineages evolve very rapidly (long branches) while their true sisters evolve slowly (short branches), random mutations along the two long branches frequently collide on the same nucleotide letter by chance. Because unweighted parsimony counts every step as equal (1 step = 1 point), those random collisions trick parsimony into grouping the two long branches together.
+        </p>
+
+        <p>
+            Look at what happens on our 16-site alignment when we apply the combinadic site-address weight <code>w_c = ln((L − m_c) / (m_c + 1))</code> (<strong>Figure 1D</strong>):
+        </p>
+
+        <ul>
+            <li>Suppose <code>T2</code> and <code>T4</code> are <strong>short branches</strong> carrying only <code>m_short = 1</code> private mutation across the 16 sites. Adding or removing a mutation on a short branch shifts its combinadic site address by:
+                <div style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; margin: 6px 0; color: #047857; font-weight: 700;">
+                    w<sub>short</sub> = ln((16 − 1) / (1 + 1)) = ln(7.5) = <strong>2.01 nats / site</strong>
+                </div>
+            </li>
+            <li>Meanwhile, suppose <code>T1</code> and <code>T3</code> are <strong>long, noisy branches</strong> carrying <code>m_long = 6</code> private mutations across the 16 sites. Because a branch with 6 mutations already divides its combinadic site address by <code>7!</code>, adding or removing one mutation on a noisy branch shifts its positional code length by only:
+                <div style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; margin: 6px 0; color: #b91c1c; font-weight: 700;">
+                    w<sub>long</sub> = ln((16 − 6) / (6 + 1)) = ln(10 / 7) = <strong>0.36 nats / site</strong>
+                </div>
+            </li>
+        </ul>
+
+        <p>
+            Now compare the compression gain of grouping the two long branches <code>{T1, T3}</code> on a chance convergent collision versus grouping the two short branches <code>{T2, T4}</code> on a true homology:
+        </p>
+
+        <ul>
+            <li>Pulling a shared state off the two <strong>long</strong> branches saves only <code>2 × w_long = 2 × 0.36 = <strong>0.71 nats</strong></code> of positional address.</li>
+            <li>Pulling a shared state off the two <strong>short</strong> branches saves <code>2 × w_short = 2 × 2.01 = <strong>4.03 nats</strong></code> of positional address—a <strong>5.6× compression advantage</strong>!</li>
+        </ul>
+
+        <p>
+            In fact, expanding <code>w_c = ln((L − m_c) / (m_c + 1)) ≈ −ln(p_c / (1 − p_c))</code> shows that the combinadic step weight is the <strong>exact finite-sample log-odds branch weight that Felsenstein (1981) derived for maximum likelihood under unequal evolutionary rates</strong>—emerging directly from counting subsets of columns without a single matrix exponential.
+        </p>
+
+        <h2>5. Beyond Trees: Convergent Adaptation in <em>Prestin</em> and the Recombination Switchpoint</h2>
+
+        <p>
+            What happens when two distant lineages genuinely share mutations that violate the vertical tree—either because of <strong>convergent molecular evolution</strong> (like bats and dolphins independently evolving sonar) or <strong>horizontal gene transfer / homologous recombination</strong>?
+        </p>
+
+        <p>
+            In standard maximum likelihood, you cannot simply add a horizontal "shortcut" edge to a tree, because adding an edge always increases the log-likelihood and overfits the alignment. Under MDL, the rule is simple: once the vertical backbone tree is fixed, a lateral <strong>shunt edge</strong> between two non-sister branches <em>u</em> and <em>v</em> is certified if and only if the duplicate mutations it eliminates save more nats than the cost of stating:
+        </p>
+
+        <ol>
+            <li><strong>Which two branches are linked:</strong> <code>2 ln |V|</code> nats to address the donor and recipient nodes; and</li>
+            <li><strong>Which sites were transferred:</strong> competing between a contiguous genomic block mask (<code>INTERVAL</code>, costing <code>ln 2 + 2 ln L</code> for the start and end coordinates of a recombination tract) and a scattered site mask (<code>SPARSE</code>, costing <code>ln 2 + ln C(M_pool, m)</code> for scattered convergent amino acids).</li>
+        </ol>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_fig2_prestin_convergence.png"
+                alt="Three-panel figure showing reticulate MDL graph induction on the 116-mammal hearing gene Prestin (SLC26A5), recovering true monophyletic Cetacea and Chiroptera while peeling the five convergent echolocation replacements onto a certified SPARSE lateral shunt.">
+            <div class="figure-caption">
+                <strong>Figure 2. Resolving the classic mammal hearing gene <em>Prestin</em> (<code>SLC26A5</code>, 116 mammals, 2,235 bp) without distorting the species tree.</strong>
+                <strong>(A)</strong> Standard protein likelihood models sometimes group echolocating dolphins with echolocating bats because five convergent amino-acid replacements at conserved sites carry huge log-likelihood penalties if left on separate lineages. <code>Bushwhacker</code> recovers strictly monophyletic Cetacea (<span class="metric-badge">P_MDL = 1.00</span>) and Chiroptera (<span class="metric-badge">P_MDL = 1.00</span>) anchored by neutral synonymous synapomorphies, and then peels the five shared echolocation replacements onto a certified Stage 4 <code>SPARSE</code> lateral shunt (<span class="metric-badge">+7.80 nats</span>, <em>P</em> = 99.96%) linking Delphinidae (<code>N143</code>) and Rhinolophoidea (<code>N192</code>).
+                <strong>(B)</strong> Empirical codon and amino-acid states at the five certified shunt sites (<code>N7T, I384T, S392A, L497M, G601A</code>).
+                <strong>(C)</strong> False-positive splits and shunt MDL ledger.
+            </div>
+        </div>
+
+        <p>
+            Because every nat in the MDL ledger corresponds to an actual prefix code, we also compiled <code>Bushwhacker</code> directly into an executable, bit-for-bit lossless sequence archive format (<strong><code>.bwz</code></strong>, invoked via <code>bushwhacker -c</code> and <code>bushwhacker -d</code>) using 32-bit arithmetic coding along a causal preorder traversal of the inferred phylogeny. Comparing <code>.bwz</code> against standard general-purpose string compressors (<code>gzip -9</code>, <code>bzip2 -9</code>, and <code>lzma -9</code>) across 19 empirical alignments reveals both the power of evolutionary delta-coding and a model-free diagnostic for when a single tree breaks down:
+        </p>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Dataset / Biological Regime</th>
+                    <th>Dimensions (<em>N</em> × <em>L</em>)</th>
+                    <th><code>gzip -9</code> (Rows)</th>
+                    <th><code>bzip2 -9</code> (Tree Cols)</th>
+                    <th><code>lzma -9</code> (Rows)</th>
+                    <th><strong><code>.bwz</code> Archive</strong></th>
+                    <th><strong>Best String / <code>.bwz</code></strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Influenza A</strong> (Clonal Viral)</td>
+                    <td>349 × 987 bp</td>
+                    <td>9,081 B</td>
+                    <td>4,269 B</td>
+                    <td>6,535 B</td>
+                    <td><strong>2,247 B</strong></td>
+                    <td><span class="metric-badge">1.90× smaller</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Mammalian <em>Prestin</em></strong> (Coding Gene)</td>
+                    <td>116 × 2,235 bp</td>
+                    <td>27,948 B</td>
+                    <td>14,704 B</td>
+                    <td>11,861 B</td>
+                    <td><strong>7,536 B</strong></td>
+                    <td><span class="metric-badge">1.57× smaller</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Human mtDNA</strong> (Complete Organelles)</td>
+                    <td>78 × 16,585 bp</td>
+                    <td>27,366 B</td>
+                    <td>9,536 B</td>
+                    <td>9,568 B</td>
+                    <td><strong>6,046 B</strong></td>
+                    <td><span class="metric-badge">1.58× smaller</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Land Plant <code>rbcL</code></strong> (Deep Plastid)</td>
+                    <td>483 × 1,398 bp</td>
+                    <td>66,973 B</td>
+                    <td>45,328 B</td>
+                    <td>33,348 B</td>
+                    <td><strong>21,318 B</strong></td>
+                    <td><span class="metric-badge">1.56× smaller</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Prokaryotic 16S rRNA</strong> (Deep Taxonomy)</td>
+                    <td>2,048 × 1,348 bp</td>
+                    <td>448,657 B</td>
+                    <td>169,567 B</td>
+                    <td>147,460 B</td>
+                    <td><strong>108,610 B</strong></td>
+                    <td><span class="metric-badge">1.36× smaller</span></td>
+                </tr>
+                <tr>
+                    <td><strong><em>S. pneumoniae</em> PMEN1</strong> (11 Full Chromosomes)</td>
+                    <td>11 × 2,221,315 bp (24.4 Mbp)</td>
+                    <td>6,434,271 B</td>
+                    <td>706,678 B</td>
+                    <td>599,856 B</td>
+                    <td><strong>598,241 B</strong></td>
+                    <td><span class="metric-badge">10.8× vs gzip</span><br><span class="text-muted" style="font-size:0.8rem;">(68 KB for 10 non-root genomes = 326× delta!)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Hominoidea MHC Class I</strong> (Gene Conversion)</td>
+                    <td>379 × 1,128 bp</td>
+                    <td>18,112 B</td>
+                    <td>7,663 B</td>
+                    <td>8,256 B</td>
+                    <td><strong>4,042 B</strong></td>
+                    <td><span class="metric-badge">1.90× smaller</span></td>
+                </tr>
+                <tr>
+                    <td><strong>83 Sarbecovirus Genomes</strong> (Whole-Genome Mosaic)</td>
+                    <td>83 × 30,965 bp</td>
+                    <td>499,907 B</td>
+                    <td>102,808 B</td>
+                    <td><strong>80,344 B</strong></td>
+                    <td>96,745 B</td>
+                    <td><span class="metric-badge" style="background:#fee2e2;color:#991b1b;">0.83× (Single-Tree Failure!)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>HIV-1 KAL153 / CRF02_AG</strong> (Multi-Breakpoint CRF)</td>
+                    <td>9 × 9,953 bp</td>
+                    <td>16,614 B</td>
+                    <td>11,010 B</td>
+                    <td><strong>9,635 B</strong></td>
+                    <td>14,784 B</td>
+                    <td><span class="metric-badge" style="background:#fee2e2;color:#991b1b;">0.65× (Single-Tree Failure!)</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout-box">
+            <div class="callout-title">🧭 Why Comparing <code>.bwz</code> Against Row-Wise <code>lzma</code> Detects Rampant Recombination</div>
+            <p style="margin-bottom: 0;">
+                Why does <code>.bwz</code> crush every string compressor on vertical alignments and localized HGT tracts, yet lose to row-wise <code>lzma -9</code> on whole-genome Sarbecovirus mosaics and HIV-1 circulating recombinant forms? Because row-wise <code>lzma -9</code> (with a 64 MB sliding dictionary) is a Lempel–Ziv copying machine that can switch its backward copy pointer to a <em>different donor genome</em> every few hundred base pairs for ~4 bytes per breakpoint—acting as an implicit Li–Stephens haplotype copying model. In controlled breakpoint titrations (<em>N</em> = 56, <em>L</em> = 12 kb), <code>.bwz</code> beats <code>lzma -9</code> by 1.30× at <em>K</em> = 0 breakpoints, crosses over at <strong><em>K</em> = 2–3 breakpoints per genome</strong>, and diagnoses exactly when mosaic recombination has shattered the single-tree assumption into a multi-parental ancestral recombination graph (ARG).
+            </p>
+        </div>
+
+        <h2>6. Reproducible CLI Quickstart</h2>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+            <code>Bushwhacker</code> is written in dependency-free, bit-parallel Rust (packing 64 alignment columns per <code>[u64; 4]</code> register word) and compiles to both a native CLI binary and a client-side WebAssembly module.
+        </p>
+<pre># 1. Infer an MDL-contracted phylogeny + Stage 4 reticulate shunts (FASTA, PHYLIP, or NEXUS)
+bushwhacker docs/examples/prestin.fasta -o prestin.nwk -j prestin_mdl.json
+
+# 2. Compress any alignment into a self-contained, bit-for-bit lossless .bwz archive
+bushwhacker docs/examples/InfluenzaA.fasta -c InfluenzaA.bwz
+
+# 3. Restore the exact original FASTA alignment (headers + sequences) from .bwz
+bushwhacker InfluenzaA.bwz -d InfluenzaA_restored.fasta
+diff -s docs/examples/InfluenzaA.fasta InfluenzaA_restored.fasta</pre>
+
+    </main>
+
+    <footer class="blog-footer">
+        <div class="container-narrow">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <strong>Sergei L. Kosakovsky Pond</strong><br>
+                    Institute for Genomics and Evolutionary Medicine (iGEM), Temple University
+                </div>
+                <div>
+                    <a href="../index.html" class="back-link">← Return to CV.js</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
