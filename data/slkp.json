@@ -1359,8 +1359,8 @@
                 "2026-11-05",
                 {
                     "url": "blog/2026-11-05-andv-hondius.html",
-                    "link-text": "One spike mutation, a chimeric rodent, and the ship doctor's sub-clade: decoding the 2026 MV Hondius Andes virus outbreak",
-                    "subtext": "Re-analyzing the 2026 MV Hondius Andes virus cruise-ship outbreak (Ulloa-Zepeda et al., 2026) across the expanded November 2026 Pathoplexus release (270 sequences) with ChronAeon, RhizAeon, and HyphAeon in 41.2 seconds doubles Clade B.1.2.2, narrows the Toltén–Hondius divergence by 7.3 years to ~2007.9 (R² = 0.73, Fieller g = 0.11), proves that Lanco rodent R600-UDD is an inter-clade L/M+S segment reassortant (p = 3.2e-11), shows that 47 of 47 L- and S-segment SNPs are silent while M:T516I is the sole unique outbreak amino-acid change across 3,719 codons (sitting at the 11th percentile of Gn constraint next to an Epuyén human-transmission loop), and traces a shipboard mutation (L:C2144T, R₀ = 1.40) from the ship's doctor (Case 5) to five mid-May Canadian and Dutch passengers."
+                    "link-text": "One spike mutation, a chimeric rodent, and two shipboard sub-clusters: decoding the 2026 MV Hondius Andes virus outbreak",
+                    "subtext": "Re-analyzing the 2026 MV Hondius Andes virus cruise-ship outbreak (Ulloa-Zepeda et al., 2026) across the expanded November 2026 Pathoplexus release (270 sequences) with ChronAeon, RhizAeon, and HyphAeon in 41.2 seconds doubles Clade B.1.2.2, narrows the Toltén–Hondius divergence by 7.3 years to ~2007.9 (R² = 0.73, Fieller g = 0.11), proves that Lanco rodent R600-UDD is an inter-clade L/M+S segment reassortant (p = 3.2e-11), shows that 47 of 47 L- and S-segment SNPs are silent while M:T516I is the sole unique outbreak amino-acid change across 3,719 codons (sitting at the 11th percentile of Gn constraint next to an Epuyén human-transmission loop), and resolves two shipboard allele sub-clusters (C2144 in early April vs. T2144 in late-April/May, R₀ = 1.40)."
                 },
                 {
                     "url": "blog/2026-11-05-andv-hondius-slides.html",
