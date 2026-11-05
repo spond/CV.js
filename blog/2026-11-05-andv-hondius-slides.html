@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Deck: Decoding the 2026 MV Hondius Andes Virus Outbreak | Sergei L. Kosakovsky Pond</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #ffffff;
+            --primary-blue: #1e40af;
+            --accent-amber: #d97706;
+            --accent-red: #b91c1c;
+            --accent-green: #047857;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header.deck-bar {
+            background: #020617;
+            color: #f8fafc;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            font-size: 0.9rem;
+        }
+        header.deck-bar a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        header.deck-bar a:hover { text-decoration: underline; }
+        .deck-stage {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1120px;
+            min-height: 620px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 3px solid #000;
+            box-shadow: 10px 10px 0px #38bdf8;
+            padding: 2.5rem 3rem;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .slide.active { display: flex; }
+        .slide-kicker {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        .slide-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.65rem;
+            line-height: 1.12;
+            font-weight: 400;
+            color: #000;
+            margin: 0 0 1rem 0;
+        }
+        .slide-subtitle {
+            font-size: 1.12rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 1.5rem;
+        }
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
+            margin: 0.5rem 0 1.25rem 0;
+        }
+        .stat-card {
+            background: #f8fafc;
+            border: 2px solid #0f172a;
+            border-radius: 10px;
+            padding: 1.15rem 1.35rem;
+        }
+        .stat-num {
+            font-size: 1.55rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+        .stat-label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+            color: #0f172a;
+        }
+        .stat-desc {
+            font-size: 0.88rem;
+            color: #334155;
+            line-height: 1.45;
+            margin: 0;
+        }
+        .slide-split {
+            display: grid;
+            grid-template-columns: 1.05fr 1.35fr;
+            gap: 1.75rem;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+        .slide-fig {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .slide-fig img {
+            max-width: 100%;
+            height: auto;
+            max-height: 360px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        .bullet-list {
+            padding-left: 1.2rem;
+            margin: 0;
+        }
+        .bullet-list li {
+            margin-bottom: 0.85rem;
+            font-size: 0.98rem;
+            line-height: 1.5;
+            color: #1e293b;
+        }
+        .zinger-banner {
+            background: #fef9c3;
+            border: 2px solid #0f172a;
+            border-radius: 8px;
+            padding: 0.85rem 1.15rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #e2e8f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.88em;
+            color: #b91c1c;
+        }
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .nav-controls {
+            display: flex;
+            gap: 0.65rem;
+            align-items: center;
+        }
+        button.nav-btn {
+            background: #0f172a;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        button.nav-btn:hover { background: #1e40af; }
+        button.nav-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        @media (max-width: 900px) {
+            .grid-2x2, .slide-split { grid-template-columns: 1fr; }
+            .slide { padding: 1.5rem; min-height: auto; }
+            .slide-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="deck-bar">
+    <div>
+        <a href="2026-11-05-andv-hondius.html">← Read Full Blog Post</a>
+        <span style="margin: 0 10px; color: #475569;">|</span>
+        <span><strong>MV Hondius Andes Virus (2026)</strong> — 4-Slide Executive Summary</span>
+    </div>
+    <div>Use <strong>← / →</strong> arrow keys to navigate</div>
+</header>
+
+<main class="deck-stage">
+
+    <!-- SLIDE 1: EXECUTIVE OVERVIEW -->
+    <section class="slide active" id="slide-1">
+        <div>
+            <div class="slide-kicker">Slide 1 of 4 • Executive Digest • 41.2-Second *aeon Re-Analysis</div>
+            <h1 class="slide-title">One Spike Mutation, a Chimeric Rodent, and the Ship Doctor's Sub-Clade</h1>
+            <p class="slide-subtitle">
+                Re-analyzing the 2026 <em>MV Hondius</em> Andes virus cruise-ship outbreak (<a href="https://doi.org/10.1101/2026.11.04.26366130" target="_blank" rel="noopener">Ulloa-Zepeda et al.</a>) across all 270 Pathoplexus sequences with <code>ChronAeon</code>, <code>RhizAeon</code>, and <code>HyphAeon</code>.
+            </p>
+            <div class="grid-2x2">
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--primary-blue);">🗓️ ~2007.9 Split (R² = 0.73)</div>
+                    <div class="stat-label">7.3 Years Closer Than Sparse BEAST Estimates</div>
+                    <p class="stat-desc">Doubling Clade <code>B.1.2.2</code> with 2012–2025 Chilean &amp; Argentine human genomes narrows the Toltén–<em>Hondius</em> split from Aug 2000 to ~2007.9 in 0.57 s.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--accent-red);">🧬 p = 3.2 × 10⁻¹¹ Chimera</div>
+                    <div class="stat-label">Lanco Rodent R600-UDD Is an Inter-Clade Reassortant</div>
+                    <p class="stat-desc"><code>RhizAeon</code> proves <code>R600-UDD</code> carries a <code>B.1.2.2</code> L segment (50 SNPs) but Los Lagos <code>B.1.2.1</code> M &amp; S segments (93 M-SNPs). <em>MV Hondius</em> is pure <code>B.1.2.2</code>.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--accent-amber);">🎯 1 / 3,719 Codons (M:T516I)</div>
+                    <div class="stat-label">47 Silent L+S SNPs &amp; One Unique Spike Change</div>
+                    <p class="stat-desc">100% of L (36/36) and S (11/11) coding SNPs vs. Toltén rodents are silent. <code>M:T516I</code> sits in a rigid Gn pocket (Φ = 0.57, 11th pct) next to the Epuyén H2H loop.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--accent-green);">🚢 R₀ = 1.40 &amp; L:C2144T</div>
+                    <div class="stat-label">The Ship-Doctor Transmission Sub-Clade</div>
+                    <p class="stat-desc"><code>ChronAeon Dynamics</code> separates spillover (<em>R</em><sub>0</sub> = 1.00) from shipboard spread (<em>R</em><sub>0</sub> = 1.40), while <code>L:C2144T</code> links Case 5 (Ship Doctor) to 5 mid-May passengers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="zinger-banner">
+            💡 <strong>Bottom Line:</strong> <em>MV Hondius</em> required zero amino-acid changes in its polymerase or nucleocapsid to spread between humans; a single surface glycoprotein substitution (<code>M:T516I</code>) and a single shipboard marker (<code>L:C2144T</code>) tell the entire evolutionary story.
+        </div>
+        <div class="slide-footer">
+            <span>Sergei L. Kosakovsky Pond • iGEM, Temple University</span>
+            <div class="nav-controls">
+                <button class="nav-btn" onclick="goSlide(0)" disabled>← Prev</button>
+                <button class="nav-btn" onclick="goSlide(1)">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: CHRONAEON & RHIZAEON -->
+    <section class="slide" id="slide-2">
+        <div>
+            <div class="slide-kicker">Slide 2 of 4 • ChronAeon &amp; RhizAeon • Origin &amp; Reassortment</div>
+            <h2 class="slide-title">Filling the 13-Year Gap &amp; Unmasking a Chimeric Rodent</h2>
+            <div class="slide-split">
+                <ul class="bullet-list">
+                    <li><strong>Post-May 2026 Genomes Double Clade <code>B.1.2.2</code>:</strong> Linking 13 split Chilean human genomes (2012–2025) and 2024–2025 Neuquén, Argentina strains places 2012 Los Ríos <code>Patient 1236</code> just <strong>26 M-SNPs</strong> from <em>MV Hondius</em>.</li>
+                    <li><strong>7.3-Year Narrower Split:</strong> In 0.57 s, tree-free <code>chronaeon date</code> calibrates the M clock (<em>R</em>² = 0.73, Fieller <em>g</em> = 0.11), dating the <code>B.1.2.2</code> crown to <strong>1989.5</strong> and the Toltén–<em>Hondius</em> split to <strong>~2007.9</strong> (2003.4–2010.8).</li>
+                    <li><strong>Why the S Clock Failed:</strong> Fieller's theorem proves the short 1.3 kb S segment is unidentifiable within <code>B.1.2.2</code> (<em>g</em> = 2.25 ≥ 1; 11/11 silent SNPs).</li>
+                    <li><strong>Lanco Rodent <code>R600-UDD</code> Is a Chimera:</strong> <code>rhizaeon</code> (11.9 s) proves <code>R600-UDD</code> swapped its M and S segments into the Los Lagos <code>B.1.2.1</code> clade (<em>p</em> = 3.2 × 10⁻¹¹).</li>
+                </ul>
+                <div class="slide-fig">
+                    <img src="images/andv_hondius_fig1_origin_reassortment.png" alt="Figure 1: ChronAeon clock and RhizAeon R600-UDD reassortment">
+                </div>
+            </div>
+        </div>
+        <div class="zinger-banner">
+            🧭 <strong>Phylogeographic Insight:</strong> <code>chronaeon phylogeo</code> detects strong bidirectional dispersal between La Araucanía / Los Ríos (Chile) and Neuquén (Argentina) (<strong>Bayes Factor = 89–248</strong>), defining a trans-Andean reservoir corridor.
+        </div>
+        <div class="slide-footer">
+            <span>Slide 2 / 4 • ChronAeon + RhizAeon</span>
+            <div class="nav-controls">
+                <button class="nav-btn" onclick="goSlide(0)">← Prev</button>
+                <button class="nav-btn" onclick="goSlide(2)">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: HYPHAEON SELECTION & DIGITAL DMS -->
+    <section class="slide" id="slide-3">
+        <div>
+            <div class="slide-kicker">Slide 3 of 4 • HyphAeon • Purifying Sieve &amp; Surface Spike Adaptation</div>
+            <h2 class="slide-title">47 Silent L/S Mutations Leave One Unique Spike Swap (<code>M:T516I</code>)</h2>
+            <div class="slide-split">
+                <ul class="bullet-list">
+                    <li><strong>100% Silent Internal Machinery:</strong> Between Toltén rodents and <em>MV Hondius</em>, <strong>36/36 L-segment SNPs</strong> (polymerase) and <strong>11/11 S-segment SNPs</strong> (nucleocapsid) are synonymous (0 amino-acid changes).</li>
+                    <li><strong>Sole Unique Substitution Across 3,719 Codons:</strong> On the M glycoprotein, <code>M:M288I</code> is shared with 2012 Patient <code>1236</code>, leaving <strong><code>M:T516I</code></strong> as the only unique amino-acid change on the outbreak branch.</li>
+                    <li><strong>Rigid Gn Pocket Next to an H2H Loop:</strong> In <code>hyphaeon dms</code>, <code>M:516</code> sits at the <strong>11th percentile of mutational tolerance</strong> (Φ = 0.571) right next to loop <code>M:510–515</code> (<code>M:513</code> <em>p</em> = 0.0052 in the 2018–19 Epuyén human-to-human outbreak).</li>
+                    <li><strong>#1 Phylogenetic Trait Hit:</strong> <code>M:516</code> ranks #1 across the M segment in <code>hyphaeon phenotype</code> (ρ = 0.748, FDR <em>q</em> = 4.76 × 10⁻¹³).</li>
+                </ul>
+                <div class="slide-fig">
+                    <img src="images/andv_hondius_fig2_selection_transmission.png" alt="Figure 2: HyphAeon M:T516I and ChronAeon R0 / L:C2144T">
+                </div>
+            </div>
+        </div>
+        <div class="zinger-banner">
+            🔬 <strong>Experimental Target:</strong> Because internal viral proteins are 100% conserved relative to Toltén rodents, pseudovirus neutralization and Protocadherin-1 entry assays should test <code>M:T516I</code> directly.
+        </div>
+        <div class="slide-footer">
+            <span>Slide 3 / 4 • HyphAeon Digital DMS + MEME + Phenotype</span>
+            <div class="nav-controls">
+                <button class="nav-btn" onclick="goSlide(1)">← Prev</button>
+                <button class="nav-btn" onclick="goSlide(3)">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: CHRONAEON DYNAMICS & SHIPBOARD TRANSMISSION CHAIN -->
+    <section class="slide" id="slide-4">
+        <div>
+            <div class="slide-kicker">Slide 4 of 4 • ChronAeon Dynamics • R₀ &amp; Intra-Outbreak Forensics</div>
+            <h2 class="slide-title">Shipboard <em>R</em><sub>0</sub> = 1.40 &amp; the Ship Doctor's Sub-Clade (<code>L:C2144T</code>)</h2>
+            <div class="grid-2x2">
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--primary-blue);">R₀ = 1.001 [1.000, 1.001]</div>
+                    <div class="stat-label">Endemic Rodent Reservoir Baseline</div>
+                    <p class="stat-desc">Across 30 years of Lineage B surveillance (and <code>B.1.2.2</code> at <em>R</em><sub>0</sub> = 1.013), human cases reflect self-limiting spillovers at the critical threshold.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--accent-red);">R₀ = 1.40 [1.19, 1.64]</div>
+                    <div class="stat-label">2026 MV Hondius Shipboard Outbreak</div>
+                    <p class="stat-desc">Using the 21-day ANDV serial interval, <code>chronaeon dynamics</code> confirms supercritical human-to-human transmission aboard the vessel (doubling time 42.9 days).</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" style="color: #0f172a;">Founder Clade C2144 (n = 7)</div>
+                    <div class="stat-label">Early April Crew &amp; Passenger Wave</div>
+                    <p class="stat-desc">All early April-onset cases (Cases 2, 3, 4, 6, 7, 8, 9, 10, 13; onset Apr 1–27) carry the ancestral cytosine <code>C2144</code> on the L segment.</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" style="color: var(--accent-green);">Doctor Sub-Clade T2144 (n = 6)</div>
+                    <div class="stat-label">Case 5 → Canadian &amp; Dutch Disembarkees</div>
+                    <p class="stat-desc">Synonymous mutation <code>L:C2144T</code> (<code>P703P</code>) arose in Case 5 (Ship Doctor, onset Apr 30) and was inherited by Canadian Case 11 (May 14) and 4 Dutch Tenerife cases (May 18–22).</p>
+                </div>
+            </div>
+        </div>
+        <div class="zinger-banner">
+            ⚡ <strong>Full Reproducibility:</strong> The complete 5-step ASD-STE100 Agentic Protocol and commands are embedded in the <a href="2026-11-05-andv-hondius.html" style="color:#1e40af;">full blog post</a>.
+        </div>
+        <div class="slide-footer">
+            <span>Slide 4 / 4 • ChronAeon Dynamics &amp; Genomic Contact Tracing</span>
+            <div class="nav-controls">
+                <button class="nav-btn" onclick="goSlide(2)">← Prev</button>
+                <button class="nav-btn" onclick="window.location.href='2026-11-05-andv-hondius.html'">Read Full Post ↗</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    function goSlide(idx) {
+        if (idx < 0 || idx >= slides.length) return;
+        slides[current].classList.remove('active');
+        current = idx;
+        slides[current].classList.add('active');
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') goSlide(current + 1);
+        if (e.key === 'ArrowLeft') goSlide(current - 1);
+    });
+</script>
+
+</body>
+</html>

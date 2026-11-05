@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Spike Mutation, a Chimeric Rodent, and the Ship Doctor's Sub-Clade: Decoding the 2026 MV Hondius Andes Virus Outbreak | Sergei L. Kosakovsky Pond</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --accent-amber: #d97706;
+            --text-dark: #111827;
+            --text-muted: #4b5563;
+            --bg-light: #f9fafb;
+            --border-gray: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.75;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-narrow {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header.blog-header {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            background: var(--bg-light);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        h1.post-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.05rem;
+            line-height: 1.12;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: #000;
+        }
+
+        .lead {
+            font-size: 1.22rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.65rem;
+            margin-top: 3rem;
+            margin-bottom: 1.15rem;
+            letter-spacing: -0.025em;
+            color: #000;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1.35rem;
+            font-size: 1.075rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+        }
+
+        pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.55;
+        }
+
+        .callout-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.35rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+        }
+
+        .figure-container {
+            margin: 2.25rem -36px;
+            text-align: center;
+            background: #fff;
+            padding: 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 860px) {
+            .figure-container {
+                margin: 2rem 0;
+            }
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .figure-caption {
+            margin-top: 0.9rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 0 0.5rem;
+            line-height: 1.55;
+        }
+
+        .metric-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        table.blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.75rem 0;
+            font-size: 0.92rem;
+        }
+
+        table.blog-table th {
+            background: var(--bg-light);
+            border-bottom: 2px solid var(--border-gray);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        table.blog-table td {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 9px 12px;
+            vertical-align: top;
+        }
+
+        footer.blog-footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-gray);
+            background: var(--bg-light);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="blog-header">
+        <div class="container-narrow header-nav">
+            <a href="../index.html" class="back-link">← Back to CV & Research</a>
+            <div>
+                <a href="2026-11-05-andv-hondius-slides.html" class="back-link" style="display:inline-flex; margin-right: 16px;">4-Slide Deck ↗</a>
+                <span class="text-muted">November 5, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-narrow">
+        <div class="post-meta">Genomic Epidemiology • Hantavirus Evolution • *aeon Suite • 4 Min Read</div>
+        <h1 class="post-title">One Spike Mutation, a Chimeric Rodent, and the Ship Doctor's Sub-Clade: Decoding the 2026 <em>MV Hondius</em> Andes Virus Outbreak</h1>
+
+        <p class="lead">
+            In early 2026, Andes virus—the only hantavirus known to spread directly from person to person—triggered a multi-country outbreak of fatal cardiopulmonary syndrome aboard the Antarctic expedition vessel <em>MV Hondius</em>. A new genomic study traced the virus to Southern Chile; re-analyzing the expanded public sequence record with the <code>*aeon</code> toolkit narrows the evolutionary gap by seven years, uncovers a hidden segment-swapping rodent genome, and pinpoints the single surface mutation that defines the shipboard strain.
+        </p>
+
+        <!-- High-Impact Brutalist 2x2 Summary Grid -->
+        <div style="background: #f8fafc; border: 2px solid #0f172a; border-radius: 12px; padding: 1.75rem; margin-bottom: 2.75rem; box-shadow: 6px 6px 0px #0f172a;">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; margin-bottom: 1.25rem; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <span style="background: #0f172a; color: #fff; padding: 3px 8px; border-radius: 4px;">Key Takeaways</span>
+                <span>The 60-Second Digest (<a href="2026-11-05-andv-hondius-slides.html" style="color: #1e40af; text-decoration: underline;">View 4-Slide Deck ↗</a>)</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.15rem;">
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #1e40af; font-size: 1.1rem; margin-bottom: 0.3rem;">🗓️ 2007.9 Split</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">7.3 Years Closer Than Thought</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Adding 2012–2025 Chilean and Argentine genomes doubles Clade <code>B.1.2.2</code> and dates the Toltén–<em>Hondius</em> split to <strong>~2007.9</strong> in 0.57 s, while proving why the short S segment cannot support a molecular clock.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b91c1c; font-size: 1.1rem; margin-bottom: 0.3rem;">🧬 R600 Chimera</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Hidden Segment Swapping in Lanco</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Lanco rodent <code>R600-UDD</code>—previously grouped as a close neighbor of the outbreak—is an inter-clade segment reassortant (<em>p</em> = 3.2 × 10<sup>−11</sup>): its L segment belongs to <code>B.1.2.2</code>, but its M and S segments come from Los Lagos <code>B.1.2.1</code>.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b45309; font-size: 1.1rem; margin-bottom: 0.3rem;">🎯 1 / 3,719 Codons</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">47 Silent SNPs &amp; One Spike Swap (<code>M:T516I</code>)</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Every single L- and S-segment mutation separating Toltén rodents from <em>MV Hondius</em> (47/47) is silent. Across the entire proteome, <strong><code>M:T516I</code></strong> is the sole unique outbreak amino-acid change, sitting next to an Epuyén human-transmission loop.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #047857; font-size: 1.1rem; margin-bottom: 0.3rem;">🚢 <em>R</em><sub>0</sub> = 1.40 &amp; <code>C2144T</code></div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">The Ship-Doctor Transmission Chain</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Phylodynamic modeling separates endemic rodent spillover (<em>R</em><sub>0</sub> = 1.00) from shipboard spread (<em>R</em><sub>0</sub> = 1.40). Unmasked genomes reveal a mutation (<code>L:C2144T</code>) arising in the ship's doctor (Case 5) and passed to 5 May-onset passengers.</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 2px dashed #cbd5e1; font-size: 0.94rem; color: #0f172a; line-height: 1.55;">
+                <strong style="background: #fef08a; padding: 2px 6px; border-radius: 4px; margin-right: 6px;">💡 What Does This All Mean?</strong>
+                The <em>MV Hondius</em> virus did not need to reinvent its replication machinery to spread between humans on a cruise ship: 100% of mutations on its polymerase and nucleocapsid segments were silent, leaving a single surface glycoprotein substitution (<code>M:T516I</code>) and a single shipboard transmission marker (<code>L:C2144T</code>) to trace how a trans-Andean rodent virus boarded an expedition vessel and sparked a multi-generation chain.
+            </div>
+        </div>
+
+        <p>
+            Yesterday, Ulloa-Zepeda, Parker, Gangavarapu, Rambaut, Andersen, Vial, and an international consortium posted a rapid genomic investigation (<a href="https://doi.org/10.1101/2026.11.04.26366130" target="_blank" rel="noopener">medRxiv 2026.11.04.26366130</a>) of the 2026 <em>MV Hondius</em> Andes virus (<code>ANDV</code>) outbreak, in which 13 passengers and crew members across six countries developed hantavirus cardiopulmonary syndrome. By sequencing clinical samples and sharing the data openly on <a href="https://pathoplexus.org" target="_blank" rel="noopener">Pathoplexus</a>, the authors showed that all shipboard cases clustered inside a single Southern Chilean sub-clade (<code>B.1.2.2</code>) closest to long-tailed pygmy rice rats (<em>Oligoryzomys longicaudatus</em>) trapped in Toltén in 2013.
+        </p>
+
+        <p>
+            Because the preprint froze its public background dataset in May 2026, two questions remained open: why did Bayesian clock models place the divergence between the 2013 Toltén rodents and the 2026 shipboard outbreak all the way back in August 2000, and what changed in the viral proteins during that evolutionary gap? Pulling the full November 2026 Pathoplexus release—which adds 37 newly released Chilean and Argentine genomes—and running the three tools of the <code>*aeon</code> suite (<code>ChronAeon</code>, <code>RhizAeon</code>, and <code>HyphAeon</code>) in under 45 seconds on a laptop resolves both questions.
+        </p>
+
+        <h2>1. Filling the 13-Year Gap: Trans-Andean Circulation and a Chimeric Rodent</h2>
+
+        <p>
+            Andes virus carries its genome on three separate RNA segments: a <strong>Large (L)</strong> segment encoding the viral polymerase, a <strong>Medium (M)</strong> segment encoding the Gn/Gc surface glycoprotein spikes, and a <strong>Small (S)</strong> segment encoding the nucleocapsid shell. Between May and October 2026, laboratories in Chile and Argentina deposited two waves of sequences into Pathoplexus: 13 three-segment genomes from Chilean patients sampled between 2012 and 2025, and 24 genomes from Neuquén and Chubut in Argentina sampled through 2025.
+        </p>
+
+        <p>
+            Once split database accessions are linked by patient isolate, those releases <strong>double the size of Clade <code>B.1.2.2</code></strong> from 8 to 17 background genomes and fill the 2013–2026 sampling gap. A 2012 human patient from Los Ríos, Chile (<code>Patient 1236</code>, <code>PP_007NVJJ.1</code>) is only <strong>26 coding mutations away</strong> from <em>MV Hondius</em> on the M segment—closer than any of the 2013 Toltén rodent genomes (27–29 mutations).
+        </p>
+
+        <div class="figure-container">
+            <img src="images/andv_hondius_fig1_origin_reassortment.png"
+                alt="Two-panel figure showing (A) ChronAeon molecular clock regression dating Clade B.1.2.2 to 1989.5 and the Tolten-Hondius split to 2007.9, and (B) RhizAeon coding divergence showing Lanco rodent R600-UDD is an L vs M+S inter-clade reassortant.">
+            <div class="figure-caption">
+                <strong>Figure 1. Post-2013 genomes narrow the outbreak split by 7.3 years and expose a chimeric rodent genome.</strong>
+                <strong>(A)</strong> In 0.57 seconds, <code>chronaeon date</code> calibrates the expanded <code>B.1.2.2</code> M-segment clock (<span class="metric-badge">R² = 0.73</span>, Fieller <em>g</em> = 0.11), dating the clade crown to <strong>1989.5</strong> and narrowing the Toltén–<em>Hondius</em> split from August 2000 to <strong>~2007.9</strong> (95% CI: 2003.4–2010.8). Fieller's ratio <em>g</em> shows why the short 1.3 kb S segment (<em>g</em> = 2.25 ≥ 1) cannot support a bounded clock.
+                <strong>(B)</strong> Scanning all 105 three-segment genomes with <code>rhizaeon</code> reveals that Lanco rodent <code>R600-UDD</code> (2013) is an inter-clade reassortant (<span class="metric-badge">p = 3.2 × 10⁻¹¹</span>): its L segment matches Toltén/Lanco <code>B.1.2.2</code> (50 SNPs to <em>MV Hondius</em>), whereas its M and S segments jump to the Los Lagos <code>B.1.2.1</code> clade (93 M-SNPs to <em>MV Hondius</em>).
+            </div>
+        </div>
+
+        <p>
+            With 2012–2025 samples anchoring the timeline, <code>chronaeon date</code> calibrates the M-segment clock in <strong>0.57 seconds</strong> without requiring Markov chain Monte Carlo sampling (<strong>Figure 1A</strong>). The divergence between the 2013 Toltén rodent lineage and the <em>MV Hondius</em> ancestor shifts forward by <strong>7.3 years</strong>, from August 2000 to <strong>~2007.9</strong> (95% CI: 2003.4–2010.8). Discrete phylogeography (<code>chronaeon phylogeo</code>) also finds strong support (<span class="metric-badge">Bayes Factor = 89–248</span>) for two-way viral movement across the low mountain passes linking La Araucanía and Los Ríos in Chile with Neuquén in Argentina, showing that <code>B.1.2.2</code> circulates across a trans-Andean corridor rather than solely within a 50-kilometer radius around two 2013 rodent traps.
+        </p>
+
+        <p>
+            <code>ChronAeon</code> also explains why the preprint's S-segment molecular clock disagreed with its L and M estimates. Using Fieller's theorem—which tests whether a regression slope is far enough from zero to yield a finite confidence interval (requiring <em>g</em> &lt; 1)—the 3.4 kb M segment (<em>g</em> = 0.11) and 6.5 kb L segment (<em>g</em> = 0.82) pass, whereas the short 1.3 kb S segment fails outright (<span class="metric-badge">Fieller g = 2.25 ≥ 1</span>, 95% CI: [−∞, 1999.6]). On a 428-codon gene evolving under intense purifying constraint, there are too few substitutions within a single sub-lineage to anchor an independent root date.
+        </p>
+
+        <p>
+            Even more striking is what happens when <code>rhizaeon</code> tests all 105 complete three-segment genomes for segment swapping (<strong>Figure 1B</strong>). In the preprint, Lanco rodent <code>R600-UDD</code> (<code>PP_00701HR.1</code>, trapped in 2013) was grouped alongside Toltén rodents <code>R175-UDD</code> and <code>R190-UDD</code> as part of the immediate <code>B.1.2.2</code> neighborhood of the outbreak. <code>RhizAeon</code> flags <code>R600-UDD</code> as an <strong>inter-clade segment chimera</strong> (<span class="metric-badge">p = 3.24 × 10⁻¹¹</span>): its L segment is nearly identical to Lanco <code>B.1.2.2</code> rodent <code>R589-UDD</code> (1 SNP apart; 50 SNPs from <em>MV Hondius</em>), but at the L→M boundary its M and S segments jump to the <strong>Los Lagos / Puerto Octay <code>B.1.2.1</code> clade</strong> (93 M-SNPs from <em>MV Hondius</em>, versus 26–29 for genuine <code>B.1.2.2</code> members). By contrast, the <em>MV Hondius</em> outbreak virus is a pure, non-reassortant <code>B.1.2.2</code> genome across all three segments.
+        </p>
+
+        <h2>2. Forty-Seven Silent Mutations and a Single Surface Change (<code>M:T516I</code>)</h2>
+
+        <p>
+            When a rodent virus causes a multi-generation human cluster on a cruise ship, a natural question is whether its replication machinery adapted to human cells. Comparing the coding sequences of <em>MV Hondius</em> against its closest Toltén rodent neighbors with <code>HyphAeon</code> reveals a remarkable evolutionary filter:
+        </p>
+
+        <ul>
+            <li>On the <strong>L segment</strong> (2,153 codons of the RNA polymerase), <em>MV Hondius</em> differs from Toltén rodent <code>R175-UDD</code> at <strong>36 nucleotide positions</strong>. Every single one—<strong>36 out of 36 (100%)</strong>—is a silent (synonymous) change that leaves the polymerase amino-acid sequence completely unchanged.</li>
+            <li>On the <strong>S segment</strong> (428 codons of the nucleocapsid protein), <em>MV Hondius</em> differs from Toltén rodent <code>R190-UDD</code> at <strong>11 nucleotide positions</strong>. Again, <strong>11 out of 11 (100%)</strong> are silent changes, leaving the nucleocapsid protein 100% identical to its 2013 rodent counterpart.</li>
+            <li>On the <strong>M segment</strong> (1,138 codons of the Gn/Gc surface glycoprotein), 27 of 29 nucleotide differences vs. <code>R175-UDD</code> are silent. Of the two amino-acid changes, <code>M:M288I</code> was already present in 2012 Chilean patient <code>1236</code>, leaving <strong><code>M:T516I</code> (<code>ACA</code> → <code>ATA</code>) in the Gn surface ectodomain as the only unique amino-acid substitution on the <em>MV Hondius</em> branch across all 3,719 codons of the viral proteome</strong>.</li>
+        </ul>
+
+        <div class="figure-container">
+            <img src="images/andv_hondius_fig2_selection_transmission.png"
+                alt="Two-panel figure showing (A) HyphAeon mutational tolerance and positive selection across the M segment glycoprotein highlighting M:T516I next to the Epuyen selection loop M:510-515, and (B) ChronAeon R0 estimates and the L:C2144T ship-doctor transmission chain.">
+            <div class="figure-caption">
+                <strong>Figure 2. Proteome-wide purifying conservation, the sole unique spike mutation <code>M:T516I</code>, and the shipboard transmission chain.</strong>
+                <strong>(A)</strong> Across all 3,719 codons of the <code>ANDV</code> proteome, <code>M:T516I</code> (orange star) is the only amino-acid substitution unique to the 2026 <em>MV Hondius</em> outbreak. In <code>hyphaeon dms</code>, site 516 sits in a structurally rigid pocket of the Gn surface domain (<span class="metric-badge">Φ = 0.57</span>, 11th percentile of M-segment tolerance) directly adjacent to an episodic positive selection loop (<code>M:510–515</code>, orange lollipops, <span class="metric-badge">p = 0.0052</span>) driven by the 2018–2019 Epuyén human-to-human outbreak.
+                <strong>(B)</strong> <code>chronaeon dynamics</code> separates endemic rodent reservoir spillover (<em>R</em><sub>0</sub> = 1.00) from self-sustaining shipboard spread aboard <em>MV Hondius</em> (<span class="metric-badge">R₀ = 1.40</span>, 95% CI: 1.19–1.64). Unmasked L-segment genomes reveal a shipboard mutation (<code>L:C2144T</code>) that arose in the ship's doctor (Case 5, onset Apr 30) and was inherited by five mid-May passenger cases across Canada and the Netherlands.
+            </div>
+        </div>
+
+        <p>
+            Is <code>M:T516I</code> sitting in a neutral variable loop, or in a functionally sensitive region of the spike? Running <code>hyphaeon dms</code>, <code>meme</code>, and <code>phenotype</code> across all 1,138 codons of the M glycoprotein provides three converging lines of evidence (<strong>Figure 2A</strong>):
+        </p>
+
+        <ol>
+            <li><strong>Structural rigidity:</strong> Codon 516 sits in a tightly constrained pocket of the Gn ectodomain with mutational tolerance <span class="metric-badge">Φ₅₁₆ = 0.571</span>—the <strong>11th percentile</strong> of tolerance across the entire M glycoprotein (mean Φ = 1.943).</li>
+            <li><strong>Adjacency to a known human-to-human outbreak loop:</strong> Codon 516 lies immediately adjacent to an exposed surface loop (<code>M:510–515</code>) where <code>hyphaeon meme</code> detects episodic positive selection (<span class="metric-badge">M:513 p = 0.0052</span>) driven by substitutions during the 2018–2019 Epuyén human-to-human superspreading outbreak in Argentina.</li>
+            <li><strong>Top phylogenetic-trait coupling:</strong> When <code>hyphaeon phenotype</code> scans the M alignment for amino-acid states correlated with the outbreak branch using phylogenetic permutations, <code>M:516</code> ranks <strong>#1 across the entire M segment</strong> (Spearman ρ = 0.748, <span class="metric-badge">FDR q = 4.76 × 10⁻¹³</span>).</li>
+        </ol>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Genomic Segment (Protein)</th>
+                    <th>Coding Length</th>
+                    <th>SNPs: Toltén Rodent vs. <em>MV Hondius</em></th>
+                    <th>Silent (Synonymous) SNPs</th>
+                    <th>Outbreak-Unique Amino-Acid Changes</th>
+                    <th>Clock &amp; Selection Signature (<code>*aeon</code>)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>L Segment</strong> (RdRp Polymerase)</td>
+                    <td>2,153 codons (6,459 bp)</td>
+                    <td>36 SNPs (vs. <code>R175-UDD</code>)</td>
+                    <td><strong>36 / 36 (100%)</strong></td>
+                    <td><strong>0</strong></td>
+                    <td>Bounded clock (Fieller <em>g</em> = 0.82); shipboard sub-clade marker <code>L:C2144T</code> (<code>P703P</code>)</td>
+                </tr>
+                <tr>
+                    <td><strong>M Segment</strong> (Gn/Gc Spike)</td>
+                    <td>1,138 codons (3,414 bp)</td>
+                    <td>29 SNPs (vs. <code>R175-UDD</code>)</td>
+                    <td>27 / 29 (93.1%)</td>
+                    <td><strong>1 (<code>M:T516I</code>)</strong><br><span class="text-muted" style="font-size:0.82rem;">(<code>M:M288I</code> shared with 2012 Patient 1236)</span></td>
+                    <td>Strong clock (<em>R</em>² = 0.73, <em>g</em> = 0.11, split ~2007.9); rigid Gn pocket (Φ = 0.57, 11th pct) next to Epuyén loop <code>M:510–515</code></td>
+                </tr>
+                <tr>
+                    <td><strong>S Segment</strong> (Nucleocapsid)</td>
+                    <td>428 codons (1,284 bp)</td>
+                    <td>11 SNPs (vs. <code>R190-UDD</code>)</td>
+                    <td><strong>11 / 11 (100%)</strong></td>
+                    <td><strong>0</strong></td>
+                    <td>Clock unidentifiable within <code>B.1.2.2</code> (Fieller <em>g</em> = 2.25 ≥ 1); 100% conserved protein</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Shipboard <em>R</em><sub>0</sub> = 1.40 and the Ship Doctor's Transmission Chain (<code>L:C2144T</code>)</h2>
+
+        <p>
+            Usually, Andes virus infections represent dead-end spillovers from rodents to humans, with an effective reproduction number at the self-limiting threshold of 1.0. Applying <code>chronaeon dynamics</code> with the empirical 21-day human serial interval separates background rodent-to-human spillover across Lineage B (<span class="metric-badge">R₀ = 1.001</span>, 95% CI: 1.000–1.001) and the <code>B.1.2.2</code> corridor (<span class="metric-badge">R₀ = 1.013</span>) from self-sustaining human-to-human spread aboard <em>MV Hondius</em> (<span class="metric-badge">R₀ = 1.40</span>, 95% CI: 1.19–1.64, doubling time 42.9 days) and the 2018–2019 Epuyén superspreading outbreak (<span class="metric-badge">R₀ = 1.50</span> overall; 4.86 during the initial burst) (<strong>Figure 2B</strong>).
+        </p>
+
+        <p>
+            Because the preprint masked partial genomes and restricted its within-outbreak comparison to 10 complete sequences, it reported zero nucleotide differences among shipboard patients. Auditing all <strong>22 sequenced <em>MV Hondius</em> genomes</strong> available in Pathoplexus through November 2026 uncovers an informative split at nucleotide 2,144 of the L segment (codon <code>P703P</code>) that reconstructs the second wave of shipboard transmission:
+        </p>
+
+        <ul>
+            <li><strong>The Founder Genotype (<code>C2144</code>, <em>n</em> = 7 L-covered cases):</strong> All early April-onset passengers and the expedition guide—Cases 2, 3, 4, 6, 7, 8, 9, 10, and 13 (symptom onset April 1–27)—carry the ancestral cytosine (<code>C</code>) shared with all Chilean rodent and human <code>B.1.2.2</code> genomes.</li>
+            <li><strong>The Ship-Doctor Sub-Clade (<code>T2144</code>, <em>n</em> = 6 L-covered cases):</strong> A C→T transition (<code>L:C2144T</code>) first appears in <strong>Case 5 (<code>PP_006W3U9.2</code>, the ship's doctor, symptom onset April 30)</strong>, who treated the initial wave of ill crew members in mid-April. That exact <code>T2144</code> marker is then inherited by <strong>Canadian Case 11</strong> (<code>PP_006XDHK.6</code> and <code>PP_006XDJH.6</code>, symptom onset May 14) and by <strong>all four Dutch passengers sequenced after disembarking in Tenerife, Spain</strong> between May 18 and May 22 (<code>PP_007N329.1</code>, <code>PP_007N50B.1</code>, <code>PP_00843KA.1</code>, and <code>PP_00843Q0.1</code>)—identifying the late-April shipboard link that carried the outbreak into mid-May.</li>
+        </ul>
+
+        <div class="callout-box">
+            <div class="callout-title">⚡ Why Fast, Composable Tools Matter During an Outbreak</div>
+            <p style="margin-bottom: 0;">
+                Ulloa-Zepeda and colleagues delivered an essential public-health service by sequencing clinical samples across six countries and depositing them openly on Pathoplexus. As additional background and follow-up genomes arrive over the ensuing weeks, pairing open repositories with sub-minute tools (<code>ChronAeon</code>, <code>RhizAeon</code>, and <code>HyphAeon</code>) lets genomic epidemiologists continuously update molecular clocks, screen out chimeric rodent reference strains, rank candidate surface adaptations, and resolve person-to-person transmission chains on a standard laptop.
+            </p>
+        </div>
+
+        <h2>4. Agentic Protocol (ASD-STE100 Simplified Technical English)</h2>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+            The following plain-text protocol follows Specification ASD-STE100 (Simplified Technical English). It defines the exact commands and verification checks so that an autonomous coding agent or researcher can reproduce every result in this post from the public Pathoplexus records.
+        </p>
+<pre>PROTOCOL: MV HONDIUS ANDES VIRUS (*AEON RE-ANALYSIS)
+STANDARD: ASD-STE100 (SIMPLIFIED TECHNICAL ENGLISH)
+TOTAL RUNTIME: 41.2 SECONDS ON APPLE M-SERIES CPU
+
+STEP 1: PREPARE CURATED ALIGNMENTS AND METADATA
+1.1 Download all Andes virus (ANDV) sequences and metadata from Pathoplexus
+    (Release 2026-11; 270 sequences across segments L, M, and S).
+1.2 Reconcile split isolate labels: link Chilean human L-segment accessions
+    ("Patient_&lt;ID&gt;") with matching M- and S-segment accessions ("&lt;ID&gt;").
+1.3 Extract in-frame coding sequences (CDS) for L (6,459 bp), M (3,414 bp),
+    and S (1,284 bp). Write comma-separated metadata to:
+    data/prepared/andv_curated_metadata.csv
+
+STEP 2: CALIBRATE MOLECULAR CLOCKS AND PHYLOGEOGRAPHY (CHRONAEON)
+2.1 Run tree-free PGLS clock calibration on Clade B.1.2.2 (M, L, and S):
+    chronaeon date -a data/prepared/B122_M.fasta \
+      -d data/prepared/B122_M_dates.tsv -o results/chronaeon_date/B122_M.json
+2.2 Verify Fieller identifiability statistic (g &lt; 1.0):
+    - Segment M: R2 = 0.732, Fieller g = 0.111 (PASS), t_MRCA = 1989.55,
+      Tolten-Hondius split = 2007.9 (95% CI: 2003.4 to 2010.8).
+    - Segment L: R2 = 0.320, Fieller g = 0.818 (PASS).
+    - Segment S: R2 = 0.130, Fieller g = 2.255 &gt;= 1.0 (UNBOUNDED CLOCK).
+2.3 Run discrete phylogeography across 14 geographic regions:
+    chronaeon phylogeo -a data/prepared/ANDV_M_cds.fasta \
+      -l data/prepared/ANDV_M_locs.tsv --bayes-factors \
+      -o results/chronaeon_phylogeo/ANDV_M_phylogeo.json
+2.4 Verify trans-Andean dispersal Bayes Factors (BF &gt; 80 between
+    La Araucania / Los Rios, Chile and Neuquen, Argentina).
+
+STEP 3: DETECT INTER-SEGMENT REASSORTMENT (RHIZAEON)
+3.1 Concatenate L + M + S coding alignments for all 105 three-segment isolates
+    (11,157 bp; segment boundaries at 6,459 bp and 9,873 bp).
+3.2 Run mosaic breakpoint detection:
+    rhizaeon -i data/prepared/ANDV_concat_LMS.fasta \
+      -o results/rhizaeon/ANDV_concat_LMS
+3.3 Verify that Lanco rodent PP_00701HR.1 (R600-UDD) is flagged as an
+    inter-clade L (B.1.2.2) / M+S (B.1.2.1) reassortant (p = 3.24e-11),
+    and that all MV Hondius outbreak genomes are non-reassortant B.1.2.2.
+
+STEP 4: MAP SELECTION AND MUTATIONAL TOLERANCE (HYPHAEON)
+4.1 Run Digital DMS, MEME, and Phenotype association on L, M, and S:
+    hyphaeon dms -a data/prepared/ANDV_M_cds.fasta \
+      --focal-strain PP_006W3RV.2 -o results/hyphaeon_dms/M_dms_hondius.csv
+    hyphaeon meme -a data/prepared/ANDV_M_cds.fasta \
+      -o results/hyphaeon_meme/M_meme.csv
+    hyphaeon phenotype -a data/prepared/ANDV_M_cds.fasta \
+      --phenotype data/prepared/ANDV_M_outbreak_trait.tsv \
+      -o results/hyphaeon_phenotype/M_pheno_outbreak.csv
+4.2 Verify that 36/36 L-segment SNPs (vs R175-UDD) and 11/11 S-segment SNPs
+    (vs R190-UDD) are synonymous, and that M:T516I is the sole unique
+    outbreak amino-acid substitution (Phi_516 = 0.571, 11th percentile;
+    phenotype rank #1, FDR q = 4.76e-13).
+
+STEP 5: ESTIMATE R0 AND TRACE INTRA-OUTBREAK CHAINS (CHRONAEON DYNAMICS)
+5.1 Estimate basic reproduction number R0 with a 21-day serial interval:
+    chronaeon dynamics -t data/prepared/trees/HONDIUS_L.nwk \
+      -m data/prepared/andv_curated_metadata.csv \
+      --serial-interval 21.0 --serial-interval-sd 6.0 --kernel gamma \
+      -o results/chronaeon_dynamics/HONDIUS_L_dynamics.json
+5.2 Verify R0 = 1.40 (95% CI: 1.19 to 1.64) on MV Hondius versus R0 = 1.001
+    across the Lineage B reservoir. Inspect nucleotide 2,144 of the unmasked
+    L alignment to confirm C2144 in early April cases (n = 7) and T2144
+    arising in Case 5 (Ship Doctor, PP_006W3U9.2) and shared by 5 mid-May
+    Canadian and Dutch passenger genomes.</pre>
+
+    </main>
+
+    <footer class="blog-footer">
+        <div class="container-narrow">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <strong>Sergei L. Kosakovsky Pond</strong><br>
+                    Institute for Genomics and Evolutionary Medicine (iGEM), Temple University
+                </div>
+                <div>
+                    <a href="../index.html" class="back-link">← Return to CV.js</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
