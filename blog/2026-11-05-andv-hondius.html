@@ -300,11 +300,11 @@
 
         <div class="figure-container">
             <img src="images/andv_hondius_fig1_origin_reassortment.png"
-                alt="Two-panel figure showing (A) ChronAeon molecular clock regression dating Clade B.1.2.2 to 1989.5 and the Tolten-Hondius split to 2007.9, and (B) RhizAeon coding divergence showing Lanco rodent R600-UDD is an L vs M+S inter-clade reassortant.">
+                alt="Two-panel figure showing (A) ChronAeon molecular clock regression narrowing the Tolten-Hondius split by 7.3 years from 2000 to 2007.9, and (B) simplified segment trees (tanglegram) showing Lanco rodent R600-UDD switching from Clade B.1.2.2 on the L segment to Clade B.1.2.1 on the M and S segments.">
             <div class="figure-caption">
-                <strong>Figure 1. Post-2013 genomes narrow the outbreak split by 7.3 years and expose a chimeric rodent genome.</strong>
-                <strong>(A)</strong> In 0.57 seconds, <code>chronaeon date</code> calibrates the expanded <code>B.1.2.2</code> M-segment clock (<span class="metric-badge">R² = 0.73</span>, Fieller <em>g</em> = 0.11), dating the clade crown to <strong>1989.5</strong> and narrowing the Toltén–<em>Hondius</em> split from August 2000 to <strong>~2007.9</strong> (95% CI: 2003.4–2010.8). Fieller's ratio <em>g</em> shows why the short 1.3 kb S segment (<em>g</em> = 2.25 ≥ 1) cannot support a bounded clock.
-                <strong>(B)</strong> Scanning all 105 three-segment genomes with <code>rhizaeon</code> reveals that Lanco rodent <code>R600-UDD</code> (2013) is an inter-clade reassortant (<span class="metric-badge">p = 3.2 × 10⁻¹¹</span>): its L segment matches Toltén/Lanco <code>B.1.2.2</code> (50 SNPs to <em>MV Hondius</em>), whereas its M and S segments jump to the Los Lagos <code>B.1.2.1</code> clade (93 M-SNPs to <em>MV Hondius</em>).
+                <strong>Figure 1. Post-2013 genomes narrow the outbreak split by 7.3 years and segment trees expose a chimeric rodent genome.</strong>
+                <strong>(A)</strong> In 0.57 seconds, <code>chronaeon date</code> calibrates the expanded <code>B.1.2.2</code> M-segment clock (<span class="metric-badge">R² = 0.73</span>, Fieller <em>g</em> = 0.11), shifting the Toltén–<em>Hondius</em> split forward by <strong>7.3 years</strong> from August 2000 to <strong>~2007.9</strong> (95% CI: 2003.4–2010.8).
+                <strong>(B)</strong> Simplified segment trees (<code>rhizaeon</code>) comparing the L segment (polymerase, left) against the M and S segments (spike and nucleocapsid, right). While <em>MV Hondius</em> and its Toltén/Los Ríos relatives stay inside Clade <code>B.1.2.2</code> across all three segments, Lanco rodent <code>R600-UDD</code> (2013) is an inter-clade reassortant (<span class="metric-badge">p = 3.2 × 10⁻¹¹</span>) whose M and S segments jump into the Los Lagos <code>B.1.2.1</code> clade.
             </div>
         </div>
 
@@ -334,11 +334,11 @@
 
         <div class="figure-container">
             <img src="images/andv_hondius_fig2_selection_transmission.png"
-                alt="Two-panel figure showing (A) HyphAeon mutational tolerance and positive selection across the M segment glycoprotein highlighting M:T516I next to the Epuyen selection loop M:510-515, and (B) ChronAeon R0 estimates and the L:C2144T ship-doctor transmission chain.">
+                alt="Two-panel figure showing (A) silent versus protein-changing mutations across the L, S, and M segments highlighting M:T516I as the only unique outbreak protein change out of 76 mutations, and (B) ChronAeon R0 estimates above a three-step flowchart of the L:C2144T ship-doctor transmission chain.">
             <div class="figure-caption">
-                <strong>Figure 2. Proteome-wide purifying conservation, the sole unique spike mutation <code>M:T516I</code>, and the shipboard transmission chain.</strong>
-                <strong>(A)</strong> Across all 3,719 codons of the <code>ANDV</code> proteome, <code>M:T516I</code> (orange star) is the only amino-acid substitution unique to the 2026 <em>MV Hondius</em> outbreak. In <code>hyphaeon dms</code>, site 516 sits in a structurally rigid pocket of the Gn surface domain (<span class="metric-badge">Φ = 0.57</span>, 11th percentile of M-segment tolerance) directly adjacent to an episodic positive selection loop (<code>M:510–515</code>, orange lollipops, <span class="metric-badge">p = 0.0052</span>) driven by the 2018–2019 Epuyén human-to-human outbreak.
-                <strong>(B)</strong> <code>chronaeon dynamics</code> separates endemic rodent reservoir spillover (<em>R</em><sub>0</sub> = 1.00) from self-sustaining shipboard spread aboard <em>MV Hondius</em> (<span class="metric-badge">R₀ = 1.40</span>, 95% CI: 1.19–1.64). Unmasked L-segment genomes reveal a shipboard mutation (<code>L:C2144T</code>) that arose in the ship's doctor (Case 5, onset Apr 30) and was inherited by five mid-May passenger cases across Canada and the Netherlands.
+                <strong>Figure 2. Only 1 of 76 coding mutations is a unique protein change (<code>M:T516I</code>), and unmasked genomes trace the shipboard chain.</strong>
+                <strong>(A)</strong> Comparing <em>MV Hondius</em> against its closest Toltén rodent neighbors across all 3,719 codons: 36/36 L-segment mutations and 11/11 S-segment mutations are silent, and <code>M:M288I</code> was already present in 2012 Patient 1236, leaving <strong><code>M:T516I</code></strong> (orange star) as the only outbreak-unique amino-acid change—located in a rigid Gn pocket (<span class="metric-badge">Φ = 0.57</span>, 11th percentile) next to the Epuyén human-to-human selection loop (<code>M:510–515</code>, <span class="metric-badge">p = 0.0052</span>).
+                <strong>(B)</strong> Top: <code>chronaeon dynamics</code> separates rodent spillover (<em>R</em><sub>0</sub> = 1.00) from self-sustaining shipboard transmission (<span class="metric-badge">R₀ = 1.40</span>, 95% CI: 1.19–1.64). Bottom: unmasked L-segment genomes reveal a mutation (<code>L:C2144T</code>) that arose in the ship's doctor (Case 5, onset Apr 30) and was inherited by five mid-May passenger cases across Canada and the Netherlands.
             </div>
         </div>
 
