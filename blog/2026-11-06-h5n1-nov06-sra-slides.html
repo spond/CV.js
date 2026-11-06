@@ -1,367 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executive Deck: What the Nov 6, 2026 USDA H5N1 Cattle Release Reveals | Sergei L. Kosakovsky Pond</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --card-bg: #ffffff;
-            --primary-blue: #1e40af;
-            --accent-amber: #d97706;
-            --accent-red: #b91c1c;
-            --accent-green: #047857;
-            --text-dark: #0f172a;
-            --text-muted: #475569;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        header.deck-bar {
-            background: #020617;
-            color: #f8fafc;
-            padding: 0.85rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #1e293b;
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        header.deck-bar a {
-            color: #93c5fd;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        header.deck-bar a:hover { text-decoration: underline; }
-        .deck-stage {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-        .slide {
-            display: none;
-            width: 100%;
-            max-width: 1120px;
-            min-height: 620px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 3px solid #000;
-            box-shadow: 10px 10px 0px #38bdf8;
-            padding: 2.5rem 3rem;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .slide.active { display: flex; }
-        .slide-kicker {
-            font-size: 0.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-        .slide-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.55rem;
-            line-height: 1.12;
-            font-weight: 400;
-            color: #000;
-            margin: 0 0 1rem 0;
-        }
-        .slide-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-            margin-bottom: 1.5rem;
-        }
-        .grid-2x2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.15rem;
-            margin: 0.5rem 0 1.25rem 0;
-        }
-        .stat-card {
-            background: #f8fafc;
-            border: 2px solid #0f172a;
-            border-radius: 10px;
-            padding: 1.15rem 1.35rem;
-        }
-        .stat-num {
-            font-size: 1.45rem;
-            font-weight: 800;
-            margin-bottom: 0.2rem;
-        }
-        .stat-label {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 0.35rem;
-            color: #0f172a;
-        }
-        .stat-desc {
-            font-size: 0.88rem;
-            color: #334155;
-            line-height: 1.45;
-            margin: 0;
-        }
-        .slide-split {
-            display: grid;
-            grid-template-columns: 1.05fr 1.35fr;
-            gap: 1.75rem;
-            align-items: center;
-            margin: 0.5rem 0;
-        }
-        .slide-fig {
-            background: #fff;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-        }
-        .slide-fig img {
-            max-width: 100%;
-            height: auto;
-            max-height: 360px;
-            object-fit: contain;
-            border-radius: 6px;
-        }
-        .bullet-list {
-            padding-left: 1.2rem;
-            margin: 0;
-        }
-        .bullet-list li {
-            margin-bottom: 0.85rem;
-            font-size: 0.96rem;
-            line-height: 1.5;
-            color: #1e293b;
-        }
-        .zinger-banner {
-            background: #fef9c3;
-            border: 2px solid #0f172a;
-            border-radius: 8px;
-            padding: 0.85rem 1.15rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #0f172a;
-        }
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            background: #e2e8f0;
-            padding: 2px 5px;
-            border-radius: 4px;
-            font-size: 0.88em;
-            color: #b91c1c;
-        }
-        .slide-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 1rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .nav-controls {
-            display: flex;
-            gap: 0.65rem;
-            align-items: center;
-        }
-        button.nav-btn {
-            background: #0f172a;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-        button.nav-btn:hover { background: #1e40af; }
-        button.nav-btn:disabled { background: #94a3b8; cursor: not-allowed; }
-        @media (max-width: 900px) {
-            .grid-2x2, .slide-split { grid-template-columns: 1fr; }
-            .slide { padding: 1.5rem; min-height: auto; }
-            .slide-title { font-size: 2rem; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4-Slide Executive Summary: Nov 6, 2026 USDA H5N1 Dairy Cattle SRA Update</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #1e293b;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+    .topbar a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    .deck {
+      max-width: 1120px;
+      margin: 24px auto 64px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .slide {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 32px 38px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      border: 1px solid #cbd5e1;
+    }
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .slide-num {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .slide h2 {
+      margin: 4px 0 0;
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.05fr 1.25fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #1e293b;
+    }
+    li { margin-bottom: 10px; }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88em;
+      background: #f1f5f9;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    @media (max-width: 860px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="deck-bar">
-    <div>
-        <a href="2026-11-06-h5n1-nov06-sra.html">← Read Full Blog Post</a>
-        <span style="margin: 0 10px; color: #475569;">|</span>
-        <a href="h5n1-nov06-explorer/index.html">Interactive 8-Segment Tree ↗</a>
-        <span style="margin: 0 10px; color: #475569;">|</span>
-        <span><strong>Nov 6, 2026 USDA H5N1 Release (42 Genomes)</strong> — 4-Slide Executive Summary</span>
+<div class="topbar">
+  <div><a href="2026-11-06-h5n1-nov06-sra.html">&larr; Back to Full Plain-English Blog Post</a></div>
+  <div>
+    <a href="h5n1-nov06-explorer/index.html" style="margin-right:16px;">Interactive 9-Tree Explorer &rarr;</a>
+    <span>4-Slide Summary &middot; Nov 6, 2026 USDA H5N1 Dairy Cattle SRA Release</span>
+  </div>
+</div>
+
+<div class="deck">
+
+  <!-- SLIDE 1 -->
+  <section class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 1 of 4 &middot; Big Picture</div>
+        <h2>Half of the 14 Overnight Samples Are Outside Washington</h2>
+      </div>
     </div>
-    <div>Use <strong>← / →</strong> arrow keys to navigate</div>
-</header>
+    <div class="grid-2">
+      <ul>
+        <li>Overnight on <strong>November 6, 2026</strong>, USDA added <strong>14 new raw H5N1 sequencing runs</strong> (<code>SRR41562233</code>–<code>SRR41562246</code>), bringing the Fall 2026 dataset to <strong>42 cow genomes across 22 dairy herds</strong>.</li>
+        <li>Placing all 42 sequences on the H5N1 family tree shows they come from <strong>three separate regional outbreaks</strong>:
+          <ul>
+            <li><strong>Washington (+6 new):</strong> 29 cows across 12 herds (+ 2 human cases).</li>
+            <li><strong>Texas (+6 new):</strong> 9 cows across 7 herds.</li>
+            <li><strong>Idaho (+2 new):</strong> 4 cows across 3 herds.</li>
+          </ul>
+        </li>
+        <li>Cows inside Washington differ by just <strong>1.1 mutations on average</strong> (~3–4 weeks of local spread), whereas Washington, Idaho, and Texas viruses are <strong>61 to 67 mutations apart</strong> (~1.5 years of separate evolution).</li>
+      </ul>
+      <div>
+        <img src="images/blog_fig1_three_outbreaks_overview.png" alt="Slide 1 overview of the 3 outbreaks">
+      </div>
+    </div>
+  </section>
 
-<main class="deck-stage">
+  <!-- SLIDE 2 -->
+  <section class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 2 of 4 &middot; Washington Outbreak</div>
+        <h2>Inside Washington: 12 Herds from One Recent Jump</h2>
+      </div>
+    </div>
+    <div class="grid-2">
+      <ul>
+        <li><strong>One shared founder (~3–4 weeks before Oct sampling):</strong> All 12 Washington herds (29 cows + 2 humans) share an identical 10-mutation stem and trace back to a single introduction seeded by just <strong>1 to 3 cows</strong>.</li>
+        <li><strong>Main multi-farm branch doubled (2 &rarr; 4 herds):</strong> Two new November 6 herds (<code>26G15051</code> and <code>26G15055</code>) carry the exact same two quiet genetic tags (<code>PA:G1260A + MP:T462C</code>) seen in two October herds.</li>
+        <li><strong>Tank-to-tank split inside a single farm (<code>26G14833</code>):</strong> Tank 1 carries <code>PB1:H99Y</code> (83%), while Tanks 2 &amp; 3 carry <code>M2:S82N</code> (45–57%) + <code>PA:Y290H</code> (37–73%)—tracing back to a 20% minor variant in an October herd (<code>26G14594</code>).</li>
+      </ul>
+      <div>
+        <img src="images/blog_fig2_wa_12herds_simple.png" alt="Slide 2 diagram of the 12 Washington herds">
+      </div>
+    </div>
+  </section>
 
-    <!-- SLIDE 1: EXECUTIVE OVERVIEW -->
-    <section class="slide active" id="slide-1">
-        <div>
-            <div class="slide-kicker">Slide 1 of 4 • Executive Digest • Nov 6, 2026 USDA-NVSL Release (42 SRA Genomes)</div>
-            <h1 class="slide-title">Twelve Herds, Three Active Lineages, and the “Ghost of 2024” Primer Trap</h1>
-            <p class="slide-subtitle">
-                Comparing today's 14 new USDA-NVSL milk SRA runs (<code>SRR41562233</code>–<code>SRR41562246</code>) against our October 16–30 baseline (42 cattle genomes across 22 batches + 2 Washington humans).
-            </p>
-            <div class="grid-2x2">
-                <div class="stat-card">
-                    <div class="stat-num" style="color: var(--accent-red);">🧪 95% → 0% (False NA:I5V)</div>
-                    <div class="stat-label">The “Ghost of 2024” Tiled-Primer Trap</div>
-                    <p class="stat-desc">6 of 14 new runs used a rescue <code>-original-tile</code> panel whose 2024 primers overwrite 2026 bases near read ends—creating fake shared mutations like <code>NA:I5V</code> and <code>M1:N82S</code> until read ends are trimmed.</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-num" style="color: var(--primary-blue);">🐄 29 Cows (12 WA Batches)</div>
-                    <div class="stat-label">4-Herd Subclade &amp; Live Bulk-Tank Divergence</div>
-                    <p class="stat-desc">The <code>PA:G1260A + MP:T462C</code> subclade doubled from 2 to 4 herds (<code>26G15051</code> &amp; <code>26G15055</code>), while 3 tanks in <code>26G14833</code> capture <code>PA:Y290H</code> (37% → 73%) and <code>M2:S82N</code> (45% → 57%) rising together.</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-num" style="color: var(--accent-amber);">🧬 3 Active 2026 Lineages</div>
-                    <div class="stat-label">Idaho Mammalian Pol &amp; Texas Sweep Continue</div>
-                    <p class="stat-desc">8 new runs fall outside Washington: <code>26G14741-001</code> is a 0-SNP match to the <code>PB2:T271A + D678G</code> clade (<code>NODE_0002210</code>), while <code>26G15081</code> and <code>26G15291</code> extend the 5-AA Texas sweep (<code>NODE_0002254</code>).</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-num" style="color: var(--accent-green);">⏱️ ~1.4–3.1 Cows vs. 11–13 Herds</div>
-                    <div class="stat-label">Tight WA Bottleneck Atop a 22-Herd Reservoir</div>
-                    <p class="stat-desc">Across all 29 WA cows, diversity remains tiny (<em>S</em> = 9, π = 1.12 SNPs; <em>t</em><sub>MRCA</sub> ≈ 22–26 d), sitting inside a 22-herd WA/ID/TX metapopulation of <strong>11.0–13.3 transmitting herds</strong>.</p>
-                </div>
-            </div>
-        </div>
-        <div class="zinger-banner">
-            💡 <strong>Bottom Line:</strong> Three consecutive SRA waves (Oct 16, Oct 30, Nov 6) show the Washington outbreak fanning out from a ~2-cow bottleneck across 12 dairy batches while parallel Idaho and Texas cattle lineages remain active.
-        </div>
-        <div class="slide-footer">
-            <span>Sergei L. Kosakovsky Pond • iGEM, Temple University</span>
-            <div class="nav-controls">
-                <button class="nav-btn" onclick="goSlide(0)" disabled>← Prev</button>
-                <button class="nav-btn" onclick="goSlide(1)">Next →</button>
-            </div>
-        </div>
-    </section>
+  <!-- SLIDE 3 -->
+  <section class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 3 of 4 &middot; Idaho &amp; Texas</div>
+        <h2>Active Farm-to-Farm Spread in Idaho and Texas</h2>
+      </div>
+    </div>
+    <div class="grid-2" style="grid-template-columns: 1fr 1fr;">
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:20px;">
+        <h3 style="margin-top:0; color:#b91c1c;">Idaho Mammalian-Polymerase Branch (<code>NODE_0002210</code>)</h3>
+        <ul>
+          <li>Carries <strong>two polymerase mutations</strong>: <code>PB2:T271A</code> (a known mammalian adaptation) paired with <code>PB2:D678G</code>.</li>
+          <li>New November 6 sample <code>26G14741-001</code> is <strong>0 consensus mutations away</strong> from October 30 sample <code>26G14109-002</code>.</li>
+          <li>Confirms active herd-to-herd transmission of this mammalian-adapted branch across 3 sampled batches (4 cows).</li>
+        </ul>
+      </div>
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:20px;">
+        <h3 style="margin-top:0; color:#1d4ed8;">Texas 5-Mutation Sweep Branch (<code>NODE_0002254</code>)</h3>
+        <ul>
+          <li>6 of the 14 overnight runs belong to the Texas lineage (expanding it from 3 to 9 cows across 7 herds).</li>
+          <li>Three earlier samples (<code>26G09480-002/-004/-008</code>) sit right at the root of the Texas branch.</li>
+          <li>Three newer samples (<code>26G13259</code>, <code>26G15081</code>, <code>26G15291</code>) carry a 5-amino-acid sweep across five viral genes (<code>PB1</code>, <code>PA</code>, <code>HA</code>, <code>NP</code>, <code>NA</code>).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- SLIDE 2: PROTOCOL DICHOTOMY & PRIMER ARTIFACTS -->
-    <section class="slide" id="slide-2">
-        <div>
-            <div class="slide-kicker">Slide 2 of 4 • Sequencing QC Audit • -original vs. -original-tile</div>
-            <h2 class="slide-title">Why 6 New Genomes Appeared to Share Fake Mutations</h2>
-            <div class="slide-split">
-                <ul class="bullet-list">
-                    <li><strong>Two Lab Protocols in One Release:</strong> 8 runs used standard whole-segment RTPCR (<code>-original</code>: 0 internal dropouts), while 6 runs used rescue tiled amplicons (<code>-original-tile</code>: sharp troughs at <code>PB2:406–685</code>, <code>PB1:26–194</code>, <code>NA:1–14</code>).</li>
-                    <li><strong>2024 Primers Overwrite 2026 Viruses:</strong> At 14 positions where 2025–2026 cattle H5N1 evolved away from the 2024 sequence, un-trimmed 2024 tile primers stamp ancestral bases onto read ends.</li>
-                    <li><strong>False <code>NA:I5V</code> in 6/6 Tiled Runs:</strong> Immediately after the <code>NA:1–9</code> dropout, a 2024 <code>G</code>-primer forces 91–99% <code>NA:A15G</code> (<strong>95% → 0%</strong> in inner reads ≥25 bp from read ends).</li>
-                    <li><strong>False Internal Mixtures:</strong> Tile boundaries also create synthetic <code>M1:N82S</code> (34% → 1%), <code>PA:A894R</code> (37% → 2%), and <code>NP:G119R</code> (17% → 2%).</li>
-                </ul>
-                <div class="slide-fig">
-                    <img src="images/nov06_coverage_uniformity_and_primer_dropouts.png" alt="Figure 1: Coverage uniformity and 2024 primer artifacts">
-                </div>
-            </div>
-        </div>
-        <div class="zinger-banner">
-            ⚠️ <strong>Surveillance Rule:</strong> Always scrub 2024 tile-primer binding sites in <code>-original-tile</code> SRA runs before building trees or calling amino-acid substitutions.
-        </div>
-        <div class="slide-footer">
-            <span>Slide 2 / 4 • Coverage Uniformity &amp; Primer Mismatch Audit</span>
-            <div class="nav-controls">
-                <button class="nav-btn" onclick="goSlide(0)">← Prev</button>
-                <button class="nav-btn" onclick="goSlide(2)">Next →</button>
-            </div>
-        </div>
-    </section>
+  <!-- SLIDE 4 -->
+  <section class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 4 of 4 &middot; Brief Technical Note</div>
+        <h2>2024 "Rescue Primers" Create Fake Mutations Unless Trimmed</h2>
+      </div>
+    </div>
+    <div class="grid-2">
+      <ul>
+        <li><strong>Why 6 samples look unusual at gene tips:</strong> 6 weak-RNA samples were amplified with a 32-primer rescue kit (<code>-original-tile</code>) designed from <strong>2024</strong> H5N1 sequences.</li>
+        <li>Where the 2026 virus has evolved away from 2024, those synthetic primer ends overwrite the real 2026 virus at the ends of sequencing reads.</li>
+        <li><strong>Trimming 25 bp from read ends fixes the problem:</strong> Apparent mutations like <code>NA:I5V</code> (95% &rarr; <strong>0%</strong>) and <code>PA:K716E</code> (100% &rarr; <strong>0%</strong>) vanish completely once primer ends are trimmed off.</li>
+      </ul>
+      <div>
+        <img src="images/blog_fig3_primer_artifact_simple.png" alt="Slide 4 bar chart of rescue primer artifacts before and after trimming">
+      </div>
+    </div>
+  </section>
 
-    <!-- SLIDE 3: WASHINGTON 12-HERD TRANSMISSION MATRIX -->
-    <section class="slide" id="slide-3">
-        <div>
-            <div class="slide-kicker">Slide 3 of 4 • Washington Clade (NODE_0002335) • 29 Cows + 2 Humans</div>
-            <h2 class="slide-title">Inside Washington: A 4-Herd Subclade &amp; Live Bulk-Tank Splitting</h2>
-            <div class="slide-split">
-                <ul class="bullet-list">
-                    <li><strong><code>PA:G1260A + MP:T462C</code> Doubles to 4 Herds:</strong> New Nov 6 batches <code>26G15051-001</code> and <code>26G15055-001</code> carry the exact 2-SNP barcode seen on Oct 30 in <code>26G14501</code> and <code>26G14598</code>; <code>26G15055-001</code> adds a 64% <code>PB1:C1275T + NP:V182I</code> sub-mix.</li>
-                    <li><strong>Within-Herd Divergence in <code>26G14833</code>:</strong> Tank <code>-001</code> fixes <code>PB1:H99Y</code> (83%), while tanks <code>-002</code> and <code>-003</code> co-segregate <strong><code>PA:Y290H</code> (37% → 73%)</strong> and <strong><code>M2:S82N</code> (45% → 57%)</strong>.</li>
-                    <li><strong>Cross-Herd Bridge to Oct 30:</strong> That same <code>M2:S82N</code> variant was already present at <strong>20%</strong> in Oct 30 batch <code>26G14594-002</code>.</li>
-                    <li><strong>Human vs. Cattle Selection:</strong> Oct 29 human isolate <code>UW-110701</code> carries within-host HA receptor-binding variants (<code>H125N</code> 18%, <code>Q226R</code> 16%, <code>S181P</code> 11%) that are <strong>0% across all 29 cattle samples</strong>.</li>
-                </ul>
-                <div class="slide-fig">
-                    <img src="images/h5n1_wa_nov06_12herd_transmission_and_variants.png" alt="Figure 2: 12-Batch Washington Clade Variant Matrix">
-                </div>
-            </div>
-        </div>
-        <div class="zinger-banner">
-            🔗 <strong>Epidemiological Insight:</strong> Bulk-tank minority alleles (20% → 45% → 57%) directly link dairy batches across weekly SRA releases before mutations even reach 100% fixation.
-        </div>
-        <div class="slide-footer">
-            <span>Slide 3 / 4 • Multi-Wave Transmission &amp; Sub-Consensus Barcodes</span>
-            <div class="nav-controls">
-                <button class="nav-btn" onclick="goSlide(1)">← Prev</button>
-                <button class="nav-btn" onclick="goSlide(3)">Next →</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- SLIDE 4: CHRONAEON NE & THREE ACTIVE LINEAGES -->
-    <section class="slide" id="slide-4">
-        <div>
-            <div class="slide-kicker">Slide 4 of 4 • ChronAeon Phylodynamics • 42 SRA Genomes Across 22 Batches</div>
-            <h2 class="slide-title">Tight Local Bottlenecks Atop an 11–13 Herd Regional Reservoir</h2>
-            <div class="slide-split">
-                <ul class="bullet-list">
-                    <li><strong>Expanded WA Clade (29 Cows, 12 Batches):</strong> Only <em>S</em> = 9 segregating sites (π = 1.12 SNPs) → <strong><em>N<sub>e,cows</sub></em> = 1.4–3.1 cows</strong> and coalescent <strong><em>t</em><sub>MRCA</sub> ≈ 22–26 days</strong> after a 10-SNP (~98–119 d) unsampled stem.</li>
-                    <li><strong>Mammalian Polymerase Clade (<code>NODE_0002210</code>):</strong> Bulk tank <code>26G14741-001</code> is 0 SNPs from <code>26G14109-002</code>, expanding the <code>PB2:T271A + D678G</code> clade to 4 cows across 3 batches (<em>N<sub>e,cows</sub></em> ≈ 1.0–2.4 cows).</li>
-                    <li><strong>Texas Forward Sweep (<code>NODE_0002254</code>):</strong> Late-Oct milk runs <code>26G15081-001</code> and <code>26G15291-001</code> sit 2 SNPs from <code>26G13868-001</code> (<em>N<sub>e,cows</sub></em> ≈ 4.1–4.9 cows).</li>
-                    <li><strong>22-Herd Regional Metapopulation (WA/ID/TX):</strong> <em>S</em> = 98, π = 24.9 SNPs → <strong><em>N<sub>e,herds</sub></em> = 11.0–13.3 transmitting dairy herds</strong>.</li>
-                </ul>
-                <div class="slide-fig">
-                    <img src="images/chronaeon_wa_nov06_ne_skyline_and_scales.png" alt="Figure 3: ChronAeon Skyline and Multi-Scale Ne">
-                </div>
-            </div>
-        </div>
-        <div class="zinger-banner">
-            ⚡ <strong>Explore All 8 Segments:</strong> Inspect every clade and minority variant interactively in the <a href="h5n1-nov06-explorer/index.html" style="color:#1e40af;">Interactive Segment &amp; Genome Tree Explorer</a> or read the <a href="2026-11-06-h5n1-nov06-sra.html" style="color:#1e40af;">full blog post</a>.
-        </div>
-        <div class="slide-footer">
-            <span>Slide 4 / 4 • ChronAeon TimeTree Skyline &amp; Multi-Scale Ne</span>
-            <div class="nav-controls">
-                <button class="nav-btn" onclick="goSlide(2)">← Prev</button>
-                <button class="nav-btn" onclick="window.location.href='2026-11-06-h5n1-nov06-sra.html'">Read Full Post ↗</button>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<script>
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-    function goSlide(idx) {
-        if (idx < 0 || idx >= slides.length) return;
-        slides[current].classList.remove('active');
-        current = idx;
-        slides[current].classList.add('active');
-    }
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ') goSlide(current + 1);
-        if (e.key === 'ArrowLeft') goSlide(current - 1);
-    });
-</script>
+</div>
 
 </body>
 </html>

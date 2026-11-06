@@ -1,516 +1,347 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twelve Herds, Three Active Lineages, and the "Ghost of 2024" Primer Trap: What the November 6 USDA H5N1 Release Reveals | Sergei L. Kosakovsky Pond</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --primary-blue: #1e40af;
-            --accent-amber: #d97706;
-            --text-dark: #111827;
-            --text-muted: #4b5563;
-            --bg-light: #f9fafb;
-            --border-gray: #e5e7eb;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.75;
-            color: var(--text-dark);
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container-narrow {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        header.blog-header {
-            border-bottom: 1px solid var(--border-gray);
-            padding: 1.5rem 0;
-            margin-bottom: 3rem;
-            background: var(--bg-light);
-        }
-
-        .header-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .back-link {
-            font-weight: 600;
-            color: var(--primary-blue);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .post-meta {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        h1.post-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3.05rem;
-            line-height: 1.12;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            color: #000;
-        }
-
-        .lead {
-            font-size: 1.22rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        h2 {
-            font-weight: 700;
-            font-size: 1.65rem;
-            margin-top: 3rem;
-            margin-bottom: 1.15rem;
-            letter-spacing: -0.025em;
-            color: #000;
-            border-bottom: 2px solid var(--border-gray);
-            padding-bottom: 0.5rem;
-        }
-
-        h3 {
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
-        }
-
-        p {
-            margin-bottom: 1.35rem;
-            font-size: 1.075rem;
-        }
-
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9em;
-            background: #f3f4f6;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #b91c1c;
-        }
-
-        pre {
-            background: #1f2937;
-            color: #f9fafb;
-            padding: 1.25rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.55;
-        }
-
-        .callout-box {
-            background-color: #eff6ff;
-            border-left: 4px solid var(--primary-blue);
-            padding: 1.35rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .callout-title {
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-            font-size: 0.82rem;
-            letter-spacing: 0.05em;
-        }
-
-        .figure-container {
-            margin: 2.25rem -36px;
-            text-align: center;
-            background: #fff;
-            padding: 16px;
-            border: 1px solid var(--border-gray);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        @media (max-width: 860px) {
-            .figure-container {
-                margin: 2rem 0;
-            }
-        }
-
-        .figure-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-        }
-
-        .figure-caption {
-            margin-top: 0.9rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-align: left;
-            padding: 0 0.5rem;
-            line-height: 1.55;
-        }
-
-        .metric-badge {
-            display: inline-block;
-            background: #fef3c7;
-            color: #92400e;
-            padding: 2px 9px;
-            border-radius: 9999px;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        table.blog-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.75rem 0;
-            font-size: 0.92rem;
-        }
-
-        table.blog-table th {
-            background: var(--bg-light);
-            border-bottom: 2px solid var(--border-gray);
-            padding: 10px 12px;
-            text-align: left;
-            font-weight: 700;
-        }
-
-        table.blog-table td {
-            border-bottom: 1px solid var(--border-gray);
-            padding: 9px 12px;
-            vertical-align: top;
-        }
-
-        footer.blog-footer {
-            margin-top: 5rem;
-            padding: 3rem 0;
-            border-top: 1px solid var(--border-gray);
-            background: var(--bg-light);
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12 Washington herds, two sister outbreaks in Idaho and Texas, and a primer caveat: what the November 6 USDA H5N1 sequences show</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a202c;
+      --muted: #4a5568;
+      --accent: #2b6cb0;
+      --accent-light: #ebf8ff;
+      --border: #e2e8f0;
+      --code-bg: #f7fafc;
+      --callout-bg: #f8fafc;
+      --warn-bg: #fffaf0;
+      --warn-border: #dd6b20;
+      --success-bg: #f0fff4;
+      --success-border: #38a169;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      background: #f8fafc;
+      padding: 12px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .topbar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 44px 24px 88px;
+    }
+    header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 34px;
+      line-height: 1.22;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 14px 0;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0 0 18px 0;
+      font-weight: 400;
+    }
+    .meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 44px 0 14px;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 20px; }
+    a { color: var(--accent); }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--accent);
+      padding: 18px 22px;
+      margin: 26px 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 17.5px;
+    }
+    .callout.warn {
+      background: var(--warn-bg);
+      border-left-color: var(--warn-border);
+    }
+    .callout.success {
+      background: var(--success-bg);
+      border-left-color: var(--success-border);
+    }
+    .callout-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 26px 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .takeaway-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fafafa;
+    }
+    .takeaway-card .num {
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .takeaway-card .desc {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.45;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    figure {
+      margin: 30px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      background: #ffffff;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+    figcaption {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    ul, ol {
+      margin: 0 0 20px 0;
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+    footer {
+      margin-top: 56px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
 </head>
-
 <body>
 
-    <header class="blog-header">
-        <div class="container-narrow header-nav">
-            <a href="../index.html" class="back-link">← Back to CV & Research</a>
-            <div>
-                <a href="h5n1-nov06-explorer/index.html" class="back-link" style="display:inline-flex; margin-right: 16px;">Interactive Tree Explorer ↗</a>
-                <a href="2026-11-06-h5n1-nov06-sra-slides.html" class="back-link" style="display:inline-flex; margin-right: 16px;">4-Slide Deck ↗</a>
-                <span class="text-muted">November 6, 2026</span>
-            </div>
-        </div>
-    </header>
+<div class="topbar">
+  <div><a href="../index.html">&larr; Back to Sergei Pond's CV &amp; Blog</a></div>
+  <div>
+    <a href="2026-11-06-h5n1-nov06-sra-slides.html" style="font-weight:700; margin-right: 12px;">View 4-Slide Executive Summary &rarr;</a>
+    <a href="h5n1-nov06-explorer/index.html" style="font-weight:700; margin-right: 12px;">Interactive 9-Tree Explorer &rarr;</a>
+    <span>Nov 6, 2026 &middot; H5N1 Dairy Cattle Genomics</span>
+  </div>
+</div>
 
-    <main class="container-narrow">
-        <div class="post-meta">Genomic Surveillance • H5N1 Dairy Cattle • *aeon Suite • 5 Min Read</div>
-        <h1 class="post-title">Twelve Herds, Three Active Lineages, and the “Ghost of 2024” Primer Trap: What the November 6 USDA H5N1 Release Reveals</h1>
+<main class="container">
+  <header>
+    <div class="kicker">Plain-English Genomic Surveillance Update &middot; USDA-NVSL H5N1 Release</div>
+    <h1>12 Washington herds, two sister outbreaks in Idaho and Texas, and a primer caveat: what the November 6 USDA H5N1 sequences show</h1>
+    <p class="subtitle">Overnight on November 6, 2026, USDA added 14 new raw H5N1 dairy cattle sequencing runs to the public archive, bringing the Fall 2026 release to 42 cow genomes across 22 herds. Here is what changed since last week in plain English.</p>
+    <div class="meta">By <strong>Sergei L. Kosakovsky Pond</strong> &middot; November 6, 2026</div>
+  </header>
 
-        <p class="lead">
-            Ten days ago, we looked at the first wave of October 2026 USDA dairy cattle sequences and saw what looked like a single, tightly bottlenecked outbreak in Washington State. Today (November 6), USDA-NVSL released 14 more raw milk sequencing runs—bringing the October–November cohort to 42 cattle genomes across 22 submission batches, plus two Washington human cases. Comparing the new data against the earlier releases shows how the Washington cluster is branching across farms, reveals two other cattle lineages quietly circulating in Idaho and Texas, and exposes a subtle laboratory primer artifact that stamps 2024 “ghost mutations” onto 2026 viruses.
-        </p>
+  <p>In late October 2026, the first two batches of Fall 2026 USDA dairy cattle sequences (28 cows across 13 farm batches) showed that the new H5N1 B3.13 outbreak in Washington State came from a single recent jump into local cattle. Overnight on <strong>November 6, 2026</strong>, USDA deposited <strong>14 more raw sequencing runs</strong> (<code>SRR41562233</code>–<code>SRR41562246</code>), expanding the fall dataset to <strong>42 cow genomes across 22 dairy herds</strong>.</p>
 
-        <!-- High-Impact Brutalist 2x2 Summary Grid -->
-        <div style="background: #f8fafc; border: 2px solid #0f172a; border-radius: 12px; padding: 1.75rem; margin-bottom: 2.75rem; box-shadow: 6px 6px 0px #0f172a;">
-            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; margin-bottom: 1.25rem; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                <span style="background: #0f172a; color: #fff; padding: 3px 8px; border-radius: 4px;">What Changed?</span>
-                <span>The 60-Second Digest (<a href="2026-11-06-h5n1-nov06-sra-slides.html" style="color: #1e40af; text-decoration: underline;">View 4-Slide Deck ↗</a> • <a href="h5n1-nov06-explorer/index.html" style="color: #1e40af; text-decoration: underline;">Interactive 8-Segment Tree ↗</a>)</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.15rem;">
-                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
-                    <div style="font-weight: 800; color: #b91c1c; font-size: 1.1rem; margin-bottom: 0.3rem;">🧪 The “Ghost of 2024” Trap</div>
-                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Why 6 New Genomes Had Fake Shared Mutations</div>
-                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Six of the 14 new runs used a rescue tiled-amplicon protocol (<code>-original-tile</code>). Because its primers still carry 2024 sequence at sites where the virus has since mutated, primer ends overwrite 2026 bases—creating fake mutations like <code>NA:I5V</code> (95% → <strong>0%</strong> once read ends are trimmed).</p>
-                </div>
-                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
-                    <div style="font-weight: 800; color: #1e40af; font-size: 1.1rem; margin-bottom: 0.3rem;">🐄 2 Herds → 12 Herds in WA</div>
-                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Sub-Lineage Doubles &amp; Bulk Tanks Diverge Live</div>
-                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">The Washington clade (<code>NODE_0002335</code>) now spans <strong>29 cows across 12 batches + 2 humans</strong>. A 2-SNP sub-lineage (<code>PA:G1260A + MP:T462C</code>) has doubled from 2 to 4 herds, while three bulk tanks on farm <code>26G14833</code> catch <code>PA:Y290H</code> (37% → 73%) and <code>M2:S82N</code> (45% → 57%) rising together.</p>
-                </div>
-                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
-                    <div style="font-weight: 800; color: #b45309; font-size: 1.1rem; margin-bottom: 0.3rem;">🧬 3 Active 2026 Lineages</div>
-                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Not Just Washington: Idaho &amp; Texas Are Still Moving</div>
-                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Eight of the 14 new runs land outside the Washington clade: bulk tank <code>26G14741-001</code> is a 0-SNP match to the mammalian polymerase clade (<code>PB2:T271A + D678G</code>), while <code>26G15081</code> and <code>26G15291</code> extend a 5-amino-acid Texas sweep.</p>
-                </div>
-                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
-                    <div style="font-weight: 800; color: #047857; font-size: 1.1rem; margin-bottom: 0.3rem;">⏱️ ~1.4–3.1 Cows vs. 11–13 Herds</div>
-                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Tight Local Bottleneck, Broad Regional Reservoir</div>
-                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Even across 29 cows and 12 batches, the Washington clade averages just <strong>1.12 SNPs</strong> between cows (<em>N<sub>e,cows</sub></em> ≈ 1.4–3.1 cows, <em>t</em><sub>MRCA</sub> ≈ 22–26 days), sitting atop a 22-herd regional metapopulation of <strong>~11–13 transmitting herds</strong>.</p>
-                </div>
-            </div>
-            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 2px dashed #cbd5e1; font-size: 0.94rem; color: #0f172a; line-height: 1.55;">
-                <strong style="background: #fef08a; padding: 2px 6px; border-radius: 4px; margin-right: 6px;">💡 What Does This All Mean?</strong>
-                Three weeks of consecutive SRA releases (Oct 16, Oct 30, and Nov 6) let us watch an outbreak move in real time: what began in Washington as a single clonal spark (~2–3 cows) has now fanned out across 12 dairy batches with measurable farm-to-farm barcodes, while two parallel cattle lineages in Idaho and Texas continue to circulate independently.
-            </div>
-        </div>
+  <p>Comparing the 14 new sequences against last week's data answers three practical questions right away—and reveals one important laboratory caveat at the end:</p>
 
-        <p>
-            When we <a href="2026-10-27-h5n1-wa-cattle.html">first analyzed the October 16–22 USDA Sequence Read Archive (SRA) release</a>, 14 of the 19 newly deposited dairy cattle genomes belonged to just two submission batches (<code>26G14027</code> and <code>26G14028</code>) inside a brand-new Washington-associated branch of H5N1 clade B3.13 (<code>NODE_0002335</code>). Ten of those 14 cows were 100% identical across all 13,136 coding bases—the signature of a single recent point-source amplification.
-        </p>
+  <div class="takeaway-grid">
+    <div class="takeaway-card">
+      <div class="num">1. Three Outbreaks</div>
+      <div class="desc"><strong>Half of the 14 new samples are outside Washington:</strong> 6 are from Washington, 6 are from Texas, and 2 are from Idaho. These three regional outbreaks are <strong>61–67 mutations apart</strong> (~1.5 years of separate evolution).</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="num">2. 8 &rarr; 12 WA Herds</div>
+      <div class="desc"><strong>Washington is still one recent jump spreading farm-to-farm:</strong> All 12 WA herds (29 cows + 2 human cases) differ by just <strong>1.1 mutations on average</strong> (~3–4 weeks of local spread), with one multi-farm branch doubling from 2 to 4 herds.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="num">3. ID &amp; TX Spread</div>
+      <div class="desc"><strong>Active farm-to-farm spread in Idaho &amp; Texas:</strong> A new Idaho herd matches an October 30 cow with zero new mutations and carries two mammalian polymerase adaptations (<code>PB2:T271A + D678G</code>).</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="num">4. Primer Caveat</div>
+      <div class="desc"><strong>2024 "rescue primers" create fake mutations at read ends:</strong> 6 weak-RNA samples used a rescue kit whose 2024 primers stamp false "backward" changes (like <code>NA:I5V</code>) that drop from <strong>95% to 0%</strong> once primer ends are trimmed.</div>
+    </div>
+  </div>
 
-        <p>
-            Since then, two more waves of sequences have arrived: <strong>9 cattle genomes on October 30</strong> (<code>SRR41439169</code>–<code>SRR41439177</code>), a <strong>second Washington State human clinical genome on October 29</strong> (<code>A/Washington/UW-110701/2026</code>, sequenced by UW Virology in <code>SRR41477511</code>), and <strong>14 brand-new cattle milk genomes today, November 6</strong> (<code>SRR41562233</code>–<code>SRR41562246</code>). Together, we now have <strong>42 October–November 2026 USDA cattle genomes across 22 submission batches</strong>. Putting all 42 raw read datasets through the same assembly, variant-calling, and <code>*aeon</code> phylodynamic pipeline reveals four major differences from what we knew ten days ago.
-        </p>
+  <h2>1. Half of the 14 new samples are outside Washington</h2>
 
-        <h2>1. Difference #1: Two Sequencing Workflows and the “Ghost of 2024” Primer Trap</h2>
+  <p>Because public sequence releases only list a sample code (such as <code>26G14741-001</code>) without a state name in the title, it is easy to assume that all 14 overnight sequences come from Washington. When we place all 42 fall genomes onto the full H5N1 family tree (<a href="h5n1-nov06-explorer/index.html">interactive explorer here</a>), they split cleanly into <strong>three separate regional outbreaks</strong>:</p>
 
-        <p>
-            Before looking at any evolutionary tree, the November 6 release teaches an important lesson about how raw sequencing reads are generated. In the October 30 release, all 9 samples were sequenced using the USDA's standard whole-segment protocol (labeled <code>-original</code>), which amplifies each of the eight influenza RNA segments from end to end. In today's November 6 release, however, the 14 runs are split between two different laboratory methods (<strong>Figure 1A–B</strong>):
-        </p>
+  <ul>
+    <li><strong>Washington outbreak (+6 new samples &rarr; 29 cows across 12 herds):</strong> All 29 cows and both Washington human cases sit on a single tight branch (<code>NODE_0002335</code>).</li>
+    <li><strong>Texas outbreak (+6 new samples &rarr; 9 cows across 7 herds):</strong> Six of the overnight runs belong to a separate Texas dairy lineage (<code>NODE_0002254</code>).</li>
+    <li><strong>Idaho outbreaks (+2 new samples &rarr; 4 cows across 3 herds):</strong> Two of the overnight runs belong to Idaho cattle lineages (<code>NODE_0002210</code> and <code>NODE_0002207</code>).</li>
+  </ul>
 
-        <ul>
-            <li><strong>8 runs use the standard whole-segment protocol (<code>-original</code>):</strong> Because short RNA segments amplify much more easily than long ones, these runs have huge depth differences between segments—the short <code>MP</code> and <code>NS</code> segments reach 20,000×–50,000× depth while the long polymerase segments (<code>PB2</code>, <code>PB1</code>, <code>PA</code>) sit at 300×–1,500×. Crucially, however, coverage within each segment is smooth, yielding <strong>100% complete coding genomes in 7 of 8 runs</strong> with zero internal gaps.</li>
-            <li><strong>6 runs use a rescue tiled-amplicon protocol (<code>-original-tile</code>):</strong> When a milk sample has lower viral load or partially degraded RNA (including older archival samples re-sequenced in this batch), the lab switches to a tiled panel that amplifies the genome in short ~250-base overlapping pieces. This balances average depth across the eight segments, but several specific tiles drop out—leaving recurring <code>N</code> gaps at segment ends (<code>PB2:1–7</code>, <code>PB1:1–23</code>, <code>NA:1–14</code>, <code>MP:1–17</code>, <code>MP:942–982</code>) and deep internal troughs at <code>PB2:406–685</code> (a 62-fold drop) and <code>PB1:26–194</code> (a 103-fold drop).</li>
-        </ul>
+  <figure>
+    <img src="images/blog_fig1_three_outbreaks_overview.png" alt="Simple two-panel bar chart showing where the 14 new November 6 H5N1 cattle samples land across Washington, Texas, and Idaho, and how many mutations separate cows within Washington versus between states.">
+    <figcaption><strong>Figure 1. Where the 14 new November 6 samples land.</strong> <strong>(A)</strong> Breakdown of the 42 Fall 2026 USDA dairy cattle genomes across the Washington, Texas, and Idaho outbreaks, comparing the late-October releases (grey, 28 cows) with the November 6 release (red, +14 cows). <strong>(B)</strong> Average genetic distance across the 13,100-letter viral genome: cows inside Washington differ by just 1.1 mutations on average (~3–4 weeks of local spread), whereas Washington, Idaho, and Texas viruses are 61 to 67 mutations apart (~1.5 years of separate evolution).</figcaption>
+  </figure>
 
-        <div class="figure-container">
-            <img src="images/nov06_coverage_uniformity_and_primer_dropouts.png"
-                alt="Three-panel figure showing (A) whole-genome sequencing depth across the 14 Nov 6 SRA runs comparing standard -original vs tiled -original-tile protocols, (B) heatmap of minimum depth and N dropouts across 13 loci, and (C) synthetic primer-templated reversions in -original-tile libraries that disappear when filtering to inner read cores.">
-            <div class="figure-caption">
-                <strong>Figure 1. Why raw assemblies of <code>-original-tile</code> runs contain fake shared mutations: coverage troughs and 2024-primer mismatch artifacts across the 14 November 6 SRA runs.</strong>
-                <strong>(A)</strong> Read depth across all 13,136 coding bases: standard <code>-original</code> libraries (blue, <em>n</em> = 8) have strong inter-segment skew but zero internal dropouts, whereas tiled <code>-original-tile</code> libraries (red, <em>n</em> = 6) have balanced segment averages punctuated by sharp terminal and internal tile troughs.
-                <strong>(B)</strong> Minimum read depth across 13 recurring dropout windows (<code>*</code> = masked as <code>N</code> at &lt;10× depth).
-                <strong>(C)</strong> Allele frequency of 2024-primer bases in raw pileups (red bars) versus inner read cores ≥25 bp from read ends (blue bars). At 14 primer-binding loci, 2024-designed primers overwrite evolved 2026 viral bases near read ends—creating synthetic “reversions” such as false <code>NA:I5V</code> (<code>NA:A15G</code>, 95% → 0%) and false <code>M1:N82S</code> (<code>MP:A245R</code>, 34% → 1%).
-            </div>
-        </div>
+  <p>As <strong>Figure 1B</strong> shows, any two cows inside Washington differ by an average of just <strong>1.1 mutations</strong> across the entire 13,100-letter flu genome. By contrast, a Washington cow and an Idaho or Texas cow differ by <strong>61 to 67 mutations</strong>—meaning these three state outbreaks have been evolving separately since 2024 and are not spreading back and forth across state lines today.</p>
 
-        <p>
-            When we first ran a naive variant caller on the 6 new <code>-original-tile</code> runs, something looked bizarre: viruses from completely different states and clades (Washington, Idaho, and Texas) all appeared to share the exact same new mutations and mixed-base calls at the exact same positions!
-        </p>
+  <h2>2. Inside Washington: 12 herds from a single recent jump</h2>
 
-        <p>
-            Inspecting the raw BAM alignments at those coordinates solved the mystery (<strong>Figure 1C</strong>). The tiled amplicon primers were designed against the <strong>early-2024 B3.13 reference sequence</strong>. Over the past two years, cattle H5N1 has fixed new mutations at more than a dozen positions where those primers bind. When a 2024 primer anneals to a 2026 virus during PCR, the synthetic primer DNA overwrites the true 2026 viral base at the 5' and 3' ends of sequencing reads:
-        </p>
+  <p>Adding 6 new Washington sequences (from 4 newly sampled herds: <code>26G14599</code>, <code>26G14833</code>, <code>26G15051</code>, and <code>26G15055</code>) expands the Washington dataset from 8 herds to <strong>12 herds (29 cows + 2 human cases)</strong>. Even with four more farms, the overall picture inside Washington stays remarkably tight:</p>
 
-        <ul>
-            <li><strong>A fake fixed protein mutation in all 6 tiled runs (<code>NA:I5V</code>):</strong> In every 2026 clade, position 15 of the <code>NA</code> gene is an <code>A</code>. In all 6 November 6 <code>-original-tile</code> runs, however, positions <code>NA:1–9</code> drop out completely and coverage resumes right inside a 2024 forward primer carrying a <code>G</code> at position 15. Because 100% of reads covering <code>NA:15</code> start within 4 bases of that primer, raw consensus callers call a 91%–99% <code>G</code>—inventing a fake <strong><code>NA:I5V</code></strong> amino-acid change that drops from <strong>95% to 0%</strong> the moment primer ends are excluded.</li>
-            <li><strong>Fake terminal primer calls (<code>PA:K716E</code> and <code>PA:A21G</code>):</strong> Five bases from the 3' end of <code>PA</code> in <code>26G13259-001</code> (and 21 bases from the 5' end of <code>PA</code> in <code>26G15081-001</code>), soft-clipped primer reads force a 100% <code>A→G</code> call that vanishes completely (<strong>100% → 0%</strong>) in non-clipped inner reads.</li>
-            <li><strong>Fake sub-consensus mixtures at internal tile boundaries:</strong> At internal tile junctions (~202–245 bp, ~351–355 bp, and ~738–912 bp), 2024 primers inject 20%–65% synthetic 2024 alleles into the pileup, creating false amino-acid mixtures like <code>M1:N82S</code> (<code>MP:245</code>, 34% → 1%), <code>NP:G119R</code> (<code>NP:355</code>, 17% → 2%), and <code>NS1:T70N</code> (<code>NS:209</code>, 33% → 15%).</li>
-        </ul>
+  <ul>
+    <li><strong>One shared starting point (~3–4 weeks before October sampling):</strong> Every single Washington cow and both Washington human cases share the exact same 10-mutation "trunk" leading into the outbreak. Using our <code>ChronAeon</code> molecular-clock model, all 12 Washington herds trace back to a single jump into Washington cattle roughly <strong>3 to 4 weeks before the mid-October samples were collected</strong>, seeded through a bottleneck of just <strong>1 to 3 infected cows</strong>.</li>
+    <li><strong>A main multi-farm branch doubled from 2 herds to 4 herds:</strong> In late October, two Washington farms (<code>26G14155</code> and <code>26G14242</code>) shared a pair of quiet genetic "bar-code" mutations (<code>PA:G1260A</code> and <code>MP:T462C</code>). In the November 6 release, two new herds (<code>26G15051</code> and <code>26G15055</code>) carry those exact same two mutations—confirming an active farm-to-farm transmission chain across four Washington dairies.</li>
+    <li><strong>Watching the virus split between milk tanks on a single farm:</strong> Herd <code>26G14833</code> contributed three separate November 6 samples (<code>-001</code>, <code>-002</code>, and <code>-003</code>). Sample <code>-001</code> carries one new polymerase mutation (<code>PB1:H99Y</code> at 83%), while samples <code>-002</code> and <code>-003</code> carry a completely different pair of mutations (<code>M2:S82N</code> at 45–57% and <code>PA:Y290H</code> at 37–73%). Notably, that <code>M2:S82N</code> change was first spotted last week at 20% inside a single cow from October herd <code>26G14594</code>—letting us trace a minority variant from one farm as it grows in another.</li>
+  </ul>
 
-        <div class="callout-box">
-            <div class="callout-title">🔍 Practical Takeaway for H5N1 Surveillance Pipelines</div>
-            <p style="margin-bottom: 0;">
-                Whenever analyzing USDA-NVSL runs labeled <code>-original-tile</code> (8 of the 42 October–November 2026 runs), pipelines <strong>must</strong> trim or mask the 2024 tile-primer binding coordinates before calling consensus genomes or intra-host variants. Otherwise, primer-templated reversions masquerade as convergent evolution across unrelated outbreaks.
-            </p>
-        </div>
+  <figure>
+    <img src="images/blog_fig2_wa_12herds_simple.png" alt="Simple diagram connecting the single Washington founder virus to the 12 Washington dairy herds across three clear farm-to-farm branches.">
+    <figcaption><strong>Figure 2. How Washington's 12 dairy herds connect.</strong> All 12 Washington herds (29 cows) and both Washington human cases descend from a single founder virus (~3–4 weeks before October sampling) and organize into three simple groups: (1) the baseline founder group (now 6 herds + 2 humans), (2) a main multi-farm branch that doubled from 2 to 4 herds on November 6, and (3) a new farm (<code>26G14833</code>) where different milk tanks carry two distinct viral sub-lineages.</figcaption>
+  </figure>
 
-        <h2>2. Difference #2: Inside Washington, a 2-Herd Spark Has Grown into a 12-Batch Network</h2>
+  <h2>3. What is happening in the Idaho and Texas outbreaks?</h2>
 
-        <p>
-            Once those primer artifacts are scrubbed, where do the 14 new November 6 genomes land on the evolutionary tree? Six of the 14—spanning four new submission batches (<code>26G14599</code>, <code>26G14833</code>, <code>26G15051</code>, and <code>26G15055</code>, all from bulk-tank milk)—fall squarely inside the <strong>Washington-associated clade (<code>NODE_0002335</code>)</strong>. Across three consecutive releases, we can now trace this clade across <strong>31 genomes: 29 dairy cattle samples from 12 submission batches plus 2 Washington human patients</strong> (<strong>Figure 2</strong>):
-        </p>
+  <p>The 8 non-Washington samples in the November 6 release show that Washington is not the only place with active farm-to-farm transmission this fall:</p>
 
-        <div class="figure-container">
-            <img src="images/h5n1_wa_nov06_12herd_transmission_and_variants.png"
-                alt="Heatmap matrix across all 31 Washington-clade genomes (29 dairy cattle across 12 NVSL batches from Oct 16, Oct 30, and Nov 6, plus 2 Washington human isolates) showing the shared 10-SNP founder haplotype, the 4-herd PA:G1260A + MP:T462C subclade, and co-segregating variants in herd 26G14833.">
-            <div class="figure-caption">
-                <strong>Figure 2. Watching the Washington clade expand across three consecutive releases: 29 dairy cattle genomes (12 batches) and 2 human cases.</strong>
-                Each row is an isolate grouped by release wave—<strong>Wave 1 (Oct 16, 14 cows in 2 batches)</strong>, <strong>Wave 2 (Oct 30, 9 cows in 6 batches)</strong>, <strong>Wave 3 (Nov 6, 6 cows in 4 new batches)</strong>, and the <strong>2 Washington human cases (Oct 12 &amp; Oct 29)</strong>—and each column shows the primer-scrubbed allele frequency of a diagnostic mutation. Notice (1) the 2-SNP sub-lineage (<code>PA:G1260A + MP:T462C</code>, columns 2–3) expanding from 2 batches on Oct 30 to <strong>4 batches (5 cows)</strong> on Nov 6, and (2) the rising <code>PA:Y290H + M2:S82N</code> pair across bulk tanks in batch <code>26G14833</code> (columns 6–7), linking back to a 20% minority allele in Oct 30 batch <code>26G14594-002</code>.
-            </div>
-        </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Regional Outbreak</th>
+        <th>Total Fall 2026 Samples</th>
+        <th>What the New November 6 Samples Show</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Washington Clade</strong><br>(<code>NODE_0002335</code>)</td>
+        <td><strong>29 cows + 2 humans</strong><br>(12 herds; +6 new)</td>
+        <td>Single recent introduction (~3–4 weeks before sampling); main multi-farm branch doubled from 2 to 4 herds.</td>
+      </tr>
+      <tr>
+        <td><strong>Idaho Mammalian-Polymerase Branch</strong><br>(<code>NODE_0002210</code> + <code>2207</code>)</td>
+        <td><strong>4 cows</strong><br>(3 herds; +2 new)</td>
+        <td>New sample <code>26G14741-001</code> is <strong>0 mutations away</strong> from October 30 cow <code>26G14109-002</code> and carries two mammalian polymerase adaptations (<code>PB2:T271A</code> + <code>PB2:D678G</code>), proving this adapted branch is actively spreading between farms.</td>
+      </tr>
+      <tr>
+        <td><strong>Texas Sweep Clade</strong><br>(<code>NODE_0002254</code>)</td>
+        <td><strong>9 cows</strong><br>(7 herds; +6 new)</td>
+        <td>Three early samples (<code>26G09480-002/-004/-008</code>) sit right at the root of the Texas branch, while three newer samples (<code>26G13259</code>, <code>26G15081</code>, <code>26G15291</code>) carry a 5-amino-acid sweep across five viral genes.</td>
+      </tr>
+    </tbody>
+  </table>
 
-        <p>
-            Comparing Wave 1 (Oct 16), Wave 2 (Oct 30), and Wave 3 (Nov 6) highlights three concrete changes in how the Washington outbreak is unfolding:
-        </p>
+  <p>The most important biological signal outside Washington is in the <strong>Idaho branch (<code>NODE_0002210</code>)</strong>. In late October, we noticed three cows carrying <code>PB2:T271A</code>—a well-known mutation in the viral copying machine (polymerase) that helps bird flu replicate better in mammalian cells—paired with a second polymerase change, <code>PB2:D678G</code>. The November 6 release adds a new farm sample (<code>26G14741-001</code>) that is <strong>genetically identical at the consensus level</strong> to an October 30 sample from another batch (<code>26G14109-002</code>), showing that this dual-adapted lineage is actively moving between herds.</p>
 
-        <ol>
-            <li><strong>A 2-mutation sub-lineage (<code>PA:G1260A + MP:T462C</code>) has doubled from 2 herds to 4 herds:</strong> In the October 30 release, we noticed that three samples across two batches (<code>26G14501-001</code> bulk milk, <code>26G14501-005</code> individual milk, and <code>26G14598-001</code> bulk milk) shared two fixed silent mutations—<code>PA:G1260A</code> and <code>MP:T462C</code>—on top of the Washington founder sequence. In today's November 6 release, two brand-new bulk-milk batches (<strong><code>26G15051-001</code></strong> and <strong><code>26G15055-001</code></strong>) carry that exact same 2-SNP barcode at 100% frequency. That means this sub-lineage has now spread across at least <strong>four distinct submission batches</strong> without picking up any additional fixed consensus changes—though inside <code>26G15055-001</code>, a new pair of linked mutations (<code>PB1:C1275T</code> + <code>NP:V182I</code>) has already reached <strong>64%</strong> of the bulk tank.</li>
-            <li><strong>Bulk milk tanks on farm <code>26G14833</code> capture within-herd divergence and a bridge to batch <code>26G14594</code>:</strong> Batch <code>26G14833</code> includes three separate bulk-milk runs (<code>-001</code>, <code>-002</code>, and <code>-003</code>). Instead of being identical, they capture two diverging viral sub-populations on the same operation:
-                <ul>
-                    <li>Tank <strong><code>26G14833-001</code></strong> fixes a new polymerase mutation, <strong><code>PB1:H99Y</code> (<code>PB1:C295T</code> at 83%)</strong>, alongside ~30% <code>PB2:D291N</code> and <code>HA:I272V</code>.</li>
-                    <li>Tanks <strong><code>26G14833-002</code></strong> and <strong><code>26G14833-003</code></strong> share a different, co-segregating pair of protein changes that doubles in frequency from tank <code>-002</code> to tank <code>-003</code>: <strong><code>PA:Y290H</code> (37% → 73%)</strong> and <strong><code>M2:S82N</code> (45% → 57%)</strong>, accompanied by a 3-SNP <code>PB2</code> packet (19% → 69%). Remarkably, that same <strong><code>M2:S82N</code></strong> mutation was already present at <strong>20%</strong> in October 30 bulk tank <code>26G14594-002</code>—providing a direct genetic transmission bridge between batches <code>26G14594</code> and <code>26G14833</code>.</li>
-                </ul>
-            </li>
-            <li><strong>Two Washington human cases show different stories—one early transmission link, one within-host receptor evolution:</strong>
-                <ul>
-                    <li>The first Washington patient (<strong><code>WAPHL-916948</code></strong>, Oct 12) shares a silent polymerase mutation (<code>PB2:T1647C</code>) that sits at <strong>45%</strong> in Wave 1 bulk tank <code>26G14027-011</code> and <strong>12%–27%</strong> in Wave 2 bulk tanks <code>26G14594-001/-002</code>.</li>
-                    <li>The second Washington patient (<strong><code>UW-110701</code></strong>, Oct 29, <code>SRR41477511</code>) branches from the same Washington cattle founder with 4 fixed SNPs (including <code>PB2:A676T</code> and <code>M1:V115I</code>), but its deep sequencing (15,435× mean depth) reveals three sub-consensus mutations right inside the <strong>HA receptor-binding domain</strong>: <strong><code>HA:H125N</code> (18.1%)</strong>, <strong><code>HA:Q222R</code> [H3 numbering <code>Q226R</code>] (16.3%)</strong>, and <strong><code>HA:S181P</code> (11.2%)</strong>. None of these three HA receptor-binding variants appear at ≥1% in any of the 29 Washington dairy cattle samples—indicating that they arose via within-host selection inside the human respiratory tract after spillover, rather than circulating in the dairy cattle reservoir.</li>
-                </ul>
-            </li>
-        </ol>
+  <h2>4. Brief technical note: watch out for "rescue primer" artifacts</h2>
 
-        <h2>3. Difference #3: Beyond Washington, Two Other 2026 Cattle Lineages Are Quietly Circulating</h2>
+  <p>Finally, if you download the consensus genomes from these 14 new samples without looking at the raw sequencing reads, you will notice something strange: <strong>6 of the 14 samples appear to have identical "backward" mutations</strong> at the very tips of several viral genes (for example, a mutation called <code>NA:I5V</code> appears at 91%–99% frequency in all 6 of those samples, and <code>PA:K716E</code> appears at 100% in <code>26G13259-001</code>).</p>
 
-        <p>
-            In the October 30 release, 9 out of 9 sequences came from the Washington clade, which could easily leave the impression that Washington was the only active focus of cattle H5N1 in late 2026. Today's November 6 release changes that picture completely: <strong>8 of the 14 new genomes belong to three non-Washington lineages</strong> in Idaho and Texas (searchable across all 8 segments in our <a href="h5n1-nov06-explorer/index.html">Interactive Segment &amp; Genome Tree Explorer</a>):
-        </p>
+  <p>Are those real viral mutations? <strong>No—they are laboratory primer artifacts.</strong></p>
 
-        <table class="blog-table">
-            <thead>
-                <tr>
-                    <th>2026 Lineage (Nextstrain Clade Node)</th>
-                    <th>Oct 16–30 SRA Genomes (28)</th>
-                    <th>New Nov 6 SRA Genomes (14)</th>
-                    <th>Key Protein &amp; Transmission Signatures</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>1. Washington-Associated Clade</strong><br>(<code>NODE_0002335</code>)</td>
-                    <td>23 cows (8 batches: <code>26G14027</code>, <code>14028</code>, <code>14501</code>, <code>14506</code>, <code>14594</code>, <code>14595</code>, <code>14597</code>, <code>14598</code>) + 2 WA humans</td>
-                    <td><strong>+6 cows (4 new batches):</strong><br><code>26G14599-001</code>, <code>26G14833-001..-003</code>, <code>26G15051-001</code>, <code>26G15055-001</code></td>
-                    <td>Founder: <code>PB2:R251K+K660R</code>, <code>PA:V94I+T263K+K353T</code>, <code>NA:Q45R</code>. Subclade <code>PA:G1260A+MP:T462C</code> now spans 4 herds; <code>26G14833</code> co-segregates <code>PA:Y290H + M2:S82N</code>.</td>
-                </tr>
-                <tr>
-                    <td><strong>2A. Mammalian Polymerase Clade</strong><br>(<code>NODE_0002210</code>, Idaho/Intermountain)</td>
-                    <td>3 cows (2 batches: <code>26G12428-004</code>, <code>26G14109-001</code>, <code>26G14109-002</code>)</td>
-                    <td><strong>+1 cow (1 new batch):</strong><br><code>26G14741-001</code> (bulk milk, <code>-original</code>)</td>
-                    <td>Carries the dual mammalian polymerase signature <strong><code>PB2:T271A + PB2:D678G</code></strong> plus 13 other protein changes. <code>26G14741-001</code> is <strong>0 fixed SNPs</strong> from Oct 22 <code>26G14109-002</code> (with 58% <code>PB2:C1920T</code> &amp; 44% <code>HA:N218S</code>).</td>
-                </tr>
-                <tr>
-                    <td><strong>2B–C. Idaho Basal Sister Clades</strong><br>(<code>NODE_0002316</code> &amp; <code>NODE_0002207</code>)</td>
-                    <td>1 cow (<code>26G12431-004</code>, <code>NODE_0002316</code>) + Oct 26 GenBank <code>26G11743-002</code></td>
-                    <td><strong>+1 cow (1 new batch):</strong><br><code>26G14203-003</code> (milk, <code>-tile</code>, <code>NODE_0002207</code>)</td>
-                    <td><code>26G14203-003</code> branches 4 SNPs from Idaho <code>NODE_0002207</code> (sister to <code>26G11739-005</code>), carrying <code>PB1:K578R</code>, <code>HA:A172T</code>, and <code>M2:V27A</code>.</td>
-                </tr>
-                <tr>
-                    <td><strong>3. Texas Jump Clade</strong><br>(<code>NODE_0002252</code> → <code>NODE_0002254</code>)</td>
-                    <td>1 cow (<code>26G13868-001</code>, Oct 22 SRA)</td>
-                    <td><strong>+6 cows (4 batches):</strong><br>Basal: <code>26G09480-002/-004/-008</code> (<code>-tile</code>)<br>Forward sweep: <code>26G13259-001</code>, <code>26G15081-001</code>, <code>26G15291-001</code></td>
-                    <td>Basal <code>26G09480</code> carries <code>PA:I44V + M2:G58D</code>. Forward sweep (<code>NODE_0002254</code>) adds 5 amino-acid changes (<code>PA:A36T+I129T</code>, <code>HA:D241Y</code>, <code>NP:A493T</code>, <code>NA:N200S</code>), with active late-Oct transmission in <code>26G15081</code> (+<code>PB1:A175T</code>) and <code>26G15291</code>.</td>
-                </tr>
-            </tbody>
-        </table>
+  <p>In the sequence metadata, USDA labels 8 of the 14 runs as <code>-original</code> (standard whole-segment amplification for high-viral-load milk/swab samples) and <strong>6 runs as <code>-original-tile</code></strong> (a "rescue" protocol for weak or degraded RNA that uses 32 overlapping short primers designed from <strong>2024</strong> H5N1 sequences). Wherever the 2026 virus has naturally mutated away from the 2024 sequence at a primer binding site, the synthetic 2024 primer physically overwrites the 2026 virus at the start and end of the sequencing reads.</p>
 
-        <p>
-            Two details in these non-Washington genomes stand out:
-        </p>
+  <figure>
+    <img src="images/blog_fig3_primer_artifact_simple.png" alt="Simple bar chart comparing apparent mutation frequencies in rescue-primer samples before and after trimming the 25-base-pair primer ends.">
+    <figcaption><strong>Figure 3. Trimming primer ends removes fake "backward" mutations in rescue-primer (<code>-original-tile</code>) samples.</strong> In raw sequencing reads (red bars), synthetic 2024 primer tails create apparent consensus or high-frequency mutations like <code>NA:I5V</code> (95%) and <code>PA:K716E</code> (100%). When we look only at the interior of sequencing reads at least 25 letters away from the primer ends (blue bars), those fake mutations drop to 0%–2%.</figcaption>
+  </figure>
 
-        <ul>
-            <li><strong>The <code>PB2:T271A + D678G</code> mammalian polymerase clade is actively spreading between herds without consensus change:</strong> In late October, we flagged <code>26G12428-004</code> and <code>26G14109-001/-002</code> because they carry <code>PB2:T271A</code>—a well-known mammalian polymerase adaptation that enhances viral transcription at 33°C. Today's release adds bulk tank <strong><code>26G14741-001</code></strong>, whose consensus sequence is <strong>100% identical (0 SNPs across 13,136 bp)</strong> to <code>26G14109-002</code>, proving direct herd-to-herd transmission of this lineage.</li>
-            <li><strong>NVSL serial numbers separate retrospective archival re-sequencing from active late-October transmission in Texas:</strong> Notice that the three <code>26G09480</code> runs carry a low serial prefix (<code>09480</code>, originally sampled in July 2026) and were re-sequenced with the <code>-original-tile</code> rescue protocol. By contrast, <strong><code>26G15081-001</code></strong> (individual milk) and <strong><code>26G15291-001</code></strong> (bulk milk) carry the highest serial numbers in the entire November 6 release, were sequenced with the standard <code>-original</code> workflow at high depth, and sit just <strong>2 SNPs downstream of October 22 isolate <code>26G13868-001</code></strong>—demonstrating that the 5-mutation Texas sweep lineage (<code>NODE_0002254</code>) is actively transmitting right alongside the Washington clade.</li>
-        </ul>
+  <div class="callout warn">
+    <div class="callout-title">Practical Takeaway for Researchers</div>
+    Always check the USDA library label (<code>-original</code> vs. <code>-original-tile</code>) and trim at least 25 base pairs from the ends of reads in <code>-original-tile</code> samples before calling mutations. Once those synthetic primer tails are trimmed off, the apparent <code>NA:I5V</code>, <code>PA:K716E</code>, <code>M1:N82S</code>, and <code>NP:G119R</code> calls vanish completely (<strong>Figure 3</strong>).
+  </div>
 
-        <h2>4. Difference #4: What 42 Genomes Across 22 Herds Tell Us About Outbreak Scale (<em>N<sub>e</sub></em>)</h2>
-
-        <p>
-            Finally, how does adding 14 new genomes—and expanding the dataset from 8 Washington herds to 12 Washington herds, and from 12 total batches to 22 total batches across WA, ID, and TX—change our phylodynamic picture of the outbreak? Running <code>ChronAeon TimeTree</code> across all 42 primer-scrubbed SRA genomes (using authentic SRA release dates minus the 10-day NVSL laboratory turnaround to prevent TreeTime date compression) reveals a sharp contrast between local and regional scales (<strong>Figure 3</strong>):
-        </p>
-
-        <div class="figure-container">
-            <img src="images/chronaeon_wa_nov06_ne_skyline_and_scales.png"
-                alt="Two-panel figure showing (A) the 2024-2026 ChronAeon TimeTree coalescent skyline Ne(t)*tau updated through November 6, 2026, and (B) multi-scale effective population size in transmitting cows (Ne,cows) and dairy herds (Ne,herds) across 9 phylogenetic clusters.">
-            <div class="figure-caption">
-                <strong>Figure 3. Local point-source bottlenecks atop a multi-state reservoir: updated <code>ChronAeon</code> coalescent skyline and multi-scale <em>N<sub>e</sub></em> across all 42 SRA genomes (22 herds).</strong>
-                <strong>(A)</strong> Whole-outbreak coalescent skyline <em>N<sub>e</sub></em>(<em>t</em>)τ (infectious-days, left axis) and effective transmitting herds <em>N<sub>e,herds</sub></em> (right axis, τ<sub>herd</sub> = 12 days) from 2024 through November 6, 2026.
-                <strong>(B)</strong> Multi-scale effective population size <em>N<sub>e,cows</sub></em> (bottom axis, τ<sub>cow</sub> = 4 days) and <em>N<sub>e,herds</sub></em> (top axis) across nine nested clusters under both the local WA/ID clock (37.3 SNPs/yr, red) and full-outbreak clock (30.6 SNPs/yr, blue).
-            </div>
-        </div>
-
-        <ul>
-            <li><strong>Inside Washington (29 cows across 12 batches), diversity stays remarkably tight:</strong> Even after expanding from 2 batches (Oct 16) to 8 batches (Oct 30) to 12 batches (Nov 6), the entire 29-cow Washington clade contains only <strong><em>S</em> = 9 segregating consensus sites</strong> and an average pairwise distance of <strong>π = 1.12 SNPs</strong> (up only slightly from 0.85 SNPs in Wave 1 and 0.99 SNPs in Wave 2). Under Kingman coalescent scaling, that corresponds to an effective population size of <span class="metric-badge">Nₑ,cows = 1.4–1.7 cows</span> from pairwise diversity (or <span class="metric-badge">2.8–3.4 cows</span> / <strong>~0.9–1.1 effective herds</strong> from Watterson's θ<sub>W</sub>), with a coalescent root age of just <strong>22–26 days</strong> following a 10-SNP (~98–119 day) unsampled stem branch. In plain terms: all 12 Washington dairy batches trace back to a single explosive point-source bottleneck roughly three to four weeks before late October.</li>
-            <li><strong>Across the 4-herd <code>PA:G1260A + MP:T462C</code> sub-lineage (5 cows), <em>S</em> = 0:</strong> All five cows across four different submission batches (<code>26G14501</code>, <code>26G14598</code>, <code>26G15051</code>, and <code>26G15055</code>) have <strong>zero internal ACGT consensus differences</strong>—consistent with rapid farm-to-farm movement over a matter of days (95% upper bound <em>N<sub>e,cows</sub></em> &lt; 1.8 cows).</li>
-            <li><strong>Across the entire October–November 2026 regional metapopulation (22 herd representatives across WA, ID, and TX), <em>N<sub>e,herds</sub></em> ≈ 11–13 herds:</strong> When we take one representative genome from each of the 22 submission batches (<em>S</em> = 98 segregating sites, π = 24.9 SNPs), the combined regional reservoir supports <span class="metric-badge">Nₑ,cows = 33.0–39.9 cows</span>, or <strong>11.0 to 13.3 effectively transmitting dairy herds</strong> (<strong>Figure 3B</strong>, top bar).</li>
-        </ul>
-
-        <h2>5. Reproducible Agentic Protocol (ASD-STE100)</h2>
-        <p style="font-size: 0.95rem; color: var(--text-muted);">
-            The plain-text protocol below follows Specification ASD-STE100 (Simplified Technical English) so that any researcher or coding agent can reproduce the assemblies, primer-artifact audit, phylogenetic placement, and <code>ChronAeon</code> estimates directly from NCBI SRA BioProject <code>PRJNA1102327</code>.
-        </p>
-<pre>PROTOCOL: NOVEMBER 6, 2026 USDA-NVSL H5N1 SRA UPDATE (42 GENOMES)
-STANDARD: ASD-STE100 (SIMPLIFIED TECHNICAL ENGLISH)
-WORKSPACE: /Users/sergei/Projects/stuff/bloom-sc2/aphis
-
-STEP 1: DOWNLOAD AND ASSEMBLE THE 14 NOVEMBER 6, 2026 SRA RUNS
-1.1 Fetch paired-end FASTQ reads for SRR41562233..SRR41562246 from NCBI SRA
-    (BioProject PRJNA1102327) and map to the 8-segment B3.13 coding reference
-    (ref8_b313.fa, 13,136 bp) with minimap2 (-ax sr) and samtools sort:
-    python3 assemble_nov06_sra.py
-1.2 Call per-segment consensus sequences (threshold = 0.75, min_depth = 10,
-    min_base_quality = 20, IUPAC ambiguity called at minor allele &gt;= 25%).
-
-STEP 2: AUDIT COVERAGE UNIFORMITY AND 2024-PRIMER MISMATCH ARTIFACTS
-2.1 Compute per-segment depth, coefficient of variation (CV), Fold80 penalty,
-    and &lt;10x N-dropout intervals across all 14 BAM alignments:
-    python3 inspect_nov06_coverage_and_phylogeny.py
-2.2 Verify protocol dichotomy:
-    - 8 standard M-RTPCR runs (-original): CV = 1.20 to 1.93, 0 internal
-      tile dropouts (100% completeness in 7/8 runs).
-    - 6 tiled-amplicon runs (-original-tile): CV = 0.50 to 0.85, recurring
-      terminal dropouts (PB2:1-7, PB1:1-23, NA:1-14, MP:1-17, MP:942-982)
-      and internal troughs (PB2:406-685, PB1:26-194, HA:249-362, NA:251-354).
-2.3 Compare raw pileup allele frequencies against inner read cores (&gt;= 25 bp
-    from read ends, no soft-clipping) at the 17 tile/terminal primer loci
-    (including NA:15, PA:2146, PA:21, PB1:24, MP:245, PA:894, PB2:912,
-    NP:355, NS:209, PB2:240) to scrub synthetic 2024-primer reversions.
-
-STEP 3: RUN PHYLOGENETIC PLACEMENT, RHIZAEON, AND CHRONAEON NE ANALYSIS
-3.1 Combine the 14 November 6 genomes with the 28 October 2026 SRA genomes
-    (42 total genomes across 22 submission batches) and run placement,
-    reassortment screening, intra-host variant calling (&gt;= 2%), and
-    turnaround-adjusted ChronAeon TimeTree coalescent analysis:
-    python3 run_nov06_full_analysis.py
-3.2 Verify zero inter-segment reassortment in rhizaeon_nov2026_all42.json
-    (0 events across 42 genomes).
-3.3 Verify expanded Washington clade (NODE_0002335: 29 cows across 12 batches):
-    S = 9 segregating sites, pi = 1.12 SNPs, Ne_cows(pi) = 1.37 to 1.67 cows,
-    Ne_cows(W) = 2.80 to 3.41 cows, coalescent t_MRCA = 22 to 26 days.
-3.4 Verify 22-herd regional metapopulation (WA/ID/TX): S = 98, pi = 24.86 SNPs,
-    Ne_cows(W) = 33.0 to 39.9 cows (Ne_herds = 11.0 to 13.3 herds).
-
-STEP 4: GENERATE PUBLICATION FIGURES AND INTERACTIVE TREE EXPLORER
-4.1 Render the three summary figures (PNG and PDF):
-    python3 plot_nov06_aphis_figures.py
-4.2 Rebuild the 9-segment interactive tree explorer (77-tip WA context,
-    310-tip 2026 focus, 695-tip stratified, and 5,691-tip full Nextstrain):
-    python3 build_h5n1_segment_tree_explorer.py</pre>
-
-    </main>
-
-    <footer class="blog-footer">
-        <div class="container-narrow">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                <div>
-                    <strong>Sergei L. Kosakovsky Pond</strong><br>
-                    Institute for Genomics and Evolutionary Medicine (iGEM), Temple University
-                </div>
-                <div>
-                    <a href="../index.html" class="back-link">← Return to CV.js</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <footer>
+    <p><strong>Data &amp; Interactive Trees:</strong> All 42 Fall 2026 USDA-NVSL dairy cattle raw sequencing runs (<code>SRR41562233</code>–<code>SRR41562246</code>, <code>SRR41460896</code>–<code>SRR41460909</code>, and <code>SRR35859990</code>–<code>SRR35860003</code>) under NCBI BioProject <code>PRJNA1102327</code> can be explored segment-by-segment in the <a href="h5n1-nov06-explorer/index.html">Interactive 9-Tree Explorer</a> and the <a href="2026-11-06-h5n1-nov06-sra-slides.html">4-Slide Executive Summary</a>.</p>
+  </footer>
+</main>
 
 </body>
-
 </html>
