@@ -445,13 +445,21 @@
     let dragStart = { x: 0, y: 0 };
     let dragMoved = false;
 
+    const CACHE_VER = 'v=20261106b';
+
+    async function safeJsonFetch(url) {
+      const resp = await fetch(`${url}?${CACHE_VER}`);
+      const txt = await resp.text();
+      return JSON.parse(txt.replace(/:\s*NaN\b/g, ': "NA"'));
+    }
+
     async function initApp() {
-      const [mResp, vResp] = await Promise.all([
-        fetch('./data/h5n1_explorer_metadata.json'),
-        fetch('./data/intrasample_variants.json')
+      const [mData, vData] = await Promise.all([
+        safeJsonFetch('./data/h5n1_explorer_metadata.json'),
+        safeJsonFetch('./data/intrasample_variants.json')
       ]);
-      metaCatalog = await mResp.json();
-      intrasampleVars = await vResp.json();
+      metaCatalog = mData;
+      intrasampleVars = vData;
 
       for (const v of intrasampleVars) {
         if (v.Alt_Freq_Pct < 75.0) {
@@ -485,12 +493,11 @@
       let nwkText = '';
       if (scale.startsWith('mdl_')) {
         const tag = scale.replace('mdl_', '');
-        const resp = await fetch(`./data/mdl_${tag}_${currentSegment}.json`);
-        const d = await resp.json();
+        const d = await safeJsonFetch(`./data/mdl_${tag}_${currentSegment}.json`);
         nwkText = d.newick;
       } else {
         const tag = scale.replace('nwk_', '');
-        const resp = await fetch(`./data/nextstrain_${tag}_${currentSegment}.nwk`);
+        const resp = await fetch(`./data/nextstrain_${tag}_${currentSegment}.nwk?${CACHE_VER}`);
         nwkText = await resp.text();
       }
 
