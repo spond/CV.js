@@ -1,0 +1,73 @@
+{
+  "segments": {
+    "CONCAT": {
+      "length": 13136,
+      "wa_parent_node": "NODE_0002335",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0002152",
+      "outlier_parent_hd": 19
+    },
+    "PB2": {
+      "length": 2280,
+      "wa_parent_node": "NODE_0005344",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0004915",
+      "outlier_parent_hd": 6
+    },
+    "PB1": {
+      "length": 2274,
+      "wa_parent_node": "NODE_0002051",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0001748",
+      "outlier_parent_hd": 1
+    },
+    "PA": {
+      "length": 2151,
+      "wa_parent_node": "NODE_0002918",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0006063",
+      "outlier_parent_hd": 4
+    },
+    "HA": {
+      "length": 1704,
+      "wa_parent_node": "NODE_0005400",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0005351",
+      "outlier_parent_hd": 2
+    },
+    "NP": {
+      "length": 1497,
+      "wa_parent_node": "NODE_0005357",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0005378",
+      "outlier_parent_hd": 2
+    },
+    "NA": {
+      "length": 1410,
+      "wa_parent_node": "NODE_0003297",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0003256",
+      "outlier_parent_hd": 3
+    },
+    "MP": {
+      "length": 982,
+      "wa_parent_node": "NODE_0002456",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0002363",
+      "outlier_parent_hd": 0
+    },
+    "NS": {
+      "length": 838,
+      "wa_parent_node": "NODE_0001958",
+      "wa_parent_hd": 0,
+      "outlier_parent_node": "NODE_0001937",
+      "outlier_parent_hd": 1
+    }
+  },
+  "cohorts": [
+    "wacontext",
+    "focus2026",
+    "stratified",
+    "full_nextstrain"
+  ]
+}

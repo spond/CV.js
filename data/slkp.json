@@ -1356,6 +1356,22 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-11-06",
+                {
+                    "url": "blog/2026-11-06-h5n1-nov06-sra.html",
+                    "link-text": "Rescue primers, 12 Washington herds, and two quiet sister outbreaks: what the November 6 H5N1 dairy cattle SRA release adds",
+                    "subtext": "Comparing 14 new USDA-NVSL dairy cattle raw sequencing runs (SRR41562233–SRR41562246, expanding the Oct–Nov 2026 release to 42 SRA genomes across 22 farm batches) against late-October analyses reveals four major updates: (1) 6 of 14 new runs used a rescue tiled-amplicon protocol (-original-tile) whose 2024 primers overwrite evolved 2026 bases at read ends to create synthetic reversions (e.g., NA:I5V at 91–99% consensus that drops to 0% in inner reads ≥25 bp from read ends); (2) Washington's B3.13 clade expands from 8 to 12 herds (29 cows + 2 humans), doubling its main PA:G1260A + MP:T462C farm-to-farm branch to 4 herds and resolving tank-level PB1:H99Y vs. PA:Y290H + M2:S82N splitting inside herd 26G14833; (3) 8 of 14 new runs track two separate active outbreaks outside WA—an Idaho mammalian-polymerase lineage (PB2:T271A + D678G) and a 5-amino-acid Texas sweep; and (4) ChronAeon multi-scale coalescent modeling contrasts WA's single-cow bottleneck (S = 9, π = 1.12 SNPs, Ne ≈ 1.4–3.1 cows, tMRCA ≈ 22–26 days) with the 3-state metapopulation (S = 98, π = 24.86 SNPs, Ne = 11.0–13.3 transmitting dairy herds)."
+                },
+                {
+                    "url": "blog/2026-11-06-h5n1-nov06-sra-slides.html",
+                    "link-text": "4-Slide Deck"
+                },
+                {
+                    "url": "blog/h5n1-nov06-explorer/index.html",
+                    "link-text": "Interactive 9-Tree Explorer"
+                }
+            ],
+            [
                 "2026-11-05",
                 {
                     "url": "blog/2026-11-05-andv-hondius.html",

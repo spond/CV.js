@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H5N1 Segment Tree Explorer</title>
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --surface: #ffffff;
+      --border: #dcdad5;
+      --text: #18181b;
+      --muted: #6e6d68;
+      --accent: #ff4f00;
+      --human: #dc2626;
+      --oct30: #ea580c;
+      --oct16: #0284c7;
+      --outlier: #7c3aed;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .brand-tag {
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .toolbar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .seg-pills {
+      display: inline-flex;
+      background: #eeece7;
+      padding: 2px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+
+    .seg-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 9px;
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .seg-btn:hover { color: var(--text); }
+    .seg-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+
+    select, input[type="text"] {
+      padding: 4px 8px;
+      font-size: 12px;
+      font-family: var(--font-sans);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .btn {
+      padding: 4px 9px;
+      font-size: 11.5px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .btn:hover { background: #efede8; }
+    .btn.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    /* MAIN CANVAS AREA */
+    .viewport {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      background: #fcfbf9;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    #treeCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+
+    #treeCanvas:active { cursor: grabbing; }
+
+    /* FLOATING ZOOM BUTTONS */
+    .zoom-controls {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 20;
+    }
+
+    .zbtn {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .zbtn:hover { background: var(--text); color: #fff; }
+
+    /* SUBTREE BANNER */
+    .focus-banner {
+      position: absolute;
+      top: 12px;
+      left: 50px;
+      background: #18181b;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    /* MINIMAP */
+    .minimap {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      width: 150px;
+      height: 104px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 20;
+      cursor: grab;
+    }
+
+    /* HOVER TOOLTIP */
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      z-index: 30;
+      background: rgba(24, 24, 27, 0.95);
+      color: #fff;
+      padding: 8px 11px;
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.45;
+      max-width: 360px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-left: 3px solid var(--accent);
+    }
+
+    /* BOTTOM BAR (LEGEND + COMPACT INSPECTOR) */
+    .bottombar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 7px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 11.5px;
+      flex-wrap: wrap;
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .leg-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .inspector-line {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 55vw;
+    }
+
+    .inspector-line strong { color: var(--text); }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- SINGLE CLEAN TOP BAR -->
+  <div class="topbar">
+    <div class="brand">
+      H5N1 Segment Explorer
+      <span class="brand-tag" id="segMetaBadge">CONCAT • N=61</span>
+    </div>
+
+    <div class="toolbar-row">
+      <!-- Segment Switcher -->
+      <div class="seg-pills">
+        <button class="seg-btn active" id="seg_CONCAT" onclick="setSegment('CONCAT')">8-Seg</button>
+        <button class="seg-btn" id="seg_PB2" onclick="setSegment('PB2')">PB2</button>
+        <button class="seg-btn" id="seg_PB1" onclick="setSegment('PB1')">PB1</button>
+        <button class="seg-btn" id="seg_PA" onclick="setSegment('PA')">PA</button>
+        <button class="seg-btn" id="seg_HA" onclick="setSegment('HA')">HA</button>
+        <button class="seg-btn" id="seg_NP" onclick="setSegment('NP')">NP</button>
+        <button class="seg-btn" id="seg_NA" onclick="setSegment('NA')">NA</button>
+        <button class="seg-btn" id="seg_MP" onclick="setSegment('MP')">MP</button>
+        <button class="seg-btn" id="seg_NS" onclick="setSegment('NS')">NS</button>
+      </div>
+
+      <!-- Tree Scale -->
+      <select id="selScale" onchange="loadDataset()">
+        <option value="mdl_wacontext" selected>WA Outbreak + 2026 Relatives (77 tips, Clean)</option>
+        <option value="mdl_focus2026">All 2026 Outbreak + SRA (310 tips, MDL)</option>
+        <option value="nwk_focus2026">All 2026 Outbreak + SRA (310 tips, Nextstrain)</option>
+        <option value="mdl_stratified">2024–2026 Stratified Backbone (695 tips)</option>
+        <option value="nwk_full">Full Nextstrain Tree (5,691 tips)</option>
+      </select>
+
+      <!-- Layout -->
+      <div class="seg-pills">
+        <button class="seg-btn active" id="lay_phylogram" onclick="setLayout('phylogram')">Phylogram</button>
+        <button class="seg-btn" id="lay_cladogram" onclick="setLayout('cladogram')">Cladogram</button>
+        <button class="seg-btn" id="lay_circular" onclick="setLayout('circular')">Circular</button>
+      </div>
+
+      <!-- Minority Variant Overlay -->
+      <select id="selMinority" onchange="renderCanvas()">
+        <option value="">Minority Variant Overlay: Off</option>
+        <option value="PA:T868C" selected>Highlight PA:T868C [PA:Y290H] (Nov 6 Bulk 26G14833-003 73% + 26G14833-002 37%)</option>
+        <option value="MP:G933A">Highlight MP:G933A [M2:S82N] (Nov 6 26G14833-003 57% + -002 45% + Oct 30 26G14594-002 20%)</option>
+        <option value="PB2:T1647C">Highlight PB2:T1647C (Oct 12 Human 100% + Cows 36%/27%/12%)</option>
+        <option value="PB2:C381T">Highlight PB2:C381T (Cow 26G14027-006 100% + Bulk 26G14594-002 13.5%)</option>
+        <option value="PA:A1735C">Highlight PA:M579L Bulk-Tank Packet (26G14594-001 12.2% + 26G14595 2.7%)</option>
+        <option value="PA:G369A">Highlight PA:G369A Bridge (26G14598-001 13.2% + 26G14594-001 5.1%)</option>
+        <option value="NS:G301A">Highlight NS1:D101N Sub-Consensus (26G14597-002 40.8%)</option>
+      </select>
+
+      <!-- Search -->
+      <input type="text" id="searchInput" placeholder="Filter label (e.g. 26G14594, WAPHL)..." style="width:190px;" oninput="renderCanvas()">
+    </div>
+  </div>
+
+  <!-- FULL-HEIGHT UNCLUTTERED CANVAS -->
+  <div class="viewport">
+    <canvas id="treeCanvas"></canvas>
+
+    <div class="zoom-controls">
+      <button class="zbtn" title="Zoom In" onclick="zoomBy(1.3)">+</button>
+      <button class="zbtn" title="Zoom Out" onclick="zoomBy(0.77)">&minus;</button>
+      <button class="zbtn" title="Fit to Screen" onclick="fitToScreen()">&#8865;</button>
+    </div>
+
+    <div class="focus-banner hidden" id="focusBanner">
+      <span id="focusBannerText">Subtree Focus</span>
+      <button class="btn" style="padding:1px 6px;font-size:10.5px;" onclick="resetFocus()">Reset</button>
+    </div>
+
+    <div class="minimap">
+      <canvas id="minimapCanvas" width="150" height="104"></canvas>
+    </div>
+
+    <div class="tooltip hidden" id="tooltip"></div>
+  </div>
+
+  <!-- SINGLE-LINE BOTTOM LEGEND & INSPECTOR -->
+  <div class="bottombar">
+    <div class="legend">
+      <span class="leg-item"><span class="dot" style="background:#dc2626"></span>WA Humans (Oct 12 &amp; Oct 29)</span>
+      <span class="leg-item"><span class="dot" style="background:#b91c1c"></span>Nov 6 Cattle SRA (14)</span>
+      <span class="leg-item"><span class="dot" style="background:#ea580c"></span>Oct 30 WA Cattle SRA (9)</span>
+      <span class="leg-item"><span class="dot" style="background:#0284c7"></span>Oct 16 WA Cattle SRA (14)</span>
+      <span class="leg-item"><span class="dot" style="background:#7c3aed"></span>ID/TX Cattle SRA (13)</span>
+      <span class="leg-item"><span class="dot" style="background:#0d9488"></span>Idaho PA:T263K Sister</span>
+      <span class="leg-item"><span class="dot" style="background:#94a3b8"></span>Nextstrain Backbone</span>
+    </div>
+
+    <div class="inspector-line" id="inspectorLine">
+      Click any node to collapse/expand, <strong>Shift+Click</strong> to isolate clade, or hover any tip for minority variants (&ge;2%).
+    </div>
+  </div>
+
+  <script>
+    const SEG_LENGTHS = {
+      CONCAT: 13136, PB2: 2280, PB1: 2274, PA: 2151, HA: 1704, NP: 1497, NA: 1410, MP: 982, NS: 838
+    };
+
+    const MINORITY_PACKETS = {
+      "PA:T868C": {
+        label: "PA:T868C (PA:Y290H)",
+        carriers: {
+          "A_cattle_USA_26G14833-003_2026__SRR41562237__2026-11-06": 73.1,
+          "A_cattle_USA_26G14833-002_2026__SRR41562238__2026-11-06": 37.3
+        }
+      },
+      "MP:G933A": {
+        label: "MP:G933A (M2:S82N)",
+        carriers: {
+          "A_cattle_USA_26G14833-003_2026__SRR41562237__2026-11-06": 56.5,
+          "A_cattle_USA_26G14833-002_2026__SRR41562238__2026-11-06": 45.4,
+          "A_cattle_USA_26G14594-002_2026__SRR41439169__2026-10-30": 20.1
+        }
+      },
+      "PB2:T1647C": {
+        label: "PB2:T1647C (C549C)",
+        carriers: {
+          "A_WASHINGTON_WAPHL-916948_2026__QB230728__2026-10-12": 100.0,
+          "A_cattle_USA_26G14027-011_2026__SRR41219908__2026-10-16": 36.2,
+          "A_cattle_USA_26G14594-001_2026__SRR41439170__2026-10-30": 27.4,
+          "A_cattle_USA_26G14594-002_2026__SRR41439169__2026-10-30": 12.2
+        }
+      },
+      "PB2:C381T": {
+        label: "PB2:C381T (H127H)",
+        carriers: {
+          "A_cattle_USA_26G14027-006_2026__SRR41219899__2026-10-16": 99.8,
+          "A_cattle_USA_26G14594-002_2026__SRR41439169__2026-10-30": 13.5
+        }
+      },
+      "PA:A1735C": {
+        label: "PA:A1735C (PA:M579L)",
+        carriers: {
+          "A_cattle_USA_26G14594-001_2026__SRR41439170__2026-10-30": 12.2,
+          "A_cattle_USA_26G14595-001_2026__SRR41439174__2026-10-30": 2.7
+        }
+      },
+      "PA:G369A": {
+        label: "PA:G369A (PA:T123T)",
+        carriers: {
+          "A_cattle_USA_26G14598-001_2026__SRR41439171__2026-10-30": 13.2,
+          "A_cattle_USA_26G14594-001_2026__SRR41439170__2026-10-30": 5.1
+        }
+      },
+      "NS:G301A": {
+        label: "NS:G301A (NS1:D101N)",
+        carriers: {
+          "A_cattle_USA_26G14597-002_2026__SRR41439172__2026-10-30": 40.8
+        }
+      }
+    };
+
+    let metaCatalog = {};
+    let intrasampleVars = [];
+    let isnvByRun = {};
+    let currentSegment = 'CONCAT';
+    let layoutMode = 'phylogram';
+
+    let treeRoot = null;
+    let focusedRoot = null;
+    let allNodes = [];
+    let nodeById = new Map();
+    let leafByName = new Map();
+    let collapsedIds = new Set();
+    let hoveredNode = null;
+    let selectedNode = null;
+
+    let cam = { x: 40, y: 24, scale: 1.0, rowH: 14, treeW: 800 };
+    let isDragging = false;
+    let dragStart = { x: 0, y: 0 };
+    let dragMoved = false;
+
+    async function initApp() {
+      const [mResp, vResp] = await Promise.all([
+        fetch('./data/h5n1_explorer_metadata.json'),
+        fetch('./data/intrasample_variants.json')
+      ]);
+      metaCatalog = await mResp.json();
+      intrasampleVars = await vResp.json();
+
+      for (const v of intrasampleVars) {
+        if (v.Alt_Freq_Pct < 75.0) {
+          if (!isnvByRun[v.Run]) isnvByRun[v.Run] = [];
+          isnvByRun[v.Run].push(v);
+        }
+      }
+      for (const r of Object.keys(isnvByRun)) {
+        isnvByRun[r].sort((a, b) => b.Alt_Freq_Pct - a.Alt_Freq_Pct);
+      }
+
+      await loadDataset();
+    }
+
+    window.setSegment = async function(seg) {
+      currentSegment = seg;
+      document.querySelectorAll('[id^="seg_"]').forEach(b => b.classList.remove('active'));
+      document.getElementById(`seg_${seg}`)?.classList.add('active');
+      await loadDataset();
+    };
+
+    window.setLayout = function(mode) {
+      layoutMode = mode;
+      document.querySelectorAll('[id^="lay_"]').forEach(b => b.classList.remove('active'));
+      document.getElementById(`lay_${mode}`)?.classList.add('active');
+      fitToScreen();
+    };
+
+    window.loadDataset = async function() {
+      const scale = document.getElementById('selScale').value;
+      let nwkText = '';
+      if (scale.startsWith('mdl_')) {
+        const tag = scale.replace('mdl_', '');
+        const resp = await fetch(`./data/mdl_${tag}_${currentSegment}.json`);
+        const d = await resp.json();
+        nwkText = d.newick;
+      } else {
+        const tag = scale.replace('nwk_', '');
+        const resp = await fetch(`./data/nextstrain_${tag}_${currentSegment}.nwk`);
+        nwkText = await resp.text();
+      }
+
+      const { root, nTaxa } = parseNewick(nwkText);
+      treeRoot = root;
+      focusedRoot = null;
+      collapsedIds.clear();
+      document.getElementById('focusBanner').classList.add('hidden');
+      document.getElementById('segMetaBadge').textContent = `${currentSegment} (${SEG_LENGTHS[currentSegment]} bp) • N=${nTaxa}`;
+      fitToScreen();
+    };
+
+    function parseNewick(nwkStr) {
+      const s = nwkStr.trim().replace(/;\s*$/, '');
+      let pos = 0;
+      let nextId = 100000;
+
+      function parseSub() {
+        const node = {
+          id: 0, parentId: null, rawLabel: '', isLeaf: false,
+          branchLength: 0.0, children: [], leafCount: 0, meta: null, color: '#94a3b8'
+        };
+        if (s[pos] === '(') {
+          pos++;
+          while (pos < s.length) {
+            node.children.push(parseSub());
+            if (s[pos] === ',') pos++;
+            else if (s[pos] === ')') { pos++; break; }
+            else break;
+          }
+        }
+        let token = '';
+        while (pos < s.length && s[pos] !== ',' && s[pos] !== ')' && s[pos] !== ':') {
+          token += s[pos++];
+        }
+        token = token.trim().replace(/^['"]|['"]$/g, '');
+        if (s[pos] === ':') {
+          pos++;
+          let blStr = '';
+          while (pos < s.length && s[pos] !== ',' && s[pos] !== ')') blStr += s[pos++];
+          const bl = parseFloat(blStr);
+          node.branchLength = isFinite(bl) ? Math.max(0, bl) : 0.0;
+        }
+        if (node.children.length === 0) {
+          node.isLeaf = true;
+          node.rawLabel = token || `Tip_${nextId}`;
+        } else {
+          node.rawLabel = token;
+        }
+        return node;
+      }
+
+      const rawRoot = parseSub();
+
+      // Collapse zero-length internal branches into clean multifurcations
+      function collapseZero(nd) {
+        const nextCh = [];
+        for (const ch of nd.children) {
+          collapseZero(ch);
+          if (!ch.isLeaf && ch.branchLength <= 1.5e-6) {
+            for (const gch of ch.children) nextCh.push(gch);
+          } else {
+            nextCh.push(ch);
+          }
+        }
+        nd.children = nextCh;
+      }
+      collapseZero(rawRoot);
+
+      let leafIdx = 0;
+      allNodes = [];
+      nodeById.clear();
+      leafByName.clear();
+
+      function finalize(nd, pId) {
+        allNodes.push(nd);
+        if (nd.isLeaf) {
+          nd.id = leafIdx++;
+          nd.leafCount = 1;
+          nd.meta = metaCatalog[nd.rawLabel] || null;
+          nd.color = getTipColor(nd);
+          leafByName.set(nd.rawLabel, nd);
+        } else {
+          nd.id = nextId++;
+          nd.leafCount = 0;
+          for (const ch of nd.children) {
+            finalize(ch, nd.id);
+            nd.leafCount += ch.leafCount;
+          }
+          nd.children.sort((a, b) => a.leafCount - b.leafCount || a.branchLength - b.branchLength || a.id - b.id);
+          const childCols = nd.children.map(c => c.color);
+          nd.color = childCols.every(c => c === childCols[0]) ? childCols[0] : '#64748b';
+        }
+        nd.parentId = pId;
+        nodeById.set(nd.id, nd);
+      }
+      finalize(rawRoot, null);
+      return { root: rawRoot, nTaxa: leafIdx };
+    }
+
+    function getTipColor(nd) {
+      const m = nd.meta;
+      if (!m) return '#94a3b8';
+      if (m.is_wa_human) return '#dc2626';
+      if (m.is_nov06_sra) return '#b91c1c';
+      if (m.is_oct30_sra) return '#ea580c';
+      if (m.is_new_sra && (m.clade_group === '2026_Outlier_26G12961_SRA' || m.clade_group === '2026_Texas_Jump_Clade_SRA' || m.clade_group === '2026_Idaho_Clade_2207_SRA')) return '#7c3aed';
+      if (m.is_new_sra) return '#0284c7';
+      if (m.clade_group === '2026_Idaho_PA_T263K_Clade') return '#0d9488';
+      return '#94a3b8';
+    }
+
+    function shortLabel(nd) {
+      const m = nd.meta;
+      if (!m) return nd.rawLabel;
+      if (m.is_wa_human) {
+        if (nd.rawLabel.includes('UW-110701')) {
+          return '★ A/Washington/UW-110701/2026 (Human • Oct 29 • +4 SNPs)';
+        }
+        return '★ A/Washington/WAPHL-916948/2026 (Human • Oct 12 • +2 SNPs)';
+      }
+      if (m.is_nov06_sra) {
+        const isBulk = (m.isolation_source || '').includes('BULK');
+        const nIsnv = (isnvByRun[m.sra_accession] || []).length;
+        return `● ${m.orig_name.split(' ')[0]} (${isBulk ? 'Bulk Milk' : 'Cow Milk'} • Nov 6 • ${nIsnv} iSNVs)`;
+      }
+      if (m.is_oct30_sra) {
+        const isBulk = (m.isolation_source || '').includes('BULK');
+        const nIsnv = (isnvByRun[m.sra_accession] || []).length;
+        return `● ${m.orig_name.split(' ')[0]} (${isBulk ? 'Bulk Milk' : 'Cow Milk'} • Oct 30 • ${nIsnv} iSNVs)`;
+      }
+      if (m.is_new_sra) {
+        return `◆ ${m.orig_name.split(' ')[0]} (Oct 16 SRA)`;
+      }
+      if (nd.rawLabel.includes('26G11743-002-repeat2')) {
+        return '▲ A/cattle/ID/26G11743-002/2026 (ID Sister)';
+      }
+      return `${m.orig_name} (${m.state}, ${m.raw_date || m.year})`;
+    }
+
+    function computeLayout() {
+      const root = focusedRoot || treeRoot;
+      if (!root) return { nodes: [], leaves: [], nLeaves: 1 };
+      const nodes = [];
+      const leaves = [];
+      let yCursor = 0;
+
+      function walk(nd, depth, cumLen) {
+        nd._depth = depth;
+        nd._cumLen = cumLen;
+        nd._collapsed = collapsedIds.has(nd.id);
+        nodes.push(nd);
+
+        if (nd.isLeaf || nd._collapsed || nd.children.length === 0) {
+          nd._y = yCursor++;
+          leaves.push(nd);
+          return;
+        }
+        let sumY = 0;
+        for (const ch of nd.children) {
+          walk(ch, depth + 1, cumLen + (ch.branchLength || 0));
+          sumY += ch._y;
+        }
+        nd._y = sumY / nd.children.length;
+      }
+      walk(root, 0, 0);
+
+      let maxDepth = 1, maxLen = 1e-6;
+      for (const nd of nodes) {
+        if (nd._depth > maxDepth) maxDepth = nd._depth;
+        if (nd._cumLen > maxLen) maxLen = nd._cumLen;
+      }
+      for (const nd of nodes) {
+        nd._nx = layoutMode === 'cladogram'
+          ? (nd.isLeaf ? 1.0 : nd._depth / maxDepth)
+          : (nd._cumLen / maxLen);
+      }
+      return { root, nodes, leaves, nLeaves: Math.max(1, leaves.length), maxLen };
+    }
+
+    window.fitToScreen = function() {
+      const canvas = document.getElementById('treeCanvas');
+      const rect = canvas.getBoundingClientRect();
+      const layout = computeLayout();
+      if (layoutMode === 'circular') {
+        cam.scale = 1.0;
+        cam.x = rect.width * 0.5;
+        cam.y = rect.height * 0.5;
+      } else {
+        const availH = rect.height - 48;
+        cam.rowH = Math.max(1.5, Math.min(20, availH / layout.nLeaves));
+        cam.treeW = Math.max(300, rect.width - 420);
+        cam.scale = 1.0;
+        cam.x = 36;
+        cam.y = Math.max(24, (rect.height - layout.nLeaves * cam.rowH) * 0.5);
+      }
+      renderCanvas();
+    };
+
+    window.zoomBy = function(factor, cx = null, cy = null) {
+      const canvas = document.getElementById('treeCanvas');
+      const rect = canvas.getBoundingClientRect();
+      cx = cx ?? rect.width * 0.5;
+      cy = cy ?? rect.height * 0.5;
+      const next = Math.max(0.2, Math.min(60, cam.scale * factor));
+      const ratio = next / cam.scale;
+      cam.x = cx - (cx - cam.x) * ratio;
+      cam.y = cy - (cy - cam.y) * ratio;
+      cam.scale = next;
+      renderCanvas();
+    };
+
+    window.renderCanvas = function() {
+      const canvas = document.getElementById('treeCanvas');
+      if (!canvas) return;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      if (canvas.width !== Math.floor(rect.width * dpr) || canvas.height !== Math.floor(rect.height * dpr)) {
+        canvas.width = Math.floor(rect.width * dpr);
+        canvas.height = Math.floor(rect.height * dpr);
+      }
+      const ctx = canvas.getContext('2d');
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      const layout = computeLayout();
+      if (layout.nodes.length === 0) { ctx.restore(); return; }
+
+      if (layoutMode === 'circular') {
+        drawCircular(ctx, rect, layout);
+      } else {
+        drawRectangular(ctx, rect, layout);
+      }
+
+      ctx.restore();
+      drawMinimap(layout, rect);
+    };
+
+    function drawRectangular(ctx, rect, layout) {
+      const rowH = cam.rowH * cam.scale;
+      const treeW = cam.treeW * cam.scale;
+
+      for (const nd of layout.nodes) {
+        nd._sx = cam.x + nd._nx * treeW;
+        nd._sy = cam.y + nd._y * rowH;
+      }
+
+      // 1. Branches
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      for (const nd of layout.nodes) {
+        if (nd === layout.root) continue;
+        const p = nodeById.get(nd.parentId);
+        if (!p) continue;
+        const x0 = p._sx, y0 = p._sy, x1 = nd._sx, y1 = nd._sy;
+        if (Math.max(y0, y1) < -10 || Math.min(y0, y1) > rect.height + 10) continue;
+
+        const isHover = hoveredNode && hoveredNode.id === nd.id;
+        ctx.strokeStyle = isHover ? '#111' : nd.color;
+        ctx.lineWidth = isHover ? 2.6 : 1.5;
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x0, y1);
+        ctx.lineTo(x1, y1);
+        ctx.stroke();
+      }
+
+      // 2. Minority Variant Overlay Arcs
+      const minKey = document.getElementById('selMinority').value;
+      const minPkt = MINORITY_PACKETS[minKey] || null;
+      if (minPkt) {
+        const pts = [];
+        for (const [sId, freq] of Object.entries(minPkt.carriers)) {
+          const lf = leafByName.get(sId);
+          if (lf && lf._sx !== undefined && !lf._collapsed) pts.push({ lf, freq });
+        }
+        pts.sort((a, b) => a.lf._sy - b.lf._sy);
+        for (let i = 0; i < pts.length - 1; i++) {
+          const u = pts[i].lf, v = pts[i + 1].lf;
+          const midX = Math.max(u._sx, v._sx) + 28 + 0.16 * Math.abs(v._sy - u._sy);
+          const midY = 0.5 * (u._sy + v._sy);
+          ctx.save();
+          ctx.strokeStyle = '#dc2626';
+          ctx.lineWidth = 1.8;
+          ctx.setLineDash([4, 3]);
+          ctx.beginPath();
+          ctx.moveTo(u._sx, u._sy);
+          ctx.quadraticCurveTo(midX, midY, v._sx, v._sy);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      // 3. Collapsed Wedges & Tip Dots
+      for (const nd of layout.nodes) {
+        const x = nd._sx, y = nd._sy;
+        if (y < -15 || y > rect.height + 15) continue;
+        if (nd._collapsed) {
+          ctx.fillStyle = nd.color + '33';
+          ctx.strokeStyle = nd.color;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + 22, y - 7);
+          ctx.lineTo(x + 22, y + 7);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#18181b';
+          ctx.font = '600 11px ui-monospace, monospace';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(`▲ Collapsed clade (${nd.leafCount} tips)`, x + 28, y);
+        } else if (nd.isLeaf) {
+          const m = nd.meta;
+          const isFocal = m && (m.is_wa_human || m.is_new_sra);
+          const r = m?.is_wa_human ? 4.5 : (isFocal ? 3.4 : 2.0);
+          ctx.fillStyle = nd.color;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // 4. Strict Anti-Overlap Label Renderer
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      ctx.textBaseline = 'middle';
+      const minGapPx = 13.0;
+      let lastDrawnY = -9999;
+
+      for (const lf of layout.leaves) {
+        if (lf._collapsed) continue;
+        const x = lf._sx, y = lf._sy;
+        if (y < 8 || y > rect.height - 8) continue;
+
+        const lbl = shortLabel(lf);
+        const m = lf.meta;
+        const carrierFreq = minPkt?.carriers?.[lf.rawLabel];
+        const isMatch = q && (lbl.toLowerCase().includes(q) || lf.rawLabel.toLowerCase().includes(q));
+
+        // Strict vertical anti-collision check
+        if (y - lastDrawnY < minGapPx && !isMatch && !m?.is_wa_human && carrierFreq === undefined) {
+          continue;
+        }
+        if (y - lastDrawnY < 9.5) continue; // absolute hard floor so even focal labels never overlap
+
+        lastDrawnY = y;
+        const isBold = m?.is_wa_human || m?.is_oct30_sra || carrierFreq !== undefined || isMatch;
+        ctx.font = `${isBold ? 700 : 500} 11px ui-monospace, SFMono-Regular, monospace`;
+
+        if (carrierFreq !== undefined) {
+          ctx.fillStyle = '#dc2626';
+          ctx.fillText(`${lbl}  [${minKey}: ${carrierFreq.toFixed(1)}%]`, x + 8, y);
+        } else if (m?.is_wa_human || isMatch) {
+          ctx.fillStyle = '#dc2626';
+          ctx.fillText(lbl, x + 8, y);
+        } else if (m?.is_oct30_sra) {
+          ctx.fillStyle = '#c2410c';
+          ctx.fillText(lbl, x + 7, y);
+        } else if (m?.is_new_sra) {
+          ctx.fillStyle = '#0369a1';
+          ctx.fillText(lbl, x + 7, y);
+        } else {
+          ctx.fillStyle = '#3f3f46';
+          ctx.fillText(lbl, x + 6, y);
+        }
+      }
+    }
+
+    function drawCircular(ctx, rect, layout) {
+      const cx = cam.x, cy = cam.y;
+      const maxR = Math.min(rect.width, rect.height) * 0.36 * cam.scale;
+      const nLeaves = layout.nLeaves;
+      const span = Math.PI * 1.92, startA = -Math.PI * 0.96;
+
+      for (const nd of layout.nodes) {
+        nd._theta = startA + (nd._y / Math.max(1, nLeaves - 1)) * span;
+        nd._r = nd._nx * maxR;
+        nd._sx = cx + nd._r * Math.cos(nd._theta);
+        nd._sy = cy + nd._r * Math.sin(nd._theta);
+      }
+
+      for (const nd of layout.nodes) {
+        if (nd === layout.root) continue;
+        const p = nodeById.get(nd.parentId);
+        if (!p) continue;
+        ctx.strokeStyle = nd.color;
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.arc(cx, cy, p._r, Math.min(p._theta, nd._theta), Math.max(p._theta, nd._theta));
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx + p._r * Math.cos(nd._theta), cy + p._r * Math.sin(nd._theta));
+        ctx.lineTo(nd._sx, nd._sy);
+        ctx.stroke();
+      }
+
+      const arcStep = Math.max(1, Math.ceil(13 / Math.max(0.5, (2 * Math.PI * maxR) / nLeaves)));
+      for (let i = 0; i < layout.leaves.length; i++) {
+        if (i % arcStep !== 0) continue;
+        const lf = layout.leaves[i];
+        ctx.save();
+        ctx.translate(lf._sx, lf._sy);
+        const a = lf._theta;
+        const flip = a > Math.PI * 0.5 || a < -Math.PI * 0.5;
+        ctx.rotate(flip ? a + Math.PI : a);
+        ctx.textAlign = flip ? 'right' : 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = lf.color === '#94a3b8' ? '#3f3f46' : lf.color;
+        ctx.font = '500 10.5px ui-monospace, monospace';
+        ctx.fillText(shortLabel(lf), flip ? -6 : 6, 0);
+        ctx.restore();
+      }
+    }
+
+    function drawMinimap(layout, mainRect) {
+      const mc = document.getElementById('minimapCanvas');
+      if (!mc) return;
+      const ctx = mc.getContext('2d');
+      const W = 150, H = 104;
+      ctx.clearRect(0, 0, W, H);
+      if (layoutMode === 'circular') return;
+
+      const nLeaves = layout.nLeaves;
+      ctx.strokeStyle = '#a1a1aa';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      for (const nd of layout.nodes) {
+        if (nd === layout.root) continue;
+        const p = nodeById.get(nd.parentId);
+        if (!p) continue;
+        const x0 = 8 + p._nx * (W - 24), y0 = 8 + (p._y / nLeaves) * (H - 16);
+        const x1 = 8 + nd._nx * (W - 24), y1 = 8 + (nd._y / nLeaves) * (H - 16);
+        ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1);
+      }
+      ctx.stroke();
+
+      const treeW = Math.max(1, cam.treeW * cam.scale);
+      const treeH = Math.max(1, nLeaves * cam.rowH * cam.scale);
+      const u0 = -cam.x / treeW, u1 = (mainRect.width - cam.x) / treeW;
+      const v0 = -cam.y / treeH, v1 = (mainRect.height - cam.y) / treeH;
+      const rx = Math.max(1, 8 + u0 * (W - 24));
+      const ry = Math.max(1, 8 + v0 * (H - 16));
+      const rw = Math.min(W - 2 - rx, (u1 - u0) * (W - 24));
+      const rh = Math.min(H - 2 - ry, (v1 - v0) * (H - 16));
+      ctx.fillStyle = 'rgba(255, 79, 0, 0.12)';
+      ctx.fillRect(rx, ry, Math.max(6, rw), Math.max(6, rh));
+      ctx.strokeStyle = '#ff4f00';
+      ctx.lineWidth = 1.2;
+      ctx.strokeRect(rx, ry, Math.max(6, rw), Math.max(6, rh));
+    }
+
+    function hitTest(mx, my) {
+      const layout = computeLayout();
+      let best = null, bestD = 10;
+      for (const nd of layout.nodes) {
+        if (nd._sx === undefined) continue;
+        const d = Math.hypot(mx - nd._sx, my - nd._sy);
+        if (d < bestD) { bestD = d; best = nd; }
+      }
+      return best;
+    }
+
+    window.resetFocus = function() {
+      focusedRoot = null;
+      document.getElementById('focusBanner').classList.add('hidden');
+      fitToScreen();
+    };
+
+    const canvas = document.getElementById('treeCanvas');
+    const tooltip = document.getElementById('tooltip');
+
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const r = canvas.getBoundingClientRect();
+      zoomBy(e.deltaY < 0 ? 1.16 : 0.86, e.clientX - r.left, e.clientY - r.top);
+    }, { passive: false });
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      dragMoved = false;
+      dragStart = { x: e.clientX - cam.x, y: e.clientY - cam.y };
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      const mx = e.clientX - r.left, my = e.clientY - r.top;
+      if (isDragging) {
+        if (Math.hypot(e.clientX - dragStart.x - cam.x, e.clientY - dragStart.y - cam.y) > 3) dragMoved = true;
+        cam.x = e.clientX - dragStart.x;
+        cam.y = e.clientY - dragStart.y;
+        renderCanvas();
+        return;
+      }
+      if (mx < 0 || my < 0 || mx > r.width || my > r.height) {
+        tooltip.classList.add('hidden');
+        return;
+      }
+      const hit = hitTest(mx, my);
+      hoveredNode = hit;
+      if (hit) {
+        tooltip.classList.remove('hidden');
+        tooltip.style.left = `${Math.min(r.width - 340, mx + 14)}px`;
+        tooltip.style.top = `${Math.max(10, my - 10)}px`;
+        const m = hit.meta;
+        if (hit.isLeaf && m) {
+          const vars = isnvByRun[m.sra_accession] || [];
+          const topVars = vars.slice(0, 5).map(v => `${v.Variant_ID} (${v.AA_Change.split(' ')[0]} ${v.Alt_Freq_Pct.toFixed(1)}%)`).join(', ');
+          tooltip.innerHTML = `
+            <strong>${shortLabel(hit)}</strong><br>
+            Clade: ${m.clade_group}<br>
+            ${m.fixed_snp_list ? `Fixed SNPs: ${m.fixed_snp_list}<br>` : ''}
+            ${vars.length > 0 ? `Minority (&ge;2%): ${topVars}` : (m.subconsensus_list ? `Sub-consensus: ${m.subconsensus_list}` : '')}
+          `;
+        } else {
+          tooltip.innerHTML = `<strong>Internal Node (${hit.leafCount} tips)</strong><br>Click to collapse/expand &bull; Shift+Click to isolate`;
+        }
+        renderCanvas();
+      } else {
+        tooltip.classList.add('hidden');
+      }
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      if (!dragMoved) {
+        const r = canvas.getBoundingClientRect();
+        const hit = hitTest(e.clientX - r.left, e.clientY - r.top);
+        if (hit) {
+          selectedNode = hit;
+          const m = hit.meta;
+          if (hit.isLeaf && m) {
+            const vars = isnvByRun[m.sra_accession] || [];
+            const vText = vars.length > 0
+              ? ` • ${vars.length} iSNVs: ` + vars.slice(0, 6).map(v => `${v.Variant_ID}(${v.Alt_Freq_Pct.toFixed(1)}%)`).join(', ')
+              : (m.subconsensus_list ? ` • ${m.subconsensus_list}` : '');
+            document.getElementById('inspectorLine').innerHTML =
+              `<strong>${shortLabel(hit)}</strong> — Fixed: ${m.fixed_snp_list || '0'}${vText}`;
+          } else if (!hit.isLeaf) {
+            if (e.shiftKey) {
+              focusedRoot = hit;
+              document.getElementById('focusBanner').classList.remove('hidden');
+              document.getElementById('focusBannerText').textContent = `Subtree (${hit.leafCount} tips)`;
+              fitToScreen();
+            } else {
+              if (collapsedIds.has(hit.id)) collapsedIds.delete(hit.id);
+              else collapsedIds.add(hit.id);
+              renderCanvas();
+            }
+          }
+        }
+      }
+    });
+
+    window.addEventListener('resize', () => fitToScreen());
+    initApp();
+  </script>
+</body>
+</html>
