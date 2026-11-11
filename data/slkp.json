@@ -1385,6 +1385,10 @@
                 {
                     "url": "blog/h5n1-nov06-explorer/index.html",
                     "link-text": "Interactive 9-Tree Explorer"
+                },
+                {
+                    "url": "blog/h5n1-mutation-studio/index.html",
+                    "link-text": "AEON-MUTATE: H5N1 Mutation & Mixture Studio"
                 }
             ],
             [

@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEON-MUTATE • H5N1 Mutation, Tree, Geography & Mixture Studio</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-alt: #1e293b;
+      --card: #162033;
+      --border: #283548;
+      --border-hi: #3b82f6;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --dim: #64748b;
+      --accent: #38bdf8;
+      --primary: #2563eb;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --violet: #8b5cf6;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* TOP COMMAND & SEARCH BAR */
+    .top-header {
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      z-index: 40;
+      flex-shrink: 0;
+    }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 11.5px;
+    }
+
+    /* OMNI SEARCH + BOOLEAN PILL BAR */
+    .query-bar-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 340px;
+      max-width: 780px;
+      display: flex;
+      align-items: center;
+      background: #090e1a;
+      border: 1.5px solid #334155;
+      border-radius: 7px;
+      padding: 3px 8px;
+      gap: 6px;
+      flex-wrap: wrap;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .query-bar-wrap:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .active-pills {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .q-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #1e3a8a;
+      border: 1px solid #3b82f6;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    .q-pill.op-not {
+      background: #4c0519;
+      border-color: #f43f5e;
+    }
+
+    .q-pill-op {
+      background: rgba(255,255,255,0.16);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 9.5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .q-pill-op:hover { background: rgba(255,255,255,0.3); }
+
+    .q-pill-del {
+      cursor: pointer;
+      color: #93c5fd;
+      font-size: 13px;
+      line-height: 1;
+      padding-left: 2px;
+    }
+    .q-pill-del:hover { color: #fff; }
+
+    #omniInput {
+      flex: 1;
+      min-width: 190px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      padding: 4px 4px;
+    }
+
+    #omniInput::placeholder { color: #64748b; font-family: var(--font-sans); }
+
+    .kbd-hint {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--dim);
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* AUTOCOMPLETE DROPDOWN */
+    .ac-dropdown {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      background: #0f172a;
+      border: 1px solid #3b82f6;
+      border-radius: 7px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.65);
+      max-height: 340px;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .ac-item {
+      padding: 7px 11px;
+      border-bottom: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .ac-item:hover, .ac-item.active {
+      background: #1e293b;
+    }
+
+    .ac-key {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 12.5px;
+      color: var(--accent);
+    }
+
+    .ac-badge {
+      font-size: 10.5px;
+      color: #cbd5e1;
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+
+    .ac-badge.critical {
+      background: rgba(244, 63, 94, 0.16);
+      border-color: rgba(244, 63, 94, 0.45);
+      color: #fda4af;
+    }
+
+    .ac-stats {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* PRESET CHIPS BAR */
+    .preset-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .preset-row::-webkit-scrollbar { display: none; }
+
+    .preset-lbl {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--dim);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .preset-chip {
+      background: #162033;
+      border: 1px solid #283548;
+      color: #cbd5e1;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.12s;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--accent);
+      color: #fff;
+      background: #1e293b;
+    }
+
+    .preset-chip.active {
+      background: #1d4ed8;
+      border-color: #60a5fa;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .preset-chip span.sub {
+      color: #94a3b8;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      margin-left: 3px;
+    }
+    .preset-chip.active span.sub { color: #dbeafe; }
+
+    /* ACTION BUTTONS */
+    .btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn:hover { background: #334155; color: #fff; }
+    .btn-primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #fff;
+    }
+    .btn-primary:hover { background: #1d4ed8; }
+
+    /* 5-CARD TELEMETRY STRIP */
+    .telemetry-strip {
+      display: grid;
+      grid-template-columns: 1.15fr 1.25fr 1.25fr 1.15fr 1.5fr;
+      gap: 8px;
+      padding: 8px 14px;
+      background: #0d1526;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .t-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 11px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 68px;
+    }
+
+    .t-card-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .t-card-main {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .t-card-sub {
+      font-size: 11px;
+      color: #cbd5e1;
+      line-height: 1.3;
+      margin-top: 3px;
+    }
+
+    .pill-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .pill-sweep { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .pill-homo { background: rgba(244, 63, 94, 0.18); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.4); }
+    .pill-clade { background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+    .pill-isnv { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+
+    /* MAIN WORKSPACE GRID */
+    .workspace {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 8px;
+      padding: 8px 14px;
+      min-height: 0;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .panel-hdr {
+      padding: 6px 11px;
+      background: #141d2f;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .panel-title {
+      font-weight: 700;
+      font-size: 12px;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .seg-group {
+      display: inline-flex;
+      background: #0b1120;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 1.5px;
+    }
+
+    .seg-opt {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2.5px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .seg-opt:hover { color: #fff; }
+    .seg-opt.active {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    /* TREE VIEWPORT */
+    .tree-viewport {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background: radial-gradient(circle at 50% 50%, #0f172a 0%, #090d16 100%);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    #treeCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+    #treeCanvas:active { cursor: grabbing; }
+
+    .tree-overlay-controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 20;
+    }
+
+    .icon-btn {
+      width: 27px;
+      height: 27px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .icon-btn:hover { background: #2563eb; border-color: #60a5fa; color: #fff; }
+
+    .origin-jump-bar {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      max-width: 65%;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      z-index: 20;
+    }
+
+    .origin-chip {
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid #f59e0b;
+      color: #fde68a;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .origin-chip:hover { background: #f59e0b; color: #0b1120; font-weight: 700; }
+
+    .tree-legend-footer {
+      padding: 5px 11px;
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .leg-items {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-wrap: wrap;
+    }
+
+    .leg-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    /* RIGHT COLUMN SPLIT: MAP + CHARTS + PROTEIN/TABLE */
+    .right-col {
+      display: grid;
+      grid-template-rows: 1.08fr 0.92fr;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .map-and-sra {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 0;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .map-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #0b1120;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #usMapSvg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .state-path {
+      stroke: #1e293b;
+      stroke-width: 1px;
+      cursor: pointer;
+      transition: opacity 0.12s, stroke-width 0.12s;
+    }
+    .state-path:hover {
+      stroke: #fff;
+      stroke-width: 2px;
+    }
+    .state-path.selected {
+      stroke: #f59e0b;
+      stroke-width: 2.4px;
+    }
+
+    .sra-side {
+      border-left: 1px solid var(--border);
+      padding: 8px 10px;
+      background: #0e1628;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .sra-group-box {
+      background: #162033;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 8px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      transition: border-color 0.12s;
+    }
+    .sra-group-box:hover { border-color: var(--accent); }
+
+    /* CHARTS & CARRIER TABLE TABS */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .chart-box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .host-bars {
+      border-left: 1px solid var(--border);
+      padding: 7px 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hbar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .hbar-row:hover { background: #1e293b; }
+
+    .hbar-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+
+    .hbar-track {
+      height: 6px;
+      background: #0b1120;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .hbar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    /* BOTTOM PROTEIN STRIP */
+    .bottom-strip {
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      padding: 5px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 54px;
+      flex-shrink: 0;
+    }
+
+    #proteinCanvas {
+      flex: 1;
+      height: 40px;
+      display: block;
+      cursor: pointer;
+    }
+
+    /* FLOATING TOOLTIP */
+    .tooltip {
+      position: fixed;
+      pointer-events: none;
+      z-index: 200;
+      background: rgba(15, 23, 42, 0.97);
+      border: 1px solid #3b82f6;
+      border-left: 4px solid var(--accent);
+      color: #f8fafc;
+      padding: 8px 11px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.45;
+      max-width: 390px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.65);
+    }
+
+    /* MODAL FOR CARRIER / iSNV TABLE & X EXPORT */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid #3b82f6;
+      border-radius: 10px;
+      width: min(1080px, 95vw);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    .modal-body {
+      padding: 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    table.data-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+    table.data-tbl th, table.data-tbl td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #1e293b;
+      text-align: left;
+    }
+    table.data-tbl th {
+      background: #162033;
+      color: var(--accent);
+      position: sticky;
+      top: 0;
+    }
+    table.data-tbl tr:hover { background: #1e293b; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- TOP HEADER: BRAND + OMNI-SEARCH + PRESETS -->
+  <header class="top-header">
+    <div class="header-main">
+      <div class="brand">
+        <span>AEON-MUTATE</span>
+        <span class="brand-badge">H5N1 STUDIO</span>
+        <span class="brand-sub" id="datasetStatus">Loading 5,678 genomes + 802 iSNVs...</span>
+      </div>
+
+      <!-- OMNI-SEARCH & BOOLEAN HAPLOTYPE PILL BAR -->
+      <div class="query-bar-wrap" id="queryBarWrap">
+        <div class="active-pills" id="activePills"></div>
+        <input type="text" id="omniInput" placeholder="Search mutation or site (e.g. PB2:T271A, E627K, HA:Q226R, M2:S82N, PA:G1260A)..." autocomplete="off" />
+        <span class="kbd-hint">/</span>
+        <div class="ac-dropdown hidden" id="acDropdown"></div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:6px;">
+        <button class="btn" onclick="openInspectorModal()">Carrier &amp; iSNV Table</button>
+        <button class="btn btn-primary" id="copyXBtn" onclick="copyXSummary()">Copy Summary for X</button>
+      </div>
+    </div>
+
+    <!-- ONE-CLICK HOT MUTATIONS & HAPLOTYPES -->
+    <div class="preset-row">
+      <span class="preset-lbl">Hot Queries:</span>
+      <button class="preset-chip" onclick="loadPreset(['PB2:T271A','PB2:D678G'], 'AND', this)">PB2:T271A + D678G <span class="sub">2026 ID Pol Clade</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:E627K'], 'AND', this)">PB2:E627K <span class="sub">Mammalian Homoplasies (91)</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:M631L'], 'AND', this)">PB2:M631L <span class="sub">Cattle Trunk Sweep (5,670)</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:K660R','NA:Q45R'], 'AND', this)">PB2:K660R + NA:Q45R <span class="sub">Fall 2026 WA Surge (31)</span></button>
+      <button class="preset-chip" onclick="loadPreset(['NUC:PA:G1260A','NUC:MP:T462C'], 'AND', this)">PA:G1260A + MP:T462C <span class="sub">WA Bulk-Tank Subclade + iSNV</span></button>
+      <button class="preset-chip" onclick="loadPreset(['M2:S82N'], 'AND', this)">M2:S82N <span class="sub">WA Bulk-Tank Mixture Bridge</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PA:I44V','PB2:T117A'], 'AND', this)">PA:I44V + PB2:T117A <span class="sub">2026 TX/Midwest Group 3</span></button>
+      <button class="preset-chip" onclick="loadPreset(['NP:N417T'], 'AND', this)">NP:N417T <span class="sub">Fall 2026 TX/IN Bulk->Farm Pair</span></button>
+      <button class="preset-chip" onclick="loadPreset(['HA:Q238R'], 'AND', this)">HA:Q238R (H3-Q226R) <span class="sub">WA Human 16% iSNV</span></button>
+      <button class="preset-chip" onclick="loadPreset(['HA:V147M'], 'AND', this)">HA:V147M <span class="sub">20 Origins + 2025–26 Sweep</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:E677K'], 'AND', this)">PB2:E677K <span class="sub">10 Origins + 2 iSNVs</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:A676T'], 'AND', this)">PB2:A676T <span class="sub">Oct 29 WA Human + 4 Origins</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:D701N'], 'AND', this)">PB2:D701N <span class="sub">Nuclear Import + 2 iSNVs</span></button>
+    </div>
+  </header>
+
+  <!-- 5-CARD LIVE TELEMETRY & BIOLOGICAL INTERPRETATION STRIP -->
+  <section class="telemetry-strip">
+    <div class="t-card">
+      <div class="t-card-hdr">
+        <span>1. Consensus Prevalence</span>
+        <span id="card1FilterBadge" style="color:var(--accent);">All States</span>
+      </div>
+      <div class="t-card-main" id="card1Main">—</div>
+      <div class="t-card-sub" id="card1Sub">—</div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-card-hdr">
+        <span>2. Evolutionary Pattern (Sweep vs Homoplasy)</span>
+        <span id="card2Badge" class="pill-tag pill-clade">—</span>
+      </div>
+      <div class="t-card-main" id="card2Main">—</div>
+      <div class="t-card-sub" id="card2Sub">—</div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-card-hdr">
+        <span>3. Host Distribution &amp; Enrichment</span>
+        <span id="card3Badge" style="color:#34d399;">Cross-Tab</span>
+      </div>
+      <div class="t-card-main" id="card3Main">—</div>
+      <div class="t-card-sub" id="card3Sub">—</div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-card-hdr">
+        <span>4. Sub-Consensus / Bulk-Milk Mixtures (iSNVs)</span>
+        <span id="card4Badge" class="pill-tag pill-isnv">Deep SRA</span>
+      </div>
+      <div class="t-card-main" id="card4Main">—</div>
+      <div class="t-card-sub" id="card4Sub">—</div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-card-hdr">
+        <span>5. Functional, Selection &amp; Numbering Context</span>
+        <span id="card5Badge" style="color:#f43f5e;font-weight:700;">Annotation</span>
+      </div>
+      <div class="t-card-main" id="card5Main" style="font-size:13px;">—</div>
+      <div class="t-card-sub" id="card5Sub">—</div>
+    </div>
+  </section>
+
+  <!-- MAIN 2-COLUMN WORKSPACE -->
+  <main class="workspace">
+    <!-- LEFT: 60-FPS DUAL-ENCODED PHYLOGENETIC TREE -->
+    <div class="panel">
+      <div class="panel-hdr">
+        <div class="panel-title">
+          <span>Phylogenetic Tree &amp; Mixture Network</span>
+          <span id="treeZoomBadge" style="font-family:var(--font-mono);font-size:10.5px;color:var(--accent);background:#0b1120;padding:1px 6px;border-radius:4px;">Full Tree</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <div class="seg-group" title="Cohort Scope">
+            <button class="seg-opt" id="coh_full" onclick="setCohort('full')">All 5,678</button>
+            <button class="seg-opt" id="coh_strat" onclick="setCohort('strat')">Stratified (1,015)</button>
+            <button class="seg-opt active" id="coh_y2026" onclick="setCohort('y2026')">2026 Outbreak (400)</button>
+            <button class="seg-opt" id="coh_fall26" onclick="setCohort('fall26')">Fall 2026 SRA Focus</button>
+          </div>
+
+          <div class="seg-group" title="Branch Metric">
+            <button class="seg-opt active" id="xmode_div" onclick="setXMode('div')">Divergence</button>
+            <button class="seg-opt" id="xmode_time" onclick="setXMode('time')">Time (2024–26)</button>
+            <button class="seg-opt" id="xmode_clado" onclick="setXMode('clado')">Cladogram</button>
+          </div>
+
+          <div class="seg-group" title="Color Carrier Tips By">
+            <button class="seg-opt active" id="cby_host" onclick="setColorBy('host')">Color: Host</button>
+            <button class="seg-opt" id="cby_state" onclick="setColorBy('state')">State</button>
+            <button class="seg-opt" id="cby_status" onclick="setColorBy('status')">Consensus vs iSNV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-viewport" id="treeViewport">
+        <canvas id="treeCanvas"></canvas>
+
+        <div class="tree-overlay-controls">
+          <button class="icon-btn" title="Zoom In" onclick="zoomTree(1.3)">+</button>
+          <button class="icon-btn" title="Zoom Out" onclick="zoomTree(0.77)">&minus;</button>
+          <button class="icon-btn" title="Reset / Fit Tree" onclick="resetTreeFocus()">&#8865;</button>
+        </div>
+
+        <div class="origin-jump-bar" id="originJumpBar"></div>
+      </div>
+
+      <div class="tree-legend-footer">
+        <div class="leg-items" id="treeLegendItems">
+          <span><i class="leg-dot" style="background:#38bdf8"></i>Cattle</span>
+          <span><i class="leg-dot" style="background:#f43f5e"></i>Human (★)</span>
+          <span><i class="leg-dot" style="background:#a855f7"></i>Feline / Mammal (◆)</span>
+          <span><i class="leg-dot" style="background:#10b981"></i>Poultry / Avian (▲)</span>
+          <span><i class="leg-dot" style="background:#f59e0b;border:1.5px solid #fff"></i>Sub-Consensus iSNV Halo + Arc</span>
+          <span><i class="leg-dot" style="background:#fde047"></i>★ Branch Origin</span>
+        </div>
+        <div id="treeHintText">Click any internal node or ★ origin to isolate subtree • Hover tip for full genotype &amp; iSNVs</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: GEOGRAPHY MAP + ANONYMIZED SRA GROUPS + TEMPORAL & HOST CHARTS -->
+    <div class="right-col">
+      <!-- TOP RIGHT: US GEOGRAPHY + FALL 2026 ANONYMIZED SRA BREAKDOWN -->
+      <div class="panel">
+        <div class="panel-hdr">
+          <div class="panel-title">
+            <span>Geographic Distribution &amp; Anonymized "USA" SRA Groups</span>
+            <button class="btn hidden" id="clearStateBtn" style="padding:1px 6px;font-size:10px;background:#f59e0b;color:#000;border:none;" onclick="setStateFilter(null)">Clear State Filter</button>
+          </div>
+          <div class="seg-group">
+            <button class="seg-opt active" id="map_count" onclick="setMapMode('count')">Carrier Count (n)</button>
+            <button class="seg-opt" id="map_pct" onclick="setMapMode('pct')">State Prevalence (%)</button>
+          </div>
+        </div>
+
+        <div class="map-and-sra">
+          <div class="map-wrap">
+            <svg id="usMapSvg" viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet"></svg>
+          </div>
+          <div class="sra-side" id="sraSidePanel"></div>
+        </div>
+      </div>
+
+      <!-- BOTTOM RIGHT: TEMPORAL EMERGENCE CURVE + HOST / STATE BARS -->
+      <div class="panel">
+        <div class="panel-hdr">
+          <div class="panel-title">
+            <span>Temporal Trajectory (2024 Q1 – Nov 2026) &amp; Host / State Breakdown</span>
+          </div>
+          <div class="seg-group">
+            <button class="seg-opt active" id="tab_host" onclick="setSideTab('host')">By Host</button>
+            <button class="seg-opt" id="tab_state" onclick="setSideTab('state')">Top States</button>
+            <button class="seg-opt" id="tab_cooccur" onclick="setSideTab('cooccur')">Co-Occurring Mutations</button>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-box">
+            <canvas id="timeCanvas" style="width:100%;height:100%;display:block;"></canvas>
+          </div>
+          <div class="host-bars" id="rightBreakdownList"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BOTTOM 10-PROTEIN LOLLIPOP & DOMAIN NAVIGATOR -->
+  <footer class="bottom-strip">
+    <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+      <span style="font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;">Protein Map:</span>
+      <div class="seg-group" id="geneSelectorBar">
+        <button class="seg-opt active" onclick="selectProteinMap('PB2')">PB2</button>
+        <button class="seg-opt" onclick="selectProteinMap('PB1')">PB1</button>
+        <button class="seg-opt" onclick="selectProteinMap('PA')">PA</button>
+        <button class="seg-opt" onclick="selectProteinMap('HA')">HA</button>
+        <button class="seg-opt" onclick="selectProteinMap('NP')">NP</button>
+        <button class="seg-opt" onclick="selectProteinMap('NA')">NA</button>
+        <button class="seg-opt" onclick="selectProteinMap('M1')">M1</button>
+        <button class="seg-opt" onclick="selectProteinMap('M2')">M2</button>
+        <button class="seg-opt" onclick="selectProteinMap('NS1')">NS1</button>
+        <button class="seg-opt" onclick="selectProteinMap('NS2')">NS2</button>
+      </div>
+    </div>
+    <canvas id="proteinCanvas"></canvas>
+  </footer>
+</div>
+
+<!-- FLOATING TOOLTIP -->
+<div class="tooltip hidden" id="tooltip"></div>
+
+<!-- CARRIER & iSNV INSPECTOR MODAL -->
+<div class="modal-backdrop hidden" id="inspectorModal" onclick="if(event.target===this)closeInspectorModal()">
+  <div class="modal-card">
+    <div class="panel-hdr" style="padding:10px 14px;">
+      <div class="panel-title" id="modalTitle" style="font-size:14px;">Carrier Sequences &amp; Sub-Consensus Mixtures</div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-primary" onclick="copyXSummary()">Copy Summary for X</button>
+        <button class="btn" onclick="closeInspectorModal()">Close (Esc)</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  let BUNDLE = null;
+  let US_GEOJSON = null;
+
+  // Decoded tip bitsets & caches
+  let mutDecodedCarriers = new Map();
+  let allMutList = [];
+
+  // Active Query State: array of { key: "PB2:T271A", op: "AND" | "OR" | "NOT" }
+  let activeQuery = [
+    { key: "PB2:T271A", op: "AND" },
+    { key: "PB2:D678G", op: "AND" }
+  ];
+
+  // Active UI Filters & Modes
+  let cohortMode = "y2026";     // 'full' | 'strat' | 'y2026' | 'fall26'
+  let xMode = "div";            // 'div' | 'time' | 'clado'
+  let colorByMode = "host";     // 'host' | 'state' | 'status'
+  let mapMode = "count";        // 'count' | 'pct'
+  let sideTab = "host";         // 'host' | 'state' | 'cooccur'
+  let activeProtein = "PB2";
+  let selectedStateFilter = null;
+  let focusedSubtreeNodeId = null;
+
+  // Computed query results
+  let currentResult = {
+    carrierSet: new Set(),
+    isnvTipMap: new Map(), // tip_id -> array of matching isnv records
+    isnvRecords: [],
+    originNodeIds: new Set(),
+    originDetails: [],
+  };
+
+  // Tree layout & camera state
+  let layoutNodes = [];
+  let layoutLeaves = [];
+  let nodeById = [];
+  let treeCam = { x: 28, y: 20, scale: 1.0, rowH: 4.0, treeW: 600 };
+  let isDraggingTree = false;
+  let dragStart = { x: 0, y: 0 };
+  let hoveredTreeNode = null;
+  let proteinLollipops = [];
+
+  const HOST_COLORS = {
+    "Cattle": "#38bdf8",
+    "Human": "#f43f5e",
+    "Feline": "#c084fc",
+    "Poultry": "#10b981",
+    "Wild Bird": "#34d399",
+    "Other Mammal": "#fb923c",
+    "Avian / Other": "#94a3b8"
+  };
+
+  const STATE_PALETTE = [
+    "#38bdf8", "#f43f5e", "#10b981", "#f59e0b", "#a855f7",
+    "#ec4899", "#14b8a6", "#eab308", "#6366f1", "#fb7185"
+  ];
+
+  async function initStudio() {
+    const [bResp, gResp] = await Promise.all([
+      fetch("./data/h5n1_mutation_studio_bundle.json"),
+      fetch("./data/us_states.json")
+    ]);
+    BUNDLE = await bResp.json();
+    US_GEOJSON = await gResp.json();
+
+    nodeById = new Array(BUNDLE.nodes.length);
+    for (const nd of BUNDLE.nodes) {
+      nodeById[nd.id] = nd;
+    }
+
+    // Build autocomplete list sorted by importance & tip count
+    allMutList = Object.values(BUNDLE.mutations).sort((a, b) => {
+      const tierScore = t => t === "critical" ? 3 : (t === "high" ? 2 : (t === "featured" ? 1 : 0));
+      const dTier = tierScore(b.tier) - tierScore(a.tier);
+      if (dTier !== 0) return dTier;
+      if (b.n_2026 !== a.n_2026) return b.n_2026 - a.n_2026;
+      return b.n_tips - a.n_tips;
+    });
+
+    document.getElementById("datasetStatus").textContent =
+      `${BUNDLE.n_tips.toLocaleString()} Genomes • 10 Proteins • ${allMutList.length.toLocaleString()} Indexed Mutations • 802 Deep SRA iSNVs`;
+
+    setupSearchEvents();
+    setupTreeCanvasEvents();
+    setupProteinCanvasEvents();
+    window.addEventListener("resize", () => {
+      fitTreeToViewport();
+      renderTimeChart();
+      renderProteinStrip();
+    });
+
+    // Check URL ?q=... parameter (e.g. ?q=PB2:E627K or ?q=PB2:T271A,PB2:D678G)
+    const urlParams = new URLSearchParams(window.location.search);
+    const qParam = urlParams.get("q");
+    if (qParam) {
+      const keys = qParam.split(",").map(s => s.trim()).filter(s => BUNDLE.mutations[s]);
+      if (keys.length > 0) {
+        loadPreset(keys, "AND", null);
+        return;
+      }
+    }
+
+    // Highlight first preset chip
+    const firstChip = document.querySelector(".preset-chip");
+    if (firstChip) firstChip.classList.add("active");
+
+    runQueryAndRender(true);
+  }
+
+  function decodeCarrierSet(mkey) {
+    if (mutDecodedCarriers.has(mkey)) return mutDecodedCarriers.get(mkey);
+    const m = BUNDLE.mutations[mkey];
+    const s = new Set();
+    if (!m || !m.tips_delta) {
+      mutDecodedCarriers.set(mkey, s);
+      return s;
+    }
+    let cur = 0;
+    for (let i = 0; i < m.tips_delta.length; i++) {
+      cur = (i === 0) ? m.tips_delta[0] : (cur + m.tips_delta[i]);
+      s.add(cur);
+    }
+    mutDecodedCarriers.set(mkey, s);
+    return s;
+  }
+
+  window.loadPreset = function(keys, op, btnEl) {
+    document.querySelectorAll(".preset-chip").forEach(b => b.classList.remove("active"));
+    if (btnEl) btnEl.classList.add("active");
+    activeQuery = keys.map(k => ({ key: k, op: op || "AND" }));
+    selectedStateFilter = null;
+    focusedSubtreeNodeId = null;
+    document.getElementById("clearStateBtn").classList.add("hidden");
+
+    // Automatically select cohort that best shows the query
+    const m0 = BUNDLE.mutations[keys[0]];
+    if (m0) {
+      if (m0.gene && BUNDLE.genes[m0.gene]) {
+        activeProtein = m0.gene;
+        updateProteinButtons();
+      }
+      if (m0.n_2026 > 0 && m0.n_tips < 120) {
+        cohortMode = "y2026";
+      } else if (m0.n_tips > 500 || m0.n_2026 === 0) {
+        cohortMode = "strat";
+      }
+      updateCohortButtons();
+    }
+    runQueryAndRender(true);
+  };
+
+  function renderQueryPills() {
+    const wrap = document.getElementById("activePills");
+    wrap.innerHTML = "";
+    activeQuery.forEach((item, idx) => {
+      const pill = document.createElement("span");
+      pill.className = `q-pill ${item.op === "NOT" ? "op-not" : ""}`;
+      if (idx > 0 || item.op === "NOT") {
+        const opSpan = document.createElement("span");
+        opSpan.className = "q-pill-op";
+        opSpan.textContent = item.op;
+        opSpan.title = "Click to toggle AND / OR / NOT";
+        opSpan.onclick = (e) => {
+          e.stopPropagation();
+          const nextOp = item.op === "AND" ? "OR" : (item.op === "OR" ? "NOT" : "AND");
+          activeQuery[idx].op = nextOp;
+          runQueryAndRender(false);
+        };
+        pill.appendChild(opSpan);
+      }
+      const txt = document.createElement("span");
+      txt.textContent = item.key.replace(/^NUC:/, "");
+      pill.appendChild(txt);
+
+      const del = document.createElement("span");
+      del.className = "q-pill-del";
+      del.innerHTML = "&times;";
+      del.onclick = (e) => {
+        e.stopPropagation();
+        activeQuery.splice(idx, 1);
+        runQueryAndRender(false);
+      };
+      pill.appendChild(del);
+      wrap.appendChild(pill);
+    });
+  }
+
+  function evaluateActiveQuery() {
+    const N = BUNDLE.n_tips;
+    let mask = new Uint8Array(N);
+
+    if (activeQuery.length === 0) {
+      mask.fill(1);
+    } else {
+      for (let qIdx = 0; qIdx < activeQuery.length; qIdx++) {
+        const { key, op } = activeQuery[qIdx];
+        const cset = decodeCarrierSet(key);
+        if (qIdx === 0) {
+          if (op === "NOT") {
+            for (let i = 0; i < N; i++) mask[i] = cset.has(i) ? 0 : 1;
+          } else {
+            for (const tid of cset) mask[tid] = 1;
+          }
+        } else if (op === "AND") {
+          for (let i = 0; i < N; i++) {
+            if (mask[i] && !cset.has(i)) mask[i] = 0;
+          }
+        } else if (op === "OR") {
+          for (const tid of cset) mask[tid] = 1;
+        } else if (op === "NOT") {
+          for (const tid of cset) mask[tid] = 0;
+        }
+      }
+    }
+
+    const carrierSet = new Set();
+    for (let i = 0; i < N; i++) {
+      if (mask[i]) {
+        if (!selectedStateFilter || BUNDLE.tips[i].state === selectedStateFilter) {
+          carrierSet.add(i);
+        }
+      }
+    }
+
+    // Collect iSNVs & origin branches across queried mutations
+    const isnvTipMap = new Map();
+    const isnvRecords = [];
+    const originNodeIds = new Set();
+    const originDetails = [];
+
+    function hasDescendantInSet(nid, targetSet) {
+      if (targetSet.has(nid)) return true;
+      const nd = nodeById[nid];
+      if (!nd || !nd.ch) return false;
+      for (const cid of nd.ch) {
+        if (hasDescendantInSet(cid, targetSet)) return true;
+      }
+      return false;
+    }
+
+    for (const { key, op } of activeQuery) {
+      if (op === "NOT") continue;
+      const m = BUNDLE.mutations[key];
+      if (!m) continue;
+      for (const v of (m.isnvs || [])) {
+        isnvRecords.push({ ...v, mutKey: key });
+        if (v.tip_id >= 0) {
+          if (!isnvTipMap.has(v.tip_id)) isnvTipMap.set(v.tip_id, []);
+          isnvTipMap.get(v.tip_id).push(v);
+        }
+      }
+      for (const o of (m.origins || [])) {
+        if (activeQuery.length > 1 && carrierSet.size > 0 && !hasDescendantInSet(o.nid, carrierSet)) {
+          continue;
+        }
+        originNodeIds.add(o.nid);
+        const existing = originDetails.find(x => x.nid === o.nid);
+        if (existing) {
+          if (!existing.mutKey.includes(key)) existing.mutKey += ` + ${key}`;
+        } else {
+          originDetails.push({ ...o, mutKey: key });
+        }
+      }
+    }
+
+    currentResult = { carrierSet, isnvTipMap, isnvRecords, originNodeIds, originDetails };
+  }
+
+  function runQueryAndRender(refitTree = false) {
+    if (activeQuery.length > 0 && window.history && window.history.replaceState) {
+      const qVal = activeQuery.map(q => q.key).join(",");
+      const newUrl = `${window.location.pathname}?q=${encodeURIComponent(qVal)}`;
+      window.history.replaceState(null, "", newUrl);
+    }
+    renderQueryPills();
+    evaluateActiveQuery();
+    updateTelemetryCards();
+    renderOriginJumpBar();
+    if (refitTree) {
+      computeTreeLayout();
+      fitTreeToViewport();
+    } else {
+      renderTreeCanvas();
+    }
+    renderUSMap();
+    renderSraSidePanel();
+    renderTimeChart();
+    renderRightBreakdown();
+    renderProteinStrip();
+  }
+
+  // Wilson 95% CI helper
+  function wilsonCI(k, n) {
+    if (n === 0) return [0, 0];
+    const z = 1.96;
+    const p = k / n;
+    const denom = 1 + (z * z) / n;
+    const center = (p + (z * z) / (2 * n)) / denom;
+    const half = (z * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n))) / denom;
+    return [Math.max(0, 100 * (center - half)), Math.min(100, 100 * (center + half))];
+  }
+
+  function updateTelemetryCards() {
+    const cset = currentResult.carrierSet;
+    const totalTips = selectedStateFilter
+      ? BUNDLE.tips.filter(t => t.state === selectedStateFilter).length
+      : BUNDLE.n_tips;
+
+    let n2026 = 0, total2026 = 0, nFall26 = 0, totalFall26 = 0;
+    const hostCounts = {};
+    const hostTotals = {};
+
+    for (const t of BUNDLE.tips) {
+      if (selectedStateFilter && t.state !== selectedStateFilter) continue;
+      hostTotals[t.host] = (hostTotals[t.host] || 0) + 1;
+      if (t.year === 2026) total2026++;
+      if (t.is_fall26) totalFall26++;
+
+      if (cset.has(t.id)) {
+        hostCounts[t.host] = (hostCounts[t.host] || 0) + 1;
+        if (t.year === 2026) n2026++;
+        if (t.is_fall26) nFall26++;
+      }
+    }
+
+    // Card 1: Prevalence
+    const nCar = cset.size;
+    const pctAll = totalTips > 0 ? (100 * nCar / totalTips).toFixed(1) : "0.0";
+    const [ciLo, ciHi] = wilsonCI(nCar, totalTips);
+    const pct2026 = total2026 > 0 ? (100 * n2026 / total2026).toFixed(1) : "0.0";
+    document.getElementById("card1FilterBadge").textContent = selectedStateFilter || "All 5,678 Genomes";
+    document.getElementById("card1Main").innerHTML =
+      `<span>${nCar.toLocaleString()} / ${totalTips.toLocaleString()}</span> <span style="color:var(--accent);font-size:13.5px;">(${pctAll}%)</span>`;
+    document.getElementById("card1Sub").innerHTML =
+      `95% CI: [${ciLo.toFixed(1)}–${ciHi.toFixed(1)}%] • <strong>2026:</strong> ${n2026}/${total2026} (${pct2026}%) • <strong>Fall SRA:</strong> ${nFall26}/${totalFall26}`;
+
+    // Card 2: Evolutionary Pattern (Sweep vs Homoplasy)
+    const primaryMut = activeQuery.length > 0 ? BUNDLE.mutations[activeQuery[0].key] : null;
+    const nOrig = primaryMut ? primaryMut.n_origins : currentResult.originDetails.length;
+    const badgeEl = document.getElementById("card2Badge");
+
+    if (activeQuery.length > 1) {
+      badgeEl.className = "pill-tag pill-clade";
+      badgeEl.textContent = `COMPOUND (${activeQuery.length} LOCI)`;
+      document.getElementById("card2Main").innerHTML = `${nCar} Haplotype Carriers`;
+      document.getElementById("card2Sub").innerHTML =
+        `Boolean intersection across ${activeQuery.map(q => q.key.replace(/^NUC:/, "")).join(" " + activeQuery[1].op + " ")}`;
+    } else if (primaryMut) {
+      if (primaryMut.is_rev) {
+        badgeEl.className = "pill-tag pill-homo";
+        badgeEl.textContent = "REVERSION";
+      } else if (nOrig === 1 && nCar >= 25) {
+        badgeEl.className = "pill-tag pill-sweep";
+        badgeEl.textContent = "SINGLE SWEEP";
+      } else if (nOrig >= 4) {
+        badgeEl.className = "pill-tag pill-homo";
+        badgeEl.textContent = "HOMOPLASY / RECURRENT";
+      } else if (nOrig >= 1) {
+        badgeEl.className = "pill-tag pill-clade";
+        badgeEl.textContent = "LOCAL CLADE";
+      } else {
+        badgeEl.className = "pill-tag pill-isnv";
+        badgeEl.textContent = "SUB-CONSENSUS ONLY";
+      }
+      const meanClust = nOrig > 0 ? (nCar / nOrig).toFixed(1) : "0";
+      document.getElementById("card2Main").innerHTML =
+        `<span>${nOrig} Independent Origin${nOrig === 1 ? "" : "s"}</span>`;
+      document.getElementById("card2Sub").innerHTML =
+        nOrig > 0
+          ? `Mean ${meanClust} tips/origin • Largest clade: ${primaryMut.origins[0]?.desc || nCar} tips (${primaryMut.origins[0]?.name || "tip"})`
+          : `0 fixed consensus tips; detected in ${primaryMut.n_isnv} deep-sequenced SRA sample(s)`;
+    }
+
+    // Card 3: Host Breakdown
+    const sortedHosts = Object.entries(hostCounts).sort((a, b) => b[1] - a[1]);
+    if (sortedHosts.length > 0) {
+      const [topHost, topCnt] = sortedHosts[0];
+      const topShare = ((100 * topCnt) / Math.max(1, nCar)).toFixed(0);
+      document.getElementById("card3Main").innerHTML =
+        `<span style="color:${HOST_COLORS[topHost] || '#fff'}">${topHost}: ${topCnt.toLocaleString()}</span> <span style="font-size:12.5px;color:var(--muted);">(${topShare}% of carriers)</span>`;
+      const parts = sortedHosts.slice(0, 4).map(([h, c]) => {
+        const rate = ((100 * c) / Math.max(1, hostTotals[h])).toFixed(1);
+        return `<strong>${h}:</strong> ${c} (${rate}%)`;
+      });
+      document.getElementById("card3Sub").innerHTML = parts.join(" • ");
+    } else {
+      document.getElementById("card3Main").textContent = "0 Consensus Carriers";
+      document.getElementById("card3Sub").textContent = "Check Card 4 for intra-sample minority variants (iSNVs)";
+    }
+
+    // Card 4: Sub-Consensus iSNVs
+    const isnvs = currentResult.isnvRecords;
+    if (isnvs.length > 0) {
+      const maxAf = Math.max(...isnvs.map(v => v.af));
+      const minAf = Math.min(...isnvs.map(v => v.af));
+      document.getElementById("card4Main").innerHTML =
+        `<span style="color:#fbbf24">${isnvs.length} SRA Mixture Hit${isnvs.length === 1 ? "" : "s"}</span> <span style="font-size:12px;color:var(--muted);">(${minAf}%–${maxAf}% AF)</span>`;
+      const preview = isnvs.slice(0, 3).map(v => `${v.sample.split(" ")[0]} (${v.af}%)`).join(", ");
+      document.getElementById("card4Sub").innerHTML =
+        `In deep reads: <strong>${preview}</strong>${isnvs.length > 3 ? ` +${isnvs.length - 3} more` : ""}`;
+    } else {
+      // Check if any iSNV exists at the same codon position even if different AA
+      let siteIsnvs = [];
+      if (primaryMut && primaryMut.kind === "aa") {
+        for (const m of allMutList) {
+          if (m.gene === primaryMut.gene && m.pos === primaryMut.pos && m.n_isnv > 0) {
+            siteIsnvs.push(...m.isnvs);
+          }
+        }
+      }
+      if (siteIsnvs.length > 0) {
+        document.getElementById("card4Main").innerHTML = `<span style="color:#fbbf24">${siteIsnvs.length} Site iSNV(s)</span>`;
+        document.getElementById("card4Sub").innerHTML = `At ${primaryMut.gene}:${primaryMut.pos}: ${siteIsnvs.slice(0,2).map(v => `${v.sample} (${v.af}%)`).join(", ")}`;
+      } else {
+        document.getElementById("card4Main").innerHTML = `<span style="color:var(--dim)">0 Sub-Consensus Hits</span>`;
+        document.getElementById("card4Sub").textContent = "Fixed at 100% consensus in carriers (no 2%–89% mixture in Fall 2026 SRA)";
+      }
+    }
+
+    // Card 5: Functional / DMS / Numbering Annotation
+    if (primaryMut) {
+      const titleStr = primaryMut.badge || `${primaryMut.gene} Position ${primaryMut.pos} Substitution (${primaryMut.anc} -> ${primaryMut.der})`;
+      document.getElementById("card5Badge").textContent = primaryMut.ha_numbering || `${primaryMut.gene} (${BUNDLE.genes[primaryMut.gene] || "NUC"} aa)`;
+      document.getElementById("card5Main").textContent = titleStr;
+      let subTxt = primaryMut.summary || "";
+      if (primaryMut.dms) {
+        const d = primaryMut.dms;
+        const dmsParts = [];
+        if (d.domain) dmsParts.push(`Domain: ${d.domain}`);
+        if (d.meme_p !== null) dmsParts.push(`MEME p=${d.meme_p}`);
+        if (d.dms_phi !== null) dmsParts.push(`DMS plasticity φ=${d.dms_phi} (rank ${d.dms_rank}/19)`);
+        if (d.delta_pI !== null) dmsParts.push(`ΔpI=${d.delta_pI > 0 ? "+" : ""}${d.delta_pI}`);
+        subTxt = (subTxt ? subTxt + " • " : "") + dmsParts.join(" | ");
+      }
+      if (!subTxt) {
+        subTxt = `Observed across ${primaryMut.n_tips} consensus genomes (${primaryMut.n_origins} branch acquisition${primaryMut.n_origins === 1 ? "" : "s"}).`;
+      }
+      document.getElementById("card5Sub").textContent = subTxt;
+    }
+  }
+
+  function renderOriginJumpBar() {
+    const bar = document.getElementById("originJumpBar");
+    bar.innerHTML = "";
+    const origins = currentResult.originDetails.slice(0, 6);
+    if (origins.length === 0) return;
+
+    origins.forEach((o, i) => {
+      const btn = document.createElement("button");
+      btn.className = "origin-chip";
+      const shortName = o.name.startsWith("NODE_") || o.name.startsWith("SUBCLADE_")
+        ? o.name.replace("SUBCLADE_", "")
+        : o.name.split("/").slice(-2).join("/");
+      btn.textContent = `★ Origin #${i + 1}: ${shortName} (${o.desc} tips)`;
+      btn.onclick = () => isolateSubtree(o.nid);
+      bar.appendChild(btn);
+    });
+  }
+
+  // ============================================================================
+  // TREE LAYOUT & 60-FPS DUAL-ENCODED CANVAS RENDERER
+  // ============================================================================
+  function isTipInActiveCohort(tid) {
+    const t = BUNDLE.tips[tid];
+    if (cohortMode === "full") return true;
+    if (cohortMode === "strat") return t.in_strat || currentResult.carrierSet.has(tid) || currentResult.isnvTipMap.has(tid);
+    if (cohortMode === "y2026") return t.year === 2026 || currentResult.carrierSet.has(tid) || currentResult.isnvTipMap.has(tid);
+    if (cohortMode === "fall26") return t.is_fall26 || t.state === "Washington" || (t.year === 2026 && (currentResult.carrierSet.has(tid) || currentResult.isnvTipMap.has(tid)));
+    return true;
+  }
+
+  function computeTreeLayout() {
+    const rootId = focusedSubtreeNodeId !== null ? focusedSubtreeNodeId : BUNDLE.nodes[BUNDLE.nodes.length - 1].id;
+    layoutNodes = [];
+    layoutLeaves = [];
+    let yCursor = 0;
+
+    function walk(nid, depth) {
+      const nd = nodeById[nid];
+      if (!nd) return null;
+
+      if (nd.ch.length === 0) {
+        if (focusedSubtreeNodeId === null && !isTipInActiveCohort(nid)) return null;
+        nd._y = yCursor++;
+        nd._depth = depth;
+        nd._isCarrier = currentResult.carrierSet.has(nid);
+        nd._hasIsnv = currentResult.isnvTipMap.has(nid);
+        layoutNodes.push(nd);
+        layoutLeaves.push(nd);
+        return nd;
+      }
+
+      const activeChildren = [];
+      for (const cid of nd.ch) {
+        const c = walk(cid, depth + 1);
+        if (c !== null) activeChildren.push(c);
+      }
+      if (activeChildren.length === 0) return null;
+
+      let sumY = 0;
+      let anyCarrier = false;
+      let allCarrier = true;
+      for (const c of activeChildren) {
+        sumY += c._y;
+        if (c._isCarrier || c._anyCarrier) anyCarrier = true;
+        if (!c._isCarrier && !c._allCarrier) allCarrier = false;
+      }
+      nd._y = sumY / activeChildren.length;
+      nd._depth = depth;
+      nd._activeCh = activeChildren;
+      nd._anyCarrier = anyCarrier;
+      nd._allCarrier = allCarrier;
+      nd._isCarrier = allCarrier;
+      layoutNodes.push(nd);
+      return nd;
+    }
+
+    walk(rootId, 0);
+
+    // Compute normalized X coordinate [0, 1] according to xMode
+    let minX = Infinity, maxX = -Infinity;
+    for (const nd of layoutNodes) {
+      const rawX = xMode === "time" ? nd.d : (xMode === "clado" ? nd._depth : nd.v);
+      nd._rawX = rawX;
+      if (rawX < minX) minX = rawX;
+      if (rawX > maxX) maxX = rawX;
+    }
+    const spanX = Math.max(1e-6, maxX - minX);
+    for (const nd of layoutNodes) {
+      nd._nx = (xMode === "clado" && nd.ch.length === 0) ? 1.0 : (nd._rawX - minX) / spanX;
+    }
+
+    document.getElementById("treeZoomBadge").textContent =
+      focusedSubtreeNodeId !== null
+        ? `Subtree Focus (${layoutLeaves.length} tips)`
+        : `${layoutLeaves.length.toLocaleString()} Visible Tips`;
+  }
+
+  function fitTreeToViewport() {
+    const canvas = document.getElementById("treeCanvas");
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const nLeaves = Math.max(1, layoutLeaves.length);
+    const availH = Math.max(120, rect.height - 44);
+    treeCam.rowH = Math.max(0.45, Math.min(22, availH / nLeaves));
+    treeCam.treeW = Math.max(200, rect.width - 320);
+    treeCam.scale = 1.0;
+    treeCam.x = 28;
+    treeCam.y = Math.max(20, (rect.height - nLeaves * treeCam.rowH) * 0.5);
+    renderTreeCanvas();
+  }
+
+  window.zoomTree = function(factor, cx = null, cy = null) {
+    const canvas = document.getElementById("treeCanvas");
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const px = cx !== null ? cx : rect.width * 0.45;
+    const py = cy !== null ? cy : rect.height * 0.5;
+    const nextScale = Math.max(0.5, Math.min(35, treeCam.scale * factor));
+    const ratio = nextScale / treeCam.scale;
+    treeCam.x = px - (px - treeCam.x) * ratio;
+    treeCam.y = py - (py - treeCam.y) * ratio;
+    treeCam.scale = nextScale;
+    renderTreeCanvas();
+  };
+
+  window.resetTreeFocus = function() {
+    focusedSubtreeNodeId = null;
+    computeTreeLayout();
+    fitTreeToViewport();
+  };
+
+  function isolateSubtree(nid) {
+    focusedSubtreeNodeId = nid;
+    computeTreeLayout();
+    fitTreeToViewport();
+  }
+
+  function getTipColor(tid) {
+    const t = BUNDLE.tips[tid];
+    const isCar = currentResult.carrierSet.has(tid);
+    const hasIsnv = currentResult.isnvTipMap.has(tid);
+    if (!isCar && !hasIsnv) return "rgba(148, 163, 184, 0.22)";
+
+    if (colorByMode === "status") {
+      if (isCar && hasIsnv) return "#ec4899";
+      if (hasIsnv) return "#f59e0b";
+      return "#38bdf8";
+    }
+    if (colorByMode === "state") {
+      let hash = 0;
+      for (let i = 0; i < t.state.length; i++) hash = (hash * 31 + t.state.charCodeAt(i)) | 0;
+      return STATE_PALETTE[Math.abs(hash) % STATE_PALETTE.length];
+    }
+    return HOST_COLORS[t.host] || "#38bdf8";
+  }
+
+  function renderTreeCanvas() {
+    if (!BUNDLE) return;
+    const canvas = document.getElementById("treeCanvas");
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+
+    const effRowH = treeCam.rowH * treeCam.scale;
+    const effW = treeCam.treeW * treeCam.scale;
+
+    function sx(nd) { return treeCam.x + nd._nx * effW; }
+    function sy(nd) { return treeCam.y + nd._y * effRowH; }
+
+    // Pass 1: Draw ghost background branches
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.17)";
+    ctx.lineWidth = 1.0;
+    for (const nd of layoutNodes) {
+      if (!nd._activeCh) continue;
+      const x0 = sx(nd);
+      for (const ch of nd._activeCh) {
+        if (ch._anyCarrier || ch._isCarrier) continue;
+        const x1 = sx(ch), y1 = sy(ch);
+        if (y1 < -30 || y1 > rect.height + 30) continue;
+        ctx.moveTo(x0, sy(nd));
+        ctx.lineTo(x0, y1);
+        ctx.lineTo(x1, y1);
+      }
+    }
+    ctx.stroke();
+
+    // Pass 2: Draw active carrier branches in glowing cyan/blue
+    ctx.beginPath();
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = Math.min(2.6, Math.max(1.4, effRowH * 0.22));
+    for (const nd of layoutNodes) {
+      if (!nd._activeCh) continue;
+      const x0 = sx(nd);
+      for (const ch of nd._activeCh) {
+        if (!ch._anyCarrier && !ch._isCarrier) continue;
+        const x1 = sx(ch), y1 = sy(ch);
+        ctx.moveTo(x0, sy(nd));
+        ctx.lineTo(x0, y1);
+        ctx.lineTo(x1, y1);
+      }
+    }
+    ctx.stroke();
+
+    // Pass 3: Draw Bezier arcs connecting tips that share the queried mutation as an iSNV mixture!
+    const isnvLeaves = layoutLeaves.filter(lf => currentResult.isnvTipMap.has(lf.id) || (currentResult.isnvRecords.length > 0 && currentResult.carrierSet.has(lf.id)));
+    if (currentResult.isnvTipMap.size > 0 && isnvLeaves.length >= 2 && isnvLeaves.length <= 45) {
+      ctx.save();
+      ctx.strokeStyle = "rgba(245, 158, 11, 0.55)";
+      ctx.lineWidth = 1.6;
+      ctx.setLineDash([4, 3]);
+      const anchor = isnvLeaves[0];
+      const ax = sx(anchor), ay = sy(anchor);
+      for (let i = 1; i < isnvLeaves.length; i++) {
+        const bx = sx(isnvLeaves[i]), by = sy(isnvLeaves[i]);
+        const midX = Math.max(ax, bx) + 42;
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.quadraticCurveTo(midX, 0.5 * (ay + by), bx, by);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // Pass 4: Draw Origin Stars (★) on internal branches where the mutation arose
+    for (const nd of layoutNodes) {
+      if (currentResult.originNodeIds.has(nd.id)) {
+        const x = sx(nd), y = sy(nd);
+        ctx.save();
+        ctx.fillStyle = "#fde047";
+        ctx.strokeStyle = "#0b1120";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(x, y, 5.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "#fde047";
+        ctx.font = "bold 10px ui-monospace, monospace";
+        ctx.fillText("★", x - 3.5, y - 7);
+        ctx.restore();
+      }
+    }
+
+    // Pass 5: Draw Tip Markers & Collision-Free Adaptive Labels
+    const showAllLabels = effRowH >= 10.5;
+    const showCarrierLabels = effRowH >= 4.2 || currentResult.carrierSet.size <= 45;
+    let lastLabelY = -999;
+
+    for (let li = 0; li < layoutLeaves.length; li++) {
+      const lf = layoutLeaves[li];
+      const x = sx(lf), y = sy(lf);
+      if (y < -15 || y > rect.height + 15) continue;
+
+      const isCar = lf._isCarrier;
+      const hasIsnv = lf._hasIsnv;
+      const t = BUNDLE.tips[lf.id];
+
+      if (!isCar && !hasIsnv) {
+        if (effRowH >= 2.2) {
+          ctx.fillStyle = "rgba(148, 163, 184, 0.25)";
+          ctx.fillRect(x - 1, y - 1, 2, 2);
+        }
+        continue;
+      }
+
+      const col = getTipColor(lf.id);
+      const r = Math.min(5.5, Math.max(2.8, effRowH * 0.36));
+
+      // Sub-consensus iSNV outer pulsing ring
+      if (hasIsnv) {
+        ctx.beginPath();
+        ctx.arc(x, y, r + 3.2, 0, Math.PI * 2);
+        ctx.strokeStyle = "#f59e0b";
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      if (t.host === "Human") {
+        ctx.arc(x, y, r + 1.2, 0, Math.PI * 2);
+      } else if (t.host === "Feline" || t.host === "Other Mammal") {
+        ctx.moveTo(x, y - r);
+        ctx.lineTo(x + r, y);
+        ctx.lineTo(x, y + r);
+        ctx.lineTo(x - r, y);
+        ctx.closePath();
+      } else {
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+      }
+      ctx.fill();
+
+      if (showAllLabels || (showCarrierLabels && (isCar || hasIsnv))) {
+        if (Math.abs(y - lastLabelY) >= 12.0) {
+          // Count how many subsequent carrier/iSNV leaves are within 12px vertically
+          let clusterMore = 0;
+          for (let lj = li + 1; lj < layoutLeaves.length; lj++) {
+            const lf2 = layoutLeaves[lj];
+            if (!lf2._isCarrier && !lf2._hasIsnv && !showAllLabels) continue;
+            if (Math.abs(sy(lf2) - y) < 12.0) clusterMore++;
+            else break;
+          }
+          ctx.font = `${isCar || hasIsnv ? "600" : "400"} 10.5px ui-monospace, SFMono-Regular, monospace`;
+          ctx.fillStyle = hasIsnv ? "#fde68a" : "#f1f5f9";
+          let lbl = t.name.replace("A/cattle/USA/", "").replace("A/CATTLE/USA/", "").replace("-original", "");
+          if (lbl.length > 32) lbl = lbl.slice(0, 32) + "…";
+          const stBadge = t.inferred_state ? t.inferred_state.split(" ")[0] : t.state.replace("USA ", "");
+          let suffix = ` [${stBadge} • ${t.host}]`;
+          if (hasIsnv) {
+            const v = currentResult.isnvTipMap.get(lf.id)[0];
+            suffix += ` (${v.af}% iSNV)`;
+          }
+          if (clusterMore > 0) {
+            suffix += ` (+${clusterMore} in clade)`;
+          }
+          ctx.fillText(`${lbl}${suffix}`, x + r + 5, y + 3.5);
+          lastLabelY = y;
+        }
+      }
+    }
+  }
+
+  // ============================================================================
+  // INTERACTIVE US STATE CHOROPLETH + BUBBLE MAP
+  // ============================================================================
+  function renderUSMap() {
+    if (!US_GEOJSON || !BUNDLE) return;
+    const svg = document.getElementById("usMapSvg");
+    svg.innerHTML = "";
+
+    // Tally state totals & carrier counts
+    const stateTotals = {};
+    const stateCarriers = {};
+    for (const t of BUNDLE.tips) {
+      let st = t.state;
+      if (st === "USA (WA Clade)") st = "Washington";
+      else if (st === "USA (ID Clade)") st = "Idaho";
+      else if (st === "USA (TX/MW Clade)") st = "Texas";
+      stateTotals[st] = (stateTotals[st] || 0) + 1;
+      if (currentResult.carrierSet.has(t.id) || currentResult.isnvTipMap.has(t.id)) {
+        stateCarriers[st] = (stateCarriers[st] || 0) + 1;
+      }
+    }
+
+    const maxCar = Math.max(1, ...Object.values(stateCarriers));
+
+    function proj(lon, lat) {
+      const x = 22 + ((lon - (-125.0)) / (-66.5 - (-125.0))) * 575;
+      const y = 345 - ((lat - 24.5) / (49.5 - 24.5)) * 320;
+      return [x, y];
+    }
+
+    const centroids = {};
+
+    for (const feat of US_GEOJSON.features) {
+      const name = feat.properties.name;
+      if (name === "Alaska" || name === "Hawaii" || name === "Puerto Rico") continue;
+      const geom = feat.geometry;
+      const polys = geom.type === "Polygon" ? [geom.coordinates] : geom.coordinates;
+
+      let dStr = "";
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+
+      for (const poly of polys) {
+        for (const ring of poly) {
+          ring.forEach((pt, idx) => {
+            const [px, py] = proj(pt[0], pt[1]);
+            if (px < minX) minX = px;
+            if (px > maxX) maxX = px;
+            if (py < minY) minY = py;
+            if (py > maxY) maxY = py;
+            dStr += (idx === 0 ? `M${px.toFixed(1)},${py.toFixed(1)}` : `L${px.toFixed(1)},${py.toFixed(1)}`);
+          });
+          dStr += "Z ";
+        }
+      }
+
+      if (isFinite(minX)) {
+        centroids[name] = [0.5 * (minX + maxX), 0.5 * (minY + maxY)];
+      }
+
+      const nCar = stateCarriers[name] || 0;
+      const nTot = stateTotals[name] || 0;
+      const pct = nTot > 0 ? (100 * nCar) / nTot : 0;
+
+      let fillCol = "#162033";
+      if (nCar > 0) {
+        const intensity = mapMode === "count"
+          ? Math.min(1, Math.log10(nCar + 1) / Math.log10(maxCar + 1))
+          : Math.min(1, pct / 100);
+        const r = Math.round(22 + intensity * (37 - 22));
+        const g = Math.round(32 + intensity * (150 - 32));
+        const b = Math.round(51 + intensity * (245 - 51));
+        fillCol = `rgb(${r},${g},${b})`;
+      } else if (nTot > 0) {
+        fillCol = "#1b263b";
+      }
+
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", dStr);
+      path.setAttribute("fill", fillCol);
+      path.setAttribute("class", `state-path ${selectedStateFilter === name ? "selected" : ""}`);
+      path.onclick = () => setStateFilter(selectedStateFilter === name ? null : name);
+      path.onmousemove = (e) => {
+        showTooltip(e.clientX, e.clientY,
+          `<strong>${name}</strong><br/>Carriers: <strong>${nCar.toLocaleString()}</strong> / ${nTot.toLocaleString()} (${pct.toFixed(1)}%)<br/><span style="color:var(--accent)">Click to filter state</span>`
+        );
+      };
+      path.onmouseleave = hideTooltip;
+      svg.appendChild(path);
+    }
+
+    // Draw count badges on active states
+    for (const [name, [cx, cy]] of Object.entries(centroids)) {
+      const nCar = stateCarriers[name] || 0;
+      if (nCar <= 0) continue;
+      const nTot = stateTotals[name] || 1;
+      const pct = ((100 * nCar) / nTot).toFixed(0);
+      const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      txt.setAttribute("x", cx);
+      txt.setAttribute("y", cy + 3);
+      txt.setAttribute("text-anchor", "middle");
+      txt.setAttribute("fill", "#ffffff");
+      txt.setAttribute("font-family", "ui-monospace, monospace");
+      txt.setAttribute("font-size", "9.5");
+      txt.setAttribute("font-weight", "bold");
+      txt.setAttribute("pointer-events", "none");
+      txt.textContent = mapMode === "count" ? `${nCar}` : `${pct}%`;
+      svg.appendChild(txt);
+    }
+  }
+
+  function renderSraSidePanel() {
+    const panel = document.getElementById("sraSidePanel");
+    const groups = [
+      { key: "USA (WA Clade)", title: "Group 1: WA Outbreak", col: "#38bdf8", tot: 29, desc: "NODE_0002335 (12 batches)" },
+      { key: "USA (ID Clade)", title: "Group 2: ID Reservoir", col: "#10b981", tot: 6, desc: "NODE_0002210 / 2207 (5 batches)" },
+      { key: "USA (TX/MW Clade)", title: "Group 3: TX / Midwest", col: "#a855f7", tot: 7, desc: "NODE_0002252 / 2254 (5 batches)" }
+    ];
+
+    let html = `<div style="font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:4px;">42 Fall "USA" SRA Genomes</div>`;
+    for (const g of groups) {
+      let nCar = 0, nIsnv = 0;
+      for (const t of BUNDLE.tips) {
+        if (t.is_fall26 && t.state === g.key) {
+          if (currentResult.carrierSet.has(t.id)) nCar++;
+          if (currentResult.isnvTipMap.has(t.id)) nIsnv++;
+        }
+      }
+      const isSel = selectedStateFilter === g.key;
+      html += `
+        <div class="sra-group-box" style="${isSel ? 'border-color:#f59e0b;background:#1e293b;' : ''}" onclick="setStateFilter('${isSel ? '' : g.key}')">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:700;font-size:11px;color:${g.col}">${g.title}</span>
+            <span style="font-family:var(--font-mono);font-weight:800;font-size:12px;color:#fff;">${nCar}/${g.tot}</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">
+            ${g.desc}${nIsnv > 0 ? ` • <strong style="color:#fbbf24">+${nIsnv} iSNV</strong>` : ""}
+          </div>
+        </div>
+      `;
+    }
+    panel.innerHTML = html;
+  }
+
+  window.setStateFilter = function(st) {
+    selectedStateFilter = st || null;
+    const btn = document.getElementById("clearStateBtn");
+    if (selectedStateFilter) {
+      btn.classList.remove("hidden");
+      btn.textContent = `Filter: ${selectedStateFilter} ×`;
+    } else {
+      btn.classList.add("hidden");
+    }
+    runQueryAndRender(false);
+  };
+
+  // ============================================================================
+  // TEMPORAL TRAJECTORY CHART (2024 Q1 -> 2026 Q4)
+  // ============================================================================
+  function renderTimeChart() {
+    if (!BUNDLE) return;
+    const canvas = document.getElementById("timeCanvas");
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+
+    // 12 Quarterly bins from 2024 Q1 to 2026 Q4
+    const bins = [];
+    for (let y = 2024; y <= 2026; y++) {
+      for (let q = 0; q < 4; q++) {
+        bins.push({
+          label: `${String(y).slice(2)}Q${q + 1}`,
+          start: y + q * 0.25,
+          end: y + (q + 1) * 0.25,
+          tot: 0,
+          car: 0
+        });
+      }
+    }
+
+    for (const t of BUNDLE.tips) {
+      if (selectedStateFilter && t.state !== selectedStateFilter) continue;
+      const d = Math.max(2024.0, Math.min(2026.99, t.date));
+      const bIdx = Math.min(11, Math.max(0, Math.floor((d - 2024.0) * 4)));
+      bins[bIdx].tot++;
+      if (currentResult.carrierSet.has(t.id)) bins[bIdx].car++;
+    }
+
+    const padL = 34, padR = 34, padT = 16, padB = 22;
+    const w = Math.max(80, rect.width - padL - padR);
+    const h = Math.max(50, rect.height - padT - padB);
+    const maxCar = Math.max(1, ...bins.map(b => b.car));
+
+    // Axes
+    ctx.strokeStyle = "#283548";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, padT + h);
+    ctx.lineTo(padL + w, padT + h);
+    ctx.stroke();
+
+    const colW = w / bins.length;
+    const pts = [];
+
+    bins.forEach((b, i) => {
+      const x = padL + i * colW + colW * 0.16;
+      const bw = colW * 0.68;
+      const bh = (b.car / maxCar) * (h - 6);
+      const y = padT + h - bh;
+
+      ctx.fillStyle = b.car > 0 ? "rgba(56, 189, 248, 0.38)" : "rgba(148, 163, 184, 0.08)";
+      ctx.fillRect(x, y, bw, bh);
+
+      const pct = b.tot > 0 ? b.car / b.tot : 0;
+      const py = padT + h - pct * (h - 6);
+      pts.push([padL + (i + 0.5) * colW, py, pct, b]);
+
+      if (i % 2 === 0 || i === 11) {
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "9.5px ui-monospace, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(b.label, padL + (i + 0.5) * colW, padT + h + 13);
+      }
+    });
+
+    // Prevalence % curve
+    ctx.beginPath();
+    ctx.strokeStyle = "#f59e0b";
+    ctx.lineWidth = 2.0;
+    pts.forEach(([px, py], i) => {
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+
+    pts.forEach(([px, py, pct, b]) => {
+      if (b.tot === 0) return;
+      ctx.fillStyle = "#f59e0b";
+      ctx.beginPath();
+      ctx.arc(px, py, 2.8, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Legend labels
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "bold 9.5px ui-monospace, monospace";
+    ctx.textAlign = "left";
+    ctx.fillText(`Bars: Carrier Count (max=${maxCar})`, padL + 4, padT + 8);
+    ctx.fillStyle = "#f59e0b";
+    ctx.textAlign = "right";
+    ctx.fillText("Line: Prevalence % (0–100%)", padL + w - 4, padT + 8);
+  }
+
+  function renderRightBreakdown() {
+    const box = document.getElementById("rightBreakdownList");
+    const cset = currentResult.carrierSet;
+
+    if (sideTab === "host") {
+      const counts = {}, totals = {};
+      for (const t of BUNDLE.tips) {
+        if (selectedStateFilter && t.state !== selectedStateFilter) continue;
+        totals[t.host] = (totals[t.host] || 0) + 1;
+        if (cset.has(t.id)) counts[t.host] = (counts[t.host] || 0) + 1;
+      }
+      const rows = Object.keys(totals).sort((a, b) => (counts[b] || 0) - (counts[a] || 0));
+      const maxC = Math.max(1, ...Object.values(counts));
+      box.innerHTML = rows.map(h => {
+        const c = counts[h] || 0;
+        const tot = totals[h] || 1;
+        const pct = ((100 * c) / tot).toFixed(1);
+        const w = (100 * c) / maxC;
+        return `
+          <div class="hbar-row">
+            <div class="hbar-top">
+              <span style="color:${HOST_COLORS[h] || '#fff'};font-weight:700;">${h}</span>
+              <span><strong>${c.toLocaleString()}</strong> / ${tot.toLocaleString()} (${pct}%)</span>
+            </div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:${w}%;background:${HOST_COLORS[h] || '#38bdf8'}"></div></div>
+          </div>
+        `;
+      }).join("");
+    } else if (sideTab === "state") {
+      const counts = {}, totals = {};
+      for (const t of BUNDLE.tips) {
+        totals[t.state] = (totals[t.state] || 0) + 1;
+        if (cset.has(t.id)) counts[t.state] = (counts[t.state] || 0) + 1;
+      }
+      const rows = Object.keys(counts).sort((a, b) => counts[b] - counts[a]).slice(0, 8);
+      const maxC = Math.max(1, ...Object.values(counts));
+      box.innerHTML = rows.map(st => {
+        const c = counts[st] || 0;
+        const tot = totals[st] || 1;
+        const pct = ((100 * c) / tot).toFixed(1);
+        const w = (100 * c) / maxC;
+        return `
+          <div class="hbar-row" onclick="setStateFilter('${selectedStateFilter === st ? '' : st}')">
+            <div class="hbar-top">
+              <span style="color:#e2e8f0;font-weight:700;">${st}</span>
+              <span><strong>${c}</strong> / ${tot} (${pct}%)</span>
+            </div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:${w}%;background:#38bdf8"></div></div>
+          </div>
+        `;
+      }).join("") || `<div style="color:var(--muted);padding:8px;">No consensus carriers</div>`;
+    } else {
+      // Top co-occurring mutations in the active carrier set
+      const activeKeys = new Set(activeQuery.map(q => q.key));
+      const coScores = [];
+      for (const m of allMutList) {
+        if (activeKeys.has(m.key) || m.n_tips > 4500 || m.n_tips === 0) continue;
+        const mSet = decodeCarrierSet(m.key);
+        let overlap = 0;
+        for (const tid of cset) {
+          if (mSet.has(tid)) overlap++;
+        }
+        if (overlap > 0) {
+          const jaccard = overlap / (cset.size + mSet.size - overlap);
+          coScores.push({ m, overlap, jaccard });
+        }
+      }
+      coScores.sort((a, b) => b.jaccard - a.jaccard || b.overlap - a.overlap);
+      box.innerHTML = coScores.slice(0, 7).map(({ m, overlap, jaccard }) => `
+        <div class="hbar-row" onclick="addMutationToQuery('${m.key}', 'AND')">
+          <div class="hbar-top">
+            <span style="color:var(--accent);font-weight:700;">+ ${m.key}</span>
+            <span><strong>${overlap}</strong>/${cset.size} (${(100 * jaccard).toFixed(0)}% Jaccard)</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);">${m.badge || `Total: ${m.n_tips} tips (${m.n_origins} origins)`}</div>
+        </div>
+      `).join("") || `<div style="color:var(--muted);padding:8px;">Select a mutation to see co-occurring partners</div>`;
+    }
+  }
+
+  // ============================================================================
+  // BOTTOM 10-PROTEIN LOLLIPOP & DOMAIN STRIP
+  // ============================================================================
+  window.selectProteinMap = function(gene) {
+    activeProtein = gene;
+    updateProteinButtons();
+    renderProteinStrip();
+  };
+
+  function updateProteinButtons() {
+    document.querySelectorAll("#geneSelectorBar .seg-opt").forEach(b => {
+      b.classList.toggle("active", b.textContent === activeProtein);
+    });
+  }
+
+  function renderProteinStrip() {
+    if (!BUNDLE) return;
+    const canvas = document.getElementById("proteinCanvas");
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+
+    const gLen = BUNDLE.genes[activeProtein] || 759;
+    const padL = 16, padR = 20;
+    const w = Math.max(100, rect.width - padL - padR);
+    const baseY = rect.height - 11;
+
+    // Protein backbone track
+    ctx.fillStyle = "#1e293b";
+    ctx.fillRect(padL, baseY - 3, w, 5);
+
+    // Position ticks
+    ctx.fillStyle = "#64748b";
+    ctx.font = "9px ui-monospace, monospace";
+    for (let pos = 100; pos < gLen; pos += 100) {
+      const tx = padL + (pos / gLen) * w;
+      ctx.fillText(String(pos), tx - 8, baseY + 10);
+    }
+
+    const activeKeys = new Set(activeQuery.map(q => q.key));
+    const gMuts = allMutList.filter(m => m.gene === activeProtein && m.kind === "aa");
+    proteinLollipops = [];
+    const placedLabelXs = [];
+
+    // Draw stems & circles first, then draw de-collided labels (active query first, then curated)
+    const labelCandidates = [];
+
+    for (const m of gMuts) {
+      const x = padL + (m.pos / gLen) * w;
+      const isAct = activeKeys.has(m.key);
+      const isCurated = m.tier === "critical" || m.tier === "high";
+      const score = Math.min(1, (Math.log10(m.n_tips + 1) / 3.8) + (m.n_origins >= 5 ? 0.35 : 0) + (isCurated ? 0.45 : 0));
+      if (!isAct && !isCurated && m.n_tips < 3 && m.n_isnv === 0) continue;
+
+      const h = isAct ? 17 : Math.max(5, Math.min(15, score * 15));
+      const y = baseY - 3 - h;
+      const col = isAct ? "#fde047" : (isCurated ? "#f43f5e" : (m.n_isnv > 0 ? "#f59e0b" : "#38bdf8"));
+
+      ctx.strokeStyle = col;
+      ctx.lineWidth = isAct ? 2.2 : 1.1;
+      ctx.beginPath();
+      ctx.moveTo(x, baseY - 3);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.arc(x, y, isAct ? 4.0 : (isCurated ? 3.0 : 2.2), 0, Math.PI * 2);
+      ctx.fill();
+
+      if (isAct || isCurated) {
+        labelCandidates.push({ x, y, m, isAct, prio: isAct ? 2 : (m.tier === "critical" ? 1 : 0) });
+      }
+
+      proteinLollipops.push({ x, y, m });
+    }
+
+    labelCandidates.sort((a, b) => b.prio - a.prio || b.m.n_tips - a.m.n_tips);
+    ctx.font = "bold 9.5px ui-monospace, monospace";
+    for (const lc of labelCandidates) {
+      const minGap = lc.isAct ? 36 : 46;
+      if (placedLabelXs.some(px => Math.abs(px - lc.x) < minGap)) continue;
+      placedLabelXs.push(lc.x);
+      ctx.fillStyle = lc.isAct ? "#fde047" : "#fda4af";
+      ctx.fillText(lc.m.key.split(":")[1], Math.max(4, Math.min(rect.width - 38, lc.x - 14)), Math.max(8, lc.y - 6));
+    }
+  }
+
+  function setupProteinCanvasEvents() {
+    const canvas = document.getElementById("proteinCanvas");
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      let best = null, bestD = 12;
+      for (const p of proteinLollipops) {
+        const d = Math.hypot(mx - p.x, my - p.y);
+        if (d < bestD) { bestD = d; best = p.m; }
+      }
+      if (best) {
+        showTooltip(e.clientX, e.clientY - 12,
+          `<strong>${best.key}</strong> ${best.badge ? `<span style="color:#fda4af">(${best.badge})</span>` : ""}<br/>Tips: ${best.n_tips} (2026: ${best.n_2026}) • Origins: ${best.n_origins} • iSNVs: ${best.n_isnv}<br/><span style="color:var(--accent)">Click to query ${best.key} • Shift+Click to add AND</span>`
+        );
+      } else {
+        hideTooltip();
+      }
+    });
+    canvas.addEventListener("mouseleave", hideTooltip);
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      let best = null, bestD = 14;
+      for (const p of proteinLollipops) {
+        const d = Math.hypot(mx - p.x, my - p.y);
+        if (d < bestD) { bestD = d; best = p.m; }
+      }
+      if (best) {
+        if (e.shiftKey) {
+          addMutationToQuery(best.key, "AND");
+        } else {
+          loadPreset([best.key], "AND", null);
+        }
+      }
+    });
+  }
+
+  // ============================================================================
+  // OMNI-SEARCH AUTOCOMPLETE & H3/H5 SMART ALIAS RESOLVER
+  // ============================================================================
+  function setupSearchEvents() {
+    const input = document.getElementById("omniInput");
+    const dd = document.getElementById("acDropdown");
+
+    window.addEventListener("keydown", (e) => {
+      if ((e.key === "/" || (e.metaKey && e.key.toLowerCase() === "k")) && document.activeElement !== input) {
+        e.preventDefault();
+        input.focus();
+      } else if (e.key === "Escape") {
+        dd.classList.add("hidden");
+        closeInspectorModal();
+      }
+    });
+
+    input.addEventListener("input", () => {
+      const raw = input.value.trim().toUpperCase();
+      if (!raw) {
+        dd.classList.add("hidden");
+        return;
+      }
+
+      // Smart alias resolution (e.g., "Q226R" or "226" -> also match HA:Q238R / H3-Q226R)
+      const matches = allMutList.filter(m => {
+        if (m.key.toUpperCase().includes(raw)) return true;
+        if (m.badge.toUpperCase().includes(raw)) return true;
+        if (m.ha_numbering && m.ha_numbering.toUpperCase().includes(raw)) return true;
+        return false;
+      }).slice(0, 18);
+
+      if (matches.length === 0) {
+        dd.innerHTML = `<div style="padding:10px;color:var(--muted);">No mutations matching "${raw}"</div>`;
+        dd.classList.remove("hidden");
+        return;
+      }
+
+      dd.innerHTML = matches.map((m, idx) => `
+        <div class="ac-item ${idx === 0 ? "active" : ""}" onclick="selectAutocomplete('${m.key}', event.shiftKey)">
+          <div>
+            <span class="ac-key">${m.key.replace(/^NUC:/, "")}</span>
+            ${m.ha_numbering ? `<span class="ac-badge">${m.ha_numbering}</span>` : ""}
+            ${m.badge ? `<span class="ac-badge ${m.tier === 'critical' ? 'critical' : ''}">${m.badge}</span>` : ""}
+          </div>
+          <div class="ac-stats">
+            <strong>${m.n_tips}</strong> tips • <strong>${m.n_2026}</strong> in '26 • <strong>${m.n_origins}</strong> orig${m.n_isnv > 0 ? ` • <span style="color:#fbbf24">${m.n_isnv} iSNV</span>` : ""}
+          </div>
+        </div>
+      `).join("");
+      dd.classList.remove("hidden");
+    });
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const first = dd.querySelector(".ac-item");
+        if (first && !dd.classList.contains("hidden")) {
+          first.click();
+        }
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!document.getElementById("queryBarWrap").contains(e.target)) {
+        dd.classList.add("hidden");
+      }
+    });
+  }
+
+  window.selectAutocomplete = function(mkey, appendMode = false) {
+    document.getElementById("omniInput").value = "";
+    document.getElementById("acDropdown").classList.add("hidden");
+    if (appendMode && activeQuery.length > 0) {
+      addMutationToQuery(mkey, "AND");
+    } else {
+      loadPreset([mkey], "AND", null);
+    }
+  };
+
+  window.addMutationToQuery = function(mkey, op = "AND") {
+    if (!activeQuery.some(q => q.key === mkey)) {
+      activeQuery.push({ key: mkey, op });
+      runQueryAndRender(false);
+    }
+  };
+
+  // ============================================================================
+  // TREE MOUSE INTERACTION (PAN, ZOOM, HOVER TOOLTIP, SUBTREE FOCUS)
+  // ============================================================================
+  function setupTreeCanvasEvents() {
+    const canvas = document.getElementById("treeCanvas");
+
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const factor = e.deltaY < 0 ? 1.16 : 0.86;
+      zoomTree(factor, e.clientX - rect.left, e.clientY - rect.top);
+    }, { passive: false });
+
+    canvas.addEventListener("mousedown", (e) => {
+      isDraggingTree = true;
+      dragStart = { x: e.clientX - treeCam.x, y: e.clientY - treeCam.y, cx: e.clientX, cy: e.clientY };
+    });
+
+    window.addEventListener("mouseup", (e) => {
+      if (!isDraggingTree) return;
+      isDraggingTree = false;
+      if (Math.hypot(e.clientX - dragStart.cx, e.clientY - dragStart.cy) < 4 && hoveredTreeNode) {
+        if (hoveredTreeNode.ch && hoveredTreeNode.ch.length > 0) {
+          isolateSubtree(hoveredTreeNode.id);
+        }
+      }
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+
+      if (isDraggingTree) {
+        treeCam.x = e.clientX - dragStart.x;
+        treeCam.y = e.clientY - dragStart.y;
+        renderTreeCanvas();
+        return;
+      }
+
+      const effRowH = treeCam.rowH * treeCam.scale;
+      const effW = treeCam.treeW * treeCam.scale;
+      let best = null, bestDist = 11;
+
+      for (const nd of layoutNodes) {
+        const nx = treeCam.x + nd._nx * effW;
+        const ny = treeCam.y + nd._y * effRowH;
+        const d = Math.hypot(mx - nx, my - ny);
+        if (d < bestDist) {
+          bestDist = d;
+          best = nd;
+        }
+      }
+
+      hoveredTreeNode = best;
+      if (!best) {
+        hideTooltip();
+        return;
+      }
+
+      if (best.ch.length === 0) {
+        const t = BUNDLE.tips[best.id];
+        const isnvs = BUNDLE.isnv_by_tip[String(best.id)] || [];
+        const bMuts = t.b_muts && t.b_muts.length ? t.b_muts.slice(0, 8).join(", ") : "0 branch AA changes";
+        const isnvHtml = isnvs.length > 0
+          ? `<br/><span style="color:#fbbf24">Sub-consensus iSNVs (${isnvs.length}):</span> ` +
+            isnvs.slice(0, 4).map(v => `${v.aa.split(" ")[0]} (${v.af}%)`).join(", ")
+          : "";
+        showTooltip(e.clientX, e.clientY,
+          `<strong>${t.name}</strong><br/>` +
+          `State: <strong>${t.state}</strong> ${t.inferred_state ? `(${t.inferred_state})` : ""} • Host: <strong>${t.host}</strong><br/>` +
+          `Date: ${t.raw_date || t.date}${t.sra ? ` • SRA: ${t.sra}` : ""}${t.source ? ` • Source: ${t.source}` : ""}<br/>` +
+          `Branch AA: <span style="color:var(--accent)">${bMuts}</span>${isnvHtml}`
+        );
+      } else {
+        const bMuts = best.m && best.m.length ? best.m.join(", ") : "Synonymous / internal split";
+        showTooltip(e.clientX, e.clientY,
+          `<strong>Internal Node ${best.name || "#" + best.id}</strong><br/>` +
+          `Date: ~${best.d.toFixed(2)} • Branch AA: <span style="color:#fde047">${bMuts}</span><br/>` +
+          `<span style="color:var(--accent)">Click to isolate this subtree</span>`
+        );
+      }
+    });
+
+    canvas.addEventListener("mouseleave", hideTooltip);
+  }
+
+  // ============================================================================
+  // UI MODE SWITCHERS, MODAL TABLE & 1-CLICK X SUMMARY GENERATOR
+  // ============================================================================
+  window.setCohort = function(c) {
+    cohortMode = c;
+    updateCohortButtons();
+    computeTreeLayout();
+    fitTreeToViewport();
+  };
+
+  function updateCohortButtons() {
+    ["full", "strat", "y2026", "fall26"].forEach(k => {
+      document.getElementById(`coh_${k}`)?.classList.toggle("active", cohortMode === k);
+    });
+  }
+
+  window.setXMode = function(m) {
+    xMode = m;
+    ["div", "time", "clado"].forEach(k => {
+      document.getElementById(`xmode_${k}`)?.classList.toggle("active", xMode === k);
+    });
+    computeTreeLayout();
+    renderTreeCanvas();
+  };
+
+  window.setColorBy = function(m) {
+    colorByMode = m;
+    ["host", "state", "status"].forEach(k => {
+      document.getElementById(`cby_${k}`)?.classList.toggle("active", colorByMode === k);
+    });
+    renderTreeCanvas();
+  };
+
+  window.setMapMode = function(m) {
+    mapMode = m;
+    ["count", "pct"].forEach(k => {
+      document.getElementById(`map_${k}`)?.classList.toggle("active", mapMode === k);
+    });
+    renderUSMap();
+  };
+
+  window.setSideTab = function(t) {
+    sideTab = t;
+    ["host", "state", "cooccur"].forEach(k => {
+      document.getElementById(`tab_${k}`)?.classList.toggle("active", sideTab === k);
+    });
+    renderRightBreakdown();
+  };
+
+  window.openInspectorModal = function() {
+    const modal = document.getElementById("inspectorModal");
+    const body = document.getElementById("modalBody");
+    const qStr = activeQuery.map((q, i) => (i > 0 ? `${q.op} ${q.key}` : q.key)).join(" ");
+    document.getElementById("modalTitle").textContent =
+      `Carrier & Mixture Inspector: ${qStr} (${currentResult.carrierSet.size} Consensus Tips, ${currentResult.isnvRecords.length} Sub-Consensus iSNVs)`;
+
+    const carriers = Array.from(currentResult.carrierSet).map(id => BUNDLE.tips[id]).sort((a, b) => b.date - a.date);
+    const isnvs = currentResult.isnvRecords;
+
+    let html = "";
+    if (isnvs.length > 0) {
+      html += `
+        <h4 style="color:#fbbf24;font-family:var(--font-mono);">Sub-Consensus Intra-Sample Mixtures (${isnvs.length} SRA Hits)</h4>
+        <table class="data-tbl">
+          <thead><tr><th>Sample</th><th>SRA Run</th><th>Source</th><th>Mutation</th><th>Allele Freq (%)</th><th>Read Depth</th></tr></thead>
+          <tbody>
+            ${isnvs.map(v => `
+              <tr>
+                <td><strong>${v.sample}</strong></td>
+                <td>${v.run}</td>
+                <td>${v.source}</td>
+                <td style="color:var(--accent)">${v.aa} (${v.nuc})</td>
+                <td style="color:#fbbf24;font-weight:700;">${v.af}%</td>
+                <td>${v.depth.toLocaleString()}x</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    html += `
+      <h4 style="color:var(--accent);font-family:var(--font-mono);margin-top:6px;">Fixed Consensus Carrier Genomes (Showing Top ${Math.min(100, carriers.length)} of ${carriers.length.toLocaleString()})</h4>
+      <table class="data-tbl">
+        <thead><tr><th>Strain / Sample</th><th>State / Group</th><th>Host</th><th>Date</th><th>SRA / Acc</th><th>Terminal Branch AA</th></tr></thead>
+        <tbody>
+          ${carriers.slice(0, 100).map(t => `
+            <tr>
+              <td><strong>${t.name}</strong></td>
+              <td>${t.inferred_state || t.state}</td>
+              <td style="color:${HOST_COLORS[t.host] || '#fff'}">${t.host}</td>
+              <td>${t.raw_date || t.date}</td>
+              <td>${t.sra || "—"}</td>
+              <td style="color:#94a3b8">${(t.b_muts || []).slice(0, 6).join(", ") || "0"}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+
+    body.innerHTML = html;
+    modal.classList.remove("hidden");
+  };
+
+  window.closeInspectorModal = function() {
+    document.getElementById("inspectorModal").classList.add("hidden");
+  };
+
+  window.copyXSummary = function() {
+    const qStr = activeQuery.map((q, i) => (i > 0 ? `${q.op} ${q.key.replace(/^NUC:/, "")}` : q.key.replace(/^NUC:/, ""))).join(" ");
+    const cset = currentResult.carrierSet;
+    const nCar = cset.size;
+    const pctAll = ((100 * nCar) / BUNDLE.n_tips).toFixed(1);
+
+    let n2026 = 0, nFall26 = 0;
+    const hosts = {}, states = {};
+    for (const tid of cset) {
+      const t = BUNDLE.tips[tid];
+      if (t.year === 2026) n2026++;
+      if (t.is_fall26) nFall26++;
+      hosts[t.host] = (hosts[t.host] || 0) + 1;
+      const st = t.inferred_state || t.state;
+      states[st] = (states[st] || 0) + 1;
+    }
+
+    const primaryMut = activeQuery.length > 0 ? BUNDLE.mutations[activeQuery[0].key] : null;
+    const nOrig = primaryMut ? primaryMut.n_origins : currentResult.originDetails.length;
+    const topHosts = Object.entries(hosts).sort((a, b) => b[1] - a[1]).map(([h, c]) => `${h}: ${c}`).join(", ");
+    const topStates = Object.entries(states).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([s, c]) => `${s}: ${c}`).join(", ");
+    const isnvs = currentResult.isnvRecords;
+
+    const lines = [
+      `H5N1 Mutation Snapshot — ${qStr}${primaryMut?.ha_numbering ? ` (${primaryMut.ha_numbering})` : ""}:`,
+      `• Overall prevalence: ${nCar.toLocaleString()} / ${BUNDLE.n_tips.toLocaleString()} (${pctAll}%) | 2026: ${n2026}/400 | Fall 2026 SRA: ${nFall26}/42`,
+      `• Evolutionary pattern: ${nOrig} independent branch acquisition${nOrig === 1 ? "" : "s"} on the tree`,
+      `• Host distribution: ${topHosts || "None at consensus"}`,
+      `• Top states / clades: ${topStates || "None at consensus"}`,
+    ];
+    if (isnvs.length > 0) {
+      lines.push(`• Sub-consensus SRA mixtures (iSNVs): ${isnvs.length} hit(s) — ${isnvs.slice(0, 4).map(v => `${v.sample} (${v.af}%)`).join(", ")}`);
+    }
+    if (primaryMut?.summary) {
+      lines.push(`• Context: ${primaryMut.summary}`);
+    }
+    const qVal = activeQuery.map(q => q.key).join(",");
+    lines.push(`• Interactive tree & map: https://spond.github.io/CV.js/blog/h5n1-mutation-studio/?q=${encodeURIComponent(qVal)}`);
+
+    navigator.clipboard.writeText(lines.join("\n"));
+    const btn = document.getElementById("copyXBtn");
+    const origTxt = btn.textContent;
+    btn.textContent = "Copied X Summary!";
+    btn.style.background = "#10b981";
+    setTimeout(() => {
+      btn.textContent = origTxt;
+      btn.style.background = "";
+    }, 1800);
+  };
+
+  function showTooltip(x, y, html) {
+    const tt = document.getElementById("tooltip");
+    tt.innerHTML = html;
+    tt.classList.remove("hidden");
+    const pad = 14;
+    const left = Math.min(window.innerWidth - tt.offsetWidth - 12, x + pad);
+    const top = Math.min(window.innerHeight - tt.offsetHeight - 12, Math.max(12, y - 10));
+    tt.style.left = `${left}px`;
+    tt.style.top = `${top}px`;
+  }
+
+  function hideTooltip() {
+    document.getElementById("tooltip").classList.add("hidden");
+  }
+
+  initStudio();
+</script>
+</body>
+</html>
