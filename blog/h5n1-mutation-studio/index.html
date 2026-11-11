@@ -1184,6 +1184,20 @@
       pill.appendChild(del);
       wrap.appendChild(pill);
     });
+    if (activeQuery.length > 1) {
+      const clr = document.createElement("button");
+      clr.className = "btn";
+      clr.style.cssText = "padding:1px 6px;font-size:10px;background:#1e293b;color:#cbd5e1;";
+      clr.textContent = "Clear All";
+      clr.title = "Remove all mutations from query";
+      clr.onclick = (e) => {
+        e.stopPropagation();
+        activeQuery = [];
+        runQueryAndRender(false);
+        document.getElementById("omniInput").focus();
+      };
+      wrap.appendChild(clr);
+    }
   }
 
   function evaluateActiveQuery() {
@@ -2248,11 +2262,15 @@
     });
 
     input.addEventListener("input", () => {
-      const raw = input.value.trim().toUpperCase();
-      if (!raw) {
+      const rawFull = input.value.trim().toUpperCase();
+      if (!rawFull) {
         dd.classList.add("hidden");
         return;
       }
+
+      // If user types "PB2:T271A + D678G" or "PB2:T271A AND PB2:D678G", search using the last token
+      const tokens = rawFull.split(/\s*(?:\+|,|AND|OR|NOT)\s*/i).filter(Boolean);
+      const raw = (tokens[tokens.length - 1] || rawFull).trim().toUpperCase();
 
       // Smart alias resolution (e.g., "Q226R" or "226" -> also match HA:Q238R / H3-Q226R)
       const matches = allMutList.filter(m => {
@@ -2268,15 +2286,29 @@
         return;
       }
 
-      dd.innerHTML = matches.map((m, idx) => `
-        <div class="ac-item ${idx === 0 ? "active" : ""}" onclick="selectAutocomplete('${m.key}', event.shiftKey)">
+      const hasExisting = activeQuery.length > 0;
+      dd.innerHTML = `
+        <div style="padding:5px 12px;background:#0b1120;border-bottom:1px solid #1e293b;font-size:10.5px;color:#94a3b8;display:flex;justify-content:space-between;">
+          <span>${hasExisting ? "Click row (or press Enter) to add as <strong>AND</strong>, or choose operator on the right:" : "Click a mutation to inspect, or use <strong>+ AND / + OR / - NOT</strong> to combine:"}</span>
+          <span>Tip: click any <strong>AND</strong> badge in the bar to toggle <strong>AND / OR / NOT</strong></span>
+        </div>
+      ` + matches.map((m, idx) => `
+        <div class="ac-item ${idx === 0 ? "active" : ""}" onclick="selectAutocomplete('${m.key}', ${hasExisting ? "'AND'" : "'REPLACE'"})">
           <div>
             <span class="ac-key">${m.key.replace(/^NUC:/, "")}</span>
             ${m.ha_numbering ? `<span class="ac-badge">${m.ha_numbering}</span>` : ""}
             ${m.badge ? `<span class="ac-badge ${m.tier === 'critical' ? 'critical' : ''}">${m.badge}</span>` : ""}
           </div>
-          <div class="ac-stats">
-            <strong>${m.n_tips}</strong> tips • <strong>${m.n_2026}</strong> in '26 • <strong>${m.n_origins}</strong> orig${m.n_isnv > 0 ? ` • <span style="color:#fbbf24">${m.n_isnv} iSNV</span>` : ""}
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="ac-stats">
+              <strong>${m.n_tips}</strong> tips • <strong>${m.n_2026}</strong> in '26 • <strong>${m.n_origins}</strong> orig${m.n_isnv > 0 ? ` • <span style="color:#fbbf24">${m.n_isnv} iSNV</span>` : ""}
+            </div>
+            <div style="display:flex;gap:4px;" onclick="event.stopPropagation()">
+              <button class="btn" style="padding:2px 6px;font-size:10px;background:#1e3a8a;border-color:#3b82f6;color:#fff;" onclick="selectAutocomplete('${m.key}', 'AND')" title="Intersect with current query (AND)">+ AND</button>
+              <button class="btn" style="padding:2px 6px;font-size:10px;background:#065f46;border-color:#10b981;color:#fff;" onclick="selectAutocomplete('${m.key}', 'OR')" title="Union with current query (OR)">+ OR</button>
+              <button class="btn" style="padding:2px 6px;font-size:10px;background:#7f1d1d;border-color:#f43f5e;color:#fff;" onclick="selectAutocomplete('${m.key}', 'NOT')" title="Exclude carriers of this mutation (NOT)">- NOT</button>
+              <button class="btn" style="padding:2px 6px;font-size:10px;" onclick="selectAutocomplete('${m.key}', 'REPLACE')" title="Replace current query with only this mutation">Only</button>
+            </div>
           </div>
         </div>
       `).join("");
@@ -2284,7 +2316,34 @@
     });
 
     input.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && input.value === "" && activeQuery.length > 0) {
+        activeQuery.pop();
+        runQueryAndRender(false);
+        return;
+      }
       if (e.key === "Enter") {
+        const rawFull = input.value.trim();
+        // Check if user typed a multi-mutation expression directly like "PB2:T271A + PB2:D678G"
+        if (/(?:\+|,|\\bAND\\b|\\bOR\\b|\\bNOT\\b)/i.test(rawFull)) {
+          const parts = rawFull.split(/(\+|,|\bAND\b|\bOR\b|\bNOT\b)/i).map(s => s.trim()).filter(Boolean);
+          let curOp = "AND";
+          const built = [];
+          for (const p of parts) {
+            const up = p.toUpperCase();
+            if (up === "+" || up === "," || up === "AND") { curOp = "AND"; continue; }
+            if (up === "OR") { curOp = "OR"; continue; }
+            if (up === "NOT") { curOp = "NOT"; continue; }
+            const hit = allMutList.find(m => m.key.toUpperCase() === up || m.key.toUpperCase().endsWith(":" + up));
+            if (hit) built.push({ key: hit.key, op: curOp });
+          }
+          if (built.length > 0) {
+            activeQuery = built;
+            input.value = "";
+            dd.classList.add("hidden");
+            runQueryAndRender(true);
+            return;
+          }
+        }
         const first = dd.querySelector(".ac-item");
         if (first && !dd.classList.contains("hidden")) {
           first.click();
@@ -2299,13 +2358,13 @@
     });
   }
 
-  window.selectAutocomplete = function(mkey, appendMode = false) {
+  window.selectAutocomplete = function(mkey, mode = "AND") {
     document.getElementById("omniInput").value = "";
     document.getElementById("acDropdown").classList.add("hidden");
-    if (appendMode && activeQuery.length > 0) {
-      addMutationToQuery(mkey, "AND");
+    if (mode !== "REPLACE" && activeQuery.length > 0) {
+      addMutationToQuery(mkey, mode);
     } else {
-      loadPreset([mkey], "AND", null);
+      loadPreset([mkey], mode === "NOT" ? "NOT" : "AND", null);
     }
   };
 
