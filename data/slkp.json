@@ -1356,6 +1356,22 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-11-11",
+                {
+                    "url": "blog/2026-11-11-walrus-hyphy3.html",
+                    "link-text": "Stop playing telephone with genomes: why joint sequence-to-selection inference in HyPhy 3 & WALRUS changes molecular evolution",
+                    "subtext": "Plain-English introduction to HyPhy 3 and WALRUS (Wheatstone Alignment and Likelihood Rate Unification for Selection), showing why chaining separate scripts, heuristic aligners, column strippers, static tree builders, and standalone dN/dS tools invents false positives (up to 100% under indel register shifts or chimeric exons and 65–99% under unmodeled recombination or GC3 drift) while erasing real adaptive indels. Using a shared analytical O(B) Inside–Outside sufficiency tensor (20×–87× faster than HyPhy 2.5), WALRUS goes from raw unaligned coding sequences to multi-scale evolutionary forensics in one pass—demonstrated end-to-end in 59.96 seconds on raw mammalian ISG15 sequences from Morales et al. (Nature 2025) (preserving the ancestral Rhinolophoidea ΔK77–C78 hinge deletion that HmmCleaner strips, mapping the SARS-CoV-2 PLpro binding groove, and proving the paper's wet-lab epistasis hypothesis at q ≤ 5.5e-18) and across 10,898 unlabeled mammalian TOGA branches separating adaptive remodeling from cryptic pseudogenization (LoF_BF)."
+                },
+                {
+                    "url": "https://veg.github.io/hyphy-3/",
+                    "link-text": "Live WALRUS Web App"
+                },
+                {
+                    "url": "https://github.com/veg/hyphy-3",
+                    "link-text": "GitHub: veg/hyphy-3"
+                }
+            ],
+            [
                 "2026-11-06",
                 {
                     "url": "blog/2026-11-06-h5n1-nov06-sra.html",

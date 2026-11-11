@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Playing Telephone With Genomes: Why Joint Sequence-to-Selection Inference Changes Molecular Evolution | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Stop Playing Telephone With Genomes: Why Joint Sequence-to-Selection Inference Changes Molecular Evolution">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-11-11-walrus-hyphy3.html">
+    <meta name="twitter:description" content="How HyPhy 3 and WALRUS replace brittle 5-tool bioinformatics handoffs with a single Inside-Outside likelihood coordinate system—going from raw unaligned FASTA sequences to alignment-aware selection, pseudogene separation (LoF_BF), and epistasis in 60 seconds or 100% locally in a browser.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/walrus_fig2_isg15_nature2025.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Stop Playing Telephone With Genomes: Why Joint Sequence-to-Selection Inference Changes Molecular Evolution">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-11-11-walrus-hyphy3.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/walrus_fig2_isg15_nature2025.png">
+    <meta property="og:description" content="How HyPhy 3 and WALRUS replace brittle 5-tool bioinformatics handoffs with a single Inside-Outside likelihood coordinate system—going from raw unaligned FASTA sequences to alignment-aware selection, pseudogene separation (LoF_BF), and epistasis in 60 seconds or 100% locally in a browser.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --accent-amber: #d97706;
+            --text-dark: #111827;
+            --text-muted: #4b5563;
+            --bg-light: #f9fafb;
+            --border-gray: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.75;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-narrow {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header.blog-header {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            background: var(--bg-light);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        h1.post-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.05rem;
+            line-height: 1.12;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: #000;
+        }
+
+        .lead {
+            font-size: 1.22rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.65rem;
+            margin-top: 3rem;
+            margin-bottom: 1.15rem;
+            letter-spacing: -0.025em;
+            color: #000;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1.35rem;
+            font-size: 1.075rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b91c1c;
+        }
+
+        pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.55;
+        }
+
+        .callout-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.35rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+        }
+
+        .figure-container {
+            margin: 2.25rem -36px;
+            text-align: center;
+            background: #fff;
+            padding: 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 860px) {
+            .figure-container {
+                margin: 2rem 0;
+            }
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .figure-caption {
+            margin-top: 0.9rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 0 0.5rem;
+            line-height: 1.55;
+        }
+
+        .metric-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .metric-badge-green {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .metric-badge-red {
+            display: inline-block;
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        table.blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.75rem 0;
+            font-size: 0.92rem;
+        }
+
+        table.blog-table th {
+            background: var(--bg-light);
+            border-bottom: 2px solid var(--border-gray);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        table.blog-table td {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 9px 12px;
+            vertical-align: top;
+        }
+
+        /* Interactive Forensic Pipeline Widget */
+        .walrus-widget {
+            background: #f8fafc;
+            border: 2px solid #0f172a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2.25rem 0;
+            box-shadow: 5px 5px 0px #0f172a;
+        }
+
+        .walrus-btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.15rem;
+        }
+
+        .walrus-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.83rem;
+            font-weight: 600;
+            padding: 7px 13px;
+            border-radius: 6px;
+            border: 1.5px solid #0f172a;
+            background: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .walrus-btn.active {
+            background: #1e40af;
+            color: #ffffff;
+            border-color: #1e40af;
+        }
+
+        .seq-grid {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 11px 12px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .aln-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding-bottom: 7px;
+            margin-bottom: 7px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .aln-locus-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .aln-locus-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            padding: 2px 8px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        table.aln-matrix {
+            width: 100%;
+            min-width: 560px;
+            border-collapse: separate;
+            border-spacing: 2px 4px;
+            margin: 0;
+        }
+
+        table.aln-matrix th.aln-col-hdr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.66rem;
+            font-weight: 600;
+            color: #64748b;
+            text-align: center;
+            padding: 0 0 2px 0;
+            width: 36px;
+        }
+
+        table.aln-matrix th.aln-tax-hdr {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            text-align: left;
+            padding: 0 4px 2px 2px;
+        }
+
+        table.aln-matrix th.aln-note-hdr {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            text-align: right;
+            padding: 0 2px 2px 4px;
+        }
+
+        td.aln-taxon {
+            padding: 2px 6px 2px 2px;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .aln-sp {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .aln-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            color: #64748b;
+            line-height: 1.2;
+        }
+
+        td.aln-cell {
+            width: 36px;
+            min-width: 36px;
+            max-width: 36px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 3px 1px;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.15;
+        }
+
+        td.aln-cell .aa {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        td.aln-cell .cod {
+            display: block;
+            font-size: 0.59rem;
+            font-weight: 500;
+            color: #64748b;
+            letter-spacing: 0;
+        }
+
+        /* Semantic Codon Cell Variants */
+        td.aln-cell.c-amber {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        td.aln-cell.c-amber .aa { color: #92400e; }
+        td.aln-cell.c-amber .cod { color: #b45309; }
+
+        td.aln-cell.c-red {
+            background: #fee2e2;
+            border-color: #f87171;
+        }
+        td.aln-cell.c-red .aa { color: #991b1b; }
+        td.aln-cell.c-red .cod { color: #b91c1c; }
+
+        td.aln-cell.c-blue {
+            background: #dbeafe;
+            border-color: #60a5fa;
+        }
+        td.aln-cell.c-blue .aa { color: #1e40af; }
+        td.aln-cell.c-blue .cod { color: #1d4ed8; }
+
+        td.aln-cell.c-green {
+            background: #d1fae5;
+            border-color: #34d399;
+        }
+        td.aln-cell.c-green .aa { color: #065f46; }
+        td.aln-cell.c-green .cod { color: #047857; }
+
+        td.aln-cell.c-syn {
+            background: #f0f9ff;
+            border-color: #bae6fd;
+        }
+        td.aln-cell.c-syn .aa { color: #0369a1; }
+        td.aln-cell.c-syn .cod { color: #0284c7; font-weight: 700; }
+
+        td.aln-note {
+            text-align: right;
+            vertical-align: middle;
+            white-space: nowrap;
+            padding-left: 4px;
+        }
+
+        .aln-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 5px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            color: #334155;
+        }
+        .aln-tag.t-green { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+        .aln-tag.t-red   { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+        .aln-tag.t-blue  { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+        .aln-tag.t-amber { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+
+        .aln-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+            padding-top: 7px;
+            border-top: 1px dashed #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.73rem;
+            color: #475569;
+        }
+
+        .aln-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .aln-swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+            border: 2px solid #1e40af;
+            border-radius: 12px;
+            padding: 1.4rem 1.6rem;
+            margin: 2.25rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 4px 4px 0px #1e40af;
+        }
+
+        .cta-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            background: #1e40af;
+            color: #ffffff !important;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none !important;
+            display: inline-block;
+            transition: transform 0.12s ease, background 0.12s ease;
+        }
+
+        .cta-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+
+        footer.blog-footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-gray);
+            background: var(--bg-light);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="blog-header">
+        <div class="container-narrow header-nav">
+            <a href="../index.html" class="back-link">← Back to CV &amp; Research</a>
+            <div>
+                <span class="text-muted">November 11, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-narrow">
+        <div class="post-meta">Molecular Evolution • Comparative Genomics • HyPhy 3 &amp; WALRUS • 9 Min Read</div>
+        <h1 class="post-title">Stop Playing Telephone With Genomes: Why Joint Sequence-to-Selection Inference Changes Molecular Evolution</h1>
+
+        <p class="lead">
+            For thirty years, studying natural selection in protein-coding genes has worked like a game of broken telephone. You clean reading frames in one script, align sequences in a heuristic aligner, strip "messy" gappy columns in a masker, build a single static tree in a nucleotide phylogenetic program, manually label foreground branches, and finally feed the frozen result into half a dozen separate <em>dN/dS</em> tools. Every stage treats the previous tool's noisy best guess as infallible ground truth—so staggered gaps masquerade as bursty adaptation, column strippers delete real evolutionary indels, recombination gets crushed onto vertical branches, and decaying pseudogenes look just like positive selection. With <strong>HyPhy 3</strong> and its flagship engine <strong>WALRUS</strong> (<em>Wheatstone Alignment and Likelihood Rate Unification for Selection</em>), we replace that entire five-tool bucket brigade with a single statistical coordinate system—running from raw, unaligned sequences to multi-scale evolutionary forensics in 60 seconds on a laptop, or 100% locally inside a browser tab.
+        </p>
+
+        <!-- High-Impact Brutalist 2x2 Summary Grid -->
+        <div style="background: #f8fafc; border: 2px solid #0f172a; border-radius: 12px; padding: 1.75rem; margin-bottom: 2.75rem; box-shadow: 6px 6px 0px #0f172a;">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; margin-bottom: 1.25rem; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                <span style="background: #0f172a; color: #fff; padding: 3px 8px; border-radius: 4px;">Key Takeaways</span>
+                <span>The 60-Second Digest</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.15rem;">
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #1e40af; font-size: 1.1rem; margin-bottom: 0.3rem;">🔗 Zero Handoff Loss</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Alignment Uncertainty Flows Into Selection</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Instead of freezing a heuristic alignment or deleting gappy loops, WALRUS aligns in 61-codon space (<code>Pair-HMM + POA</code>) and propagates column homology posteriors (<em>P</em><sub>hom</sub>) plus an Erlang-3 error-sink HMM directly into selection tests—cutting chimeric-exon false positives from <strong>100% to 0%</strong> while keeping real indels intact.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b45309; font-size: 1.1rem; margin-bottom: 0.3rem;">⚡ One Shared Tensor</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">20×–87× Faster via Inside–Outside Cavities</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Legacy workflows recompute Felsenstein pruning dozens of times across separate binaries. HyPhy 3 builds one analytical <em>O</em>(<em>B</em>) Inside–Outside Hadamard cavity tensor that simultaneously powers <code>BUSTED-E</code>, 1D domains, <code>FEL</code>/<code>dFEL</code>, <code>MEME</code>, <code>aBSREL</code>, <code>RELAX</code>, and epistasis in a single pass.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b91c1c; font-size: 1.1rem; margin-bottom: 0.3rem;">🧭 Gain vs. Gene Decay</div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">Unlabeled Pseudogene Separation (<code>LoF_BF</code>)</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Intact genes undergoing trait loss accumulate missense hits that mimic elevated <em>dN/dS</em>. With zero <code>{Foreground}</code> labels, WALRUS maps <code>Purifying Core</code> domains and computes a <strong>Core Invasion Bayes Factor</strong>—cleanly separating sonar/vision gains from blind-mole lens decay (<code>LoF_BF = 4.5 × 10<sup>7</sup></code>) across 10,898 mammal branches.</p>
+                </div>
+                <div style="background: #fff; padding: 1.1rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #047857; font-size: 1.1rem; margin-bottom: 0.3rem;">🦇 60 Seconds on <code>ISG15</code></div>
+                    <div style="font-weight: 700; font-size: 0.92rem; color: #0f172a; margin-bottom: 0.35rem;">One Command Recovers &amp; Extends a <em>Nature</em> 2025 Study</div>
+                    <p style="font-size: 0.86rem; color: #334155; margin: 0; line-height: 1.45;">Given raw unaligned mammalian <code>ISG15</code> CDS, <code>hyphy3 walrus -u --coevolution</code> finishes in <strong>59.96 s</strong> on a laptop: preserving the horseshoe-bat <code>ΔK77–C78</code> hinge deletion that <code>HmmCleaner</code> strips, mapping the SARS-CoV-2 <code>PLpro</code> patch, and proving the paper's wet-lab epistasis hypothesis directly from sequences (<em>q</em> ≤ 5.5 × 10<sup>−18</sup>).</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 2px dashed #cbd5e1; font-size: 0.94rem; color: #0f172a; line-height: 1.55;">
+                <strong style="background: #fef08a; padding: 2px 6px; border-radius: 4px; margin-right: 6px;">💡 What Does This All Mean?</strong>
+                In classical phylogenomics, alignment, tree building, recombination screening, domain segmentation, and selection testing live in separate mathematical worlds that cannot warn each other when an assumption breaks. <strong>WALRUS puts the entire evolutionary history of a gene—frames, indels, reticulate bridges, compositional drift, purifying cores, adaptive sites, and epistatic pairs—onto a single shared likelihood ledger.</strong>
+            </div>
+        </div>
+
+        <h2>1. The Handoff Trap: Four Ways Classical Pipelines Invent Selection (or Erase It)</h2>
+
+        <p>
+            Ask any comparative genomicist what actually consumes 90% of their time in a selection study, and the answer is almost never running the final likelihood ratio test. It is nursing sequences across the brittle handoffs between tools—and wondering afterward whether the flashy "positively selected" hit at the end of the pipeline is real biology or an upstream scar.
+        </p>
+
+        <p>
+            Why are sequential pipelines so fragile? Because at every handoff, <strong>uncertainty is thrown away and replaced by a point estimate</strong>:
+        </p>
+
+        <ol>
+            <li><strong>The Alignment Catch-22 (Staggered Gaps vs. Stripped Loops):</strong> General-purpose aligners optimize heuristic gap penalties without knowing a phylogenetic codon model exists downstream. When indels are frequent, slightly misaligned codon registers pack apparent nonsynonymous changes onto short spans—driving standard <code>MAFFT + BUSTED</code> false-positive rates to <strong>100%</strong> on strictly neutral <code>PAML M1a</code> and <code>M7</code> simulations (and <strong>100%</strong> when a single taxon carries a chimeric terminal exon). Practitioners respond by running aggressive column maskers like <code>HmmCleaner</code> or <code>Gblocks</code>—which solve the false-positive problem by deleting the very flexible hinges and viral-contact loops where adaptive evolution actually happens.</li>
+            <li><strong>Crushing Mosaic Recombination Onto a Single Tree:</strong> If two lineages exchange a 200-bp tract by homologous recombination or gene conversion, no single tree describes the whole gene. Forcing that mosaic alignment onto one static Newick tree obliges the codon model to explain the incompatible mutations via bursts of parallel substitutions—producing <strong>65% to 74% gene-wide false positives</strong> on purely neutral 2- and 3-segment recombinants.</li>
+            <li><strong>Confusing Neutral Rate &amp; Compositional Quirks With Adaptation:</strong> Standard stationary 1-hit codon models assume synonymous substitutions tick uniformly across the gene and base composition sits at equilibrium. When synonymous rates vary across codons (because of mRNA structure, splice enhancers, or dual-coding constraints) or when <code>GC3</code>-biased gene conversion pushes a clade toward G/C-ending codons, uncorrected gene-wide selection tests hit <strong>80%–99% false positives</strong> under flat neutrality.</li>
+            <li><strong>Mistaking Incipient Pseudogenization for Adaptive Innovation:</strong> Orthology pipelines like <code>TOGA</code> flag genes as lost once a premature stop codon or frameshift appears. Yet for millions of years after an animal moves into a dark cave or deep ocean, a newly vestigial gene can retain a completely intact open reading frame while quietly accumulating missense mutations inside its once-untouchable structural core. On a naive <em>dN/dS</em> scan (or worse, when one poorly projected exon slips out of register), relaxed constraint and localized core decay routinely masquerade as lineage-specific positive selection.</li>
+        </ol>
+
+        <div class="figure-container">
+            <img src="images/walrus_fig1_pipeline_architecture.png"
+                alt="Architectural comparison contrasting the Standard Sequential Pipeline (where heuristic MSA gap shifts, single static trees, stationary 1-hit models, and separate manual tools compound errors at handoffs) against the 6-stage WALRUS Joint Inference Engine powered by a shared Inside-Outside sufficiency tensor.">
+            <div class="figure-caption">
+                <strong>Figure 1. Replacing the sequential bioinformatics bucket brigade with a single statistical coordinate system.</strong>
+                <strong>Top:</strong> In a standard sequential pipeline, each handoff discards upstream uncertainty—gap-register shifts in heuristic MSAs, unmodeled recombination forced onto a single tree, stationary 1-hit codon assumptions, and redundant per-tool likelihood evaluations compound into false positives or lost biological signal.
+                <strong>Bottom:</strong> <code>hyphy3 walrus</code> processes raw coding sequences (<code>-u</code>) or curated alignments (<code>-a</code>) through six coupled stages sharing a single <strong>Inside–Outside Hadamard sufficiency tensor</strong>: Stage 0 6-frame admission &amp; contaminant quarantine → Stage 1 codon Pair-HMM + Partial Order Alignment (POA) with per-column homology posteriors <em>P</em><sub>hom</sub> → Stage 2 tree-free Ohmic Wheatstone bridges &amp; coupled indel-SPR routing → Stage 3 BIC-gated 3-regime directional <code>GC3</code> drift kernel → Stage 4 cavity sufficiency &amp; Erlang-3 error-sink HMM → Stage 5 unlabeled multi-scale selection, domain, pseudogene, and epistasis atlas.
+            </div>
+        </div>
+
+        <p>
+            Before trusting any biological story, we stress-tested <code>WALRUS</code>—both starting from aligned inputs (<code>-a</code>) and completely blind from raw unaligned FASTA files (<code>-u</code>)—against archived <code>HyPhy 2.5</code> and <code>MAFFT</code> baselines across <strong>8,220 simulated coding alignments</strong> spanning six pathology pillars. Here is what happens when upstream uncertainty is propagated instead of ignored:
+        </p>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Pathology Stress Test (Null = No Positive Selection; Alt = True Selection)</th>
+                    <th>Replicates</th>
+                    <th>Standard Sequential Baseline</th>
+                    <th><strong><code>WALRUS (-a)</code></strong></th>
+                    <th><strong><code>Auto WALRUS (-u)</code></strong> (Unaligned Input)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Chimeric Terminal Exon</strong> (Null)</td>
+                    <td>100</td>
+                    <td><span class="metric-badge-red">100.0% FPR</span> (<code>BUSTED</code>)</td>
+                    <td><span class="metric-badge-green">2.0% FPR</span></td>
+                    <td><span class="metric-badge-green">0.0% FPR</span> (88% bridges localized)</td>
+                </tr>
+                <tr>
+                    <td><strong>1-bp Frameshifts &amp; Internal Stops</strong> (Null)</td>
+                    <td>200</td>
+                    <td>Crashes / out-of-frame</td>
+                    <td><span class="metric-badge-green">0.0% FPR</span></td>
+                    <td><span class="metric-badge-green">0.0% FPR</span> (2.0/2.0 quarantined)</td>
+                </tr>
+                <tr>
+                    <td><strong>Intragenic Recombination</strong> (2-Segment Mosaic Null)</td>
+                    <td>100</td>
+                    <td><span class="metric-badge-red">65.0% FPR</span> (Single-tree <code>BUSTED</code>)</td>
+                    <td><span class="metric-badge-green">3.0% FPR</span> (100% bridge recall)</td>
+                    <td>Routed via local SPR</td>
+                </tr>
+                <tr>
+                    <td><strong>Strong Synonymous Rate Variation</strong> (Neutral <code>CV1</code> / <code>CV3</code> Null)</td>
+                    <td>200</td>
+                    <td><span class="metric-badge-red">99.0% / 94.0% FPR</span> (No-SRV)</td>
+                    <td><span class="metric-badge-green">0.0% / 0.0% FPR</span></td>
+                    <td><span class="metric-badge-green">0.0% / 0.0% FPR</span></td>
+                </tr>
+                <tr>
+                    <td><strong>High-Indel Neutral Evolution</strong> (<code>PAML M1a</code>, λ<sub>indel</sub> = 0.06)</td>
+                    <td>100</td>
+                    <td><span class="metric-badge-red">100.0% FPR</span> (<code>MAFFT + BUSTED</code>)</td>
+                    <td>31.0% (<code>MAFFT</code>) / <strong>3.0%</strong> (True MSA)</td>
+                    <td><span class="metric-badge">18.0% FPR</span> (Mean <em>P</em><sub>hom</sub> = 0.975)</td>
+                </tr>
+                <tr>
+                    <td><strong>High-Indel Positive Selection</strong> (<code>PAML M8</code>, λ<sub>indel</sub> = 0.06 Alt)</td>
+                    <td>100</td>
+                    <td>66.7% Power (<code>MAFFT + BUSTED</code>)</td>
+                    <td><strong>96.0% Power</strong></td>
+                    <td><span class="metric-badge-green">98.0% Power</span> (from raw FASTA!)</td>
+                </tr>
+                <tr>
+                    <td><strong>Strong <code>GC3</code> Compositional Drift</strong> (ψ = 2.0 Null / Alt)</td>
+                    <td>200</td>
+                    <td>Stationary bias</td>
+                    <td><span class="metric-badge-green">2.0% FPR</span> / <strong>71.0% Power</strong> (100% BIC gate)</td>
+                    <td>Directional Softmax active</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Interactive Forensic Comparator: Watch How WALRUS Separates Biology From Artifacts</h2>
+
+        <p>
+            Numbers in a benchmark table tell you <em>that</em> joint inference works; seeing what happens to real codons shows you <em>why</em>. Click through the four authentic biological scenarios below—drawn directly from our mammalian comparative genomics runs—to compare what a standard sequential pipeline concludes versus how <code>WALRUS</code> resolves the exact same locus:
+        </p>
+
+        <!-- Interactive Pathology Comparator Widget -->
+        <div class="walrus-widget">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.82rem; color: #0f172a; margin-bottom: 0.65rem;">
+                🎛️ Interactive Pipeline Diagnostic (Click Any Real Empirical Scenario)
+            </div>
+            <div class="walrus-btn-group">
+                <button class="walrus-btn active" onclick="updateWalrusCase('isg15')" id="wbtn-isg15">1. Adaptive Hinge Indel (Bat ISG15)</button>
+                <button class="walrus-btn" onclick="updateWalrusCase('cryaa')" id="wbtn-cryaa">2. Cryptic Pseudogene (Blind Mole CRYAA)</button>
+                <button class="walrus-btn" onclick="updateWalrusCase('aqp2')" id="wbtn-aqp2">3. Single-Exon Slip (Raccoon AQP2)</button>
+                <button class="walrus-btn" onclick="updateWalrusCase('recomb')" id="wbtn-recomb">4. Mosaic Recombination + dS Island</button>
+            </div>
+
+            <div class="seq-grid" id="walrus-seq-display"></div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 12px;">
+                <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; color: #991b1b;">Classical Sequential Verdict</div>
+                    <div id="w-val-old" style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: #b91c1c; margin: 5px 0;">Hinge Masked Out</div>
+                    <div id="w-sub-old" style="font-size: 0.81rem; color: #64748b; line-height: 1.45;">HmmCleaner strips indel columns; branch-only aBSREL misses contact sites</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; color: #1e40af;">WALRUS Signal Dissection</div>
+                    <div id="w-val-mid" style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: #1e40af; margin: 5px 0;">PP = 0.991 • FEL p = 3.0e-6</div>
+                    <div id="w-sub-mid" style="font-size: 0.81rem; color: #64748b; line-height: 1.45;">Joint TKF91/affine codon POA + L5 ↔ C78 epistasis (q = 3.25e-20)</div>
+                </div>
+                <div style="background: #fff; border: 2px solid #0f172a; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; color: #0f172a;">Unified Biological Call</div>
+                    <div id="w-val-new" style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: #047857; margin: 5px 0;">ADAPTIVE HINGE EXCISION</div>
+                    <div id="w-sub-new" style="font-size: 0.81rem; color: #334155; line-height: 1.45;">Ancestral Δ(K77–C78) + D76L coupled to Ubl2 PLpro groove remodeling</div>
+                </div>
+            </div>
+            <div id="walrus-explanation" style="font-size: 0.9rem; color: #1e293b; background: #fffbeb; border-left: 4px solid #d97706; padding: 10px 12px; border-radius: 0 6px 6px 0; line-height: 1.55;"></div>
+        </div>
+
+        <script>
+            const walrusCases = {
+                isg15: {
+                    locusTitle: 'Mammalian ISG15 Inter-Domain Hinge (Unaligned Input → Codon POA)',
+                    locusPill: 'Human 74–82 • Mean P_hom = 0.9914',
+                    cols: ['74', '75', '76', '77', '78', '79', '80', '81', '82'],
+                    rows: [
+                        {
+                            sp: 'Homo sapiens', sub: 'Human WT (hg38)',
+                            cells: [['V','GTG',''], ['V','GTG',''], ['D','GAC',''], ['K','AAA',''], ['C','TGC','c-amber'], ['D','GAC',''], ['E','GAA',''], ['P','CCT',''], ['L','CTG','']],
+                            tag: ['C78 Dimer WT', 't-amber']
+                        },
+                        {
+                            sp: 'Myotis myotis', sub: 'Vesper bat (Outgroup)',
+                            cells: [['V','GTG',''], ['V','GTG',''], ['Q','CAG',''], ['S','AGC',''], ['C','TGC','c-amber'], ['D','GAC',''], ['R','AGG',''], ['P','CCC','c-syn'], ['L','CTG','']],
+                            tag: ['Intact C78', 't-amber']
+                        },
+                        {
+                            sp: 'Rhinolophus affinis', sub: 'Horseshoe bat (SARS2−)',
+                            cells: [['V','GTG',''], ['V','GTG',''], ['L','CTG','c-blue'], ['—','---','c-red'], ['—','---','c-red'], ['D','GAC',''], ['D','GAC','c-blue'], ['P','CCC','c-syn'], ['L','CTG','']],
+                            tag: ['ΔK77–C78 + D76L', 't-green']
+                        },
+                        {
+                            sp: 'Aselliscus stoliczkanus', sub: 'Bat1K Trident bat',
+                            cells: [['V','GTG',''], ['V','GTG',''], ['L','CTG','c-blue'], ['—','---','c-red'], ['—','---','c-red'], ['E','GAG','c-green'], ['N','AAC','c-green'], ['T','ACC','c-green'], ['E','GAG','c-green']],
+                            tag: ['ΔHinge + Remodel', 't-green']
+                        }
+                    ],
+                    legend: [
+                        ['#fef3c7', '#f59e0b', 'Purifying target C78 (FEL p = 3.0e-6)'],
+                        ['#fee2e2', '#f87171', 'Ancestral 6-bp deletion (ΔK77–C78)'],
+                        ['#dbeafe', '#60a5fa', 'Hydrophobic hinge cap (D76L)'],
+                        ['#d1fae5', '#34d399', 'Downstream linker remodeling']
+                    ],
+                    oldVal: 'Hinge Masked Out',
+                    oldSub: 'HmmCleaner strips gappy hinge columns; manual logo inspection needed',
+                    midVal: 'PP = 0.991 • FEL p = 3.0e-6',
+                    midSub: 'Exact 6-bp Δ(K77–C78) + L5 ↔ C78 epistasis (q = 3.25e-20)',
+                    newVal: 'ADAPTIVE HINGE EXCISION',
+                    newColor: '#047857',
+                    newSub: 'Monomer-locking deletion + co-evolved PLpro interface',
+                    exp: '<strong>Why joint codon alignment matters:</strong> Because <code>Cys78</code> sits inside an indel-rich flexible linker, standard column cleaners mask the region out before selection testing. <code>WALRUS -u</code> aligns the raw sequences directly under a 61-codon + branch-indel model (mean column homology posterior <code>PP = 0.9914</code>), proving simultaneously that <code>Cys78</code> is intensely conserved across non-rhinolophoid mammals (<code>FEL p = 2.96 × 10<sup>−6</sup></code>) AND excised as a single ancestral <code>Δ(K77–C78) + D76L</code> event in horseshoe and leaf-nosed bats alongside epistatic partner <code>L5</code>.'
+                },
+                cryaa: {
+                    locusTitle: 'Eye-Lens αA-Crystallin β-Sandwich Core (CRYAA, 691 Mammals)',
+                    locusPill: 'Purifying Core • ω̄ = 0.059 • Zero Labels',
+                    cols: ['83', '84', '85', '86', '87', '88', '89', '90', '91'],
+                    rows: [
+                        {
+                            sp: 'Homo sapiens', sub: 'Sighted Reference (hg38)',
+                            cells: [['E','GAG','c-amber'], ['D','GAC','c-amber'], ['L','CTC','c-amber'], ['T','ACC','c-amber'], ['V','GTG','c-amber'], ['K','AAG','c-amber'], ['V','GTG','c-amber'], ['Q','CAG','c-amber'], ['D','GAC','c-amber']],
+                            tag: ['Core Intact', 't-amber']
+                        },
+                        {
+                            sp: 'Galemys pyrenaicus', sub: 'Blind Desman (Node810)',
+                            cells: [['E','GAG',''], ['D','GAC',''], ['L','CTC',''], ['T','ACG','c-syn'], ['V','GTC','c-syn'], ['R','AGG','c-red'], ['A','GCG','c-red'], ['L','CTG','c-red'], ['G','GGG','c-red']],
+                            tag: ['LoF_BF = 4.5e7', 't-red']
+                        },
+                        {
+                            sp: 'Condylura cristata', sub: 'Star-nosed Mole',
+                            cells: [['E','GAG',''], ['D','GAC',''], ['L','CTC',''], ['V','GTG','c-red'], ['V','GTC','c-syn'], ['K','AAG',''], ['V','GTG',''], ['L','CTG','c-red'], ['G','GGG','c-red']],
+                            tag: ['LoF_BF = 1.2e4', 't-red']
+                        },
+                        {
+                            sp: 'Chrysochloris asiatica', sub: 'Cape Golden Mole',
+                            cells: [['K','AAG','c-red'], ['D','GAT','c-syn'], ['L','CTG','c-syn'], ['T','ACA','c-syn'], ['V','GTG',''], ['K','AAG',''], ['V','GTA','c-syn'], ['L','CTG','c-red'], ['E','GAG','c-red']],
+                            tag: ['LoF_BF = 1.5e6', 't-red']
+                        }
+                    ],
+                    legend: [
+                        ['#fef3c7', '#f59e0b', 'Ultra-conserved Purifying Core (N_eff = 1.08)'],
+                        ['#fee2e2', '#f87171', 'Core-invading missense decay (intact ORF)'],
+                        ['#f0f9ff', '#bae6fd', 'Silent synonymous drift']
+                    ],
+                    oldVal: 'Intact ORF / Elevated ω',
+                    oldSub: 'No stop codons or frameshifts for TOGA; naive branch-site sees high dN/dS',
+                    midVal: 'LoF_BF = 4.52e7 • K = 0.259',
+                    midSub: 'RELAX q = 7.55e-8 (relaxed) • aBSREL p = 1.00 (no positive selection)',
+                    newVal: 'CRYPTIC PSEUDOGENIZATION',
+                    newColor: '#1e40af',
+                    newSub: 'Convergent subterranean lens decay in intact ORFs',
+                    exp: '<strong>Catching regressive evolution before stop codons appear:</strong> Blind subterranean desmans (<code>Node810</code>, 21.7 observed vs. 3.1 expected core hits), star-nosed moles, and Cape golden moles (<code>chrAsi</code>) still carry full-length, stop-free <code>CRYAA</code> open reading frames. By first segmenting the protein into its ultra-conserved <code>Purifying Core</code> (<code>ω̄ = 0.059</code>) and testing whether nonsynonymous changes invade those forbidden residues (<code>LoF_BF = 4.52 × 10<sup>7</sup></code>) while selection intensity collapses (<code>RELAX K = 0.259</code>), WALRUS diagnoses incipient gene loss with zero foreground labels.'
+                },
+                aqp2: {
+                    locusTitle: 'Renal Water Channel C-Terminal Phospho-Motif (AQP2, 723 Mammals)',
+                    locusPill: 'Exon 4 Core • Codons 254–262',
+                    cols: ['254', '255', '256', '257', '258', '259', '260', '261', '262'],
+                    rows: [
+                        {
+                            sp: 'Homo sapiens', sub: 'Human WT (hg38)',
+                            cells: [['R','CGC',''], ['E','GAG',''], ['V','GTG',''], ['R','CGA',''], ['R','CGG',''], ['R','CGG',''], ['Q','CAG',''], ['S','TCG','c-amber'], ['V','GTG','']],
+                            tag: ['Ser261 Motif WT', 't-amber']
+                        },
+                        {
+                            sp: 'Chinchilla lanigera', sub: 'Atacama Desert Rodent',
+                            cells: [['R','CGC',''], ['E','GAG',''], ['V','GTG',''], ['R','CGG','c-syn'], ['R','CGG',''], ['R','CGG',''], ['Q','CAG',''], ['S','TCG','c-amber'], ['V','GTG','']],
+                            tag: ['K = 7.68 (Gain)', 't-green']
+                        },
+                        {
+                            sp: 'Phyllotis vaccarum', sub: '6,739 m Andean Mouse',
+                            cells: [['R','CGC',''], ['E','GAA','c-syn'], ['V','GTG',''], ['R','CGG','c-syn'], ['R','CGG',''], ['R','CGG',''], ['Q','CAG',''], ['S','TCG','c-amber'], ['V','GTG','']],
+                            tag: ['K = 7.68 (Gain)', 't-green']
+                        },
+                        {
+                            sp: 'Procyon lotor', sub: 'Raccoon (Exon Slip)',
+                            cells: [['Q','CAA','c-red'], ['R','CGA','c-red'], ['E','GAG','c-red'], ['E','GAG','c-red'], ['R','CGA',''], ['K','AAG','c-red'], ['K','AAG','c-red'], ['T','ACC','c-red'], ['M','ATG','c-red']],
+                            tag: ['Exon Artifact!', 't-red']
+                        }
+                    ],
+                    legend: [
+                        ['#fef3c7', '#f59e0b', 'Vasopressin phospho-switch Ser261'],
+                        ['#f0f9ff', '#bae6fd', 'Core preserved in true desert/Andean specialists'],
+                        ['#fee2e2', '#f87171', '8/9 core residues scrambled in single-exon slip']
+                    ],
+                    oldVal: 'aBSREL #1 Hit (p = 6.2e-5)',
+                    oldSub: 'Standalone branch-site test flags Raccoon (q = 0.089) as top adaptive lineage',
+                    midVal: 'LoF_BF = 2.48e8 • K = 0.563',
+                    midSub: 'Clustered C-terminal core invasion + Erlang-3 error-sink absorption',
+                    newVal: 'EXON ALIGNMENT ARTIFACT',
+                    newColor: '#b45309',
+                    newSub: 'Artifact quarantined; true desert/Andean osmoregulators preserved',
+                    exp: '<strong>Why spatial awareness saves you from embarrassing false positives:</strong> In a 723-mammal screen of kidney water channel <code>AQP2</code>, standalone <code>aBSREL</code> crowns the raccoon (<code>proLot</code>) as the #1 positively selected mammal in the tree (<code>p = 6.18 × 10<sup>−5</sup></code>). Look at the codons above: while true hyper-arid adaptors (Atacama chinchilla and 6,739 m Andean mouse <em>Phyllotis vaccarum</em>, <code>K = 7.68, LoF_BF = 0</code>) strictly preserve the vasopressin phosphorylation motif, <code>proLot</code> scrambles 8 of 9 core residues inside one 40-codon C-terminal exon (<code>LoF_BF = 2.48 × 10<sup>8</sup></code>)—an exon projection artifact caught automatically by WALRUS.'
+                },
+                recomb: {
+                    locusTitle: 'Prestin Cochlear Motor TM6 Synonymous Island (SLC26A5, 699 Mammals)',
+                    locusPill: 'ᾱ = 0.295 (−72% dS, p = 1.16e-4) + Bridge SPR',
+                    cols: ['261', '262', '263', '264', '265', '266', '267', '268', '269'],
+                    rows: [
+                        {
+                            sp: 'Homo sapiens', sub: 'Human WT (hg38)',
+                            cells: [['S','TCC','c-blue'], ['L','CTA','c-blue'], ['G','GGC','c-blue'], ['V','GTC','c-blue'], ['G','GGG','c-blue'], ['L','CTG','c-blue'], ['M','ATG','c-blue'], ['V','GTT','c-blue'], ['F','TTT','c-blue']],
+                            tag: ['mRNA dS Island', 't-blue']
+                        },
+                        {
+                            sp: 'Tursiops truncatus', sub: 'Bottlenose Dolphin',
+                            cells: [['S','TCC','c-blue'], ['L','CTA','c-blue'], ['G','GGC','c-blue'], ['V','GTT','c-syn'], ['G','GGG','c-blue'], ['L','CTG','c-blue'], ['M','ATG','c-blue'], ['V','GTC','c-syn'], ['F','TTT','c-blue']],
+                            tag: ['25/27 nt Frozen', 't-blue']
+                        },
+                        {
+                            sp: 'Myotis myotis', sub: 'LDC Echolocating Bat',
+                            cells: [['S','TCC','c-blue'], ['L','CTA','c-blue'], ['G','GGC','c-blue'], ['V','GTC','c-blue'], ['G','GGG','c-blue'], ['L','CTG','c-blue'], ['M','ATG','c-blue'], ['V','GTT','c-blue'], ['F','TTT','c-blue']],
+                            tag: ['27/27 nt Frozen!', 't-green']
+                        },
+                        {
+                            sp: 'Rhinolophus affinis', sub: 'HDC Echolocating Bat',
+                            cells: [['S','TCC','c-blue'], ['L','CTA','c-blue'], ['G','GGC','c-blue'], ['V','GTC','c-blue'], ['G','GGG','c-blue'], ['L','CTG','c-blue'], ['M','ATG','c-blue'], ['V','GTT','c-blue'], ['F','TTT','c-blue']],
+                            tag: ['27/27 nt Frozen!', 't-green']
+                        }
+                    ],
+                    legend: [
+                        ['#dbeafe', '#60a5fa', '3rd-base synonymous codons frozen across ~95 Myr'],
+                        ['#f0f9ff', '#bae6fd', 'Rare silent transition (2/27 nt in dolphin)']
+                    ],
+                    oldVal: '65%–99% Spurious Gene LRT',
+                    oldSub: 'Recombination + depressed local dS inflate ω = dN/dS under 1-tree No-SRV models',
+                    midVal: 'Bridge SPR + 1D dS HMM',
+                    midSub: '100% 2-seg bridge recall (FPR 65% → 3%) + explicit site α synonymous scaling',
+                    newVal: 'CALIBRATED MULTI-SCALE MAP',
+                    newColor: '#047857',
+                    newSub: 'Recovers 8 cryo-EM domains, 2 mRNA dS islands & 4 sonar guilds',
+                    exp: '<strong>Deconvolving frozen <em>dS</em> and reticulate history:</strong> Look at the 27 nucleotides above—even 4-fold degenerate 3rd codon bases (<code>CTA</code>, <code>GGC</code>, <code>GTC</code>, <code>GGG</code>, <code>CTG</code>, <code>GTT</code>) are <strong>27/27 identical</strong> between humans and both suborders of bats across ~95 Myr (<code>−72% dS, Z = 5.14</code>)! Models assuming constant <em>dS</em> divide by near-zero <em>dS</em> and call 94%–99% false positives, just as unmodeled recombination triggers 65% false positives. WALRUS models site-specific synonymous rates explicitly and routes reticulate Wheatstone bridges onto local SPR trees—holding gene-wide FPR near zero while resolving all four echolocation guilds.'
+                }
+            };
+
+            function renderAlnMatrix(d) {
+                const colHdrs = d.cols.map(c => `<th class="aln-col-hdr">${c}</th>`).join('');
+                const bodyRows = d.rows.map(r => {
+                    const cells = r.cells.map(([aa, cod, cls]) =>
+                        `<td class="aln-cell ${cls}"><span class="aa">${aa}</span><span class="cod">${cod}</span></td>`
+                    ).join('');
+                    return `<tr>
+                        <td class="aln-taxon"><div class="aln-sp">${r.sp}</div><div class="aln-sub">${r.sub}</div></td>
+                        ${cells}
+                        <td class="aln-note"><span class="aln-tag ${r.tag[1]}">${r.tag[0]}</span></td>
+                    </tr>`;
+                }).join('');
+                const legItems = d.legend.map(([bg, bd, txt]) =>
+                    `<span class="aln-legend-item"><span class="aln-swatch" style="background:${bg};border:1px solid ${bd};"></span>${txt}</span>`
+                ).join('');
+                return `
+                    <div class="aln-topbar">
+                        <span class="aln-locus-title">${d.locusTitle}</span>
+                        <span class="aln-locus-pill">${d.locusPill}</span>
+                    </div>
+                    <table class="aln-matrix">
+                        <thead>
+                            <tr>
+                                <th class="aln-tax-hdr">Species / Clade</th>
+                                ${colHdrs}
+                                <th class="aln-note-hdr">Regime</th>
+                            </tr>
+                        </thead>
+                        <tbody>${bodyRows}</tbody>
+                    </table>
+                    <div class="aln-legend">${legItems}</div>
+                `;
+            }
+
+            function updateWalrusCase(key) {
+                ['isg15', 'cryaa', 'aqp2', 'recomb'].forEach(k => {
+                    document.getElementById('wbtn-' + k).classList.toggle('active', k === key);
+                });
+                const d = walrusCases[key];
+                document.getElementById('walrus-seq-display').innerHTML = renderAlnMatrix(d);
+                document.getElementById('w-val-old').textContent = d.oldVal;
+                document.getElementById('w-sub-old').textContent = d.oldSub;
+                document.getElementById('w-val-mid').textContent = d.midVal;
+                document.getElementById('w-sub-mid').textContent = d.midSub;
+                const newEl = document.getElementById('w-val-new');
+                newEl.textContent = d.newVal;
+                newEl.style.color = d.newColor;
+                document.getElementById('w-sub-new').textContent = d.newSub;
+                document.getElementById('walrus-explanation').innerHTML = d.exp;
+            }
+            updateWalrusCase('isg15');
+        </script>
+
+        <h2>3. Under the Hood Without the Jargon: Why One Shared Tensor Beats Six Separate Tools</h2>
+
+        <p>
+            If running a single codon model on a 700-species tree used to take hours, how can <code>WALRUS</code> align raw sequences, route recombination, audit compositional drift, segment protein domains, and run eight distinct gene-, branch-, site-, and epistasis-level tests in minutes—or seconds on a laptop?
+        </p>
+
+        <p>
+            Think about how traditional phylogenetic suites work. Running <code>BUSTED</code>, <code>FEL</code>, <code>MEME</code>, <code>aBSREL</code>, <code>RELAX</code>, <code>Contrast-FEL</code>, and <code>BGM</code> one after another is like hiring seven detectives who refuse to share notes: every single tool re-reads the entire alignment and recomputes Felsenstein's 61×61 codon matrix exponentials from the leaves to the root thousands of times during numerical optimization, estimating branch gradients one branch at a time.
+        </p>
+
+        <p>
+            <strong>HyPhy 3</strong> changes the engine from the ground up around a simple mathematical idea—<strong>Inside–Outside cavity sufficiency</strong>:
+        </p>
+
+        <ul>
+            <li><strong>Two Passes Give Every Branch Gradient at Once (<code>O(B)</code> Adjoints):</strong> Instead of nudging each branch length one by one, HyPhy 3 sweeps once <em>up</em> the tree from tips to root (the <strong>Inside</strong> pass, collecting descendant codon likelihoods) and once <em>down</em> the tree from root to tips (the <strong>Outside</strong> pass, collecting everything in the rest of the tree). Packing unique codon site patterns into dense <code>61 × P</code> blocks accelerated by Apple Silicon AMX, AVX2/NEON, or WebAssembly SIMD128 matrix kernels makes core methods <strong>20.5× to 87.3× faster</strong> than legacy HyPhy 2.5 to identical log-likelihood precision (<code>Δ ln L &lt; 10<sup>−4</sup></code>).</li>
+            <li><strong>The Evolutionary Cavity Tensor (<code>W_tensor</code>):</strong> At every branch <em>b</em> and codon column <em>s</em>, combining the Inside vector below <em>b</em> with the Outside vector above <em>b</em> creates a self-contained "evolutionary cavity"—an exact statistical summary of which ancestral and descendant codons the rest of the tree supports at that specific branch and site, weighted by Stage 1's column homology confidence <em>P</em><sub>hom</sub>.</li>
+            <li><strong>Eight Lenses on One Shared Coordinate System:</strong> Once that shared cavity tensor is computed—and insulated against residual alignment junk by a spatial <strong>Erlang-3 error-sink HMM</strong> that requires at least three consecutive anomalous sites before quarantining a micro-segment—every downstream evolutionary test queries the <em>same</em> sufficient statistics in memory. Branch tests know where the 1D <code>Purifying Core</code> domains sit; site tests know which branches experienced compositional <code>GC3</code> drift; and epistatic co-evolution screens test pairs of sites directly on their posterior branch-substitution vectors.</li>
+        </ul>
+
+        <h2>4. End-to-End Showcase: One Unaligned FASTA, 60 Seconds, and the <em>Nature</em> 2025 Bat <code>ISG15</code> Story</h2>
+
+        <p>
+            To see what this looks like on a real biological discovery, let's walk through a landmark recent study by Morales, Hiller, and the Bat1K Consortium (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11821529/" target="_blank" rel="noopener"><em>Nature</em> 2025, <strong>638</strong>:449–458</a>), who asked a central question in zoonotic virology: <strong>how do bats restrict coronaviruses like SARS-CoV-2 without suffering the runaway hyperinflammatory cytokine storms seen in severe COVID-19?</strong>
+        </p>
+
+        <p>
+            Sequencing 10 new reference bat genomes across a <strong>115-mammal comparative panel</strong>, their genome-wide screen converged on <strong><code>ISG15</code></strong> (interferon-stimulated gene 15), a 165-codon tandem ubiquitin-like modifier built like a molecular dumbbell:
+        </p>
+
+        <ul>
+            <li>An <strong>N-terminal lobe (<code>Ubl1</code>, residues 1–75)</strong> and a <strong>C-terminal lobe (<code>Ubl2</code>, residues 83–151)</strong> that conjugates onto viral and host proteins via a C-terminal <code>LRLRGG</code> motif (residues 152–157) after the cellular protease <code>USP18</code> clips off an 8-residue pro-peptide tail (residues 158–165);</li>
+            <li>A <strong>flexible inter-domain hinge (residues 76–82, <code>D K C D E P L</code>)</strong> carrying a critical reactive cysteine, <strong><code>Cys78</code></strong>. In humans, <code>Cys78</code> forms disulfide homodimers (<code>C78–C78</code>) that act as an extracellular cytokine—triggering pro-inflammatory signaling during severe COVID-19—while SARS-CoV-2 uses its papain-like protease (<strong><code>PLpro</code></strong>) to dock onto <code>Ubl2</code> (at <code>N89</code>, <code>W123</code>, <code>T125</code>, <code>P130</code>, and <code>F145/L145</code>) and strip <code>ISG15</code> off host sensors.</li>
+        </ul>
+
+        <p>
+            In Morales et al., piecing together the evolutionary story of <code>ISG15</code> required chaining five separate bioinformatics tools (<code>TOGA</code> → <code>MACSE</code> → <code>HmmCleaner</code> → <code>IQ-TREE</code> → exploratory branch-only <code>aBSREL</code>), manually inspecting amino-acid sequence logos because <code>HmmCleaner</code> masks gappy hinge columns, running AlphaFold2-Multimer structural docking against SARS-CoV-2 <code>PLpro</code>, and performing wet-lab mutagenesis (<code>C78A</code>, <code>ΔC78</code>, <code>S77C</code>) when deleting <code>Cys78</code> in human <code>ISG15</code> unexpectedly failed to reproduce the antiviral potency of horseshoe-bat <code>ISG15</code>.
+        </p>
+
+        <p>
+            Now let's strip away every gap, tree, domain annotation, and branch label, and hand the <strong>raw, unaligned 115-mammal <code>ISG15</code> coding sequences</strong> to a single command on an Apple Silicon laptop:
+        </p>
+
+<pre>hyphy3 walrus -u ISG15_Nature2025_115mammals_unaligned.fa --coevolution --threads 10 \
+  -o ISG15_115mammals.walrus.json --html ISG15_115mammals.walrus.html</pre>
+
+        <p>
+            <strong>Total wall-clock runtime: <code>59.96 seconds</code>.</strong> (We also ran the exact same unaligned command on the entire <strong>837-assembly TOGA2 mammalian release</strong>, automatically quarantining 1 fragmented assembly and characterizing all <strong>836 mammals</strong> end-to-end.) Without a single human intervention, that one-minute laptop run recovers every evolutionary conclusion of the <em>Nature</em> paper—and directly resolves three mechanistic questions that the sequential pipeline could not test (<strong>Figure 2</strong>):
+        </p>
+
+        <div class="figure-container">
+            <img src="images/walrus_fig2_isg15_nature2025.png"
+                alt="Two-panel summary of the 59.96-second unaligned WALRUS reanalysis of mammalian ISG15 (Morales et al., Nature 2025): (A) exact de novo codon-level reconstruction of the ancestral Rhinolophoidea 6-bp hinge deletion (Delta K77-C78 + D76L) preserved without HmmCleaner masking at mean column posterior PP = 0.991, and (B) Manhattan plot of 18 MEME episodically diversifying sites across Ubl1 and the Ubl2 SARS-CoV-2 PLpro binding patch overlaid with 6 highly significant epistatic co-evolving residue arcs.">
+            <div class="figure-caption">
+                <strong>Figure 2. One unaligned FASTA file, 59.96 seconds on a laptop: joint sequence-to-epistasis dissection of mammalian <code>ISG15</code> (115 mammals, reanalyzing Morales et al., <em>Nature</em> 2025).</strong>
+                <strong>(A)</strong> Starting from raw unaligned coding sequences (<code>-u</code>), Stage 1's joint codon Pair-HMM + POA aligner reconstructs the inter-domain hinge (<code>Human 74–82</code>) with mean column homology posterior <span class="metric-badge">PP = 0.9914</span>, preserving and pinpointing the exact ancestral Rhinolophoidea synapomorphy—a 6-bp in-frame deletion <code>Δ(K77–C78)</code> coupled with <code>D76L</code> across horseshoe (<em>Rhinolophus</em>), leaf-nosed (<em>Hipposideros</em>, <em>Doryrhina</em>), and Bat1K trident (<em>Aselliscus</em>) bats—while showing that <code>Cys78</code> is under intense purifying selection (<span class="metric-badge">FEL p = 2.96 × 10<sup>−6</sup></span>) in all non-rhinolophoid mammals.
+                <strong>(B)</strong> Simultaneous site-level selection (<span class="metric-badge">BUSTED-E p = 2.15 × 10<sup>−12</sup></span>; 18 <code>MEME</code> sites, red lollipops) and phylogenetic epistasis (<code>--coevolution</code>, overhead arcs) map directly onto the influenza <code>NS1B</code> patch (<code>A11</code>, <code>F15</code>, <code>A61</code>) and the SARS-CoV-2 <code>PLpro</code> groove (<code>S93/T95/R99</code>, <code>Q109</code>, <code>W123</code>, <code>T125S</code>, <code>P130</code>, <code>P144/L145</code>), anchored by three inter-domain epistatic bridges (<span class="metric-badge">L5 ↔ C78, q = 3.3 × 10<sup>−20</sup></span>; <span class="metric-badge">N88 ↔ F126, q = 6.8 × 10<sup>−24</sup></span>; <span class="metric-badge">L72 ↔ T147, q = 1.5 × 10<sup>−20</sup></span>).
+            </div>
+        </div>
+
+        <h3>Discovery 1: Preserving the Ancestral Bat Hinge Deletion Without Masking</h3>
+        <p>
+            Because <code>WALRUS</code> scores insertions and deletions along tree branches inside a 61-codon substitution framework rather than stripping gappy columns, it retains the entire inter-domain hinge at high confidence (<code>PP = 0.991–1.000</code>). Across outgroup mammals and non-rhinolophoid bats (such as <em>Myotis myotis</em>, <em>Rousettus aegyptiacus</em>, and <em>Mops condylurus</em>—the exact outgroup controls that failed to restrict SARS-CoV-2 in Morales et al.'s functional assays), <code>Cys78</code> is intact and strongly conserved (<code>FEL LRT = 21.84, p = 2.96 × 10<sup>−6</sup></code>, Simes <code>q = 4.98 × 10<sup>−5</sup></code>). Then, on the stem of superfamily Rhinolophoidea—uniting all horseshoe bats (<em>Rhinolophus affinis</em>, <em>R. sinicus</em>, <em>R. ferrumequinum</em>, <em>R. trifoliatus</em>), Old World leaf-nosed bats (<em>Hipposideros</em>, <em>Doryrhina</em>), and trident bats (<em>Aselliscus stoliczkanus</em>)—evolution excises the exact 6-bp <code>K77–C78</code> dipeptide and substitutes hydrophobic <code>D76L</code> (<code>V V L - - D D P L</code>), locking bat <code>ISG15</code> into an inflammation-sparing monomer.
+        </p>
+
+        <h3>Discovery 2: Pinpointing the Viral Antagonism Surface &amp; the Exact <code>USP18</code> Cleavage Junction</h3>
+        <p>
+            Whereas exploratory <code>aBSREL</code> only asks <em>which branches</em> experienced selection, <code>WALRUS</code> simultaneously delivers gene-wide (<code>BUSTED-E LRT = 52.55, p = 2.15 × 10<sup>−12</sup></code>; <code>LRT = 87.75, p = 4.77 × 10<sup>−20</sup></code> across 836 mammals) and site-resolved forensics, while deconvolving strong mammalian <code>GC3</code> drift (<code>χ² = 558.1, p = 1.32 × 10<sup>−12</sup></code>) and 34 Wheatstone reticulate bridges. Its 18 episodically diversifying <code>MEME</code> sites and 69 convergent/toggle sites light up the precise hydrophobic anchor and S1 contact loops grabbed by SARS-CoV-2 <code>PLpro</code>: <strong><code>W123</code></strong> (<code>MEME p = 0.0056</code>, Simes <code>q = 0.036</code>), <strong><code>P130</code></strong> (<code>p = 0.0032, q = 0.022</code>, mutating in <em>Hipposideros armiger</em>), <strong><code>P144</code></strong> (<code>p = 0.0031, q = 0.021</code>, immediately beside <code>L145/F145L</code>), <strong><code>Q109</code></strong> (<code>p = 0.0048, q = 0.032</code>, mutating in <em>Rhinolophus sinicus</em>), the <strong><code>S93 / T95 / R99</code></strong> S1-loop triad, and 5× convergent <strong><code>T125S</code></strong>. Even more remarkably, on the 836-mammal TOGA2 alignment, Stage 5's unsupervised 1D spatial HMM places a single structural domain boundary at <strong>codon 160 (<code>Human G157</code>)</strong>—rediscovering from evolutionary rates alone the exact <code>LRLRGG↓</code> protease cleavage site separating mature <code>ISG15</code> (<code>ω̄ = 0.45</code>) from its cleaved C-terminal pro-peptide (<code>ω̄ = 0.79</code>)!
+        </p>
+
+        <h3>Discovery 3: Proving a Wet-Lab Epistasis Hypothesis Purely From Sequences</h3>
+        <p>
+            Here is the kicker. When Morales et al. deleted <code>Cys78</code> in human <code>ISG15</code> in the lab, it did <em>not</em> recreate the potent anti-SARS-CoV-2 activity of horseshoe-bat <code>ISG15</code>—leading them to conclude that <code>Cys78</code> loss depends epistatically on companion substitutions at the <code>PLpro</code> interface, specifically pointing to <strong><code>N89E</code></strong>, <strong><code>T125S</code></strong>, and <strong><code>F145L</code></strong> from AlphaFold2-Multimer docking. With zero structural templates and zero prior residue labels, <code>WALRUS --coevolution</code> detects <strong>six co-substituting residue pairs</strong> across the 115-mammal phylogeny—and look where the top pairs land:
+        </p>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Co-Evolving Pair (<code>hg38</code>)</th>
+                    <th>Shared Subs (Exp.)</th>
+                    <th>Cosine</th>
+                    <th>BH FDR <em>q</em>-value</th>
+                    <th>Structural &amp; Functional Meaning in <code>ISG15</code></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>#1</strong></td>
+                    <td><strong><code>N88</code> ↔ <code>F126</code></strong></td>
+                    <td>1.67 (0.06)</td>
+                    <td>0.568</td>
+                    <td><span class="metric-badge-green">6.77 × 10<sup>−24</sup></span></td>
+                    <td><strong>Direct <code>PLpro</code> Groove Coupling:</strong> Immediately flanks <strong><code>N89</code></strong> and <strong><code>T125</code></strong>—two of the three exact SARS-CoV-2 <code>PLpro</code> contact sites highlighted by Morales et al.!</td>
+                </tr>
+                <tr>
+                    <td><strong>#2</strong></td>
+                    <td><strong><code>L72</code> ↔ <code>T147</code></strong></td>
+                    <td>2.06 (0.11)</td>
+                    <td>0.535</td>
+                    <td><span class="metric-badge-green">1.46 × 10<sup>−20</sup></span></td>
+                    <td><strong>Hinge-to-Tail Allosteric Bridge:</strong> Couples the pre-hinge anchor of <code>Ubl1</code> (4 aa before <code>D76L</code>) directly to the C-terminal <code>PLpro</code> groove (2 aa past <strong><code>L145/F145L</code></strong>).</td>
+                </tr>
+                <tr>
+                    <td><strong>#3</strong></td>
+                    <td><strong><code>L5</code> ↔ <code>C78</code></strong></td>
+                    <td>1.99 (0.07)</td>
+                    <td>0.530</td>
+                    <td><span class="metric-badge-green">3.25 × 10<sup>−20</sup></span></td>
+                    <td><strong>Direct <code>Cys78</code> Partner:</strong> Physically couples hinge substitutions at <strong><code>Cys78</code></strong> to the N-terminal β<sub>1</sub>-strand of <code>Ubl1</code>.</td>
+                </tr>
+                <tr>
+                    <td><strong>#4–#6</strong></td>
+                    <td><strong><code>R44</code> ↔ <code>I84</code></strong>, <strong><code>S18</code> ↔ <code>S146</code></strong>, <strong><code>T6</code> ↔ <code>F122</code></strong></td>
+                    <td>2.08–3.18</td>
+                    <td>0.503–0.521</td>
+                    <td><span class="metric-badge">≤ 5.49 × 10<sup>−18</sup></span></td>
+                    <td><strong>Inter-Lobe Clamping:</strong> Links the <code>Ubl1</code> helix and β<sub>1</sub>–β<sub>2</sub> turn across the domain interface to <code>I84</code> (hinge exit), <code>S146</code> (next to <code>L145</code>), and <code>F122</code> (next to <code>W123</code>).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            That table explains in one glance why a single-residue CRISPR or point-mutant swap in human cells failed to phenocopy the bat protein: evolution did not merely snip <code>Cys78</code> out of the linker; when the hinge shortened, <code>Ubl1</code> and <code>Ubl2</code> clamped into a new inter-domain geometry that co-evolved as a coupled epistatic unit with the <code>N88/N89</code>, <code>F122/W123/T125/F126</code>, and <code>L145/S146/T147</code> viral protease interface.
+        </p>
+
+        <h2>5. Genome-Scale Trade-Offs &amp; Zero-Install Browser Forensics</h2>
+
+        <p>
+            What happens when you turn this same unlabeled lens loose across hundreds of mammalian genomes and multiple organ systems at once? Running <code>hyphy3 walrus --coevolution</code> across <strong>8 full-scale mammalian TOGA alignments</strong> (626–723 species per gene; <strong>5,461 sequences</strong> and <strong>10,898 unlabeled branches</strong>) maps reciprocal evolutionary trade-offs across ecological transitions without a single user-supplied clade tag (<strong>Figure 3</strong>):
+        </p>
+
+        <div class="figure-container">
+            <img src="images/walrus_fig3_adaptation_vs_regression.png"
+                alt="Two-panel mammalian phylogenomics showcase across 10,898 unlabeled branches in 8 sensory and metabolic genes (~700 mammals/gene): (A) joint phase plane of RELAX selection intensity K versus Purifying Core Invasion LoF_BF separating adaptive remodeling (green), regressive cryptic pseudogenization (blue), and single-exon alignment slips (orange diamond, Raccoon AQP2), and (B) reciprocal organ gain-and-loss matrix across echolocating bats, deep-diving whales, the blind echolocating tree mouse Typhlomys cinereus, golden moles, talpid moles, and desert rodents.">
+            <div class="figure-caption">
+                <strong>Figure 3. Autonomous separation of adaptive remodeling, cryptic pseudogenization, and exon artifacts across 10,898 unlabeled mammalian branches.</strong>
+                <strong>(A)</strong> Plotting branch-level selection intensity <em>K</em> (<code>RELAX</code>) against the joint adaptive vs. Purifying-Core Invasion axis (<code>aBSREL</code> / <code>LoF_BF</code>) cleanly partitions branches into three regimes without prior labels: <em>Adaptive Remodeling</em> with an intact structural core (top right, green: trichromatic primates in <code>OPN1SW</code>, desert rodents in <code>AQP2</code>, echolocating mammals in <code>TMC1</code>/<code>SLC26A5</code>), <em>Regressive Gene Decay</em> where missense mutations invade ultra-conserved core domains of intact ORFs (bottom left, blue: subterranean moles/desmans in <code>CRYAA</code>, whales and horses in <code>UCP1</code>), and <em>Localized Exon Artifacts</em> (bottom center, orange diamond: raccoon <code>AQP2</code> C-terminal exon slip).
+                <strong>(B)</strong> Across genes, the same lineages simultaneously register <strong>adaptive gain</strong> in active sensory/metabolic organs and <strong>regressive loss</strong> in vestigial ones—exemplified by the blind ultrasonic-echolocating tree mouse (<em>Typhlomys cinereus</em>), caught decaying in eye-lens <code>CRYAA</code> while converging with bats, dolphins, and shrews at top positively selected sites in hair-cell <code>TMC1</code> and <code>SLC26A5</code> (Prestin).
+            </div>
+        </div>
+
+        <p>
+            Look at row three of <strong>Figure 3B</strong>: the Chinese pygmy dormouse / soft-furred tree mouse (<em>Typhlomys cinereus</em>), discovered experimentally in 2021 to be a subterranean-foraging rodent that navigates by ultrasonic echolocation. Given nothing but unlabeled sequences, <code>WALRUS</code> flags <em>Typhlomys</em> for incipient lens regression in <code>CRYAA</code> (<code>LoF_BF = 16.2, K = 0.676</code>) while simultaneously catching it undergoing intense selection in both cochlear amplifier genes—<code>TMC1</code> (<code>RELAX K = 2.02, p = 9.5 × 10<sup>−5</sup></code>) and Prestin <code>SLC26A5</code> (<code>aBSREL p = 0.038</code>)—sharing five top <code>MEME</code> convergent amino-acid replacements and a <code>TM7 ↔ STAS</code> epistatic pair (<code>q = 3.5 × 10<sup>−126</sup></code>) with echolocating bats, shrews, and solenodons.
+        </p>
+
+        <div class="cta-banner">
+            <div style="max-width: 500px;">
+                <div style="font-weight: 800; font-size: 1.08rem; color: #0f172a; margin-bottom: 0.25rem;">
+                    🌐 Try WALRUS Right Now in Your Browser (Zero Install)
+                </div>
+                <div style="font-size: 0.9rem; color: #334155; line-height: 1.5;">
+                    The complete C++20 HyPhy 3 &amp; WALRUS engine compiles directly to SIMD128 WebAssembly. Drop in unaligned FASTA files, stream sequences live from NCBI GenBank (<code>🌐 Fetch</code>), or launch the guided <code>🎓 Tour</code>—100% locally on your machine with zero server queues.
+                </div>
+            </div>
+            <div>
+                <a href="https://veg.github.io/hyphy-3/" class="cta-btn" target="_blank" rel="noopener">Launch Web App →</a>
+            </div>
+        </div>
+
+        <div class="callout-box">
+            <div class="callout-title">🔒 Why Browser-Native WebAssembly Matters for Virologists &amp; Genomics Consortia</div>
+            <p style="margin-bottom: 0;">
+                Web servers struggle with two bottlenecks: queue limits on large comparative datasets and strict data-governance rules around pre-publication clinical or surveillance sequences. Because the WALRUS web workbench (<a href="https://veg.github.io/hyphy-3/" target="_blank" rel="noopener"><code>veg.github.io/hyphy-3</code></a>) executes the exact same deterministic C++20 engine inside a browser Web Worker via SIMD128 WebAssembly, <strong>not a single nucleotide ever leaves your laptop</strong>—and you can export a self-contained, interactive single-file HTML dossier (<code>.walrus.html</code>) to share with collaborators or attach directly as supplementary material.
+            </p>
+        </div>
+
+        <h2>6. Reproducible CLI, Python &amp; Browser Quickstart</h2>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+            <strong>HyPhy 3</strong> (<code>v0.0.1</code>, MIT License) is available today at <a href="https://github.com/veg/hyphy-3" target="_blank" rel="noopener"><code>github.com/veg/hyphy-3</code></a> with native C++20 CLI binaries (<code>hyphy3</code> + 18 standalone method tools), zero-copy Python 3 bindings (<code>hyphy3</code> / <code>_hyphy3</code>), and the live <a href="https://veg.github.io/hyphy-3/" target="_blank" rel="noopener">WALRUS WebAssembly Workbench</a>.
+        </p>
+<pre># 1. End-to-end unaligned characterization + epistasis (reproduces the 60s Nature 2025 ISG15 run)
+hyphy3 walrus -u ISG15_unaligned.fa --coevolution --threads 10 \
+  -o ISG15.walrus.json --html ISG15.walrus.html --out-msa ISG15.walrus.msa.fa
+
+# 2. Unlabeled phylogenomic screen separating adaptation vs. cryptic pseudogenization (LoF_BF)
+hyphy3 walrus -a CRYAA.fasta -t speciesTree.nwk --coevolution --threads 8 \
+  -o CRYAA.walrus.json --html CRYAA.walrus.html
+
+# 3. Run any of the 18+ classic HyPhy methods at 20x-87x native Inside-Outside speed
+hyphy3 busted --alignment adh.nex --srv Yes --multiple-hits Double+Triple --error-sink
+hyphy3 meme   --alignment CD2.nex --threads 8 --html CD2.meme.html</pre>
+
+    </main>
+
+    <footer class="blog-footer">
+        <div class="container-narrow">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <strong>Sergei L. Kosakovsky Pond</strong><br>
+                    Institute for Genomics and Evolutionary Medicine (iGEM), Temple University
+                </div>
+                <div>
+                    <a href="../index.html" class="back-link">← Return to CV.js</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
