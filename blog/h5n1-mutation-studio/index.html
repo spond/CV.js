@@ -1058,8 +1058,8 @@
 
   async function initStudio() {
     const [bResp, gResp] = await Promise.all([
-      fetch("./data/h5n1_mutation_studio_bundle.json"),
-      fetch("./data/us_states.json")
+      fetch("./data/h5n1_mutation_studio_bundle.json?v=20261112"),
+      fetch("./data/us_states.json?v=20261112")
     ]);
     BUNDLE = await bResp.json();
     US_GEOJSON = await gResp.json();
