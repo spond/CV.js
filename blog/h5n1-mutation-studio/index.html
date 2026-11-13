@@ -773,7 +773,7 @@
       <div class="brand">
         <span>AEON-MUTATE</span>
         <span class="brand-badge">H5N1 STUDIO</span>
-        <span class="brand-sub" id="datasetStatus">Loading 5,678 genomes + 802 iSNVs...</span>
+        <span class="brand-sub" id="datasetStatus">Loading 5,679 genomes + 802 iSNVs...</span>
       </div>
 
       <!-- OMNI-SEARCH & BOOLEAN HAPLOTYPE PILL BAR -->
@@ -795,8 +795,8 @@
       <span class="preset-lbl">Hot Queries:</span>
       <button class="preset-chip" onclick="loadPreset(['PB2:T271A','PB2:D678G'], 'AND', this)">PB2:T271A + D678G <span class="sub">2026 ID Pol Clade</span></button>
       <button class="preset-chip" onclick="loadPreset(['PB2:E627K'], 'AND', this)">PB2:E627K <span class="sub">Mammalian Homoplasies (91)</span></button>
-      <button class="preset-chip" onclick="loadPreset(['PB2:M631L'], 'AND', this)">PB2:M631L <span class="sub">Cattle Trunk Sweep (5,670)</span></button>
-      <button class="preset-chip" onclick="loadPreset(['PB2:K660R','NA:Q45R'], 'AND', this)">PB2:K660R + NA:Q45R <span class="sub">Fall 2026 WA Surge (31)</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:M631L'], 'AND', this)">PB2:M631L <span class="sub">Cattle Trunk Sweep (5,671)</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:K660R','NA:Q45R'], 'AND', this)">PB2:K660R + NA:Q45R <span class="sub">Fall 2026 WA Surge (32)</span></button>
       <button class="preset-chip" onclick="loadPreset(['NUC:PA:G1260A','NUC:MP:T462C'], 'AND', this)">PA:G1260A + MP:T462C <span class="sub">WA Bulk-Tank Subclade + iSNV</span></button>
       <button class="preset-chip" onclick="loadPreset(['M2:S82N'], 'AND', this)">M2:S82N <span class="sub">WA Bulk-Tank Mixture Bridge</span></button>
       <button class="preset-chip" onclick="loadPreset(['PA:I44V','PB2:T117A'], 'AND', this)">PA:I44V + PB2:T117A <span class="sub">2026 TX/Midwest Group 3</span></button>
@@ -804,7 +804,7 @@
       <button class="preset-chip" onclick="loadPreset(['HA:Q238R'], 'AND', this)">HA:Q238R (H3-Q226R) <span class="sub">WA Human 16% iSNV</span></button>
       <button class="preset-chip" onclick="loadPreset(['HA:V147M'], 'AND', this)">HA:V147M <span class="sub">20 Origins + 2025–26 Sweep</span></button>
       <button class="preset-chip" onclick="loadPreset(['PB2:E677K'], 'AND', this)">PB2:E677K <span class="sub">10 Origins + 2 iSNVs</span></button>
-      <button class="preset-chip" onclick="loadPreset(['PB2:A676T'], 'AND', this)">PB2:A676T <span class="sub">Oct 29 WA Human + 4 Origins</span></button>
+      <button class="preset-chip" onclick="loadPreset(['PB2:A676T'], 'AND', this)">PB2:A676T <span class="sub">Oct 29 WA Human (UW+CDC) + 4 Origins</span></button>
       <button class="preset-chip" onclick="loadPreset(['PB2:D701N'], 'AND', this)">PB2:D701N <span class="sub">Nuclear Import + 2 iSNVs</span></button>
     </div>
   </header>
@@ -869,9 +869,9 @@
 
         <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
           <div class="seg-group" title="Cohort Scope">
-            <button class="seg-opt" id="coh_full" onclick="setCohort('full')">All 5,678</button>
-            <button class="seg-opt" id="coh_strat" onclick="setCohort('strat')">Stratified (1,015)</button>
-            <button class="seg-opt active" id="coh_y2026" onclick="setCohort('y2026')">2026 Outbreak (400)</button>
+            <button class="seg-opt" id="coh_full" onclick="setCohort('full')">All 5,679</button>
+            <button class="seg-opt" id="coh_strat" onclick="setCohort('strat')">Stratified (808)</button>
+            <button class="seg-opt active" id="coh_y2026" onclick="setCohort('y2026')">2026 Outbreak (401)</button>
             <button class="seg-opt" id="coh_fall26" onclick="setCohort('fall26')">Fall 2026 SRA Focus</button>
           </div>
 
@@ -1058,8 +1058,8 @@
 
   async function initStudio() {
     const [bResp, gResp] = await Promise.all([
-      fetch("./data/h5n1_mutation_studio_bundle.json?v=20261112"),
-      fetch("./data/us_states.json?v=20261112")
+      fetch("./data/h5n1_mutation_studio_bundle.json?v=20261113"),
+      fetch("./data/us_states.json?v=20261113")
     ]);
     BUNDLE = await bResp.json();
     US_GEOJSON = await gResp.json();
@@ -1343,7 +1343,7 @@
     const pctAll = totalTips > 0 ? (100 * nCar / totalTips).toFixed(1) : "0.0";
     const [ciLo, ciHi] = wilsonCI(nCar, totalTips);
     const pct2026 = total2026 > 0 ? (100 * n2026 / total2026).toFixed(1) : "0.0";
-    document.getElementById("card1FilterBadge").textContent = selectedStateFilter || "All 5,678 Genomes";
+    document.getElementById("card1FilterBadge").textContent = selectedStateFilter || `All ${BUNDLE.n_tips.toLocaleString()} Genomes`;
     document.getElementById("card1Main").innerHTML =
       `<span>${nCar.toLocaleString()} / ${totalTips.toLocaleString()}</span> <span style="color:var(--accent);font-size:13.5px;">(${pctAll}%)</span>`;
     document.getElementById("card1Sub").innerHTML =
