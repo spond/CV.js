@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimum Description Length Phylogenetics Across Genomes, Graphs, and Single Cells | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="Evolutionary History From Genomes to Single Cells by Lossless Compression">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-11-14-bushwhacker-science.html">
+    <meta name="twitter:description" content="Bushwhacker unifies tree reconstruction, calibrated polytomies, lateral transfer/convergence detection, and somatic clonal inference onto one lossless compression ledger—10–40x less RAM and 24–54x faster than IQ-TREE 2 across five biological data modalities.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/bushwhacker_science_fig2_sota.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Evolutionary History From Genomes to Single Cells by Lossless Compression">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-11-14-bushwhacker-science.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/bushwhacker_science_fig2_sota.png">
+    <meta property="og:description" content="Recasting phylogenetic inference as lossless compression yields 24–66 s thousand-taxon supermatrices under 2.8 GB RAM, bootstrap-free P_local calibration, 61.5% fewer eukaryotic gene-tree conflicts, interval vs. sparse shunt separation, and blind selection readout in 1.01M single cells.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --accent-amber: #d97706;
+            --text-dark: #111827;
+            --text-muted: #4b5563;
+            --bg-light: #f9fafb;
+            --border-gray: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.72;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header.blog-header {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            background: var(--bg-light);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        h1.post-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.9rem;
+            line-height: 1.12;
+            font-weight: 400;
+            margin-bottom: 1.4rem;
+            color: #000;
+        }
+
+        .lead {
+            font-size: 1.16rem;
+            color: var(--text-muted);
+            margin-bottom: 2.25rem;
+            line-height: 1.62;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.58rem;
+            margin-top: 3rem;
+            margin-bottom: 1.1rem;
+            letter-spacing: -0.025em;
+            color: #000;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 0.45rem;
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 1.18rem;
+            margin-top: 1.9rem;
+            margin-bottom: 0.7rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1.3rem;
+            font-size: 1.04rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.35rem;
+            padding-left: 1.35rem;
+        }
+
+        li {
+            margin-bottom: 0.55rem;
+            font-size: 1.02rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.87em;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #991b1b;
+        }
+
+        pre {
+            background: #111827;
+            color: #f9fafb;
+            padding: 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.83rem;
+            line-height: 1.55;
+        }
+
+        .callout-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.3rem 1.4rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.45rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .figure-container {
+            margin: 2.25rem -36px;
+            text-align: center;
+            background: #fff;
+            padding: 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 860px) {
+            .figure-container {
+                margin: 2rem 0;
+            }
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .figure-caption {
+            margin-top: 0.9rem;
+            font-size: 0.89rem;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 0 0.5rem;
+            line-height: 1.55;
+        }
+
+        .metric-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.83rem;
+        }
+
+        .metric-badge-green {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.83rem;
+        }
+
+        .metric-badge-blue {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.83rem;
+        }
+
+        table.blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.75rem 0;
+            font-size: 0.89rem;
+        }
+
+        table.blog-table th {
+            background: var(--bg-light);
+            border-bottom: 2px solid var(--border-gray);
+            padding: 9px 11px;
+            text-align: left;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        table.blog-table td {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 8px 11px;
+            vertical-align: top;
+        }
+
+        .bw-widget {
+            background: #f8fafc;
+            border: 2px solid #0f172a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2.25rem 0;
+            box-shadow: 5px 5px 0px #0f172a;
+        }
+
+        .bw-btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.15rem;
+        }
+
+        .bw-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 7px 11px;
+            border-radius: 6px;
+            border: 1.5px solid #0f172a;
+            background: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .bw-btn.active {
+            background: #1e40af;
+            color: #ffffff;
+            border-color: #1e40af;
+        }
+
+        .bw-visual-strip {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+        .bw-strip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .bw-strip-title {
+            font-weight: 800;
+            font-size: 0.94rem;
+            color: #0f172a;
+        }
+
+        .bw-strip-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            font-weight: 700;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            padding: 2px 9px;
+            border-radius: 999px;
+        }
+
+        .bw-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 6px 0;
+            font-size: 0.83rem;
+        }
+
+        .bw-bar-label {
+            width: 175px;
+            flex-shrink: 0;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .bw-bar-track {
+            flex: 1;
+            height: 15px;
+            background: #e2e8f0;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .bw-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.25s ease;
+        }
+
+        .bw-bar-val {
+            width: 225px;
+            flex-shrink: 0;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+            border: 2px solid #1e40af;
+            border-radius: 12px;
+            padding: 1.35rem 1.55rem;
+            margin: 2.25rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 4px 4px 0px #1e40af;
+        }
+
+        .cta-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 700;
+            background: #1e40af;
+            color: #ffffff !important;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none !important;
+            display: inline-block;
+            transition: transform 0.12s ease, background 0.12s ease;
+        }
+
+        .cta-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+
+        footer.blog-footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-gray);
+            background: var(--bg-light);
+            color: var(--text-muted);
+            font-size: 0.94rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="blog-header">
+        <div class="container-narrow header-nav">
+            <a href="../index.html" class="back-link">← Back to CV &amp; Research</a>
+            <div>
+                <span class="text-muted">November 14, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-narrow">
+        <div class="post-meta">Minimum Description Length • Computational Phylogenetics • Multi-Modal Evolution • 10 Min Read</div>
+        <h1 class="post-title">Evolutionary History From Genomes to Single Cells by Lossless Compression</h1>
+
+        <p class="lead">
+            Modern evolutionary genomics runs on fragmented pipelines. Inferring a phylogenetic graph typically requires concatenating or reconciling maximum-likelihood (ML) gene trees under fixed Markov rate matrices, executing hundreds of bootstrap replicates, heuristically collapsing weakly supported edges, and applying separate post-hoc scanners for recombination, horizontal gene transfer (HGT), adaptive convergence, or single-cell allelic dropout. In our new study, <em>Evolutionary history from genomes to single cells by lossless compression</em>, we replace this fragmented stack with a single <strong>Minimum Description Length (MDL)</strong> objective implemented in <strong>Bushwhacker</strong>—achieving <strong>24–54× speedups</strong> in <strong>10–40× less memory</strong> than ML on thousand-taxon supermatrices, zero-bootstrap calibrated support, native support for five biological data modalities, and principled non-tree graph inference up to a quantitatively measurable mosaic horizon.
+        </p>
+
+        <div class="cta-banner" style="margin: 0 0 2.15rem 0;">
+            <div style="max-width: 470px;">
+                <div style="font-weight: 800; font-size: 1.05rem; color: #0f172a; margin-bottom: 0.25rem;">
+                    Try Bushwhacker Now (Client-Side WebAssembly — Zero Install)
+                </div>
+                <div style="font-size: 0.89rem; color: #334155; line-height: 1.5;">
+                    Run the full Rust engine directly in your browser on any aligned FASTA or discrete single-cell matrix to inspect <em>P</em><sub>local</sub> support, polytomy hubs, <code>INTERVAL</code>/<code>SPARSE</code> shunts, and <code>.bwz</code> bitrates locally with zero server uploads.
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <a href="https://veg.github.io/bushwhacker/" class="cta-btn" target="_blank" rel="noopener">Try It Live →</a>
+                <a href="https://github.com/veg/bushwhacker" class="cta-btn" style="background: #ffffff; color: #1e40af !important; border: 1.5px solid #1e40af;" target="_blank" rel="noopener">GitHub Source →</a>
+            </div>
+        </div>
+
+        <!-- Technical Capabilities 2x2 Summary Grid -->
+        <div style="background: #f8fafc; border: 2px solid #0f172a; border-radius: 12px; padding: 1.65rem; margin-bottom: 2.5rem; box-shadow: 6px 6px 0px #0f172a;">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; margin-bottom: 1.15rem; font-size: 0.84rem; display: flex; align-items: center; gap: 8px;">
+                <span style="background: #0f172a; color: #fff; padding: 3px 8px; border-radius: 4px;">Architectural Summary</span>
+                <span>Why Compression-Guided Inference Changes the Bottlenecks</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.1rem;">
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #1e40af; font-size: 1.04rem; margin-bottom: 0.25rem;">1. Cache-Resident Scaling &amp; Calibration</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">24–66 s, 1.98–2.71 GB RAM, Zero Bootstraps</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">Evaluates fixed 8-category rate models (<code>GTR+CAT8</code> / <code>LG08+CAT8</code>) over 64-site L1/L2 cache tiles with deterministic <code>-T 1..64</code> canonical reduction. Matches IQ-TREE 2 clade recovery across 882 mammals and 1,672 archaea in <strong>10–40× less RAM</strong> (peak <strong>1.98 GB</strong> vs. <strong>79.2 GB</strong>) and <strong>24–54× less runtime</strong>, while analytical local compression support <em>P</em><sub>local</sub> &ge; 99% achieves <strong>98.3% split precision</strong> across 44,337 ground-truth branches.</p>
+                </div>
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b91c1c; font-size: 1.04rem; margin-bottom: 0.25rem;">2. Five Modalities Under One Objective</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">DNA, AA, 64-Codon, SNVs, Ordered CNAs</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">Unifies codon-phased DNA/RNA, <code>--protein</code> (20 AA + empirical Dayhoff/BLOSUM costs), <code>--translate</code> (64-codon translation to suppress saturation), <code>--discrete</code> multi-state somatic SNVs (2 &le; <em>K</em> &le; 32 with explicit <code>?/-</code> dropout coding), and <code>--ordered</code> step-weighted zygosity/copy-number profiles (3 &le; <em>K</em> &le; 16; 0..11+ bins).</p>
+                </div>
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b45309; font-size: 1.04rem; margin-bottom: 0.25rem;">3. Non-Tree Graphs With Formal Bounds</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">Polytomies + INTERVAL vs. SPARSE Shunts</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">Unresolved radiations remain multifurcating hubs when internal branches fail to save structure bits (cutting ML burst false splits from 23–61 down to <strong>0.00–0.18</strong>). Residual signals split via exact code lengths into contiguous <code>INTERVAL</code> recombination/conversion tracts versus scattered <code>SPARSE</code> convergent sites across 19,953 mammalian proteins and archaeal genomes.</p>
+                </div>
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #047857; font-size: 1.04rem; margin-bottom: 0.25rem;">4. Quantitative Mosaic Horizon &amp; Single Cells</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">.bwz Compression vs. xz &amp; Blind Somatic Hubs</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">Tree-guided arithmetic coding (<code>.bwz</code>) compresses 10,062 SARS-CoV-2 genomes to <strong>63.2 B/genome</strong> (1.25× smaller than <code>xz -6</code> archive; 2.06× smaller payload), while multi-donor mosaicism (sarbecoviruses <strong>0.71×</strong>, HIV-1 CRF02_AG <strong>0.65×</strong>) marks the regime where <code>xz</code> overtakes single-tree delta encoding. Blind single-cell trees predict <strong>9.5×</strong> B-cell and <strong>6.18×</strong> leukemia expansion.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Why Operational Phylogenetics Needs a Single Compression Currency</h2>
+
+        <p>
+            Every empirical inference pipeline faces three compounding bottlenecks: <strong>memory and compute walls</strong> on deep supermatrices, <strong>forced bifurcation bias</strong> during rapid radiations or plasmid sweeps, and <strong>model fragmentation</strong> when datasets move beyond aligned nucleotides to somatic single-nucleotide variants (SNVs) with allelic dropout, integer copy-number profiles, or reticulate evolution.
+        </p>
+
+        <p>
+            Classical probabilistic phylogenetics treats tree topology as free prior infrastructure: an algorithm proposes strictly bifurcating splits everywhere, optimizes continuous branch lengths and rate parameters under maximum likelihood, and delegates uncertainty to computationally expensive bootstrap resampling or downstream tree reconciliation. Conversely, parsimony counts raw character state changes uniformly without penalizing homoplasy on mutation-dense branches or charging structural complexity for the splits themselves.
+        </p>
+
+        <p>
+            <strong>Bushwhacker</strong> unifies these problems by treating an evolutionary graph <em>G</em> and its ancestral states as a two-part lossless program predicting the observed matrix <em>X</em> in natural information units (<strong>nats</strong>, 1 nat &approx; 1.44 bits; <strong>Figure 1</strong>):
+        </p>
+
+        <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.96rem; background: #f8fafc; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px;">
+            L(X, G) = L(G) + L(X | G)
+        </p>
+
+        <p>
+            Here <em>L</em>(<em>G</em>) is the exact structural description cost of naming internal splits, polytomy hubs, and lateral links, while <em>L</em>(<em>X</em> | <em>G</em>) is the residual conditional code length of encoding all extant character differences given their immediate ancestor on <em>G</em>. An edge or lateral shunt is retained if and only if adding it yields a strictly positive compression saving &Delta;<em>L</em> = &minus;&Delta;[<em>L</em>(<em>G</em>) + <em>L</em>(<em>X</em> | <em>G</em>)] &gt; 0.
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_science_fig1_concept.png"
+                alt="Conceptual architecture of Bushwhacker MDL phylogenetics: positional combinadic mutation weights, polytomy contraction vs supported internal splits, 64-site rate-category cache tiles, and INTERVAL vs SPARSE lateral shunts.">
+            <div class="figure-caption">
+                <strong>Figure 1. Unifying vertical inheritance, unresolved hubs, and lateral links on one lossless compression ledger.</strong>
+                Encoding an inferred ancestral state plus sparse branch edits reduces total code length whenever mutations are shared across taxa, while charging explicit structural overhead (~1.1 nats in a four-way burst) ensures splits without net compression gain remain unresolved as polytomies, positional weights prioritize rare changes on slow branches, and residual non-tree structure separates contiguous transferred intervals from scattered convergent substitutions.
+            </div>
+        </div>
+
+        <h3>Positional Weights, Polytomy Calibration, and Fixed CAT8 Rate Coding</h3>
+
+        <p>
+            Two information-theoretic mechanisms give this single criterion both statistical calibration and ML-grade resistance to long-branch attraction:
+        </p>
+
+        <ul>
+            <li><strong>Self-calibrating split retention and local support (<em>P</em><sub>local</sub>):</strong> Along a branch of sequence length <em>L</em> carrying <em>m<sub>c</sub></em> derived substitutions, specifying a change via combinadic indexing costs <em>w<sub>c</sub></em> = ln((<em>L</em> &minus; <em>m<sub>c</sub></em>) / (<em>m<sub>c</sub></em> + 1)) &approx; &minus;ln(<em>p<sub>c</sub></em> / (1 &minus; <em>p<sub>c</sub></em>))—directly analogous to Felsenstein's log-odds weighting <a href="2026-11-05-bushwhacker-mdl.html">(exact worked derivation)</a>. Assigning one rare shared substitution across two sisters on a saturated branch vs. a low-divergence branch therefore produces a <strong>5.6× differential compression credit</strong> on a <code>1/16</code> vs. <code>6/16</code> branch. Subtracting structural wiring cost yields a positive or negative compression margin &Delta;<em>L</em>, whose logistic transform <em>P</em><sub>local</sub> = 1 / (1 + <em>e</em><sup>&minus;&Delta;<em>L</em></sup>) gives a direct, bootstrap-free split probability.</li>
+            <li><strong>Cache-tiled 8-category rate variation with Fisher–Rissanen curvature penalties:</strong> For multi-taxon alignments, site-rate heterogeneity and biochemical exchangeability are incorporated directly into code lengths using fixed 8-category unit-mean &Gamma;(1,1) octile models (<code>GTR+CAT8</code> for nucleotides with <em>N</em> &ge; 4; <code>LG08+CAT8</code> for proteins with <em>N</em> &ge; 3) penalized by exact Fisher–Rissanen parametric complexity. Packing site vectors into L1/L2 cache-resident <strong>64-site tiles</strong> combined with deterministic canonical reduction makes execution memory-light and bit-identical across <code>-T 1</code> through <code>-T 64</code>.</li>
+        </ul>
+
+        <h2>Scaling Benchmarks, Bootstrap-Free Calibration, and Five Data Modalities</h2>
+
+        <p>
+            Evaluated on a 32-core ARM64 server across deep phylogenomic supermatrices—882 mammals (DNA and amino acid), 1,672 archaea, and 1,000 bacteria—<strong>Bushwhacker</strong> resolves trees in <strong>24–66 seconds</strong> using <strong>1.98–2.71 GB</strong> peak RAM (well within a laptop memory envelope), compared to <strong>26.37–79.15 GB</strong> and <strong>24–54× longer runtimes</strong> for <code>IQ-TREE 2</code> (<strong>40× lower peak RAM</strong> on 882-mammal amino acids: 1.98 GB vs. 79.2 GB) and <strong>1.1–3.9 hours</strong> (<strong>142–288× slower</strong>) for <code>FastTreeMP</code> (<strong>Figure 2A</strong>). Clade recovery matches ML benchmarks (100% mammalian orders, 94.3% bacterial phyla, 0.5–2.5 percentage points overall difference) while cutting false mammalian splits in half (<strong>4.2% vs. 8.4%</strong> for <code>IQ-TREE 2</code>).
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_science_fig2_sota.png"
+                alt="Benchmark comparison of Bushwhacker against IQ-TREE 2, FastTreeMP, and Parsimony: runtime and peak memory on 32 cores, single-pass P_local calibration across 44,337 branches, true split precision under silent and star bursts, and non-tree/single-cell accuracy.">
+            <div class="figure-caption">
+                <strong>Figure 2. Computational scaling, zero-bootstrap calibration, and cross-modal accuracy.</strong>
+                <strong>(A)</strong> On 882-mammal, 1,672-archaea, and 1,000-bacteria supermatrices (32 cores), Bushwhacker finishes in 24–66 s inside &lt;2.8 GB RAM vs. 26–79 GB and 24–54× longer runtimes for IQ-TREE 2, at comparable or superior taxonomic recovery.
+                <strong>(B)</strong> Across 44,337 simulated ground-truth branches (0 bootstrap replicates, ECE = 0.0373), branches with <em>P</em><sub>local</sub> &ge; 99% (~90% of retained splits; 39,619 branches) achieve <strong>98.3% true split precision</strong>.
+                <strong>(C)</strong> Under silent and pure-star radiations, Bushwhacker maintains <strong>95–100%</strong> split precision while strictly bifurcating ML drops from 34% to 0%.
+                <strong>(D)</strong> Multi-modal benchmark recovery across convergence, single-cell SNV allelic dropout (86.1%), single-cell CNA step compression (<em>F</em><sub>1</sub> = 93.7%), lateral transfer identification (90.0%), parallel site separation (92.0%), and tree-like/diploid specificity (100% / 99.25%).
+            </div>
+        </div>
+
+        <p>
+            Across <strong>37,020 ground-truth simulations</strong> (36,120 nucleotide/protein/coalescent replicates plus 800 lateral and somatic benchmarks), Bushwhacker sustains three operational guarantees (<strong>Figure 2B–D</strong>):
+        </p>
+
+        <ul>
+            <li><strong>Calibrated uncertainty without resampling:</strong> Across 44,337 simulated branches, high-confidence splits (<em>P</em><sub>local</sub> &ge; 99%, comprising 39,619 branches) match true bipartitions <strong>98.3%</strong> of the time (ECE = 0.0373; intermediate 50–99% bins recover 40.6–80.3% under the conservative single-edge collapse test).</li>
+            <li><strong>Polytomy integrity and gene-tree species reconciliation:</strong> During rapid bursts, Bushwhacker commits only <strong>0.00–0.18 false splits per burst</strong> vs. <strong>23–61</strong> for forced bifurcations (&gt;94% precision vs. 34% down to 0% for standard ML). Feeding contracted gene trees into <code>ASTRAL-IV</code> improves species-tree accuracy across both anomaly-zone simulations and 11,164 empirical loci.</li>
+            <li><strong>Uniform encoding across five distinct evolutionary alphabets:</strong> Rather than re-engineering separate heuristics per assay, changing the conditional symbol-transition cost function inside the same Rust/SIMD kernel adapts compression to any discrete or ordered state space (Table 1).</li>
+        </ul>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Modality &amp; CLI Flag</th>
+                    <th>State Space &amp; Transition Coding</th>
+                    <th>Primary Empirical Target &amp; Advantage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Nucleotides</strong><br><code>(default / --codon-phase)</code></td>
+                    <td>4 states (A,C,G,T) + automatic 3rd-codon position weighting + <code>GTR+CAT8</code></td>
+                    <td>Deep supermatrices &amp; rapid radiations (882 mammals, 45,205 genes, 10,062 SARS-CoV-2)</td>
+                </tr>
+                <tr>
+                    <td><strong>Proteins</strong><br><code>--protein</code></td>
+                    <td>20 amino acids + empirical Dayhoff/BLOSUM exchange costs + <code>LG08+CAT8</code></td>
+                    <td>Ancient divergences &amp; adaptive convergence across 19,953 mammalian TOGA2 proteins &amp; 1,672 archaea</td>
+                </tr>
+                <tr>
+                    <td><strong>Codon Translation</strong><br><code>--translate</code></td>
+                    <td>64 sense/stop codons compressed in 20-state universal AA code</td>
+                    <td>Suppresses silent substitution saturation; reduces spurious plant gene-tree shunts by <strong>88.3%</strong> (60 &rarr; 7)</td>
+                </tr>
+                <tr>
+                    <td><strong>Single-Cell SNVs</strong><br><code>--discrete</code></td>
+                    <td>Unordered 2 &le; <em>K</em> &le; 32 states (<code>0</code>=WT, <code>1</code>=Mut, <code>?/-</code>=dropout coded neutrally)</td>
+                    <td>Avoids artifactual dropout clustering (<strong>86.1%</strong> vs. ~53% binary ML); 1.01M immune &amp; AML cells (4.1 ms vs. 471 s MCMC)</td>
+                </tr>
+                <tr>
+                    <td><strong>Ordered Zygosity / CNA</strong><br><code>--ordered</code></td>
+                    <td>Ordered 3 &le; <em>K</em> &le; 16 steps (<code>0</code>=WT, <code>1</code>=HET, <code>2</code>=HOM or <code>0..11+</code> CNA bins)</td>
+                    <td>L1 step distance on CN-LOH (<strong>90.3%</strong> capture) &amp; 500-kb ovarian/breast CNAs (<em>F</em><sub>1</sub> = <strong>93.7%</strong>, 21.9–33.5× compression)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Eliminating Phantom Conflicts Across 45,205 Eukaryotic Genes</h2>
+
+        <p>
+            Much of reported phylogenomic gene-tree discordance reflects optimization noise over flat likelihood ridges rather than true biological incomplete lineage sorting (ILS). On the vertebrate gene <em>CHST13</em> (1,176 bp, 22 species), Bushwhacker finishes in <strong>0.02 s</strong> with <strong>0 conflicts</strong> and 9 well-supported clades (<em>P</em><sub>local</sub> = 0.82–1.00), whereas standard ML+UFBoot takes <strong>3.8 s</strong> and reports <strong>8 conflicting splits</strong> carrying up to 75% ultrafast bootstrap support despite carrying negligible signal.
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_science_fig2_conflict.png"
+                alt="Macroevolutionary evaluation across 45,205 eukaryotic genes spanning 19 radiations, showing removal of software and seed instabilities, 61.5% reduction in species-tree conflict, suppression of saturated plant links via amino acid translation, and ΔL vote resolution at deep phylogenetic ties.">
+            <div class="figure-caption">
+                <strong>Figure 3. Eliminating topological artifacts across 45,205 genes and 19 eukaryotic radiations.</strong>
+                Withholding zero-saving splits removes 94.5–96.4% of model-flip and random-seed-flip splits without sacrificing benchmark accuracy, eliminates 61.5% of apparent species-tree discordance overall (74.9% in early birds, 82.5% in early animals) while retaining 77.2% of shared clades, suppresses nucleotide saturation artifacts in plants under <code>--translate</code>, and resolves long-standing vertebrate and metazoan relationships via compression-margin (&Delta;<em>L</em> &gt; 0) evidence weighting.
+            </div>
+        </div>
+
+        <p>
+            Across large empirical benchmarks (<strong>Figure 3</strong>), withholding non-compressing splits produces four reproducible effects:
+        </p>
+
+        <ul>
+            <li><strong>Elimination of software and seed artifacts:</strong> Without consulting any reference species tree, MDL split withholding eliminates <strong>96.4% of model-flip splits</strong> (substitution-model disagreement across 7,200 genes) and <strong>94.5% of random-seed-flip splits</strong> across 83,180 RAxML and IQ-TREE trees (4,159 loci).</li>
+            <li><strong>61.5% drop in apparent species-tree conflict:</strong> Across 45,205 genes spanning 19 major eukaryotic radiations, polytomy preservation removes <strong>61.5%</strong> of discordant edges—reaching <strong>74.9% in Neoaves</strong> and <strong>82.5% in early Metazoa</strong>—while preserving <strong>77.2%</strong> of true shared clades.</li>
+            <li><strong>Breaking deep phylogenomic ties by positive evidence (&Delta;<em>L</em> &gt; 0):</strong> Weighting gene support by net compression savings decides deep nodes decisively, supporting <strong>lungfish + tetrapods</strong>, <strong>turtles + archosaurs</strong> (&gt;10× margin), <strong>Atlantogenata</strong> among placental mammals, and <strong>ctenophores</strong> as earliest-branching animals under homogeneous protein compression.</li>
+            <li><strong>Saturation immunity via codon translation:</strong> Enabling <code>--translate</code> on deep plant alignments drops spurious cross-branch links by <strong>88.3%</strong> (from 60 down to 7).</li>
+        </ul>
+
+        <h2>Non-Tree Shunts: Disentangling Paralog Gene Conversion From Cochlear Convergence</h2>
+
+        <p>
+            When strictly vertical inheritance fails to explain all site patterns, a compression framework naturally extends beyond trees to sparse non-tree networks—provided every added lateral edge ("shunt") pays its own structural addressing cost against Kraft-bounded alternatives (<strong>Figure 1</strong>):
+        </p>
+
+        <ul>
+            <li><strong><code>INTERVAL</code> shunts (contiguous blocks):</strong> Two sequence coordinates <code>[start, end]</code> specify an entire block of linked derived states—the minimal code for homologous recombination, horizontal gene transfer, or interlocus gene conversion.</li>
+            <li><strong><code>SPARSE</code> shunts (distributed positions):</strong> Listing individual sequence coordinates <code>[i_1, i_2, ..., i_k]</code> captures scattered convergent substitutions sharing functional selective pressure when no contiguous block exists.</li>
+        </ul>
+
+        <p>
+            In controlled simulations, Bushwhacker identifies transferred DNA blocks at <strong>90.0% accuracy</strong>, separates parallel adaptive sites at <strong>92.0%</strong>, retains vertical sister clades under five independent convergent shifts at <strong>99.2%</strong> (vs. <strong>0%</strong> for standard ML), and maintains a <strong>0.75% false-shunt rate</strong> (3/400) on purely vertical tree-like controls (<strong>Figure 2D</strong>).
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_science_fig3_mammals.png"
+                alt="Atlas of 19,953 mammalian TOGA2 proteins across up to 882 species, separating contiguous INTERVAL paralog conversion tracts from scattered SPARSE convergence, demonstrating proteome-wide guild neutrality in echolocators, marine, subterranean, and ant-eating mammals, and pinpointing concentrated sonar convergence across inner-ear mechanotransduction genes.">
+            <div class="figure-caption">
+                <strong>Figure 4. Structural footprint separates paralog gene conversion from cochlear echolocation convergence across 19,953 mammalian proteins.</strong>
+                Applying MDL shunt decomposition proteome-wide recovers 2,251 <code>INTERVAL</code> tracts (median 85 aa, 88.3% intra-order, 3.0–6.6× tandem-cluster enrichment) distinct from 6,419 <code>SPARSE</code> links (38.0% cross-order). Whole-proteome convergence rates show no elevation across specialized ecological guilds, whereas the 27-gene cochlear inner-ear complex concentrates 50.0% of its species-tree <code>SPARSE</code> links directly between echolocating bats and toothed whales (3.0× background, <em>p</em> = 0.0011), anchored by tip-link and mechanotransduction loci including <em>Prestin</em>, <em>CDH23</em>, <em>PCDH15</em>, <em>LOXHD1</em>, and <em>TMC1</em>.
+            </div>
+        </div>
+
+        <p>
+            On the classic echolocation protein <strong><em>Prestin</em></strong> (116 species, 2,235 bp), Bushwhacker preserves Cetartiodactyla and Chiroptera monophyly (<em>P</em><sub>local</sub> = 1.00) while flagging a focal <code>SPARSE</code> shunt saving <strong>+3.9 nats</strong> (<em>P</em><sub>local</sub> = 98.0%) across exact substitutions <code>N7T</code>, <code>I384T</code>, <code>S392A</code>, and <code>G601A</code>. Scaling across <strong>19,953 TOGA2 mammalian proteins</strong> (up to 882 species; <strong>Figure 4</strong>) resolves a decade-long debate over whether convergent evolution pervades entire proteomes:
+        </p>
+
+        <ul>
+            <li><strong>85.9% species-tree compressibility</strong> (rising to <strong>97.9%</strong> for proteins &gt;1,500 aa), with AA discordance appearing on 19.8% of candidate splits (56.5% retained vs. 20.8% NT baseline).</li>
+            <li><strong>Structural separation of mechanisms:</strong> Out of 8,670 species-tree shunts, <strong>2,251 are <code>INTERVAL</code> tracts</strong> (6.0% of proteins, median length 85 aa, <strong>88.3% intra-order</strong>, 68.9% intra-family, <strong>3.0–6.6× enriched in tandem gene clusters</strong>—classic signatures of non-allelic gene conversion) whereas <strong>6,419 are <code>SPARSE</code> links</strong> (11.9% of proteins, <strong>38.0% cross-order</strong> = 3.26× higher cross-order share than <code>INTERVAL</code>).</li>
+            <li><strong>Proteome-wide neutrality vs. pathway concentration:</strong> Across specialized phenotypes, overall convergence does not exceed neutral expectations—echolocators (<strong>0.50–0.75×</strong>), marine mammals (<strong>1.31×</strong>, <em>p</em> = 0.164), subterranean mammals (<strong>1.47×</strong>, 1 observed vs. 0.68 expected), and length-adjusted ant-eating mammals (<strong>1.35×</strong>, <em>p</em> = 0.157). Instead, adaptive convergence targets specific functional complexes: within the 27-gene cochlear inner-ear apparatus, <strong>9/27 genes</strong> (10/27 adding <em>CIB2</em>; 19/27 on unconstrained gene trees) carry species-tree <code>SPARSE</code> links, and <strong>9 of 18 (50.0%) unite sonar clades</strong>—a <strong>3.0× enrichment</strong> over genomic background (<em>p</em> = 0.0011) across <em>Prestin</em>, <em>CDH23</em>, <em>PCDH15</em>, <em>LOXHD1</em>, and <em>TMC1</em>.</li>
+        </ul>
+
+        <h2>Non-Tree Regimes &amp; the Quantitative Horizon Where Trees Break Down</h2>
+
+        <p>
+            Real evolutionary processes are only approximately tree-plus-sparse-shunts up to a critical threshold of horizontal mixing. Bushwhacker makes that operational limit <strong>directly measurable from lossless bitrates</strong> via its built-in <code>.bwz</code> arithmetic compressor—and cleanly exposes where non-vertical transfer dominates in viruses, plasmids, and prokaryotes (<strong>Figure 5</strong>).
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_science_fig4_viruses_microbes.png"
+                alt="Viral, plasmid, and archaeal HGT applications plus the lossless compression mosaic horizon: Klebsiella 214-kb chromosome vs collapsed 882-bp blaKPC plasmid, 10,062 SARS-CoV-2 .bwz compression vs gzip/xz and crossover to recombinant sarbecoviruses and HIV-1 CRF02_AG, 1,672 archaea operational vs ribosomal HGT, and 32,768-taxon Greengenes 16S scaling.">
+            <div class="figure-caption">
+                <strong>Figure 5. Recombination, plasmid sweeps, archaeal HGT, and the compression horizon separating tree-like from mosaic evolution.</strong>
+                Chromosome vs. <em>blaKPC</em> plasmid evolution in 9 hospital <em>Klebsiella</em> isolates contrasts complete chromosomal resolution (6/6 splits) with near-total plasmid collapse (5/6 polytomy around C814T). On 10,062 SARS-CoV-2 genomes, phylogenetic arithmetic coding (<code>.bwz</code>) compresses sequences to 38.5 bytes/genome (2.06× smaller than <code>xz -6</code> payload), whereas controlled breakpoint titrations and pervasive recombinants (sarbecoviruses, HIV-1 CRF02_AG) invert this ratio below 1.0× as multi-donor substring dictionaries outperform single-tree delta coding. Across 1,672 archaea and 32,768 16S taxa, HGT concentrates in operational enzymes (11.8% vs. 0% ribosomal) while polytomy retention cuts microbiome taxonomic conflicts by 19–24% at 4.5–11.9× FastTreeMP speed.
+            </div>
+        </div>
+
+        <div class="callout-box">
+            <div class="callout-title">Measuring the Mosaic Horizon: Tree-Guided .bwz vs. General xz/lzma</div>
+            <p style="margin-bottom: 0.65rem;">
+                A tree-anchored causal arithmetic coder (<code>.bwz</code>) can predict each taxon from only <strong>one phylogenetic parent</strong> plus residual edits, whereas a general dictionary compressor (<code>xz -6</code>) is free to copy sliding substrings from arbitrary donor genomes simultaneously. Comparing exact compressed payload sizes empirically bounds the domain of validity of tree-centric graphs:
+            </p>
+            <ul style="margin-bottom: 0;">
+                <li><strong>Clonal / low-recombination regime (<code>.bwz</code> wins):</strong> Across <strong>10,062 SARS-CoV-2 genomes</strong> (300,883,986 B raw), 68.3% of splits collapse into 1,426 polytomy hubs (up to 335 descendants). Lossless <code>.bwz</code> stores the sequence payload in <strong>387,697 B (38.5 B/genome)</strong>—<strong>18.89× smaller than <code>gzip -9</code></strong> (7,322,102 B) and <strong>2.06× smaller than <code>xz -6</code></strong> (797,044 B)—with a complete <strong>635,851 B</strong> standalone archive (63.2 B/genome, 1.25× smaller than <code>xz -6</code>). Across 5,498 dengue genomes spanning four serotypes, <code>.bwz</code> packs all sequences into <strong>295,642 B</strong>.</li>
+                <li><strong>Titrated breakpoint crossover:</strong> Injecting controlled recombination breakpoints <em>K</em> = 0 &rarr; 1 &rarr; 8 &rarr; 32 causes the <code>xz -6 / .bwz</code> payload ratio to cross unity cleanly: <strong>1.24× &rarr; 1.26× &rarr; 1.12× &rarr; 0.96×</strong>.</li>
+                <li><strong>Pervasive mosaic regime (<code>xz</code> overtakes <code>.bwz</code>):</strong> In deeply mosaic <strong>bat sarbecoviruses</strong> (<strong>0.71×</strong> payload / <strong>0.68×</strong> archive) and circulating recombinant <strong>HIV-1 CRF02_AG</strong> (<strong>0.65×</strong> payload / <strong>0.63×</strong> archive), single-tree prediction loses to multi-donor sliding compression—providing a completely model-free physical criterion flagging when a dataset has left the tree-plus-sparse-shunts regime.</li>
+            </ul>
+        </div>
+
+        <p>
+            Inside the valid tree-plus-shunt regime, microbial contrasts stay sharp: across nine hospital isolates of drug-resistant <em>Klebsiella pneumoniae</em>, the 214-kb core chromosome resolves all <strong>6 of 6 splits</strong> (<em>P</em><sub>local</sub> = 1.00, 99.5% vertical inheritance), while the 882-bp <em>blaKPC</em> plasmid in those exact cells collapses <strong>5 of 6 splits into polytomy hubs</strong> separated by single clinical allele transitions (C814T between <em>blaKPC-2</em> and <em>blaKPC-3</em>). Across <strong>1,672 archaeal species</strong>, inferred shunts populate metabolic/operational loci (<strong>11.8%</strong>, 12/102 markers, recovering DPANN symbiont–host exchanges) while avoiding core ribosomal and RNAP proteins (<strong>0/20</strong>; Fisher <em>p</em> = 0.21). And at <strong>32,768 taxa</strong> on Greengenes 16S rRNA, Bushwhacker executes in <strong>94.5 s standalone</strong> (4.07 GB RSS) vs. 1,125.3 s for <code>FastTreeMP</code> (<strong>11.9×</strong> standalone / <strong>4.50×</strong> full pipeline speedup) while removing <strong>19–24% of taxonomy-contradicting splits</strong>.
+        </p>
+
+        <h2>Zero-Leakage Somatic Selection Across 1.01 Million Single Cells</h2>
+
+        <p>
+            In rapidly dividing somatic tissues—germinal-center B cells under affinity maturation or leukemia subclones under therapeutic selection—beneficial variants undergo clonal bursts faster than passenger mutations accumulate. In a standard coalescent or strict bifurcation, that starburst gets obscured or fractured by arbitrary zero-length resolutions. Under MDL, the mutant founder remains an explicit unresolved hub whose out-degree <em>k</em> (number of distinct mutated daughter lineages) measures local expansion topology directly from raw genotypes (<strong>Figure 6</strong>).
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bushwhacker_science_fig5_singlecell.png"
+                alt="Blind single-cell somatic evolution results across 1.01 million B cells, AML/myeloid clones, and 4,950 whole-genome CNA profiles: mutant daughter degree k predicting 9.5x B-cell and 6.18x myeloid expansion, continuous antibody affinity gain and 5.6x CDR parallelism, 4.1 ms AML-38-001 parallel IDH1/IDH2 hubs vs 471 s MCMC, and ordered AML driver stratification across 123 patients.">
+            <div class="figure-caption">
+                <strong>Figure 6. Blind compression geometry detects somatic Darwinian selection across 1.01 million immune and tumor single cells.</strong>
+                With all cell multiplicities, equilibrium dissociation constants (<em>K<sub>D</sub></em>), sample compartments, and clinical labels withheld prior to inference (and statistical claims governed by Benjamini–Hochberg FDR across 31 primary tests: 24/31 at <em>q</em> &lt; 0.05; 7/7 null/negative controls <em>q</em><sub>BH</sub> &ge; 0.194), hub degree <em>k</em> &ge; 3 predicts a 9.5× increase in mouse B-cell expansion (<em>p</em> = 5.9 × 10<sup>&minus;6</sup>) and 6.18× larger human myeloid leukemia clones across 1.00M cells (<em>p</em> = 1.7 × 10<sup>&minus;18</sup>), tracks continuous antigen affinity and 5.6× CDR parallelism, reconstructs AML-38-001 parallel <em>IDH1</em>/<em>IDH2</em> hubs in 4.1 ms (vs. 471.4 s MCMC), and stratifies early epigenetic trunks from late signaling hubs (OR = 1.79, <em>p</em> = 1.9 × 10<sup>&minus;3</sup>) across 123 AML patients.
+            </div>
+        </div>
+
+        <p>
+            To preclude circularity, every benchmark enforced strict zero-leakage anonymization (<code>T00000...</code>): cell multiplicities, anatomical origin, treatment stage, and antibody binding affinities were stripped before invoking Bushwhacker and revealed only post-hoc:
+        </p>
+
+        <ul>
+            <li><strong>Mouse germinal-center B cells (147 GCs, 10,429 cells, 29 mice, 9,352 unique genotypes):</strong> Hub genotypes (<em>k</em> &ge; 3) exhibit a <strong>9.5× surge</strong> in withheld clonal fraction (5.1% &rarr; 48.2%, paired Wilcoxon <em>p</em> = 5.9 × 10<sup>&minus;6</sup>) and correlate continuously with improved binding affinity (&Delta;log<sub>10</sub><em>K<sub>D</sub></em>: within-GC <em>p</em> = 1.7 × 10<sup>&minus;3</sup>; within-mouse <em>p</em> = 2.9 × 10<sup>&minus;3</sup>), while recurrent mutations in &ge;5 mice concentrate <strong>5.6× inside antigen-contacting CDR loops</strong> (64.0% vs. 24.1%, <em>p</em> = 7.5 × 10<sup>&minus;5</sup>).</li>
+            <li><strong>Human myeloid/AML single-cell DNA cohorts (168 cohorts, 129 patients, 1.00 million cells; 2.62 s total):</strong> Burst hubs (<em>k</em> &ge; 3) carry <strong>6.18× more cells per clone</strong> (37.7 &rarr; 232.8 cells, <em>p</em> = 1.7 × 10<sup>&minus;18</sup>), while ordered zygosity transitions (<code>--ordered</code>) capture <strong>90.3%</strong> of copy-neutral loss-of-heterozygosity (CN-LOH) events. Across 123 AML patients (0.128 s total), topology predicts clone size (<em>p</em> = 3.0 × 10<sup>&minus;15</sup>), identifies parallel signaling events in 44 patients, and separates early epigenetic trunks from late <em>FLT3/RAS</em> signaling hubs (OR = 1.79, <em>p</em> = 1.9 × 10<sup>&minus;3</sup>).</li>
+            <li><strong>Five-orders-of-magnitude speedup on <code>AML-38-001</code> (7,016 cells):</strong> Bushwhacker resolves the clonal hierarchy in <strong>4.1 ms</strong> (vs. <strong>471.4 s</strong> for Bayesian MCMC COMPASS), placing <em>NPM1</em> on the trunk before parallel <em>IDH1</em> (<em>k</em> = 3, <em>P</em><sub>local</sub> = 0.996) and <em>IDH2</em> (<em>k</em> = 4, <em>P</em><sub>local</sub> = 0.997) hubs leading to downstream <em>FLT3/KRAS/NRAS/PTPN11</em> alleles.</li>
+            <li><strong>Ordered whole-genome single-cell copy number (4,950 DLP+ ovarian &amp; breast cells, 500-kb bins):</strong> Applying <code>--ordered</code> step weights compresses colinear genomes <strong>21.9–33.5× in ~22 s</strong> (<code>OV2295</code> in 20.75 s), contracts <strong>39–53%</strong> of unsupported subclonal splits, and separates primary ovary from ascites metastases at <strong>95.7% purity</strong>.</li>
+        </ul>
+
+        <!-- Interactive Multi-Modal Diagnostic Explorer (Observed Benchmark Metrics Only) -->
+        <div class="bw-widget" aria-label="Interactive Benchmark and Modality Inspector">
+            <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a; margin-bottom: 0.3rem;">
+                Interactive Empirical Inspector: Five Modalities &amp; Non-Tree Regimes
+            </div>
+            <p style="font-size: 0.87rem; color: #475569; margin-bottom: 1rem;">
+                Inspect verified benchmark characteristics, resource usage, and exact Bushwhacker CLI invocations across five distinct data regimes reported in the manuscript.
+            </p>
+            <div class="bw-btn-group" id="bw-mode-buttons">
+                <button class="bw-btn active" data-mode="mammal" type="button">1. Proteins (882 Mammals)</button>
+                <button class="bw-btn" data-mode="genes" type="button">2. Radiations (45,205 Genes)</button>
+                <button class="bw-btn" data-mode="sars" type="button">3. .bwz vs. xz (SARS / HIV)</button>
+                <button class="bw-btn" data-mode="snv" type="button">4. Somatic SNVs (AML-38-001)</button>
+                <button class="bw-btn" data-mode="cna" type="button">5. Ordered CNAs (4,950 Cells)</button>
+            </div>
+            <div class="bw-visual-strip" id="bw-display-panel"></div>
+        </div>
+
+        <h2>Open-Source Engine, WebAssembly Workbench, and Exact Replication</h2>
+
+        <p>
+            <strong>Bushwhacker</strong> is released under the MIT License in deterministic multi-threaded Rust (with bit-identical output across <code>-T 1..64</code> and compiled directly to client-side SIMD/WebAssembly at <a href="https://veg.github.io/bushwhacker/" target="_blank" rel="noopener"><code>veg.github.io/bushwhacker/</code></a>). Co-authored with Sergei L. Kosakovsky Pond, Darren P. Martin, Steven Weaver, Danielle Callan, Stephanie J. K. Pond, and Anton Nekrutenko, every source file, benchmark alignment, SHA-256 manifest, and 37,020-replicate ground-truth simulation suite is archived:
+        </p>
+
+<pre># 1. Coding DNA phylogeny + lateral shunts + calibrated P_local (JSON ledger)
+bushwhacker alignment.fasta -n tree.nwk -j ledger.json
+
+# 2. Deep protein phylogenies with LG08+CAT8 rate variation (deterministic across threads)
+bushwhacker proteome.fasta --protein -T 16 -n tree.nwk -j ledger.json
+
+# 3. Single-cell somatic SNVs with allelic dropout (?/-) vs. ordered CNA steps (0..11+)
+bushwhacker aml_snvs.fasta --discrete -j clones.json
+bushwhacker dlp_cna.fasta  --ordered  -j cna_tree.json
+
+# 4. Bit-exact lossless phylogenetic compression (.bwz) &amp; decompression
+bushwhacker sars2_10062.fasta -c sars2_10062.bwz
+bushwhacker sars2_10062.bwz   -d restored_sars2_10062.fasta</pre>
+
+        <ul>
+            <li><strong>Preprint &amp; Supplementary Materials:</strong> <a href="https://doi.org/10.5281/zenodo.24222787" target="_blank" rel="noopener"><code>doi:10.5281/zenodo.24222787</code></a></li>
+            <li><strong>Full Replication Archive (Code, Data &amp; SHA-256 Manifests):</strong> <a href="https://doi.org/10.5281/zenodo.24222789" target="_blank" rel="noopener"><code>doi:10.5281/zenodo.24222789</code></a></li>
+            <li><strong>Source Code &amp; Documentation:</strong> <a href="https://github.com/veg/bushwhacker" target="_blank" rel="noopener"><code>github.com/veg/bushwhacker</code></a></li>
+            <li><strong>Exact Combinadic Mathematics Walkthrough:</strong> <a href="2026-11-05-bushwhacker-mdl.html"><em>Evolution as Data Compression: 4&times;16 Worked Example</em></a></li>
+        </ul>
+
+    </main>
+
+    <footer class="blog-footer">
+        <div class="container-narrow">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <strong>Sergei L. Kosakovsky Pond</strong><br>
+                    Institute for Genomics and Evolutionary Medicine (iGEM), Temple University
+                </div>
+                <div>
+                    <a href="../index.html" class="back-link">← Return to CV.js</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const MODES = {
+                mammal: {
+                    title: "Protein Supermatrices & Proteome Atlas (882 Mammals / 19,953 Proteins)",
+                    pill: "--protein (LG08+CAT8)",
+                    cli: "bushwhacker mammals_882_aa.fasta --protein -T 32 -n mammals.nwk -j atlas.json",
+                    bars: [
+                        { label: "Peak Memory Reduction", pct: 97.5, color: "#1e40af", val: "1.98 GB vs. 79.2 GB IQ-TREE 2 (40x)" },
+                        { label: "Mammalian False Splits", pct: 48, color: "#047857", val: "4.2% vs. 8.4% IQ-TREE 2 (50% fewer)" },
+                        { label: "Cochlear Sonar Enrichment", pct: 90, color: "#b45309", val: "50.0% SPARSE links (3.0x, p=0.0011)" },
+                        { label: "Cross-Order SPARSE vs INT.", pct: 76, color: "#7c3aed", val: "38.0% cross-order (3.26x vs. INTERVAL)" }
+                    ],
+                    note: "64-site L1/L2 cache tiles complete 882-mammal, 1,672-archaea, and 1,000-bacteria supermatrices in 24–66 s under 2.8 GB RAM (24–54x faster than IQ-TREE 2; 142–288x faster than FastTreeMP)."
+                },
+                genes: {
+                    title: "Gene-Tree Polytomies & Deep Saturation (45,205 Eukaryotic Loci)",
+                    pill: "DNA+CAT8 / --translate",
+                    cli: "bushwhacker locus.fasta --translate -j locus_ledger.json",
+                    bars: [
+                        { label: "Model-Flip Artifacts Removed", pct: 96.4, color: "#1e40af", val: "96.4% eliminated (7,200 genes)" },
+                        { label: "Seed-Flip Artifacts Removed", pct: 94.5, color: "#0369a1", val: "94.5% eliminated (83,180 ML trees)" },
+                        { label: "Plant Saturation Cut (--translate)", pct: 88.3, color: "#b45309", val: "88.3% fewer links (60 -> 7)" },
+                        { label: "Early Animal Conflict Removed", pct: 82.5, color: "#047857", val: "82.5% (61.5% across 19 radiations)" }
+                    ],
+                    note: "Withholding splits with delta-L <= 0 eliminates random optimization artifacts on flat likelihood surfaces while preserving 77.2% of shared clades and boosting ASTRAL-IV species-tree accuracy."
+                },
+                sars: {
+                    title: "Graph vs. Mosaic Horizon (.bwz Arithmetic Codec vs. xz -6)",
+                    pill: "Tree-Guided .bwz Horizon",
+                    cli: "bushwhacker sars2_10062.fasta -c sars2_10062.bwz",
+                    bars: [
+                        { label: "SARS-CoV-2 vs. gzip -9 (Arch)", pct: 94, color: "#047857", val: "635,851 B vs. 7.32 MB (11.5x)" },
+                        { label: "SARS-CoV-2 vs. xz -6 (Payload)", pct: 85, color: "#1e40af", val: "38.5 B/g (2.06x smaller than xz -6)" },
+                        { label: "Titrated K=32 Breakpoints", pct: 48, color: "#b45309", val: "0.96x payload ratio (horizon crossed)" },
+                        { label: "Sarbeco_83 / HIV1_CRF02_AG", pct: 33, color: "#b91c1c", val: "0.71x / 0.65x (xz wins in mosaics)" }
+                    ],
+                    note: "Comparing single-parent .bwz coding against multi-donor LZMA (xz -6) provides a model-free physical criterion flagging where ancestry transitions from tree-plus-sparse-shunts to pervasive mosaicism."
+                },
+                snv: {
+                    title: "Zero-Leakage Somatic SNVs With Allelic Dropout (1.01M Single Cells)",
+                    pill: "--discrete (K<=32 + '?/-')",
+                    cli: "bushwhacker aml_38_001.fasta --discrete -j clones.json",
+                    bars: [
+                        { label: "Dropout SNV Benchmark Acc.", pct: 86.1, color: "#1e40af", val: "86.1% vs. ~53% standard binary ML" },
+                        { label: "B-Cell Hub Clonal Expansion", pct: 95, color: "#047857", val: "9.5x larger (p = 5.9e-6, blind)" },
+                        { label: "Myeloid Hub Clonal Expansion", pct: 90, color: "#0369a1", val: "6.18x larger across 1.00M cells" },
+                        { label: "AML-38-001 (7,016 cells) Time", pct: 99, color: "#b45309", val: "4.1 ms vs. 471.4 s COMPASS MCMC" }
+                    ],
+                    note: "On AML-38-001 (0.0041 s), coding missing values ('?/-') without fictitious mutational cost untangles an NPM1 trunk feeding parallel IDH1 (k=3, P=0.996) and IDH2 (k=4, P=0.997) hubs."
+                },
+                cna: {
+                    title: "Ordered Step-Weighted Zygosity & 500-kb CNA Profiles (4,950 Cells)",
+                    pill: "--ordered (states 0..11+)",
+                    cli: "bushwhacker ovarian_cna_500kb.fasta --ordered -j cna.json",
+                    bars: [
+                        { label: "Simulated CNA Step F1 Score", pct: 93.7, color: "#1e40af", val: "F1 = 93.7% across ordered steps" },
+                        { label: "Primary vs. Ascites Purity", pct: 95.7, color: "#047857", val: "95.7% anatomical clade purity" },
+                        { label: "Myeloid CN-LOH Capture", pct: 90.3, color: "#0369a1", val: "90.3% zygosity step transitions (2.62 s)" },
+                        { label: "Unsupported Split Contraction", pct: 53, color: "#b45309", val: "39–53% contracted; 21.9–33.5x comp." }
+                    ],
+                    note: "Ordered L1 mutational coding turns 500-kb whole-genome CNA bins across 4,950 DLP+ ovarian and breast cells into compressed clonal lineages in ~22 s without domain-specific segmentation heuristics."
+                }
+            };
+
+            const btnGroup = document.getElementById("bw-mode-buttons");
+            const panel = document.getElementById("bw-display-panel");
+            if (!btnGroup || !panel) return;
+
+            function renderMode(key) {
+                const m = MODES[key] || MODES.mammal;
+                let barsHtml = "";
+                for (let i = 0; i < m.bars.length; i++) {
+                    const b = m.bars[i];
+                    barsHtml +=
+                        '<div class="bw-bar-row">' +
+                        '<div class="bw-bar-label">' + b.label + '</div>' +
+                        '<div class="bw-bar-track"><div class="bw-bar-fill" style="width:' + b.pct + '%;background:' + b.color + ';"></div></div>' +
+                        '<div class="bw-bar-val">' + b.val + '</div>' +
+                        '</div>';
+                }
+                panel.innerHTML =
+                    '<div class="bw-strip-header">' +
+                    '<div class="bw-strip-title">' + m.title + '</div>' +
+                    '<div class="bw-strip-pill">' + m.pill + '</div>' +
+                    '</div>' +
+                    barsHtml +
+                    '<div style="margin-top:10px;padding:8px 10px;background:#0f172a;color:#e2e8f0;border-radius:6px;font-family:\'JetBrains Mono\',monospace;font-size:0.75rem;overflow-x:auto;">$ ' + m.cli + '</div>' +
+                    '<p style="margin:9px 0 0 0;font-size:0.84rem;color:#334155;line-height:1.48;">' + m.note + '</p>';
+            }
+
+            btnGroup.addEventListener("click", function (ev) {
+                const btn = ev.target.closest("button[data-mode]");
+                if (!btn) return;
+                const allBtns = btnGroup.querySelectorAll("button[data-mode]");
+                for (let i = 0; i < allBtns.length; i++) {
+                    allBtns[i].classList.remove("active");
+                }
+                btn.classList.add("active");
+                renderMode(btn.getAttribute("data-mode"));
+            });
+
+            renderMode("mammal");
+        })();
+    </script>
+
+</body>
+
+</html>

@@ -1356,6 +1356,26 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-11-14",
+                {
+                    "url": "blog/2026-11-14-bushwhacker-science.html",
+                    "link-text": "Evolutionary history from genomes to single cells by lossless compression (Bushwhacker)",
+                    "subtext": "Technical overview of our new manuscript: recasting phylogenetic reconstruction as a single Minimum Description Length (MDL) objective across five data modalities (codon-phased DNA, LG08+CAT8 proteins, 64-codon translation, unordered discrete single-cell SNVs with ?/- allelic dropout, and ordered step-weighted zygosity/CNA states). Finishes 882-mammal, 1,672-archaea, and 1,000-bacteria supermatrices in 24–66 s inside 1.98–2.71 GB RAM (24–54× faster and 10–40× leaner than IQ-TREE 2) with zero-bootstrap calibrated P_local support (98.3% true splits at >=99%), eliminates 61.5% of apparent gene-tree conflicts across 45,205 loci, separates INTERVAL paralog conversion from SPARSE cochlear convergence across 19,953 mammal proteins, empirically bounds non-tree mosaicism via .bwz vs. xz bitrates (635,851 B for 10,062 SARS-CoV-2 vs. xz advantage in HIV-1 CRF02_AG), and detects Darwinian selection blind across 1.01 million immune and AML cells."
+                },
+                {
+                    "url": "https://veg.github.io/bushwhacker/",
+                    "link-text": "Live Bushwhacker Web App"
+                },
+                {
+                    "url": "https://github.com/veg/bushwhacker",
+                    "link-text": "GitHub: veg/bushwhacker"
+                },
+                {
+                    "url": "https://doi.org/10.5281/zenodo.24222787",
+                    "link-text": "Preprint: 10.5281/zenodo.24222787"
+                }
+            ],
+            [
                 "2026-11-11",
                 {
                     "url": "blog/2026-11-11-walrus-hyphy3.html",
