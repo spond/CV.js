@@ -1356,6 +1356,26 @@
         "subtext": "Plain-English explainers on molecular evolution methods and software",
         "rows": [
             [
+                "2026-11-16",
+                {
+                    "url": "blog/2026-11-16-bovine-h5n1-minor-variants.html",
+                    "link-text": "What consensus genomes miss in dairy cattle H5N1: dead ends, early warnings, and where the Fall 2026 virus is actually mutating",
+                    "subtext": "Plain-English tour of what reading below the ≥75% consensus cutoff across 5,459 public U.S. H5N1 runs and 43 deep-sequenced Oct–Nov 2026 samples reveals: (1) 12.5% (677/5,436) of recent runs carry two viral strains at once (637 in dairy cattle, up from 3.9% in late 2024) alongside shared herd variants like Idaho PA:D216G (14%→29%) and 71 rescue-primer mirages; (2) 75.5% of protein-changing sites inside cows are one-off copy errors and 98.8% (1,714/1,735) of rare minor variants die out at tight cow-to-cow bottlenecks before reaching 1%; (3) the rare mutations that do take over appeared in raw reads 53–805 days ahead of 10% consensus dominance in 11 of 13 cattle sweeps (and up to 557 days before the very first consensus genome); and (4) all 27 statistically selected positions sit in internal genes led by M2 and polymerase/NS hubs across Washington (M2:S82N, M2:V27A), UW-110701 (M2:A29S, NS1:F22L), Idaho (PA:D216G), and Texas (M2:S31N, L46H) while human-receptor sites HA:Q226 and G228 remain ≥99.96% avian."
+                },
+                {
+                    "url": "blog/h5n1-mutation-studio/index.html",
+                    "link-text": "AEON-MUTATE: H5N1 Mutation & Mixture Studio"
+                },
+                {
+                    "url": "blog/2026-11-06-h5n1-nov06-sra.html",
+                    "link-text": "Companion: Nov 6 USDA Herd Report"
+                },
+                {
+                    "url": "https://github.com/veg/HyphAeon",
+                    "link-text": "GitHub: veg/HyphAeon"
+                }
+            ],
+            [
                 "2026-11-14",
                 {
                     "url": "blog/2026-11-14-bushwhacker-science.html",

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Consensus Genomes Miss in Dairy Cattle H5N1 | Sergei L. Kosakovsky Pond</title>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sergeilkp">
+    <meta name="twitter:creator" content="@sergeilkp">
+    <meta name="twitter:title" content="What Consensus Genomes Miss in Dairy Cattle H5N1: Dead Ends, Early Warnings, and Where the Fall 2026 Virus Is Mutating">
+    <meta name="twitter:url" content="https://spond.github.io/CV.js/blog/2026-11-16-bovine-h5n1-minor-variants.html">
+    <meta name="twitter:description" content="Reading the full mix of raw sequencing reads across 5,459 U.S. H5N1 runs and 43 Oct–Nov 2026 samples reveals 1 in 8 co-infections, 98.8% bottleneck dead ends, 2–26 month early warnings before sweeps, and internal M2/polymerase hotspots while avian HA switches stay quiet.">
+    <meta name="twitter:image" content="https://spond.github.io/CV.js/blog/images/bovine_isnv_fig3_sweep_lead_times.png">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="What Consensus Genomes Miss in Dairy Cattle H5N1: Dead Ends, Early Warnings, and Where the Fall 2026 Virus Is Mutating">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://spond.github.io/CV.js/blog/2026-11-16-bovine-h5n1-minor-variants.html">
+    <meta property="og:image" content="https://spond.github.io/CV.js/blog/images/bovine_isnv_fig3_sweep_lead_times.png">
+    <meta property="og:description" content="Plain-English look inside raw milk and clinical H5N1 sequencing reads: hidden co-infections, evolutionary dead ends vs. months-early sweep warnings, and where Fall 2026 variation sits.">
+    <meta property="og:site_name" content="Sergei L. Kosakovsky Pond">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --accent-amber: #d97706;
+            --text-dark: #111827;
+            --text-muted: #4b5563;
+            --bg-light: #f9fafb;
+            --border-gray: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.72;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header.blog-header {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            background: var(--bg-light);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        h1.post-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.85rem;
+            line-height: 1.12;
+            font-weight: 400;
+            margin-bottom: 1.4rem;
+            color: #000;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.25rem;
+            line-height: 1.64;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.55rem;
+            margin-top: 3rem;
+            margin-bottom: 1.1rem;
+            letter-spacing: -0.025em;
+            color: #000;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 0.45rem;
+        }
+
+        p {
+            margin-bottom: 1.3rem;
+            font-size: 1.04rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.35rem;
+            padding-left: 1.35rem;
+        }
+
+        li {
+            margin-bottom: 0.55rem;
+            font-size: 1.02rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.87em;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #991b1b;
+        }
+
+        .callout-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.3rem 1.4rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.45rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .figure-container {
+            margin: 2.25rem -36px;
+            text-align: center;
+            background: #fff;
+            padding: 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 860px) {
+            .figure-container {
+                margin: 2rem 0;
+            }
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .figure-caption {
+            margin-top: 0.9rem;
+            font-size: 0.89rem;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 0 0.5rem;
+            line-height: 1.55;
+        }
+
+        table.blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.75rem 0;
+            font-size: 0.89rem;
+        }
+
+        table.blog-table th {
+            background: var(--bg-light);
+            border-bottom: 2px solid var(--border-gray);
+            padding: 9px 10px;
+            text-align: left;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        table.blog-table td {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+
+        .bw-widget {
+            background: #f8fafc;
+            border: 2px solid #0f172a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2.25rem 0;
+            box-shadow: 5px 5px 0px #0f172a;
+        }
+
+        .bw-btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.15rem;
+        }
+
+        .bw-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 7px 12px;
+            border-radius: 6px;
+            border: 1.5px solid #0f172a;
+            background: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .bw-btn.active {
+            background: #1e40af;
+            color: #ffffff;
+            border-color: #1e40af;
+        }
+
+        .bw-visual-strip {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 15px 17px;
+        }
+
+        .bw-strip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .bw-strip-title {
+            font-weight: 800;
+            font-size: 0.98rem;
+            color: #0f172a;
+        }
+
+        .bw-strip-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            padding: 2px 10px;
+            border-radius: 999px;
+        }
+
+        .bw-mut-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 7px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .bw-mut-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+            border: 2px solid #1e40af;
+            border-radius: 12px;
+            padding: 1.35rem 1.55rem;
+            margin: 2.25rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 4px 4px 0px #1e40af;
+        }
+
+        .cta-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: #1e40af;
+            color: #ffffff !important;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none !important;
+            display: inline-block;
+            transition: transform 0.12s ease, background 0.12s ease;
+        }
+
+        .cta-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+
+        footer.blog-footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-gray);
+            background: var(--bg-light);
+            color: var(--text-muted);
+            font-size: 0.94rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="blog-header">
+        <div class="container-narrow header-nav">
+            <a href="../index.html" class="back-link">← Back to CV &amp; Research</a>
+            <div>
+                <span class="text-muted">November 16, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-narrow">
+        <div class="post-meta">Plain-English Genomic Surveillance • Bovine H5N1 • Minor Variants (iSNVs) • 6 Min Read</div>
+        <h1 class="post-title">What Consensus Genomes Miss in Dairy Cattle H5N1: Dead Ends, Early Warnings, and Where the Fall 2026 Virus Is Mutating</h1>
+
+        <p class="lead">
+            Whenever diagnostic labs sequence H5N1 bird flu from cow milk, bulk dairy tanks, or infected farm workers, standard surveillance pipelines boil millions of raw sequencing reads down to a single <strong>consensus genome</strong>—keeping whichever genetic letter exceeds roughly 75% at each position and throwing the rest away. What happens if we stop throwing those sub-consensus minor variants (<em>iSNVs</em>) away? Reading the full mix of viruses inside <strong>5,459 public U.S. H5N1 runs (2024–2026)</strong> and <strong>43 deep-sequenced October–November 2026 samples</strong> reveals what consensus trees never see: 1 in 8 recent samples holds two viral strains at once, nearly 99% of minor variants are evolutionary dead ends wiped out between cows, the rare changes that <em>do</em> sweep show up months to over two years ahead of consensus takeover, and nearly all adaptive pressure is concentrated inside internal viral proteins rather than surface spikes.
+        </p>
+
+        <div class="cta-banner" style="margin: 0 0 2.15rem 0;">
+            <div style="max-width: 450px;">
+                <div style="font-weight: 800; font-size: 1.04rem; color: #0f172a; margin-bottom: 0.25rem;">
+                    Companion Bovine H5N1 Herd Reports &amp; Interactive Maps
+                </div>
+                <div style="font-size: 0.89rem; color: #334155; line-height: 1.5;">
+                    This note looks below the consensus surface of <a href="2026-11-06-h5n1-nov06-sra.html">our November 6 USDA herd dispatch</a>. You can browse all 42 fall cow herds, human spillover cases, and minor mutations in our interactive studio.
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <a href="h5n1-mutation-studio/index.html" class="cta-btn">Open H5N1 Studio →</a>
+                <a href="2026-11-06-h5n1-nov06-sra.html" class="cta-btn" style="background: #ffffff; color: #1e40af !important; border: 1.5px solid #1e40af;">Nov 6 Herd Report →</a>
+            </div>
+        </div>
+
+        <!-- 60-Second Plain-English Summary Grid -->
+        <div style="background: #f8fafc; border: 2px solid #0f172a; border-radius: 12px; padding: 1.65rem; margin-bottom: 2.5rem; box-shadow: 6px 6px 0px #0f172a;">
+            <div style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; margin-bottom: 1.15rem; font-size: 0.84rem; display: flex; align-items: center; gap: 8px;">
+                <span style="background: #0f172a; color: #fff; padding: 3px 8px; border-radius: 4px;">The 60-Second Digest</span>
+                <span>Four Things Minor Variants Reveal That Consensus Sequences Hide</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.1rem;">
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #1e40af; font-size: 1.04rem; margin-bottom: 0.25rem;">1. Hidden Mixtures &amp; Herd Links</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">1 in 8 Recent Runs Mixes Two Strains</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">By November 2026, <strong>12.5% (677 / 5,436)</strong> of U.S. H5N1 runs carried two distinct strains at once—<strong>637 of them in dairy cattle</strong>, up from 3.9% in late 2024. Below the surface, cows with identical consensus genomes can also share growing minority mutations (like <code>PA:D216G</code> rising from 14% to 29% across Idaho herds).</p>
+                </div>
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #ea580c; font-size: 1.04rem; margin-bottom: 0.25rem;">2. Almost All Are Dead Ends</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">98.8% Vanish Before Reaching 1%</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">Most minor variation inside an infected cow is harmless or transient copy noise (<strong>75.5%</strong> of protein-changing sites in Fall 2026 are one-offs), plus backup primer artifacts. Across <strong>1,735</strong> rare protein variants tracked forward, tight bottlenecks wiped out <strong>98.8%</strong> before reaching even 1% prevalence.</p>
+                </div>
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #047857; font-size: 1.04rem; margin-bottom: 0.25rem;">3. Months-to-Years Early Warning</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">11 of 13 Sweeps Spotted 53–805 Days Early</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">Among the mutations that eventually swept U.S. dairy cattle, <strong>11 of 13</strong> observable sweeps first showed up in raw minor reads <strong>53 to 805 days</strong> before reaching 10% consensus dominance—and <strong>7 of 13</strong> appeared up to <strong>557 days before the very first consensus genome</strong> ever carried them.</p>
+                </div>
+                <div style="background: #fff; padding: 1.05rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <div style="font-weight: 800; color: #b91c1c; font-size: 1.04rem; margin-bottom: 0.25rem;">4. Internal Genes, Not Human HA</div>
+                    <div style="font-weight: 700; font-size: 0.89rem; color: #0f172a; margin-bottom: 0.35rem;">M2 &amp; Polymerase Active; HA Switches Quiet</div>
+                    <p style="font-size: 0.85rem; color: #334155; margin: 0; line-height: 1.48;">All <strong>27</strong> genome positions showing sustained sub-consensus selection across 5,459 runs sit in internal viral proteins—led by the <code>M2</code> ion channel (10 sites) and polymerase/NS genes—while human-receptor switches <code>HA:Q226</code> and <code>G228</code> remain <strong>&ge;&nbsp;99.96% avian</strong> with zero alerts.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>1. What raw milk reads reveal that consensus genomes erase</h2>
+
+        <p>
+            To study viral evolution inside infected hosts without losing phylogenetic context, we used our framework <strong>&mu;-HyphAeon</strong>—an extension of our <code>HyphAeon</code> evolutionary model that reads the full mixture of sequencing reads at every codon directly on the viral family tree rather than forcing each specimen down to a single consensus letter. Looking directly at raw reads across <strong>5,459 public U.S. H5N1 runs</strong> and <strong>43 deeply sequenced October–November 2026 samples</strong> (42 USDA dairy cattle milk submissions plus hospitalized Washington human patient <code>UW-110701</code>) surfaces three biological and practical realities immediately (<strong>Figure 1A</strong>):
+        </p>
+
+        <ul>
+            <li><strong>Two viral strains sharing one cow or milk tank:</strong> When a sample carries two distinct lineages at roughly 60% and 40%, a majority consensus caller stitches parts of Strain A and parts of Strain B into a chimeric genome that never actually existed in nature. Across public U.S. H5N1 sequences, genuine multi-strain co-infections climbed steadily from <strong>3.9% (53 of 1,369 runs) in October 2024</strong> to <strong>12.5% (677 of 5,436 runs) by November 2026</strong>—with <strong>637 of those 677 co-infections occurring in dairy cattle</strong> as outbreaks overlapped across farms and states (<strong>Figure 1B</strong>). Notably, in our clean Fall 2026 set of 43 alignments, all 11 individual cow milk samples had only trace (&le;&nbsp;3.3%) background variation, showing that individual acute milk infections usually carry one dominant virus even when regional bulk tanks mix multiple herds.</li>
+            <li><strong>Hidden epidemiological links between "identical" cows:</strong> Consensus genomes from three Fall 2026 Idaho cows (<code>26G14109-001</code>, <code>26G14109-002</code>, and November 6 cow <code>26G14741-001</code>) look identical. Yet inside their raw reads, all three share a rising minority polymerase mutation, <strong><code>PA:D216G</code></strong>, stepping cleanly from <strong>14% &rarr; 22% &rarr; 29%</strong> on top of an already mammalian-adapted <code>PB2:T271A + D678G</code> backbone—capturing active within-herd and between-herd evolution in motion before consensus changes lock in.</li>
+            <li><strong>Laboratory artifacts and broken defective viruses hiding alongside real variants:</strong> Deep milk sequencing also picks up broken viral fragments—defective viral genomes (DVGs) carrying premature stop codons such as neuraminidase <code>NA:136*</code> (4.3% in bulk milk <code>SRR41439169</code>) and polymerase <code>PB1:428*</code> (3.4% in <code>SRR41562245</code>). Even more misleading, backup "rescue-primer" kits (labeled <code>-original-tile</code>) designed from 2024 sequences stamp recurrent primer mismatches into weak-RNA Fall 2026 runs, creating <strong>71 artifactual minor-variant positions</strong>—plus sneaky mixed cases like matrix <code>M1:S207N</code>, whose signal collapses by <strong>99.8%</strong> once rescue-primer runs are held out. Checking read chemistry prevents mistaking lab primers for convergent cow evolution.</li>
+        </ul>
+
+        <div class="figure-container">
+            <img src="images/bovine_isnv_fig1_consensus_blindspot.png"
+                alt="Figure 1: Three hidden signals below the 75% consensus cutoff (two-strain co-infections, shared Idaho PA:D216G minor variants, and 2024 rescue-primer artifacts) alongside the rise of genuine two-strain co-infections from 3.9% in Oct 2024 to 12.5% (677/5,436 runs; 637 in dairy cattle) by Nov 2026.">
+            <div class="figure-caption">
+                <strong>Figure 1. What standard consensus genomes miss inside raw bovine H5N1 sequencing reads.</strong>
+                <strong>(A)</strong> Three distinct phenomena coexist below the &ge;&nbsp;75% consensus threshold: multi-strain mixtures that create chimeric consensus calls, authentic shared minority variants linking cows across herds (such as Idaho <code>PA:D216G</code>), and technical mirages from 2024 rescue primers (<code>-original-tile</code>) that vanish when audited.
+                <strong>(B)</strong> Tracking strictly by public release date across 5,436 U.S. H5N1 runs shows multi-strain co-infections rising from 3.9% in late 2024 to <strong>12.5% (677 runs)</strong> by November 2026, overwhelmingly in dairy cattle (637 of 677).
+            </div>
+        </div>
+
+        <h2>2. Why nearly 99% of minor variants are dead ends</h2>
+
+        <p>
+            It is tempting to look at a table of 200+ minority amino-acid mutations inside dairy cattle and worry that the virus is furiously exploring hundreds of adaptive escapes at once. The actual numbers tell a far more reassuring—and population-genetically grounded—story (<strong>Figure 2</strong>).
+        </p>
+
+        <p>
+            Inside the 43 Fall 2026 dairy cow and human spillover samples (covering 4,467 protein-coding positions), only 483 codons showed any minor variation at all once reads were filtered. Over half of those (<strong>283 sites</strong>) were strictly <strong>silent DNA changes</strong> that leave the viral protein completely unchanged. Of the remaining <strong>200 positions that actually altered an amino acid</strong>, <strong>151 (75.5%)</strong> were one-off random copying errors appearing in a single animal and going nowhere when evaluated against millions of background influenza sequences on the tree (<strong>Figure 2A</strong>).
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bovine_isnv_fig2_dead_ends_funnel.png"
+                alt="Figure 2: Funnel showing that 75.5% of amino-acid-changing sites inside Fall 2026 cows (151/200) are one-off copy errors (alongside 71 rescue-primer artifacts and 283 silent DNA changes), and across 1,735 unique rare minor amino-acid mutations tracked from 2024 to 2026, 98.8% (1,714) vanish at transmission bottlenecks while only 21 (1.2%) reach 1% consensus and 12 (0.7%) reach 5%.">
+            <div class="figure-caption">
+                <strong>Figure 2. Most within-host minor variants are transient copying noise or get extinguished between cows.</strong>
+                <strong>(A)</strong> Across 4,467 codons in the 43 Fall 2026 runs, 283 varying sites are silent DNA changes, 151 (75.5% of protein-changing sites) are one-off singleton errors, 71 trace solely to backup <code>-original-tile</code> primers, and only 3 codons pass strict multi-sample statistical selection (all in <code>M2</code>, with <code>M2:S31N</code> right at the boundary).
+                <strong>(B)</strong> Following all <strong>1,735 unique rare amino-acid minor mutations</strong> forward across 5,459 U.S. runs from 2024 to 2026 shows that tight cow-to-cow transmission bottlenecks eliminate <strong>98.8% (1,714 variants)</strong> before they ever appear in 1% of later cattle consensus genomes. Only 12 ever crossed 5%.
+            </div>
+        </div>
+
+        <p>
+            Even more striking is what happens <em>between</em> animals. In our earlier <a href="2026-11-06-h5n1-nov06-sra.html">November 6 outbreak analysis</a>, we found that each Washington herd jump passed through a tight founding bottleneck of just 1 to 3 cows. When a cow sheds millions of virions, only a tiny lucky sample starts the next infection—meaning almost every minor variant inside one animal is simply left behind at transmission. Tracking all <strong>1,735 distinct rare amino-acid minor variants</strong> forward across public U.S. sequencing runs from 2024 through November 2026 proved that empirically (<strong>Figure 2B</strong>): <strong>1,714 of 1,735 (98.8%) never reached even 1% of consensus genomes</strong>. Only <strong>21 variants (1.2%)</strong> ever crossed 1%, and just <strong>12 (0.7%)</strong> ever crossed 5%. Finding a rare minor mutation inside one cow does <em>not</em> mean it is about to take over the country.
+        </p>
+
+        <h2>3. Yet the mutations that <em>do</em> take over show up months to two years early</h2>
+
+        <p>
+            If 98.8% of minor variants die out, why bother looking below the consensus threshold? Because when a mutation <em>does</em> win and sweep across cattle herds, it does not teleport into consensus sequences overnight—it replicates inside individual cows first.
+        </p>
+
+        <p>
+            To test this honestly without peeking into the future, we ordered every single U.S. run in <code>PRJNA1102327</code> strictly by the date its raw sequencing reads were <strong>publicly posted to NCBI</strong> (not retrospective sample collection dates), and examined all <strong>15 mutations that eventually swept to &ge;&nbsp;10% prevalence</strong> across dairy cattle consensus genomes. Two sweeping mutations (<code>NS1:E70A</code> and early-fixed <code>PB2:T271A</code>) left no prior sub-consensus trace before appearing in consensus. Across the remaining <strong>13 sweeps</strong>, raw minor-variant reads gave striking advance notice (<strong>Figure 3</strong> and <strong>Table 1</strong>):
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bovine_isnv_fig3_sweep_lead_times.png"
+                alt="Figure 3: Release-date timeline across all 13 U.S. dairy cattle consensus sweeps with detectable pre-sweep minor variation, showing first minor read (blue circles), first consensus genome (grey triangles), and 10% consensus sweep date (orange squares). 11 of 13 appeared +53 to +805 days early in minor reads, and 7 of 13 appeared before the very first consensus genome.">
+            <div class="figure-caption">
+                <strong>Figure 3. Early warning before mutations sweep U.S. dairy cattle consensus genomes.</strong>
+                Timeline ordered by advance lead time strictly using public NCBI release dates across all 13 cattle sweeps (&ge;&nbsp;10% rolling consensus prevalence) that carried pre-sweep minor reads. In <strong>11 of 13 sweeps (85%)</strong>, raw reads revealed the mutation <strong>53 to 805 days ahead</strong> of 10% consensus dominance—and in <strong>7 of 13 (54%)</strong>, minor reads appeared <strong>24 to 556 days before even a single consensus genome</strong> carried the change.
+            </div>
+        </div>
+
+        <ul>
+            <li><strong>11 of 13 sweeps (85%) spotted 2 to 26 months before dominance:</strong> Minor reads carrying polymerase mutation <code>PB2:K660R</code> appeared <strong>805 days early</strong> (August 2024 raw reads vs. late-2026 sweep), neuraminidase <code>NA:N434S</code> appeared <strong>746 days early</strong>, hemagglutinin <code>HA:S233P</code> appeared <strong>707 days early</strong>, and polymerase <code>PA:I219T</code> appeared <strong>602 days early</strong>.</li>
+            <li><strong>7 of 13 appeared before <em>any</em> consensus genome in the country had them:</strong> For example, ion-channel change <strong><code>M2:G58D</code></strong> showed up at 3.6% inside raw cattle reads in December 2024—<strong>557 days (~18 months) before the first consensus genome</strong> ever fixed it in mid-2026. Similarly, <strong><code>NA:K432E</code></strong> (the hallmark neuraminidase mutation later carried into Washington herds) appeared at 9.0% in raw reads in June 2025, <strong>329 days (~11 months) ahead of its first consensus genome</strong>, and <strong><code>PA:I219T</code></strong> appeared <strong>272 days (~9 months) before</strong> its first consensus genome.</li>
+        </ul>
+
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th>Sweeping Mutation</th>
+                    <th>1st Raw Minor Read (Freq)</th>
+                    <th>1st Consensus Genome</th>
+                    <th>Reached 10% Cattle Sweep</th>
+                    <th>Early Warning Gained</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong><code>PB2:K660R</code></strong></td>
+                    <td>Aug 2024 (18.9%)</td>
+                    <td>Aug 2024</td>
+                    <td>Oct 2026</td>
+                    <td><strong>+805 days</strong> (+24 d before 1st consensus)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>HA:S233P</code></strong></td>
+                    <td>Jun 2024 (4.1%)</td>
+                    <td>Dec 2024</td>
+                    <td>May 2026</td>
+                    <td><strong>+707 days</strong> (+193 d before 1st consensus)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>PA:I219T</code></strong></td>
+                    <td>Sep 2024 (3.4%)</td>
+                    <td>Jun 2025</td>
+                    <td>May 2026</td>
+                    <td><strong>+602 days</strong> (+272 d before 1st consensus)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>M2:G58D</code></strong></td>
+                    <td>Dec 2024 (3.6%)</td>
+                    <td>Jun 2026</td>
+                    <td>Jul 2026</td>
+                    <td><strong>+581 days</strong> (+557 d before 1st consensus)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>NA:K432E</code></strong></td>
+                    <td>Jun 2025 (9.0%)</td>
+                    <td>May 2026</td>
+                    <td>May 2026</td>
+                    <td><strong>+329 days</strong> (+329 d before 1st consensus)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>HA:V147M</code></strong></td>
+                    <td>Jun 2024 (12.1%)</td>
+                    <td>May 2024</td>
+                    <td>Nov 2024</td>
+                    <td><strong>+140 days</strong> ahead of 10% sweep</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Where the variation actually sits—across proteins and in Oct–Nov 2026</h2>
+
+        <p>
+            So when minor variants <em>do</em> clear our filters and rise above background copy errors, which part of the influenza virus are they changing? The answer from both the 2024–2026 archive and the fresh Oct–Nov 2026 outbreaks is remarkably consistent (<strong>Figure 4</strong>):
+        </p>
+
+        <p>
+            Across all 5,459 public U.S. H5N1 runs, <strong>every single one of the 27 codons showing statistically calibrated within-host selection sits inside internal viral proteins—and zero sit in surface proteins <code>HA</code> or <code>NA</code></strong> (<strong>Figure 4A</strong>). The hotspot is overwhelmingly the tiny 97-amino-acid <strong><code>M2</code> proton-channel / antiviral-resistance protein (10 selected codons)</strong>, followed by nonstructural and polymerase subunits (<code>NS2</code>: 6, <code>PB1</code>: 4, <code>PA</code>: 3, <code>NS1</code>: 3, <code>M1</code>: 1). Meanwhile, the canonical mammalian receptor-binding sites on hemagglutinin—<strong><code>HA:Q226</code> and <code>HA:G228</code></strong>—remained <strong>&ge;&nbsp;99.96% avian</strong> across the entire two-year surveillance archive with <strong>zero false alarms</strong>, and comparing our scores against laboratory deep mutational scanning of H5 hemagglutinin confirms that cattle H5N1 evolution is still completely orthogonal to cattle-antibody escape (<em>r</em>&nbsp;=&nbsp;+0.039) or human &alpha;2–6 receptor switching (<em>r</em>&nbsp;=&nbsp;+0.008). Put simply: dairy cattle H5N1 is currently tuning internal replication, pH stability, and host-innate immunity machinery—not dodging cattle antibodies or flipping to human-airway binding.
+        </p>
+
+        <div class="figure-container">
+            <img src="images/bovine_isnv_fig4_oct_nov_2026_map.png"
+                alt="Figure 4: Left panel shows all 27 statistically selected sub-consensus codons across 5,459 runs live in internal genes led by M2 (10) while HA, NA, NP, and PB2 have 0 and HA:Q226/G228 stay 99.96% avian; right panel maps the exact protein-changing minor variants across the four Oct-Nov 2026 groups (Washington cows, Washington patient UW-110701, Idaho cows, Texas cows).">
+            <div class="figure-caption">
+                <strong>Figure 4. Where sub-consensus bovine H5N1 variation sits—both proteome-wide (5,459 runs) and across the 43 Oct–Nov 2026 outbreaks.</strong>
+                <strong>(A)</strong> Across two years of U.S. H5N1 surveillance, all 27 codons showing significant sub-consensus selection concentrate inside internal genes led by <code>M2</code> (10 codons), whereas human-receptor sites <code>HA:Q226</code> and <code>G228</code> remain &ge;&nbsp;99.96% bird-type with 0 alerts.
+                <strong>(B)</strong> Breakdown of where minor protein-changing variants sit right now in the 43 Fall 2026 runs across Washington, Idaho, Texas, and human spillover patient <code>UW-110701</code>.
+            </div>
+        </div>
+
+        <p>
+            Zooming in on the <strong>43 October–November 2026 alignments</strong> (<strong>Figure 4B</strong> and interactive explorer below) shows exactly where those internal variants sit across each active regional outbreak:
+        </p>
+
+        <!-- Interactive 4-Region Oct-Nov 2026 Minor-Variant Explorer -->
+        <div class="bw-widget" aria-label="Oct-Nov 2026 Regional Minor-Variant Explorer">
+            <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a; margin-bottom: 0.3rem;">
+                Click Through Where the Oct–Nov 2026 Minor Variants Sit
+            </div>
+            <p style="font-size: 0.87rem; color: #475569; margin-bottom: 1rem;">
+                Select each Fall 2026 outbreak group to see the specific minority mutations hiding below consensus sequences across the 43 runs (42 dairy cows + 1 hospitalized patient).
+            </p>
+            <div class="bw-btn-group" id="bw-region-buttons">
+                <button class="bw-btn active" data-reg="wa" type="button">Washington Cows (29 runs)</button>
+                <button class="bw-btn" data-reg="human" type="button">WA Patient UW-110701 (1 run)</button>
+                <button class="bw-btn" data-reg="idaho" type="button">Idaho Polymerase Herds (6 runs)</button>
+                <button class="bw-btn" data-reg="texas" type="button">Texas Sweep Herds (7 runs)</button>
+            </div>
+            <div class="bw-visual-strip" id="bw-region-panel"></div>
+        </div>
+
+        <div class="callout-box">
+            <div class="callout-title">Bottom Line for Dairy Surveillance</div>
+            <p style="margin-bottom: 0;">
+                Looking beneath consensus genomes gives us three things consensus sequences cannot: it catches the <strong>1 in 8 mixed infections</strong> before they corrupt phylogenetic trees, reveals shared sub-consensus mutations moving between "identical" herds, and spots eventual sweeps like <code>PA:I219T</code>, <code>NA:K432E</code>, and <code>M2:G58D</code> <strong>months to nearly two years early</strong>. At the same time, minor-variant lists must always be read with restraint: roughly <strong>99% of rare variants die out</strong> at tight cow-to-cow bottlenecks, and right now the Fall 2026 virus is actively remodeling its internal <code>M2</code> ion-channel and polymerase proteins across Washington, Idaho, and Texas rather than switching hemagglutinin receptor specificity.
+            </p>
+        </div>
+
+        <p style="font-size: 0.94rem; color: #4b5563;">
+            <strong>Explore Further:</strong> Browse every Fall 2026 cow and human sequence on segment-by-segment trees in the <a href="h5n1-mutation-studio/index.html">AEON-MUTATE H5N1 Studio</a>, read <a href="2026-11-06-h5n1-nov06-sra.html">our November 6 consensus herd report</a> (plus its <a href="h5n1-nov06-explorer/index.html">Interactive 9-Tree Explorer</a>), or inspect the open-source <a href="https://github.com/veg/HyphAeon" target="_blank" rel="noopener">HyphAeon</a> code and raw <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1102327" target="_blank" rel="noopener">NCBI PRJNA1102327</a> sequencing archive.
+        </p>
+
+    </main>
+
+    <footer class="blog-footer">
+        <div class="container-narrow">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <strong>Sergei L. Kosakovsky Pond</strong><br>
+                    Institute for Genomics and Evolutionary Medicine (iGEM), Temple University
+                </div>
+                <div>
+                    <a href="../index.html" class="back-link">← Return to CV.js</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const REGIONS = {
+                wa: {
+                    title: "Washington Dairy Herds — 29 Cows Across 12 Farms (123 Minor Protein Calls)",
+                    pill: "Single recent jump (~3–4 weeks before Oct sampling)",
+                    items: [
+                        { mut: "M2:S82N", detail: "Rose from 11%–19% minor frequency in two October herds (26G14594/95) into 46%–58% across milk tanks 2 & 3 of November 6 herd 26G14833." },
+                        { mut: "M2:V27A", detail: "Found at 16.0% and 14.9% in two bulk-tank samples from herd 26G14028 — part of a repeated cattle M2 ion-channel hotspot." },
+                        { mut: "PB2:I495V", detail: "Appeared at 7%–31% across three Washington runs, but phylogenetic context flagged it as neutral background noise rather than emerging selection." },
+                        { mut: "NS1:R21Q / A82T / K221E & PB2:E249D", detail: "Each spotted at low sub-consensus frequencies across pairs of Washington bulk tanks." }
+                    ],
+                    note: "None of the 29 Washington dairy milk runs showed dual-strain co-infection once trace variants and sparse sharing were accounted for — though tank-to-tank divergence like M2:S82N vs. PB1:H99Y is actively splitting inside single farms."
+                },
+                human: {
+                    title: "Washington Human Case (UW-110701) — 1 Clinical Alignment (4 Minor Protein Calls)",
+                    pill: "Hospitalized spillover; clean single-strain background",
+                    items: [
+                        { mut: "M2:A29S (30.3%, 1,296x read depth)", detail: "Strongest high-depth within-host adaptation signal in patient UW-110701, sitting right inside the M2 transmembrane proton channel." },
+                        { mut: "NS1:F22L (6.4%, 1,879x read depth)", detail: "Ultra-deep minority variant in the innate-immune antagonist protein scoring as evolutionarily well tolerated." },
+                        { mut: "PB1:F9L (7.2%, 114x read depth)", detail: "Neutral polymerase background variant with essentially zero inferred adaptive shift." },
+                        { mut: "HA:K352I (38.6%, only 58x read depth)", detail: "Low-coverage surface variant that looks strongly disfavored in evolutionary context rather than human-adaptive." }
+                    ],
+                    note: "Comparing read depth alongside evolutionary plausibility immediately separates high-depth M2/NS1 adaptation (1,296x–1,879x) from shallow, deleterious HA variation (58x) in a single clinical case."
+                },
+                idaho: {
+                    title: "Idaho Polymerase Herds — 6 Cows Across 3 Herds (67 Minor Protein Calls)",
+                    pill: "Built on mammalian PB2:T271A + D678G",
+                    items: [
+                        { mut: "PA:D216G (14% -> 22% -> 29%)", detail: "Shared as a growing minority allele across three Idaho cows whose consensus genomes match closely (26G14109-001/-002 and Nov 6 cow 26G14741-001) — a nascent sweep caught in flight." },
+                        { mut: "PB2:T184A (4%–26%) & PB2:I553V (4%–22%)", detail: "Co-occurring sub-consensus polymerase changes repeated across all three cows in that branch." },
+                        { mut: "NA:I436V (5%–11%)", detail: "Repeated at low frequency in neuraminidase alongside PB2:N456S and PB1:K211R across two Idaho cows." }
+                    ],
+                    note: "Idaho's consensus link proves active farm-to-farm spread of a dual PB2-adapted virus; its raw minor reads show PA:D216G actively climbing on top of that backbone."
+                },
+                texas: {
+                    title: "Texas Sweep Herds — 7 Cows Across 7 Herds (78 Minor Protein Calls)",
+                    pill: "Includes basal TX roots & newer 5-AA sweep clade",
+                    items: [
+                        { mut: "M2:S31N (5.7%, 1,910x) & M2:L46H (3.0%, 2,660x)", detail: "Both appeared in single-cow milk samples from the newer Texas forward-sweep clade (26G15291 and 26G13868), putting canonical antiviral-resistance position M2:31 right at the statistical detection threshold." },
+                        { mut: "PA:V94I (5%–25%) & NS1:A70E (11%–31%)", detail: "Shared sub-consensus variation across four Texas cow runs (matching amino-acid positions previously fixed in other 2026 lineages)." },
+                        { mut: "PB2:N715S (3%–5%) & NP:I57T (4%–14%)", detail: "Low-frequency internal variants observed repeatedly across four Texas cow/bulk samples." }
+                    ],
+                    note: "Just like Washington and Idaho, Texas minor variation concentrates heavily in polymerase, NP, NS1, and the M2 channel rather than hemagglutinin receptor-binding sites."
+                }
+            };
+
+            const btnGroup = document.getElementById("bw-region-buttons");
+            const panel = document.getElementById("bw-region-panel");
+            if (!btnGroup || !panel) return;
+
+            function renderRegion(key) {
+                const r = REGIONS[key] || REGIONS.wa;
+                let rowsHtml = "";
+                for (let i = 0; i < r.items.length; i++) {
+                    const it = r.items[i];
+                    rowsHtml +=
+                        '<div class="bw-mut-row">' +
+                        '<div style="min-width:190px;font-weight:700;color:#0f172a;"><code>' + it.mut + '</code></div>' +
+                        '<div style="flex:1;color:#334155;">' + it.detail + '</div>' +
+                        '</div>';
+                }
+                panel.innerHTML =
+                    '<div class="bw-strip-header">' +
+                    '<div class="bw-strip-title">' + r.title + '</div>' +
+                    '<div class="bw-strip-pill">' + r.pill + '</div>' +
+                    '</div>' +
+                    rowsHtml +
+                    '<p style="margin:11px 0 0 0;padding-top:9px;border-top:1px solid #e2e8f0;font-size:0.86rem;color:#1e3a8a;font-weight:600;line-height:1.48;">' + r.note + '</p>';
+            }
+
+            btnGroup.addEventListener("click", function (ev) {
+                const btn = ev.target.closest("button[data-reg]");
+                if (!btn) return;
+                const allBtns = btnGroup.querySelectorAll("button[data-reg]");
+                for (let i = 0; i < allBtns.length; i++) {
+                    allBtns[i].classList.remove("active");
+                }
+                btn.classList.add("active");
+                renderRegion(btn.getAttribute("data-reg"));
+            });
+
+            renderRegion("wa");
+        })();
+    </script>
+
+</body>
+
+</html>
